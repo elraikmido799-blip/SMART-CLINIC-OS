@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "title": "Oxygen Clinics",
+    "description": "Nutrition, Physiotherapy, Dermatology and Internal Medicine — in clinic and online, all in one place."
+  },
+  "home": {
+    "title": "Your health journey, connected",
+    "subtitle": "Nutrition, Physiotherapy, Dermatology and Internal Medicine — in clinic and online, all in one place.",
+    "bookNow": "Book Now",
+    "patientLogin": "Patient Login",
+    "specialties": {
+      "nutrition": "Nutrition",
+      "physio": "Physiotherapy",
+      "derm": "Dermatology",
+      "internal": "Internal Medicine"
+    }
+  }
+}

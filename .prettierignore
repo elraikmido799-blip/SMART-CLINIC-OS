@@ -1,0 +1,10 @@
+# الملفات المتولدة
+pnpm-lock.yaml
+**/.next
+**/dist
+**/routeTree.gen.ts
+**/next-env.d.ts
+
+# التوثيق بنكتبه بإيدينا (Prettier بيبوّظ جداول العربي)
+docs
+*.md

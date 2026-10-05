@@ -1,0 +1,23 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+# نسخ المكتبات اللي أكتر من مشروع بيستخدمها: مكتوبة هنا مرة واحدة.
+# في package.json بتتكتب "catalog:" بدل رقم النسخة، فالموقع والداشبورد يفضلوا على نفس النسخة دايمًا.
+catalog:
+  react: 19.2.8
+  react-dom: 19.2.8
+  '@types/react': ^19.2.18
+  '@types/react-dom': ^19.2.7
+  typescript: ~6.0.2
+  '@types/node': ^24.13.3
+  '@reduxjs/toolkit': ^2.13.0
+  react-redux: ^9.3.0
+  dayjs: ^1.11.23
+
+# الـPackages دي بتنزل بنسخ جاهزة (Prebuilt) للويندوز، فمش محتاجين نشغّل الـBuild scripts بتاعتها
+allowBuilds:
+  sharp: false
+  unrs-resolver: false
+  '@parcel/watcher': false
+  '@swc/core': false

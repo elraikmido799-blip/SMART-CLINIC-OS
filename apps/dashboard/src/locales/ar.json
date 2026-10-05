@@ -1,0 +1,14 @@
+{
+  "app": {
+    "title": "داشبورد Oxygen",
+    "subtitle": "الريسبشن، الأطباء، الـCRM، والإدارة — في مكان واحد.",
+    "login": "تسجيل الدخول",
+    "switchLanguage": "English"
+  },
+  "specialties": {
+    "nutrition": "التغذية",
+    "physio": "العلاج الطبيعي",
+    "derm": "الجلدية",
+    "internal": "الباطنة"
+  }
+}

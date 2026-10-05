@@ -1,0 +1,14 @@
+{
+  "app": {
+    "title": "Oxygen Dashboard",
+    "subtitle": "Reception, clinicians, CRM and management — in one place.",
+    "login": "Sign in",
+    "switchLanguage": "عربي"
+  },
+  "specialties": {
+    "nutrition": "Nutrition",
+    "physio": "Physiotherapy",
+    "derm": "Dermatology",
+    "internal": "Internal Medicine"
+  }
+}
