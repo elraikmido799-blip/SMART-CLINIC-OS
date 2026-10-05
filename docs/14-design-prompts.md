@@ -28,7 +28,7 @@
 
 ## الهوية (نفس `packages/config/src/tokens.ts`)
 
-> ⏳ **الهوية بتتغير** ([DEC-22](19-decisions.md#dec-22)): الألوان والخطوط الجديدة في برومبت A0 تحت. الجدول ده و`tokens.ts` لسه بالهوية القديمة، وهيتحدثوا لما صورة A0 v2 تتقبل.
+> ⏳ **الهوية بتتغير** ([DEC-23](19-decisions.md#dec-23)): الهوية الجديدة مبنية على لوجو Oxygen الحقيقي، والألوان والخطوط الجديدة في برومبت A0 تحت. الجدول ده و`tokens.ts` لسه بالهوية القديمة، وهيتحدثوا لما صورة A0 v2 تتقبل.
 > ومعاهم كل البرومبتات اللي بعد A0 (A1 → A8 · B · D)، لأنها لسه مكتوبة بالألوان القديمة والفقاعات.
 
 | العنصر | القيمة |
@@ -49,47 +49,54 @@
 
 ## A — الموقع (محادثة جديدة)
 
-### A0 · الهوية + اللغة البصرية (v2: فكرة «النَّفَس»)
+### A0 · الهوية + اللغة البصرية (v2: على لوجو Oxygen — فكرة «نقط بتبقى قوة»)
 
-> ⏸ **متبعتش البرومبت ده دلوقتي:** Oxygen عندهم **لوجو أخضر** أصلًا، والألوان اللي هنا مش ألوانه. البرومبت هيتعدل على ملفات اللوجو لما توصل ([L-16](18-dev-log.md#l-16)).
-
-> - **شات جديد** (مش شات النسخة الأولى، عشان ميتأثرش بيها).
-> - النسخة الأولى (v1) اتستبدلت لأنها كانت شكل UI Kit جاهز. السبب في [سجل المراجعة](#review)، والقرار في [DEC-22](19-decisions.md#dec-22).
-> - **الفكرة:** خط واحد هادي زي النَّفَس بيلف ويعمل حرف O. الخط ده هو اللوجو، وهو نفسه اللي بيمشي في الموقع: بيحضن الصور، وبيوصل خطوات الحجز، وبيرسم أيقونة كل تخصص.
-> - **الألوان اللي في البرومبت كلها بتعدي WCAG AA** (اتحسبت بالكود): التيل مع الأبيض 5.2 · Ember مع الأبيض 4.7 · ألوان التخصصات مع الأبيض من 5.1 لـ6.5.
+> - **شات جديد**، و**ارفع صورة اللوجو** معاه: [`design/brand/original/oxygen-logo-o2-square.png`](../design/brand/original/oxygen-logo-o2-square.png).
+> - **اللوجو ثابت:** لوجو Oxygen الحقيقي (O2 بالنقط)، والبرومبت بيبني الهوية حواليه ([DEC-23](19-decisions.md#dec-23)).
+> - **الفكرة:** النقط اللي في اللوجو بتتجمع وتتصف وتعمل أشكال، زي رحلة المريض. ودي لغة الموقع كله: إطار الصور، والفواصل، وخطوات الحجز، وأيقونات التخصصات، والتحميل.
+> - **الـcontrast (اتحسب بالكود):** الأبيض على Deep Teal 5.5 · الكحلي على الدهبي 7.8 · حدود الـInputs 3.2 · ألوان التخصصات من 4.7 لـ6.5. الأكوا للزينة بس (الأبيض عليه 2.2).
+> - النسخة الأولى (v1) اتستبدلت ([سجل المراجعة](#review))، وبرومبت «النَّفَس» ([DEC-22](19-decisions.md#dec-22)) اتلغى قبل ما يتبعت.
 
 ```text
-You are a creative director with 10+ years of experience building healthcare and wellness brands. Create an ORIGINAL, ownable visual identity for "Oxygen Clinics" — a premium multi-specialty clinic group in Egypt (Nutrition, Physiotherapy, Dermatology, Internal Medicine) that also sells online health programs. Arabic is the main language (right-to-left), English is second.
+You are a creative director with 10+ years of experience in healthcare and wellness brands and product design. Design the visual language for the new website of "Oxygen" — an Egyptian clinic group for clinical nutrition, weight loss and physical therapy (also dermatology and internal medicine), with branches in Sheikh Zayed, Tanta, Tala, Heliopolis and New Cairo. Arabic is the main language (right-to-left), English is second.
 
-It must NOT look like a UI kit or a template. Avoid every healthcare cliché: no bubbles, leaves, lungs, hearts, pulse lines, medical crosses, stethoscope logos or DNA; no Dribbble-style component sheets, no glassmorphism, no purple-blue AI gradients, no star ratings, no stock-photo clichés. Do not copy or imitate any existing brand, website or template.
+THE LOGO IS FIXED: the attached image is Oxygen's official logo — an open "O" ring with a small "2" (O₂), where oxygen particles (dots of different sizes) gather on its left side into the curve of a spine, above the wide-spaced wordmark "OXYGEN". Reproduce it faithfully. Do not redesign, redraw or "improve" it.
 
-CONCEPT — "Breath": oxygen is the breath that gives life. The brand is built on ONE continuous, calm line — like a slow breath — that loops once into an open "O" and then trails off softly. This single gesture is both the logo symbol and the visual system: the same line flows through layouts, frames photos, connects steps, and draws the simple one-line illustration of each specialty. Calm, warm, human, premium — never cold or hospital-like.
+CONCEPT — "Particles that become strength": in the logo, scattered oxygen particles gather and align into a spine. The whole visual language is built on that one movement: dots of different sizes drift like breath, then gather, align and form clear shapes — like a patient's journey from scattered to aligned and strong. Use it with purpose, never as decoration for its own sake:
+- photos are framed by an O₂ ring made of particles
+- section dividers are a soft wave of dots
+- the booking progress is dots that align step by step and close into a full ring at the end
+- each specialty icon is drawn with a single dotted line
+- loading and empty states are particles gathering into the O
 
-PALETTE (use exactly — every text/background pair passes WCAG AA):
-- Oxygen Teal #0B7A6F — brand color and primary buttons (white text)
-- Deep Ink #0B2E2B — headings and text · Muted text #5A6B66
-- Linen #FAF7F2 — warm page background · White #FFFFFF — cards · Hairline #E7E1D7 — borders
-- Breath Mist #E3F2EE — soft tinted surfaces and the airy light in backgrounds
-- Ember #C94A2C — ONLY for the single most important action (booking), white text
-- Specialty colors: Nutrition #4F7A28 · Physiotherapy #1F6FB2 · Dermatology #B8466A · Internal Medicine #5B4BC4
+PALETTE (from the logo's aqua-to-ocean gradient, made accessible — every text/background pair passes WCAG AA):
+- Oxygen Aqua #2EC4A6 → Ocean Blue #1769B0 — the brand gradient, only for large brand moments (hero light, the ring, particles), never behind small text
+- Deep Teal #0A7672 — primary buttons and links (white text)
+- Deep Navy #0E2440 — headings and text · Slate #4A5D73 — secondary text
+- Sand #FAF7F0 — warm page background · White #FFFFFF — cards · Mist #E3F6F2 — soft tinted surfaces · Hairline #E6E1D6 — dividers · Field border #8291A0 — input borders
+- Sunlight Gold #F2A93B — ONLY the single main booking button, with Deep Navy text
+- Specialty accents (small chips and icons only): Nutrition #4F7A28 · Physiotherapy #1769B0 · Dermatology #B8466A · Internal Medicine #5B4BC4
 
-TYPOGRAPHY: editorial and expressive, with strong scale contrast — a soft, warm serif for English headlines (in the spirit of Fraunces), an elegant modern Arabic display face for Arabic headlines, and a highly legible sans for body text in both scripts (in the spirit of IBM Plex Sans Arabic). Arabic text must be correct, fully connected and right-to-left.
+TYPOGRAPHY: headlines in a clean geometric sans that echoes the logo's wide-spaced wordmark (for Arabic, a modern geometric Arabic display face in the spirit of Alexandria); body text in a highly legible sans for both scripts (in the spirit of IBM Plex Sans Arabic). Strong scale contrast, generous line height. Arabic text must be correct, fully connected and right-to-left.
 
-UX RULES: clear hierarchy, one primary action per area, touch targets of at least 44px, generous spacing on an 8px grid, layouts that mirror cleanly for RTL, and everything buildable with Tailwind CSS + shadcn/ui (soft 16–24px radii, hairline borders, very soft shadows).
+AVOID: the blob shapes, heavy drop shadows, neon glows and 3D numbers of typical clinic social media posts; diagonal stripes and coral or peach palettes; Dribbble-style component sheets; glassmorphism; star ratings; heart icons; medical crosses; stock-photo clichés. Do not copy or imitate any other brand or website.
 
-Now create ONE image — a BRAND & VISUAL LANGUAGE BOARD (landscape 3:2), art-directed like a top agency presentation: few elements, shown big and confident, with lots of breathing space:
-1. The logo, large on Linen: the breath-line symbol + "Oxygen" wordmark + "Clinics". Beside it, the symbol alone as an app icon on Oxygen Teal.
-2. A hero moment in Arabic: the headline "نَفَس جديد لصحتك", the English subline "Better Health. More Life.", the breath line flowing behind the text, one Ember button "احجز موعدك" and one secondary button "اكتشف التخصصات".
+UX RULES: clear hierarchy, one primary action per area, touch targets of at least 44px, labels above inputs, visible focus rings, an 8px spacing grid, layouts that mirror cleanly for RTL, purposeful motion only, and everything buildable with Tailwind CSS + shadcn/ui (soft 16–24px radii, hairline borders, very soft shadows).
+
+Now create ONE image — a BRAND & VISUAL LANGUAGE BOARD (landscape 3:2), art-directed like a top agency presentation, not a UI kit: few elements, shown big and confident, with lots of white space:
+1. The logo: white on the brand gradient, and a dark version (Deep Navy) on Sand.
+2. A hero moment in Arabic: the headline "نَفَس جديد لصحتك", the subline "تغذية علاجية وعلاج طبيعي بخطة مصممة لجسمك", a calm natural-light photo of a physiotherapy session framed by the particle O₂ ring, and a compact booking bar: a specialty select, a branch select and the Sunlight Gold button "احجز موعدك"; plus a secondary outline button "كلمنا واتساب".
 3. The palette as tall elegant swatches with names and hex codes.
-4. A type specimen: one huge headline in each script, plus a short body paragraph.
-5. Three signature components in this style: a doctor card (photo framed by the breath line, name, specialty, years of experience, a "Book" button — no stars, no heart icon); four specialty tiles, each with its one-line illustration in its specialty color; and a 3-step booking progress where the line connects the steps.
+4. A type specimen: one large headline in each script and a short body paragraph.
+5. Three signature components: a doctor card (real-looking photo inside a particle ring, name, specialty, years of experience, branch, an "احجز" button — no stars, no heart); four specialty tiles with dotted-line icons in their accent colors; and the 3-step booking progress where the dots align and close into a ring.
 
 Flat high-fidelity design, crisp correctly spelled text, realistic content, no lorem ipsum, no device frames.
 ```
 
 ### L1 → L6 · الصور اللي بتطلع من A0 (في نفس المحادثة، بعد A0 وقبل A1)
 
-> ⏸ **متوقفة لحد ما A0 v2 تتقبل:** البرومبتات دي مكتوبة على لوجو v1 (الفقاعات)، وهتتعدل على اللوجو الجديد.
+> ⏸ **L1 → L4 اتلغت:** اللوجو بقى لوجو Oxygen الحقيقي، فمش هنطلّعه من ChatGPT. محتاجين ملفه الأصلي (SVG أو AI) من Oxygen، ولو مش موجود Claude بيرسمه SVG بالكود ([DEC-23](19-decisions.md#dec-23)).
+> ⏸ **L5 وL6 متوقفين** لحد ما A0 v2 تتقبل، وهيتعدلوا على ألوانها.
 
 > - **في نفس شات A0.** لو شات جديد: ارفع صورة A0 مع أول برومبت.
 > - كل برومبت بيطلّع ملف واحد بخلفية شفافة. لو ChatGPT طلّع أي خلفية، Claude بيشيلها.
@@ -328,7 +335,7 @@ Use the specialty colors only as accents and keep plenty of white space.
 
 ```text
 design/
-├── brand/       logo-full.png · logo-white.png · logo-symbol.png · app-icon.png · doctor-avatar.png
+├── brand/       original/ (مراجع Oxygen زي ما وصلت) · doctor-avatar.png · ملفات اللوجو النهائية (بعد A0 v2)
 ├── mocks/       doctor-sample.png (للتطوير بس، مش بتتحط في الموقع الحقيقي)
 ├── website/     A0-design-system-v2.png · W-01-home-top.png · W-01-home-bottom.png · W-01-home-mobile.png
 │                W-03-specialty.png · W-05-doctors.png · W-07-booking.png · PP-01-portal.png · W-01-home-ar.png
@@ -342,7 +349,7 @@ design/
 
 | الصورة | الملف | الحالة | ملاحظات بتتطبق في الكود |
 |---|---|---|---|
-| A0 v2 · فكرة «النَّفَس» | `design/website/A0-design-system-v2.png` | ⏳ مستنية الصورة | — |
+| A0 v2 · على لوجو Oxygen: «نقط بتبقى قوة» | `design/website/A0-design-system-v2.png` | ⏳ مستنية الصورة | برومبت «النَّفَس» اتلغى قبل ما يتبعت ([DEC-22](19-decisions.md#dec-22)) |
 | A0 v1 · Design System | `design/website/A0-design-system.png` | ❌ اتستبدلت بـv2 | <ul><li>**ليه اتستبدلت:** شكلها UI Kit جاهز: لستة Components ثابتة، وألوان Tailwind الجاهزة (`#3B82F6` · `#16A34A` · `#F59E0B` · `#65A30D`)، وInter مع كروت بيضا وزوايا 12px، والفقاعات أول فكرة بتيجي في كلمة "أكسجين"</li><li>**غلطتين UX:** الكلام الأبيض على الكورال contrast بتاعه 2.6، وعلى التيل 4.1 (المطلوب 4.5)</li></ul>الملاحظات اللي تحت دي لسه شغالة، واتحطت جوه برومبت v2: <ul><li>الألوان مطابقة لـ`tokens.ts` حرف بحرف</li><li>**كارت الطبيب:** من غير نجوم وتقييمات (التقييم في Phase 2 ولازم يبقى حقيقي)، ومن غير زرار القلب</li><li>**الـStat Card على الموقع:** الرقم والكلام بس، من غير "↑24% compared to last year"</li><li>الكتابة بخط اليد مش مستخدمة (خطين بس)</li><li>جملة "Better Health. More Life." نص في الموقع، مش جزء من اللوجو</li></ul> |
 
 <a id="assets"></a>
@@ -357,7 +364,7 @@ design/
 
 **الحالة:** ✅ وصلت واتظبطت · ⏳ مستنية
 
-> ⏸ صفوف A0 هنا على v1. هتتعدل بعد ما A0 v2 تتقبل (مثلًا: الفقاعات هتبقى "خط النَّفَس" SVG بالكود).
+> ⏸ صفوف A0 هنا على v1، وهتتعدل بعد ما A0 v2 تتقبل. اللوجو بقى لوجو Oxygen الحقيقي (ملفه الأصلي أو SVG بالكود)، والفقاعات هتبقى "نقط اللوجو" SVG بالكود.
 
 | من صورة | العنصر | المصدر | الملف | الحالة |
 |---|---|---|---|---|
