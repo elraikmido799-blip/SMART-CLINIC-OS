@@ -71,44 +71,54 @@ For every image in this chat: flat high-fidelity UI, no device frames unless I a
 Now create image 1 — DESIGN SYSTEM BOARD (landscape 3:2): logo placeholder (wordmark "OXYGEN" with a small bubble symbol), color swatches with hex codes, typography scale (Display, H1, H2, H3, Body, Caption), buttons (primary teal, coral CTA, outline, ghost) with hover states, inputs (text, select, date, search, 6-box OTP), chips for the 4 specialties, cards (service card, doctor card, stat card), and a mobile bottom navigation.
 ```
 
-### L1 → L5 · ملفات الهوية (في نفس المحادثة، بعد A0 وقبل A1)
+### L1 → L6 · الصور اللي بتطلع من A0 (في نفس المحادثة، بعد A0 وقبل A1)
 
-> كل برومبت بيطلّع ملف واحد بخلفية شفافة. لو ChatGPT طلّع خلفية بيضا، Claude بيشيلها.
-> جملة "Better Health. More Life." **مش** جوه ملف اللوجو: بتتكتب نص في الموقع عشان تتترجم.
+> - **في نفس شات A0.** لو شات جديد: ارفع صورة A0 مع أول برومبت.
+> - كل برومبت بيطلّع ملف واحد بخلفية شفافة. لو ChatGPT طلّع أي خلفية، Claude بيشيلها.
+> - جملة "Better Health. More Life." **مش** جوه ملف اللوجو: بتتكتب نص في الموقع عشان تتترجم.
+> - **تفاصيل اللوجو في A0** (اتأكدنا بتكبير الصورة): **4 فقاعات** تيل فوق آخر الكلمة، والخط اللي في نص حرف الـ**E** لونه تيل. وأيقونة التطبيق فيها **3 دواير** بيضا.
 
 **L1 · اللوجو الكامل** → `design/brand/logo-full.png`
 
 ```text
-Export the exact OXYGEN logo from the design system board above (the "OXYGEN" wordmark, the three teal bubbles and "CLINICS" underneath) as a FINAL standalone logo file:
-- Keep the exact same letterforms, proportions and bubble positions — do not redesign it.
-- Transparent background, centered, with even padding around it.
-- Nothing else in the image: no tagline, no mockup, no shadow, no texture.
-- Flat solid colors: wordmark and "CLINICS" #0B2E2B, bubbles #0E8C7F.
-- Landscape 3:2, high resolution, perfectly sharp clean edges.
+From the design system board above, extract ONLY the OXYGEN logo and recreate it as a standalone logo file. Copy it exactly — do not redesign anything:
+- The "OXYGEN" wordmark in Deep Ink #0B2E2B, keeping the teal #0E8C7F middle bar of the "E".
+- The four Oxygen Teal #0E8C7F bubbles above the end of the word — same sizes, same positions.
+- "CLINICS" underneath, same color and same wide letter spacing.
+- Do NOT include the tagline "Better Health. More Life.", no other elements, no shadow, no texture.
+- Transparent background, centered, even padding. Landscape 3:2, high resolution, flat solid colors, perfectly sharp edges.
 ```
 
 **L2 · اللوجو أبيض** (للخلفيات التيل والغامقة) → `design/brand/logo-white.png`
 
 ```text
-Same logo, same exact shapes and layout, but all in solid white #FFFFFF on a transparent background — for use on teal or dark backgrounds. Nothing else in the image. Landscape 3:2, high resolution, sharp edges.
+The exact same logo, identical shapes and layout, but every part (wordmark, bubbles, "CLINICS") in solid white #FFFFFF on a transparent background — for teal and dark backgrounds. Nothing else in the image. Landscape 3:2, high resolution, sharp edges.
 ```
 
 **L3 · الرمز بس** (الـFavicon والأماكن الصغيرة) → `design/brand/logo-symbol.png`
 
 ```text
-Only the logo symbol: the three teal (#0E8C7F) bubbles exactly as in the logo, without any text. Centered on a transparent background with even padding, square 1:1, flat, high resolution, sharp edges. Nothing else in the image.
+Only the logo symbol: the four Oxygen Teal #0E8C7F bubbles exactly as they appear in the logo — same sizes, same positions — with no text. Centered on a transparent background with even padding. Square 1:1, flat, high resolution, sharp edges. Nothing else in the image.
 ```
 
 **L4 · أيقونة التطبيق** → `design/brand/app-icon.png`
 
 ```text
-The app icon from the board above as a standalone file: the teal (#0E8C7F) rounded square with the white bubble symbol, exactly the same design. Square 1:1, high resolution, the icon filling the whole canvas, no shadow, no extra background, no text.
+From the board above, extract ONLY the App Icon and recreate it exactly as a standalone file: an Oxygen Teal #0E8C7F rounded square with three white circles — a large one lower-left of center, a medium one at the upper right, and a small one on the right between them. Square 1:1, high resolution, the rounded square filling the canvas, transparent outside the rounded corners. No shadow, no label, no text, nothing else.
 ```
 
 **L5 · الصورة الافتراضية للطبيب** (لأي دكتور لسه ملوش صورة حقيقية) → `design/brand/doctor-avatar.png`
 
 ```text
 Create a DEFAULT DOCTOR AVATAR for doctors who don't have a photo yet: a minimal, friendly, non-realistic illustration — a simple head-and-shoulders silhouette in a white coat with a small stethoscope, no facial features, on a soft mint (#E6F4F1) circle, with Oxygen Teal (#0E8C7F) and Deep Ink (#0B2E2B) accents. Flat style, square 1:1, centered, transparent background outside the circle, no text. It must clearly read as a placeholder avatar, not a real person.
+```
+
+**L6 · الشخصية: صورة الدكتورة اللي في كارت الطبيب** (للتطوير والـMocks بس) → `design/mocks/doctor-sample.png`
+
+> على الموقع الحقيقي كل دكتور بصورته الحقيقية، والصورة دي مش بتتحط فيه ([DEC-21](19-decisions.md#dec-21)).
+
+```text
+From the doctor card on the board above, extract ONLY the doctor's photo and recreate it as a standalone portrait photo: the same woman doctor — same face, hair, smile and pose — wearing a white coat with a stethoscope. Head and shoulders, centered, on a plain soft light background #F7FAF9. Photorealistic, natural skin, soft daylight. Square 1:1, high resolution. No card, no frame, no text, no icons, nothing else.
 ```
 
 ### A1 · الصفحة الرئيسية — النص الأول · `W-01`
@@ -301,6 +311,7 @@ Use the specialty colors only as accents and keep plenty of white space.
 ```text
 design/
 ├── brand/       logo-full.png · logo-white.png · logo-symbol.png · app-icon.png · doctor-avatar.png
+├── mocks/       doctor-sample.png (للتطوير بس، مش بتتحط في الموقع الحقيقي)
 ├── website/     A0-design-system.png · W-01-home-top.png · W-01-home-bottom.png · W-01-home-mobile.png
 │                W-03-specialty.png · W-05-doctors.png · W-07-booking.png · PP-01-portal.png · W-01-home-ar.png
 └── dashboard/   D-01-login.png · D-02-reception.png · D-09-patient-360.png · D-11-encounter.png
@@ -333,8 +344,9 @@ design/
 | A0 | اللوجو الأبيض | ChatGPT · L2 | `design/brand/logo-white.png` ← SVG | ⏳ |
 | A0 | رمز اللوجو (الفقاعات) | ChatGPT · L3 | `design/brand/logo-symbol.png` ← Favicon | ⏳ |
 | A0 | أيقونة التطبيق | ChatGPT · L4 | `design/brand/app-icon.png` | ⏳ |
-| A0 | صور الأطباء | **حقيقية** (ممنوع AI) | من Oxygen ([دليل التصوير](16-website-plan.md)) | ⏳ |
+| A0 | صور الأطباء (الموقع الحقيقي) | **حقيقية** (ممنوع AI) | من Oxygen ([دليل التصوير](16-website-plan.md)) | ⏳ |
 | A0 | الصورة الافتراضية للطبيب | ChatGPT · L5 | `design/brand/doctor-avatar.png` | ⏳ |
+| A0 | الشخصية: صورة الدكتورة اللي في الكارت (للتطوير بس) | ChatGPT · L6 | `design/mocks/doctor-sample.png` | ⏳ |
 | A0 | فقاعات الخلفيات (الـStat Card والكروت) | SVG (كود) | `components/shared/` | ⏳ |
 | A0 | أيقونات التخصصات والـNavigation والـInputs | Lucide | — | ✅ متسطبة |
 
