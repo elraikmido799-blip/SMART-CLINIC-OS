@@ -28,6 +28,9 @@
 
 ## الهوية (نفس `packages/config/src/tokens.ts`)
 
+> ⏳ **الهوية بتتغير** ([DEC-22](19-decisions.md#dec-22)): الألوان والخطوط الجديدة في برومبت A0 تحت. الجدول ده و`tokens.ts` لسه بالهوية القديمة، وهيتحدثوا لما صورة A0 v2 تتقبل.
+> ومعاهم كل البرومبتات اللي بعد A0 (A1 → A8 · B · D)، لأنها لسه مكتوبة بالألوان القديمة والفقاعات.
+
 | العنصر | القيمة |
 |---|---|
 | Primary — Oxygen Teal | `#0E8C7F` |
@@ -46,32 +49,45 @@
 
 ## A — الموقع (محادثة جديدة)
 
-### A0 · الهوية + Design System
+### A0 · الهوية + اللغة البصرية (v2: فكرة «النَّفَس»)
+
+> - **شات جديد** (مش شات النسخة الأولى، عشان ميتأثرش بيها).
+> - النسخة الأولى (v1) اتستبدلت لأنها كانت شكل UI Kit جاهز. السبب في [سجل المراجعة](#review)، والقرار في [DEC-22](19-decisions.md#dec-22).
+> - **الفكرة:** خط واحد هادي زي النَّفَس بيلف ويعمل حرف O. الخط ده هو اللوجو، وهو نفسه اللي بيمشي في الموقع: بيحضن الصور، وبيوصل خطوات الحجز، وبيرسم أيقونة كل تخصص.
+> - **الألوان اللي في البرومبت كلها بتعدي WCAG AA** (اتحسبت بالكود): التيل مع الأبيض 5.2 · Ember مع الأبيض 4.7 · ألوان التخصصات مع الأبيض من 5.1 لـ6.5.
 
 ```text
-You are a senior product designer creating an ORIGINAL visual identity and UI for "Oxygen Clinics" — a modern multi-branch clinic group in Egypt (Nutrition, Physiotherapy, Dermatology, Internal Medicine) that also sells online health programs.
+You are a creative director with 10+ years of experience building healthcare and wellness brands. Create an ORIGINAL, ownable visual identity for "Oxygen Clinics" — a premium multi-specialty clinic group in Egypt (Nutrition, Physiotherapy, Dermatology, Internal Medicine) that also sells online health programs. Arabic is the main language (right-to-left), English is second.
 
-Originality: create a completely original design. Do not copy or imitate any existing website, brand, template, Dribbble/Behance shot or app. No stock-photo clichés.
+It must NOT look like a UI kit or a template. Avoid every healthcare cliché: no bubbles, leaves, lungs, hearts, pulse lines, medical crosses, stethoscope logos or DNA; no Dribbble-style component sheets, no glassmorphism, no purple-blue AI gradients, no star ratings, no stock-photo clichés. Do not copy or imitate any existing brand, website or template.
 
-Brand feeling: fresh, airy (like oxygen), calm, trustworthy, premium but warm. Never cold or hospital-like.
+CONCEPT — "Breath": oxygen is the breath that gives life. The brand is built on ONE continuous, calm line — like a slow breath — that loops once into an open "O" and then trails off softly. This single gesture is both the logo symbol and the visual system: the same line flows through layouts, frames photos, connects steps, and draws the simple one-line illustration of each specialty. Calm, warm, human, premium — never cold or hospital-like.
 
-Design tokens (use exactly):
-- Primary "Oxygen Teal" #0E8C7F · main text "Deep Ink" #0B2E2B · secondary text #5E7A76
-- Soft mint #E6F4F1 · page background #F7FAF9 · cards #FFFFFF · borders #DCE8E5
-- Accent coral #FF7A59 (only for the main call-to-action)
-- Status: success #16A34A · warning #F59E0B · danger #E5484D · info #3B82F6
-- Specialty colors: Nutrition #65A30D · Physiotherapy #3B82F6 · Dermatology #E66A8D · Internal Medicine #7C5CFC
-- Corner radius 12px, soft subtle shadows, thin 1.5px line icons (Lucide style), generous white space
-- Typography: Inter for English, IBM Plex Sans Arabic for Arabic, clear hierarchy
-- Signature motif: very subtle soft "oxygen bubbles" in backgrounds — light, never busy
-- The website is built with Tailwind CSS + shadcn/ui, so components look like clean modern shadcn components (rounded-xl cards, subtle borders, simple buttons).
+PALETTE (use exactly — every text/background pair passes WCAG AA):
+- Oxygen Teal #0B7A6F — brand color and primary buttons (white text)
+- Deep Ink #0B2E2B — headings and text · Muted text #5A6B66
+- Linen #FAF7F2 — warm page background · White #FFFFFF — cards · Hairline #E7E1D7 — borders
+- Breath Mist #E3F2EE — soft tinted surfaces and the airy light in backgrounds
+- Ember #C94A2C — ONLY for the single most important action (booking), white text
+- Specialty colors: Nutrition #4F7A28 · Physiotherapy #1F6FB2 · Dermatology #B8466A · Internal Medicine #5B4BC4
 
-For every image in this chat: flat high-fidelity UI, no device frames unless I ask, crisp legible correctly spelled English text, realistic content (no lorem ipsum).
+TYPOGRAPHY: editorial and expressive, with strong scale contrast — a soft, warm serif for English headlines (in the spirit of Fraunces), an elegant modern Arabic display face for Arabic headlines, and a highly legible sans for body text in both scripts (in the spirit of IBM Plex Sans Arabic). Arabic text must be correct, fully connected and right-to-left.
 
-Now create image 1 — DESIGN SYSTEM BOARD (landscape 3:2): logo placeholder (wordmark "OXYGEN" with a small bubble symbol), color swatches with hex codes, typography scale (Display, H1, H2, H3, Body, Caption), buttons (primary teal, coral CTA, outline, ghost) with hover states, inputs (text, select, date, search, 6-box OTP), chips for the 4 specialties, cards (service card, doctor card, stat card), and a mobile bottom navigation.
+UX RULES: clear hierarchy, one primary action per area, touch targets of at least 44px, generous spacing on an 8px grid, layouts that mirror cleanly for RTL, and everything buildable with Tailwind CSS + shadcn/ui (soft 16–24px radii, hairline borders, very soft shadows).
+
+Now create ONE image — a BRAND & VISUAL LANGUAGE BOARD (landscape 3:2), art-directed like a top agency presentation: few elements, shown big and confident, with lots of breathing space:
+1. The logo, large on Linen: the breath-line symbol + "Oxygen" wordmark + "Clinics". Beside it, the symbol alone as an app icon on Oxygen Teal.
+2. A hero moment in Arabic: the headline "نَفَس جديد لصحتك", the English subline "Better Health. More Life.", the breath line flowing behind the text, one Ember button "احجز موعدك" and one secondary button "اكتشف التخصصات".
+3. The palette as tall elegant swatches with names and hex codes.
+4. A type specimen: one huge headline in each script, plus a short body paragraph.
+5. Three signature components in this style: a doctor card (photo framed by the breath line, name, specialty, years of experience, a "Book" button — no stars, no heart icon); four specialty tiles, each with its one-line illustration in its specialty color; and a 3-step booking progress where the line connects the steps.
+
+Flat high-fidelity design, crisp correctly spelled text, realistic content, no lorem ipsum, no device frames.
 ```
 
 ### L1 → L6 · الصور اللي بتطلع من A0 (في نفس المحادثة، بعد A0 وقبل A1)
+
+> ⏸ **متوقفة لحد ما A0 v2 تتقبل:** البرومبتات دي مكتوبة على لوجو v1 (الفقاعات)، وهتتعدل على اللوجو الجديد.
 
 > - **في نفس شات A0.** لو شات جديد: ارفع صورة A0 مع أول برومبت.
 > - كل برومبت بيطلّع ملف واحد بخلفية شفافة. لو ChatGPT طلّع أي خلفية، Claude بيشيلها.
@@ -312,7 +328,7 @@ Use the specialty colors only as accents and keep plenty of white space.
 design/
 ├── brand/       logo-full.png · logo-white.png · logo-symbol.png · app-icon.png · doctor-avatar.png
 ├── mocks/       doctor-sample.png (للتطوير بس، مش بتتحط في الموقع الحقيقي)
-├── website/     A0-design-system.png · W-01-home-top.png · W-01-home-bottom.png · W-01-home-mobile.png
+├── website/     A0-design-system-v2.png · W-01-home-top.png · W-01-home-bottom.png · W-01-home-mobile.png
 │                W-03-specialty.png · W-05-doctors.png · W-07-booking.png · PP-01-portal.png · W-01-home-ar.png
 └── dashboard/   D-01-login.png · D-02-reception.png · D-09-patient-360.png · D-11-encounter.png
                  D-20-crm.png · D-28-executive.png · D-02-reception-ar.png
@@ -324,7 +340,8 @@ design/
 
 | الصورة | الملف | الحالة | ملاحظات بتتطبق في الكود |
 |---|---|---|---|
-| A0 · Design System | `design/website/A0-design-system.png` | ✅ اتقبلت | <ul><li>الألوان مطابقة لـ`tokens.ts` حرف بحرف</li><li>**كارت الطبيب:** من غير نجوم وتقييمات (التقييم في Phase 2 ولازم يبقى حقيقي)، ومن غير زرار القلب</li><li>**الـStat Card على الموقع:** الرقم والكلام بس، من غير "↑24% compared to last year"</li><li>الكتابة بخط اليد مش مستخدمة (خطين بس)</li><li>جملة "Better Health. More Life." نص في الموقع، مش جزء من اللوجو</li></ul> |
+| A0 v2 · فكرة «النَّفَس» | `design/website/A0-design-system-v2.png` | ⏳ مستنية الصورة | — |
+| A0 v1 · Design System | `design/website/A0-design-system.png` | ❌ اتستبدلت بـv2 | <ul><li>**ليه اتستبدلت:** شكلها UI Kit جاهز: لستة Components ثابتة، وألوان Tailwind الجاهزة (`#3B82F6` · `#16A34A` · `#F59E0B` · `#65A30D`)، وInter مع كروت بيضا وزوايا 12px، والفقاعات أول فكرة بتيجي في كلمة "أكسجين"</li><li>**غلطتين UX:** الكلام الأبيض على الكورال contrast بتاعه 2.6، وعلى التيل 4.1 (المطلوب 4.5)</li></ul>الملاحظات اللي تحت دي لسه شغالة، واتحطت جوه برومبت v2: <ul><li>الألوان مطابقة لـ`tokens.ts` حرف بحرف</li><li>**كارت الطبيب:** من غير نجوم وتقييمات (التقييم في Phase 2 ولازم يبقى حقيقي)، ومن غير زرار القلب</li><li>**الـStat Card على الموقع:** الرقم والكلام بس، من غير "↑24% compared to last year"</li><li>الكتابة بخط اليد مش مستخدمة (خطين بس)</li><li>جملة "Better Health. More Life." نص في الموقع، مش جزء من اللوجو</li></ul> |
 
 <a id="assets"></a>
 
@@ -337,6 +354,8 @@ design/
 - **حقيقية** = صورة حقيقية من Oxygen.
 
 **الحالة:** ✅ وصلت واتظبطت · ⏳ مستنية
+
+> ⏸ صفوف A0 هنا على v1. هتتعدل بعد ما A0 v2 تتقبل (مثلًا: الفقاعات هتبقى "خط النَّفَس" SVG بالكود).
 
 | من صورة | العنصر | المصدر | الملف | الحالة |
 |---|---|---|---|---|
