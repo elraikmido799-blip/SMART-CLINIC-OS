@@ -51,7 +51,7 @@
 
 ### A0 · الهوية + اللغة البصرية (v2: على لوجو Oxygen — فكرة «نقط بتبقى قوة»)
 
-> - **شات جديد**، و**ارفع صورة اللوجو** معاه: [`design/brand/original/oxygen-logo-o2-square.png`](../design/brand/original/oxygen-logo-o2-square.png).
+> - **شات جديد، من غير ما ترفق صور:** وصف اللوجو جوه البرومبت. المرجع: [`design/brand/original/oxygen-logo-o2-square.png`](../design/brand/original/oxygen-logo-o2-square.png).
 > - **اللوجو ثابت:** لوجو Oxygen الحقيقي (O2 بالنقط)، والبرومبت بيبني الهوية حواليه ([DEC-23](19-decisions.md#dec-23)).
 > - **الفكرة:** النقط اللي في اللوجو بتتجمع وتتصف وتعمل أشكال، زي رحلة المريض. ودي لغة الموقع كله: إطار الصور، والفواصل، وخطوات الحجز، وأيقونات التخصصات، والتحميل.
 > - **الـcontrast (اتحسب بالكود):** الأبيض على Deep Teal 5.5 · الكحلي على الدهبي 7.8 · حدود الـInputs 3.2 · ألوان التخصصات من 4.7 لـ6.5. الأكوا للزينة بس (الأبيض عليه 2.2).
@@ -60,7 +60,7 @@
 ```text
 You are a creative director with 10+ years of experience in healthcare and wellness brands and product design. Design the visual language for the new website of "Oxygen" — an Egyptian clinic group for clinical nutrition, weight loss and physical therapy (also dermatology and internal medicine), with branches in Sheikh Zayed, Tanta, Tala, Heliopolis and New Cairo. Arabic is the main language (right-to-left), English is second.
 
-THE LOGO IS FIXED: the attached image is Oxygen's official logo — an open "O" ring with a small "2" (O₂), where oxygen particles (dots of different sizes) gather on its left side into the curve of a spine, above the wide-spaced wordmark "OXYGEN". Reproduce it faithfully. Do not redesign, redraw or "improve" it.
+THE LOGO IS FIXED (Oxygen's official logo — show it exactly like this, do not redesign or "improve" it): a large open circle "O" drawn as one smooth stroke, open on its left side from about 11 o'clock to 7 o'clock, with a small "2" touching its bottom right (O₂). In place of the missing left part, a column of about 12 round dots follows a gentle S-curve like a spine, with one thin curved line on each side of it, and about 35 smaller round dots spread out to the left like oxygen particles dispersing in the air. Below it, "OXYGEN" in uppercase geometric sans-serif with very wide letter spacing.
 
 CONCEPT — "Particles that become strength": in the logo, scattered oxygen particles gather and align into a spine. The whole visual language is built on that one movement: dots of different sizes drift like breath, then gather, align and form clear shapes — like a patient's journey from scattered to aligned and strong. Use it with purpose, never as decoration for its own sake:
 - photos are framed by an O₂ ring made of particles
@@ -93,43 +93,48 @@ Now create ONE image — a BRAND & VISUAL LANGUAGE BOARD (landscape 3:2), art-di
 Flat high-fidelity design, crisp correctly spelled text, realistic content, no lorem ipsum, no device frames.
 ```
 
-### L1 → L6 · الصور اللي بتطلع من A0 (في نفس المحادثة، بعد A0 وقبل A1)
+### L1 → L6 · ملفات اللوجو والصور (شات جديد للوجو، من غير ما ترفق صور)
 
-> ⏸ **L1 → L4 اتلغت:** اللوجو بقى لوجو Oxygen الحقيقي، فمش هنطلّعه من ChatGPT. محتاجين ملفه الأصلي (SVG أو AI) من Oxygen، ولو مش موجود Claude بيرسمه SVG بالكود ([DEC-23](19-decisions.md#dec-23)).
-> ⏸ **L5 وL6 متوقفين** لحد ما A0 v2 تتقبل، وهيتعدلوا على ألوانها.
+> - **L1 → L4 (اللوجو):** اتكتبوا من جديد على **لوجو Oxygen الحقيقي** ([DEC-23](19-decisions.md#dec-23)). **مش محتاج ترفق صورة:** وصف اللوجو كله جوه L1، والوصف جاي من تحليل Claude للصورة: 4× تكبير، 48 نقطة مدورة، وأبعاد الدايرة والكلمة ([L-18](18-dev-log.md#l-18)).
+> - ابعت L1 الأول، وبعدها L2 → L4 في **نفس الشات** عشان ChatGPT يفضل على نفس الشكل.
+> - لو ChatGPT طلّع أي خلفية، Claude بيشيلها. وبعدها اللوجو بيتحول SVG للموقع.
+> - ⏸ **L5 وL6 متوقفين** لحد ما A0 v2 تتقبل، وهيتعدلوا على ألوانها.
 
-> - **في نفس شات A0.** لو شات جديد: ارفع صورة A0 مع أول برومبت.
-> - كل برومبت بيطلّع ملف واحد بخلفية شفافة. لو ChatGPT طلّع أي خلفية، Claude بيشيلها.
-> - جملة "Better Health. More Life." **مش** جوه ملف اللوجو: بتتكتب نص في الموقع عشان تتترجم.
-> - **تفاصيل اللوجو في A0** (اتأكدنا بتكبير الصورة): **4 فقاعات** تيل فوق آخر الكلمة، والخط اللي في نص حرف الـ**E** لونه تيل. وأيقونة التطبيق فيها **3 دواير** بيضا.
-
-**L1 · اللوجو الكامل** → `design/brand/logo-full.png`
+**L1 · اللوجو الغامق** → `design/brand/logo-dark.png`
 
 ```text
-From the design system board above, extract ONLY the OXYGEN logo and recreate it as a standalone logo file. Copy it exactly — do not redesign anything:
-- The "OXYGEN" wordmark in Deep Ink #0B2E2B, keeping the teal #0E8C7F middle bar of the "E".
-- The four Oxygen Teal #0E8C7F bubbles above the end of the word — same sizes, same positions.
-- "CLINICS" underneath, same color and same wide letter spacing.
-- Do NOT include the tagline "Better Health. More Life.", no other elements, no shadow, no texture.
-- Transparent background, centered, even padding. Landscape 3:2, high resolution, flat solid colors, perfectly sharp edges.
+Create the FINAL logo of "Oxygen", an Egyptian physical therapy and nutrition clinic, exactly as described — clean, flat, vector-like, high resolution:
+
+SYMBOL — an "O₂":
+- A large open circle (the "O"), drawn as one smooth stroke of medium weight that is slightly thicker on the right and bottom and tapers at its two ends. The circle is open on its left side: it starts at about 11 o'clock and runs clockwise around the right side down to about 7 o'clock.
+- In place of the missing left part of the circle: a vertical column of about 12 round dots following a gentle S-curve like a spine (vertebrae). The dots are largest in the middle and get smaller toward the top and bottom, where tiny dots blend into the two ends of the circle.
+- Two thin, tapered curved lines run alongside the spine: one just to its left and one just to its right inside the circle, like the outline of a back.
+- To the left of the spine, about 35 smaller round dots spread outward in loose rows, getting smaller and more spaced the further left they go — like oxygen particles dispersing in the air. Together they form a soft fan shape pointing left.
+- A small "2" sits at the bottom right of the circle, touching its stroke, like the chemical subscript in O₂.
+
+WORDMARK: below the symbol, "OXYGEN" in uppercase, a clean geometric sans-serif in regular weight with very wide letter spacing (about two thirds of a letter width between letters). The circle is centered above the word, and the dots extend out to its left. The circle's diameter is about two thirds of the word's width.
+
+TAGLINE: under the wordmark, centered, "Physical Therapy and Nutrition" in a simple sans-serif, sentence case, about a third of the wordmark's letter height, a little narrower than the wordmark.
+
+All parts in solid Deep Navy #0E2440. Only round dots — no squares, no extra shapes. Transparent background, no gradient, no photo, no shadow, no texture. Centered with even padding, square 1:1, perfectly sharp clean edges, every letter spelled correctly.
 ```
 
-**L2 · اللوجو أبيض** (للخلفيات التيل والغامقة) → `design/brand/logo-white.png`
+**L2 · اللوجو الأبيض** (للخلفيات الغامقة والتدرّج) → `design/brand/logo-white.png`
 
 ```text
-The exact same logo, identical shapes and layout, but every part (wordmark, bubbles, "CLINICS") in solid white #FFFFFF on a transparent background — for teal and dark backgrounds. Nothing else in the image. Landscape 3:2, high resolution, sharp edges.
+The exact same logo, identical shapes, dots and layout, but every part in solid white #FFFFFF on a transparent background — for use on dark and gradient backgrounds. No gradient, no photo, no shadow. Centered with even padding, square 1:1, high resolution, sharp edges.
 ```
 
 **L3 · الرمز بس** (الـFavicon والأماكن الصغيرة) → `design/brand/logo-symbol.png`
 
 ```text
-Only the logo symbol: the four Oxygen Teal #0E8C7F bubbles exactly as they appear in the logo — same sizes, same positions — with no text. Centered on a transparent background with even padding. Square 1:1, flat, high resolution, sharp edges. Nothing else in the image.
+Only the symbol from the same logo: the open O₂ circle with the spine dots, the particle dots and the two thin curves — exactly the same shapes, dots and positions — without "OXYGEN" and without the tagline. Solid Deep Navy #0E2440, transparent background, centered with even padding, square 1:1, high resolution, sharp edges. Nothing else in the image.
 ```
 
 **L4 · أيقونة التطبيق** → `design/brand/app-icon.png`
 
 ```text
-From the board above, extract ONLY the App Icon and recreate it exactly as a standalone file: an Oxygen Teal #0E8C7F rounded square with three white circles — a large one lower-left of center, a medium one at the upper right, and a small one on the right between them. Square 1:1, high resolution, the rounded square filling the canvas, transparent outside the rounded corners. No shadow, no label, no text, nothing else.
+An app icon from the same symbol: the open O₂ circle with the spine dots, particle dots and thin curves, exactly the same shapes, in solid white, centered on a rounded square filled with a smooth diagonal gradient from Oxygen Aqua #2EC4A6 (top-left) to Ocean Blue #1769B0 (bottom-right). No wordmark, no text, no shadow. Square 1:1, high resolution, the rounded square filling the canvas, transparent outside the rounded corners.
 ```
 
 **L5 · الصورة الافتراضية للطبيب** (لأي دكتور لسه ملوش صورة حقيقية) → `design/brand/doctor-avatar.png`
@@ -335,7 +340,7 @@ Use the specialty colors only as accents and keep plenty of white space.
 
 ```text
 design/
-├── brand/       original/ (مراجع Oxygen زي ما وصلت) · doctor-avatar.png · ملفات اللوجو النهائية (بعد A0 v2)
+├── brand/       original/ (مراجع Oxygen زي ما وصلت) · logo-dark.png · logo-white.png · logo-symbol.png · app-icon.png · doctor-avatar.png
 ├── mocks/       doctor-sample.png (للتطوير بس، مش بتتحط في الموقع الحقيقي)
 ├── website/     A0-design-system-v2.png · W-01-home-top.png · W-01-home-bottom.png · W-01-home-mobile.png
 │                W-03-specialty.png · W-05-doctors.png · W-07-booking.png · PP-01-portal.png · W-01-home-ar.png
@@ -349,6 +354,7 @@ design/
 
 | الصورة | الملف | الحالة | ملاحظات بتتطبق في الكود |
 |---|---|---|---|
+| L1 · اللوجو الغامق (أول نسخة) | `structure and image/ChatGPT Image Oct 5, 2026, 10_44_36 PM.png` (فولدرك) | 🔧 محتاجة تعديل | <ul><li>✅ الرمز مطابق للأصلي، والخلفية شفافة (1254×1254)</li><li>❌ كلمة OXYGEN تقيلة وكبيرة: عرضها حوالي 1.4× الرمز، والمفروض 1.15× تقريبًا، والحروف رفيعة زي الأصلي</li><li>اتبعت برومبت تعديل: نخفف الكلمة ونصغّرها 25%</li></ul> |
 | A0 v2 · على لوجو Oxygen: «نقط بتبقى قوة» | `design/website/A0-design-system-v2.png` | ⏳ مستنية الصورة | برومبت «النَّفَس» اتلغى قبل ما يتبعت ([DEC-22](19-decisions.md#dec-22)) |
 | A0 v1 · Design System | `design/website/A0-design-system.png` | ❌ اتستبدلت بـv2 | <ul><li>**ليه اتستبدلت:** شكلها UI Kit جاهز: لستة Components ثابتة، وألوان Tailwind الجاهزة (`#3B82F6` · `#16A34A` · `#F59E0B` · `#65A30D`)، وInter مع كروت بيضا وزوايا 12px، والفقاعات أول فكرة بتيجي في كلمة "أكسجين"</li><li>**غلطتين UX:** الكلام الأبيض على الكورال contrast بتاعه 2.6، وعلى التيل 4.1 (المطلوب 4.5)</li></ul>الملاحظات اللي تحت دي لسه شغالة، واتحطت جوه برومبت v2: <ul><li>الألوان مطابقة لـ`tokens.ts` حرف بحرف</li><li>**كارت الطبيب:** من غير نجوم وتقييمات (التقييم في Phase 2 ولازم يبقى حقيقي)، ومن غير زرار القلب</li><li>**الـStat Card على الموقع:** الرقم والكلام بس، من غير "↑24% compared to last year"</li><li>الكتابة بخط اليد مش مستخدمة (خطين بس)</li><li>جملة "Better Health. More Life." نص في الموقع، مش جزء من اللوجو</li></ul> |
 
