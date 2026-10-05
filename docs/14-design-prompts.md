@@ -16,10 +16,13 @@
 | **D** | تطبيق الموبايل | في الآخر (بعد الويب) |
 
 **الطريقة:**
-1. **محادثة جديدة في ChatGPT لكل جلسة** (الموديل اللي بيعمل صور).
-2. الصق **أول برومبت** (A0 أو B0)، وبعده الباقي **واحد واحد** بالترتيب، في نفس المحادثة عشان الستايل يفضل ثابت.
-3. اللي يعجبك احفظه في `design/` بالأسامي اللي في آخر الملف.
-4. الصور **اتجاه** مش تصميم نهائي. النصوص الصح بتتكتب في الكود.
+1. **جلسة A (الموقع) الأول.** جلسة B (الداشبورد) بعد ما صور الموقع تخلص.
+2. **محادثة جديدة في ChatGPT لكل جلسة** (الموديل اللي بيعمل صور).
+3. **كل برومبت = صورة واحدة.** ابدأ بأول برومبت (A0 أو B0)، وبعده الباقي بالترتيب، في نفس المحادثة عشان الستايل يفضل ثابت.
+4. **كل صورة بتتراجع مع Claude قبل اللي بعدها** (الألوان، الـLayout ينفع يتعكس عربي، ينفع يتبني بالمكتبة، الوضوح). يا نكمل، يا نصلّحها ببرومبت تعديل.
+5. اللي يتقبل يتحفظ في `design/` بالأسامي اللي في آخر الملف، ويتسجل في [سجل المراجعة](#review).
+6. **أي صورة جوه صورة مقبولة بتطلع ملف لوحدها** ([DEC-21](19-decisions.md#dec-21)). Claude بيطلّع "قائمة الصور" بتاعتها في [سجل الصور](#assets)، وكل عنصر جنبه هييجي منين: ChatGPT ببرومبت لوحده · SVG بالكود · أيقونة Lucide · صورة حقيقية.
+7. **إنت المصمم:** الهوية اللي بتطلع هنا (اللوجو، الألوان، شكل الـComponents) **نهائية** ([DEC-20](19-decisions.md#dec-20)). أما الـLayout والنصوص اللي جوه صور الصفحات، فدي مرجع بيتبني بالكود، والنصوص الصح من ملفات الترجمة.
 
 ---
 
@@ -66,6 +69,46 @@ Design tokens (use exactly):
 For every image in this chat: flat high-fidelity UI, no device frames unless I ask, crisp legible correctly spelled English text, realistic content (no lorem ipsum).
 
 Now create image 1 — DESIGN SYSTEM BOARD (landscape 3:2): logo placeholder (wordmark "OXYGEN" with a small bubble symbol), color swatches with hex codes, typography scale (Display, H1, H2, H3, Body, Caption), buttons (primary teal, coral CTA, outline, ghost) with hover states, inputs (text, select, date, search, 6-box OTP), chips for the 4 specialties, cards (service card, doctor card, stat card), and a mobile bottom navigation.
+```
+
+### L1 → L5 · ملفات الهوية (في نفس المحادثة، بعد A0 وقبل A1)
+
+> كل برومبت بيطلّع ملف واحد بخلفية شفافة. لو ChatGPT طلّع خلفية بيضا، Claude بيشيلها.
+> جملة "Better Health. More Life." **مش** جوه ملف اللوجو: بتتكتب نص في الموقع عشان تتترجم.
+
+**L1 · اللوجو الكامل** → `design/brand/logo-full.png`
+
+```text
+Export the exact OXYGEN logo from the design system board above (the "OXYGEN" wordmark, the three teal bubbles and "CLINICS" underneath) as a FINAL standalone logo file:
+- Keep the exact same letterforms, proportions and bubble positions — do not redesign it.
+- Transparent background, centered, with even padding around it.
+- Nothing else in the image: no tagline, no mockup, no shadow, no texture.
+- Flat solid colors: wordmark and "CLINICS" #0B2E2B, bubbles #0E8C7F.
+- Landscape 3:2, high resolution, perfectly sharp clean edges.
+```
+
+**L2 · اللوجو أبيض** (للخلفيات التيل والغامقة) → `design/brand/logo-white.png`
+
+```text
+Same logo, same exact shapes and layout, but all in solid white #FFFFFF on a transparent background — for use on teal or dark backgrounds. Nothing else in the image. Landscape 3:2, high resolution, sharp edges.
+```
+
+**L3 · الرمز بس** (الـFavicon والأماكن الصغيرة) → `design/brand/logo-symbol.png`
+
+```text
+Only the logo symbol: the three teal (#0E8C7F) bubbles exactly as in the logo, without any text. Centered on a transparent background with even padding, square 1:1, flat, high resolution, sharp edges. Nothing else in the image.
+```
+
+**L4 · أيقونة التطبيق** → `design/brand/app-icon.png`
+
+```text
+The app icon from the board above as a standalone file: the teal (#0E8C7F) rounded square with the white bubble symbol, exactly the same design. Square 1:1, high resolution, the icon filling the whole canvas, no shadow, no extra background, no text.
+```
+
+**L5 · الصورة الافتراضية للطبيب** (لأي دكتور لسه ملوش صورة حقيقية) → `design/brand/doctor-avatar.png`
+
+```text
+Create a DEFAULT DOCTOR AVATAR for doctors who don't have a photo yet: a minimal, friendly, non-realistic illustration — a simple head-and-shoulders silhouette in a white coat with a small stethoscope, no facial features, on a soft mint (#E6F4F1) circle, with Oxygen Teal (#0E8C7F) and Deep Ink (#0B2E2B) accents. Flat style, square 1:1, centered, transparent background outside the circle, no text. It must clearly read as a placeholder avatar, not a real person.
 ```
 
 ### A1 · الصفحة الرئيسية — النص الأول · `W-01`
@@ -257,11 +300,43 @@ Use the specialty colors only as accents and keep plenty of white space.
 
 ```text
 design/
+├── brand/       logo-full.png · logo-white.png · logo-symbol.png · app-icon.png · doctor-avatar.png
 ├── website/     A0-design-system.png · W-01-home-top.png · W-01-home-bottom.png · W-01-home-mobile.png
 │                W-03-specialty.png · W-05-doctors.png · W-07-booking.png · PP-01-portal.png · W-01-home-ar.png
 └── dashboard/   D-01-login.png · D-02-reception.png · D-09-patient-360.png · D-11-encounter.png
                  D-20-crm.png · D-28-executive.png · D-02-reception-ar.png
 ```
+
+<a id="review"></a>
+
+## سجل المراجعة (كل صورة اتقبلت)
+
+| الصورة | الملف | الحالة | ملاحظات بتتطبق في الكود |
+|---|---|---|---|
+| A0 · Design System | `design/website/A0-design-system.png` | ✅ اتقبلت | <ul><li>الألوان مطابقة لـ`tokens.ts` حرف بحرف</li><li>**كارت الطبيب:** من غير نجوم وتقييمات (التقييم في Phase 2 ولازم يبقى حقيقي)، ومن غير زرار القلب</li><li>**الـStat Card على الموقع:** الرقم والكلام بس، من غير "↑24% compared to last year"</li><li>الكتابة بخط اليد مش مستخدمة (خطين بس)</li><li>جملة "Better Health. More Life." نص في الموقع، مش جزء من اللوجو</li></ul> |
+
+<a id="assets"></a>
+
+## سجل الصور (Assets): كل صورة جوه التصميم هتيجي منين
+
+**المصادر:**
+- **ChatGPT** = برومبت لوحده في الملف ده.
+- **SVG (كود)** = Claude بيرسمها بالكود بنفس الشكل.
+- **Lucide** = مكتبة الأيقونات المتسطبة.
+- **حقيقية** = صورة حقيقية من Oxygen.
+
+**الحالة:** ✅ وصلت واتظبطت · ⏳ مستنية
+
+| من صورة | العنصر | المصدر | الملف | الحالة |
+|---|---|---|---|---|
+| A0 | اللوجو الكامل | ChatGPT · L1 | `design/brand/logo-full.png` ← SVG للموقع | ⏳ |
+| A0 | اللوجو الأبيض | ChatGPT · L2 | `design/brand/logo-white.png` ← SVG | ⏳ |
+| A0 | رمز اللوجو (الفقاعات) | ChatGPT · L3 | `design/brand/logo-symbol.png` ← Favicon | ⏳ |
+| A0 | أيقونة التطبيق | ChatGPT · L4 | `design/brand/app-icon.png` | ⏳ |
+| A0 | صور الأطباء | **حقيقية** (ممنوع AI) | من Oxygen ([دليل التصوير](16-website-plan.md)) | ⏳ |
+| A0 | الصورة الافتراضية للطبيب | ChatGPT · L5 | `design/brand/doctor-avatar.png` | ⏳ |
+| A0 | فقاعات الخلفيات (الـStat Card والكروت) | SVG (كود) | `components/shared/` | ⏳ |
+| A0 | أيقونات التخصصات والـNavigation والـInputs | Lucide | — | ✅ متسطبة |
 
 - الأسامي فيها أرقام الشاشات اللي في [05](05-apps-structure.md) (`W-xx` · `PP-xx` · `D-xx`).
 - لو عملت أكتر من نسخة لنفس الشاشة: `W-01-home-top-v2.png`، وقول لـClaude أنهي واحدة اخترت.
