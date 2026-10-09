@@ -28,20 +28,20 @@
 
 ## الهوية (نفس `packages/config/src/tokens.ts`)
 
-> ⏳ **الهوية بتتغير** ([DEC-23](19-decisions.md#dec-23)): الهوية الجديدة مبنية على لوجو Oxygen الحقيقي، والألوان والخطوط الجديدة في برومبت A0 تحت. الجدول ده و`tokens.ts` لسه بالهوية القديمة، وهيتحدثوا لما صورة A0 v2 تتقبل.
-> ومعاهم كل البرومبتات اللي بعد A0 (A1 → A8 · B · D)، لأنها لسه مكتوبة بالألوان القديمة والفقاعات.
+> ✅ **الهوية اتقفلت** ([DEC-23](19-decisions.md#dec-23) · [DEC-24](19-decisions.md#dec-24)): المرجع [`design/website/A0-design-system-v2.png`](../design/website/A0-design-system-v2.png)، واللوجو [`design/brand/logo-color.png`](../design/brand/logo-color.png).
 
 | العنصر | القيمة |
 |---|---|
-| Primary — Oxygen Teal | `#0E8C7F` |
-| النص (Deep Ink) · النص الثانوي | `#0B2E2B` · `#5E7A76` |
-| Mint (خلفيات ناعمة) | `#E6F4F1` |
-| خلفية الصفحة · الكروت · الحدود | `#F7FAF9` · `#FFFFFF` · `#DCE8E5` |
-| Accent — Coral (الزرار الأهم بس) | `#FF7A59` |
+| تدرّج البراند (الـHero والحلقة والنقط بس، مش ورا كلام صغير) | Aqua `#2EC4A6` → Ocean `#1769B0` |
+| Primary — Deep Teal (الزراير واللينكات، والكلام عليه أبيض) | `#0A7672` |
+| الكلام (Deep Navy) · الكلام الثانوي (Slate) | `#0E2440` · `#4A5D73` |
+| خلفية الصفحة (Sand) · الكروت · الأسطح الخفيفة (Mist) | `#FAF7F0` · `#FFFFFF` · `#E3F6F2` |
+| الفواصل (Hairline) · حدود الـInputs | `#E6E1D6` · `#8291A0` |
+| Sunlight Gold (زرار الحجز الأساسي بس، والكلام عليه كحلي) | `#F2A93B` |
 | الحالات | Success `#16A34A` · Warning `#F59E0B` · Danger `#E5484D` · Info `#3B82F6` |
-| التخصصات | Nutrition `#65A30D` · Physio `#3B82F6` · Derm `#E66A8D` · Internal Medicine `#7C5CFC` |
-| الخطوط | Inter (إنجليزي) + IBM Plex Sans Arabic (عربي) |
-| الشكل | زوايا 12px، ظلال خفيفة، مساحات بيضا كتير، أيقونات خطية رفيعة، "فقاعات أكسجين" خفيفة في الخلفيات |
+| التخصصات | Nutrition `#4F7A28` · Physio `#1769B0` · Derm `#B8466A` · Internal Medicine `#5B4BC4` |
+| الخطوط | Inter (إنجليزي) + IBM Plex Sans Arabic (عربي) — خط العناوين العربي هيتجرب في الكود |
+| الشكل | زوايا 16px، حدود رفيعة، ظلال خفيفة جدًا، ونقط اللوجو هي لغة الموقع: حلقة نقط حوالين الصور، وخطوات الحجز نقط، وأيقونات بخط منقط |
 
 > لو اللون اتغيّر في `tokens.ts`، غيّره هنا كمان عشان الصور الجاية تطلع بنفس الألوان.
 
@@ -83,14 +83,79 @@ AVOID: the blob shapes, heavy drop shadows, neon glows and 3D numbers of typical
 
 UX RULES: clear hierarchy, one primary action per area, touch targets of at least 44px, labels above inputs, visible focus rings, an 8px spacing grid, layouts that mirror cleanly for RTL, purposeful motion only, and everything buildable with Tailwind CSS + shadcn/ui (soft 16–24px radii, hairline borders, very soft shadows).
 
+PHOTOS — STRICT LIMIT: the whole board contains EXACTLY TWO photographs and no others: (1) the physiotherapy session photo in the hero, (2) the doctor's portrait in the doctor card. Everything else is typography, color, dots and flat vector shapes — no extra photos, thumbnails, backgrounds or illustrations of people.
+
 Now create ONE image — a BRAND & VISUAL LANGUAGE BOARD (landscape 3:2), art-directed like a top agency presentation, not a UI kit: few elements, shown big and confident, with lots of white space:
 1. The logo: white on the brand gradient, and a dark version (Deep Navy) on Sand.
-2. A hero moment in Arabic: the headline "نَفَس جديد لصحتك", the subline "تغذية علاجية وعلاج طبيعي بخطة مصممة لجسمك", a calm natural-light photo of a physiotherapy session framed by the particle O₂ ring, and a compact booking bar: a specialty select, a branch select and the Sunlight Gold button "احجز موعدك"; plus a secondary outline button "كلمنا واتساب".
+2. A hero moment in Arabic: the headline "نَفَس جديد لصحتك", the subline "تغذية علاجية وعلاج طبيعي بخطة مصممة لجسمك", PHOTO 1 — a calm natural-light photo of a physiotherapy session (an Egyptian physiotherapist gently guiding a patient's knee exercise) framed by the particle O₂ ring, and a compact booking bar: a specialty select, a branch select and the Sunlight Gold button "احجز موعدك"; plus a secondary outline button "كلمنا واتساب".
 3. The palette as tall elegant swatches with names and hex codes.
 4. A type specimen: one large headline in each script and a short body paragraph.
-5. Three signature components: a doctor card (real-looking photo inside a particle ring, name, specialty, years of experience, branch, an "احجز" button — no stars, no heart); four specialty tiles with dotted-line icons in their accent colors; and the 3-step booking progress where the dots align and close into a ring.
+5. Three signature components: a doctor card (PHOTO 2 — a real-looking Egyptian woman doctor in a white coat inside a particle ring, name, specialty, years of experience, branch, an "احجز" button — no stars, no heart); four specialty tiles with dotted-line icons in their accent colors (icons only, no photos); and the 3-step booking progress where the dots align and close into a ring.
 
 Flat high-fidelity design, crisp correctly spelled text, realistic content, no lorem ipsum, no device frames.
+```
+
+### E1 · E2 · الصورتين اللي جوه A0 v2، كل واحدة لوحدها (نفس شات A0)
+
+> - برومبت A0 بيحدد **صورتين بس** في الـBoard كلها، عشان الاستخراج يبقى سهل ومظبوط ([DEC-21](19-decisions.md#dec-21)).
+> - ابعت E1 وE2 بعد صورة A0 على طول، في **نفس الشات**.
+> - **E2 بتحل محل L6.**
+
+**E1 · صورة العلاج الطبيعي اللي في الـHero** → `design/website/A0-photo-hero.png` (Placeholder لحد التصوير الحقيقي)
+
+```text
+From the board above, extract ONLY photo 1 (the physiotherapy session in the hero) and recreate it as a standalone photograph: the same physiotherapist and patient, same faces, clothes, pose, room, light and colors. Remove the particle ring, all text, buttons and the booking bar. Photorealistic, natural skin and natural hands, soft daylight. Square 1:1, high resolution, the people centered with generous breathing room on all sides so it can be cropped into a circle or a rectangle. No text, no logos, no frame, nothing else.
+```
+
+**E2 · صورة الدكتورة اللي في الكارت** → `design/mocks/doctor-sample.png` (للتطوير بس)
+
+```text
+From the board above, extract ONLY photo 2 (the woman doctor in the doctor card) and recreate it as a standalone portrait photo: the same woman doctor — same face, hair, smile and pose — wearing a white coat with a stethoscope. Head and shoulders, centered, on a plain warm light background #FAF7F0. Photorealistic, natural skin, soft daylight. Square 1:1, high resolution. No card, no ring, no frame, no text, no icons, nothing else.
+```
+
+### I1 · M1 · الأشكال اللي جوه A1 وA2 ([DEC-27](19-decisions.md#dec-27))
+
+> - شات جديد لكل واحد، وارفع معاه صورة الصفحة اللي الشكل فيها.
+> - شيل الخلفية زي ما بتعمل، وابعتهولي. هيتحط زي ما هو.
+
+**I1 · أيقونات التخصصات الأربعة في صورة واحدة** → الكود بيقطّعها لـ`apps/web/public/images/specialties/*.png` (ارفع `W-01-home-top.png`) ✅
+
+```text
+The attached image is a website design. Extract ONLY the four specialty icons from the four specialty tiles and recreate them as standalone icons, exactly the same drawings and dotted-line style, each in its own color:
+1. Nutrition — the dotted-line apple, green #4F7A28
+2. Physiotherapy — the dotted-line running figure, blue #1769B0
+3. Dermatology — the dotted-line face, rose #B8466A
+4. Internal Medicine — the dotted-line stethoscope, violet #5B4BC4
+Place them in one row, left to right in this order, same size, evenly spaced with wide empty gaps between them so each can be cut out separately. Plain white background, landscape 4:1, high resolution. No tiles, no background shapes, no titles, no text, nothing else.
+```
+
+**M1 · خريطة الفروع** ❌ مش هنستخدمها: الخريطة من Google Maps ([DEC-28](19-decisions.md#dec-28)) · كانت → `apps/web/public/images/home/branches-map.png` (ارفع `W-01-home-bottom.png`)
+
+```text
+The attached image is a website design. Extract ONLY the map in the "Our Branches" section and recreate it as a standalone image in the same soft, light, minimal style and colors: a calm stylized map of Greater Cairo and the Nile Delta, geographically plausible — Tanta and Tala to the north in the Delta, Sheikh Zayed to the west, Heliopolis and New Cairo to the east — with five Deep Teal #0A7672 location pins labeled "Sheikh Zayed", "Tanta", "Tala", "Heliopolis" and "New Cairo". Landscape 16:9, high resolution, no card, no frame, no other text, nothing else.
+```
+
+### P1 · D1 · L5 · الصور اللي لسه ناقصة من A0 → A3 ([DEC-27](19-decisions.md#dec-27))
+
+> شات جديد لكل واحد، وارفع الصور المكتوبة جنبه.
+> **مش محتاجين برومبت:** حلقة النقط (الكود بيشيل خلفيتها البيضا) · علامات App Store وGoogle Play (بتتنزل رسمي من Apple وGoogle) · أيقونة الواتساب (الرسمية).
+
+**P1 · الموبايل اللي في شريط التطبيق** ✅ → `apps/web/public/images/home/app-phone.png` (ارفع `W-01-home-bottom.png` + `W-01-home-mobile.png` + `logo-color.png`)
+
+```text
+The first attached image is a website design. Extract ONLY the smartphone mockup from the blue "Your Health Passport in your pocket" app promo band and recreate it as a standalone image: a modern smartphone at the same slight tilt, front view, high detail. Its screen shows the home screen of the "Oxygen" patient app in the same visual style as the attached mobile screens: the attached Oxygen logo used exactly as-is at the top, the greeting "Good evening, Sara", a white card "Next appointment · Physiotherapy · Tue 5:00 PM · Oxygen New Cairo", a "Health Passport" tile and a small dotted progress "Secret Seven — Stage 3 of 7". Colors: Sand #FAF7F0 background, white cards, Deep Teal #0A7672 and Deep Navy #0E2440. Portrait 3:4, high resolution, the phone centered with empty space around it, plain white background. No hands, no text outside the phone, nothing else.
+```
+
+**D1 · صور الأطباء التلاتة التانيين** (للتطوير بس، زي الدكتورة) → الكود بيقطّعهم لـ`design/mocks/` (ارفع `W-01-home-bottom.png`)
+
+```text
+The attached image is a website design. Extract ONLY the portraits of three doctors from the "Our Doctors" cards — the second (Dr. Ahmed Hassan, physiotherapy), the third (Dr. Mona El Sayed, dermatology) and the fourth (Dr. Karim Adel, internal medicine) — and recreate each as a standalone portrait photo: the same person, same face, hair, clothes and pose, head and shoulders, photorealistic, natural skin, soft daylight. Place the three portraits in one row, left to right in this order, same size, with wide empty gaps between them so each can be cut out separately. Plain white background, landscape 3:1, high resolution. No rings, no cards, no names, no text, nothing else.
+```
+
+**L5 · الصورة الافتراضية للطبيب** (لأي دكتور ملوش صورة) → `apps/web/public/images/doctors/default.png` (ارفع `A1-specialty-icons.png`)
+
+```text
+The attached image shows four icons drawn with a dotted line (round dots). In exactly the same dotted-line style, create ONE new icon: a DEFAULT DOCTOR AVATAR — a simple head-and-shoulders silhouette wearing a white coat with a small stethoscope, no facial features, drawn with Deep Teal #0A7672 dots, centered inside a soft Mist #E3F6F2 filled circle. It must clearly read as a placeholder, not a real person. Square 1:1, high resolution, plain white background outside the circle, no text, nothing else.
 ```
 
 ### L1 → L6 · ملفات اللوجو والصور (شات جديد للوجو، من غير ما ترفق صور)
@@ -98,7 +163,9 @@ Flat high-fidelity design, crisp correctly spelled text, realistic content, no l
 > - **L1 → L4 (اللوجو):** اتكتبوا من جديد على **لوجو Oxygen الحقيقي** ([DEC-23](19-decisions.md#dec-23)). **مش محتاج ترفق صورة:** وصف اللوجو كله جوه L1، والوصف جاي من تحليل Claude للصورة: 4× تكبير، 48 نقطة مدورة، وأبعاد الدايرة والكلمة ([L-18](18-dev-log.md#l-18)).
 > - ابعت L1 الأول، وبعدها L2 → L4 في **نفس الشات** عشان ChatGPT يفضل على نفس الشكل.
 > - لو ChatGPT طلّع أي خلفية، Claude بيشيلها. وبعدها اللوجو بيتحول SVG للموقع.
-> - ⏸ **L5 وL6 متوقفين** لحد ما A0 v2 تتقبل، وهيتعدلوا على ألوانها.
+> - ✅ **L1 وL2 وL3 مش محتاجينهم خلاص** ([DEC-24](19-decisions.md#dec-24)): إنت بعت اللوجو النهائي الملون، وClaude طلّع منه بالكود النسخة الشفافة والأبيض والرمز. البرومبتات سايبينها مرجع بس.
+> - **L4 وL5 لسه مطلوبين.** L5 اتعدل على الألوان الجديدة.
+> - **L6 اتلغى:** E2 بتعمل نفس الشغل.
 
 **L1 · اللوجو الغامق** → `design/brand/logo-dark.png`
 
@@ -137,10 +204,10 @@ Only the symbol from the same logo: the open O₂ circle with the spine dots, th
 An app icon from the same symbol: the open O₂ circle with the spine dots, particle dots and thin curves, exactly the same shapes, in solid white, centered on a rounded square filled with a smooth diagonal gradient from Oxygen Aqua #2EC4A6 (top-left) to Ocean Blue #1769B0 (bottom-right). No wordmark, no text, no shadow. Square 1:1, high resolution, the rounded square filling the canvas, transparent outside the rounded corners.
 ```
 
-**L5 · الصورة الافتراضية للطبيب** (لأي دكتور لسه ملوش صورة حقيقية) → `design/brand/doctor-avatar.png`
+**L5 (قديم)** ❌ اتستبدل بـ[L5 الجديد](#p1--d1--l5--الصور-اللي-لسه-ناقصة-من-a0--a3-dec-27) بستايل النقط · كان →  `design/brand/doctor-avatar.png`
 
 ```text
-Create a DEFAULT DOCTOR AVATAR for doctors who don't have a photo yet: a minimal, friendly, non-realistic illustration — a simple head-and-shoulders silhouette in a white coat with a small stethoscope, no facial features, on a soft mint (#E6F4F1) circle, with Oxygen Teal (#0E8C7F) and Deep Ink (#0B2E2B) accents. Flat style, square 1:1, centered, transparent background outside the circle, no text. It must clearly read as a placeholder avatar, not a real person.
+Create a DEFAULT DOCTOR AVATAR for doctors who don't have a photo yet: a minimal, friendly, non-realistic illustration — a simple head-and-shoulders silhouette in a white coat with a small stethoscope, no facial features, on a soft Mist (#E3F6F2) circle, with Deep Teal (#0A7672) and Deep Navy (#0E2440) accents. Flat style, square 1:1, centered, transparent background outside the circle, no text. It must clearly read as a placeholder avatar, not a real person.
 ```
 
 **L6 · الشخصية: صورة الدكتورة اللي في كارت الطبيب** (للتطوير والـMocks بس) → `design/mocks/doctor-sample.png`
@@ -153,73 +220,156 @@ From the doctor card on the board above, extract ONLY the doctor's photo and rec
 
 ### A1 · الصفحة الرئيسية — النص الأول · `W-01`
 
+> **كل برومبت من A1 لـA7 بيشتغل لوحده في شات جديد:** أوله فيه الهوية كاملة (اللوجو، والنقط، والألوان، والقواعد)، فChatGPT مش محتاج يكون شاف A0.
+> - **ارفع معاه الصور اللي خلصت، عشان ChatGPT ميعملش صور جديدة بدلها:**
+>   - [`A0-design-system-v2.png`](../design/website/A0-design-system-v2.png): الستايل
+>   - [`logo-color.png`](../design/brand/logo-color.png): اللوجو
+>   - [`A0-photo-hero.png`](../design/website/A0-photo-hero.png): لو الصفحة فيها صورة العلاج الطبيعي
+>   - [`doctor-sample.png`](../design/mocks/doctor-sample.png): لو الصفحة فيها كروت أطباء (A2 · A4 · A5 · A6)
+> - البرومبت بيقول لـChatGPT يستخدم أي صورة مرفوعة زي ما هي.
+> - **اللوجو:** البرومبت بيقول لـChatGPT ياخد اللوجو المرفوع زي ما هو، وميرسمش غيره. وفي الـNavbar بيحطه بالعرض: الرمز وجنبه OXYGEN من غير الجملة اللي تحت، وده نفس اللي هيتعمل في الكود.
+> - **A4 → A7:** ارفع كمان [`W-01-home-top.png`](../design/website/W-01-home-top.png) (عشان الـNavbar والستايل)، والصور اللي الصفحة فيها: العلاج الطبيعي و/أو الدكتورة.
+> - **A3:** ارفع كمان [`W-01-home-top.png`](../design/website/W-01-home-top.png) و[`W-01-home-bottom.png`](../design/website/W-01-home-bottom.png) و[`A0-photo-hero.png`](../design/website/A0-photo-hero.png)، عشان الموبايل يطلع نفس الصفحة.
+> - **A2:** ارفع كمان [`W-01-home-top.png`](../design/website/W-01-home-top.png) (A1) عشان النص التاني يكمّل النص الأول بنفس المسافات والخطوط.
+
 ```text
-Same design system. Design the WEBSITE HOME PAGE — TOP HALF (desktop, landscape 3:2, no browser frame).
-1. Sticky top navigation: "OXYGEN" logo; links "Specialties", "Programs", "Digital", "Doctors", "Branches", "Learn"; language switch "عربي"; buttons "Patient Login" (outline) and "Book Now" (coral).
-2. Hero: headline "Your health journey, connected."; subheadline "Nutrition, Physiotherapy, Dermatology and Internal Medicine — in clinic and online, in one place."; buttons "Book an Appointment" (coral) and "Explore Programs" (outline). Visual side: a warm natural photo of a clinician talking with a patient, soft mint bubbles, and two small floating cards: "Next appointment · Tue 5:00 PM" and a tiny weight-progress line chart.
-3. Trust bar: "4 Specialties · 3 Branches · 20+ Specialists · 10,000+ Patients".
-4. Specialties: 4 cards in a row (Nutrition, Physiotherapy, Dermatology, Internal Medicine), each with a line icon tinted with its specialty color, a one-line description and "Learn more →".
-Airy layout, lots of white space, a soft mint band behind the specialties.
+NEW CHAT — FULL DESIGN SYSTEM (follow exactly). If images are attached: the brand board is the style reference to match exactly, and any attached photo must be used as-is.
+BRAND: "Oxygen" — an Egyptian clinic group for clinical nutrition and physical therapy (also dermatology and internal medicine). English website, Arabic supported.
+LOGO — THE ATTACHED OXYGEN LOGO FILE, USED EXACTLY AS-IS: copy its exact shapes, dots and aqua #2EC4A6 → ocean blue #1769B0 gradient; never redraw, simplify, restyle or invent another logo. It is a stacked logo (the O₂ symbol with its dots, then "OXYGEN", then the tagline "Physical Therapy and Nutrition"). In the navigation, use it as a horizontal lockup: the exact O₂ symbol on the left and the word "OXYGEN" to its right, without the tagline. In dark or gradient areas, the same logo in solid white.
+VISUAL LANGUAGE — "particles that become strength": round dots of different sizes that drift, gather and align. Photos are framed by a ring of dots (larger, denser dots on one side, smaller dots dispersing on the other, aqua to blue). Section dividers are a soft wave of dots. Progress steps are dotted circles joined by dotted lines.
+COLORS: Sand #FAF7F0 page background · white cards with hairline borders #E6E1D6 · Mist #E3F6F2 soft tinted surfaces · Deep Teal #0A7672 primary buttons and links (white text) · Deep Navy #0E2440 headings and text · Slate #4A5D73 secondary text · #8291A0 input borders · Sunlight Gold #F2A93B ONLY for the single main booking button, with Deep Navy text · the brand gradient #2EC4A6 → #1769B0 only for large brand moments, never behind small text · specialty accents for icons and chips only: Nutrition #4F7A28 · Physiotherapy #1769B0 · Dermatology #B8466A · Internal Medicine #5B4BC4.
+TYPE & SHAPE: a clean geometric sans for headlines, a highly legible sans for body text, strong scale contrast; soft 16–24px radii, very soft shadows, thin line icons, lots of white space; everything buildable with Tailwind CSS + shadcn/ui.
+UX: one primary action per area, touch targets of at least 44px, labels above inputs, WCAG AA contrast.
+AVOID: bubbles, blobs, coral or peach, neon glows, heavy shadows, glassmorphism, star ratings, heart icons, medical crosses, stock-photo clichés, Dribbble-style component sheets.
+Flat high-fidelity UI design, crisp correctly spelled text, realistic content, no lorem ipsum.
+
+Design the WEBSITE HOME PAGE — TOP HALF (desktop, landscape 3:2, no browser frame).
+1. Sticky top navigation on white: the Oxygen logo; links "Specialties", "Programs", "Doctors", "Branches", "Learn"; language switch "عربي"; buttons "Patient Login" (Deep Teal outline) and "Book Now" (Sunlight Gold).
+2. Hero on Sand: headline "A new breath for your health."; subheadline "Clinical nutrition and physical therapy with a plan designed for your body."; a compact white booking bar with two selects with small labels above them ("Specialty", "Branch") and the gold button "Book an Appointment" and a secondary outline button "Chat on WhatsApp". Visual side: a calm natural-light physiotherapy photo framed by the particle O₂ ring, with dots drifting from the ring into the page.
+3. Trust bar: "4 Specialties · 5 Branches · 20+ Specialists · 10,000+ Patients", separated by small dots.
+4. Specialties: 4 tiles in a row (Nutrition, Physiotherapy, Dermatology, Internal Medicine), each with a dotted-line icon in its accent color (Nutrition #4F7A28 · Physiotherapy #1769B0 · Dermatology #B8466A · Internal Medicine #5B4BC4) on a very light tint of that color, a one-line description and "Learn more →".
+A soft wave of dots divides the sections. Airy layout, lots of white space, only one photo on the page.
 ```
 
 ### A2 · الصفحة الرئيسية — النص التاني · `W-01`
 
 ```text
-Same design system, same page. Design the HOME PAGE — BOTTOM HALF (desktop, landscape 3:2).
-1. Signature program "Secret Seven": a horizontal 7-step journey — Assessment → Plan → Treatment → Follow-up → Progress → Stabilization → Maintenance — with small numbered circles and the button "Start your journey".
-2. Online programs: 4 cards — "Online Nutrition", "Physio Home", "Derm Follow-up", "Chronic Care" — each with 3 short features and "From EGP 499 / month".
-3. Our doctors: 4 doctor cards (portrait photo, name, specialty chip, "Book").
-4. Branches: a map on one side and 3 branch cards ("New Cairo", "Sheikh Zayed", "Maadi") with opening hours and "Directions".
-5. App promo band: a phone mockup with "Your Health Passport in your pocket" and App Store / Google Play badges marked "Coming soon".
-6. Footer: logo, a short about line, link columns (Clinic, Programs, Help), legal links and a WhatsApp button.
+NEW CHAT — FULL DESIGN SYSTEM (follow exactly). If images are attached: the brand board is the style reference to match exactly, and any attached photo must be used as-is.
+BRAND: "Oxygen" — an Egyptian clinic group for clinical nutrition and physical therapy (also dermatology and internal medicine). English website, Arabic supported.
+LOGO — THE ATTACHED OXYGEN LOGO FILE, USED EXACTLY AS-IS: copy its exact shapes, dots and aqua #2EC4A6 → ocean blue #1769B0 gradient; never redraw, simplify, restyle or invent another logo. It is a stacked logo (the O₂ symbol with its dots, then "OXYGEN", then the tagline "Physical Therapy and Nutrition"). In the navigation, use it as a horizontal lockup: the exact O₂ symbol on the left and the word "OXYGEN" to its right, without the tagline. In dark or gradient areas, the same logo in solid white.
+VISUAL LANGUAGE — "particles that become strength": round dots of different sizes that drift, gather and align. Photos are framed by a ring of dots (larger, denser dots on one side, smaller dots dispersing on the other, aqua to blue). Section dividers are a soft wave of dots. Progress steps are dotted circles joined by dotted lines.
+COLORS: Sand #FAF7F0 page background · white cards with hairline borders #E6E1D6 · Mist #E3F6F2 soft tinted surfaces · Deep Teal #0A7672 primary buttons and links (white text) · Deep Navy #0E2440 headings and text · Slate #4A5D73 secondary text · #8291A0 input borders · Sunlight Gold #F2A93B ONLY for the single main booking button, with Deep Navy text · the brand gradient #2EC4A6 → #1769B0 only for large brand moments, never behind small text · specialty accents for icons and chips only: Nutrition #4F7A28 · Physiotherapy #1769B0 · Dermatology #B8466A · Internal Medicine #5B4BC4.
+TYPE & SHAPE: a clean geometric sans for headlines, a highly legible sans for body text, strong scale contrast; soft 16–24px radii, very soft shadows, thin line icons, lots of white space; everything buildable with Tailwind CSS + shadcn/ui.
+UX: one primary action per area, touch targets of at least 44px, labels above inputs, WCAG AA contrast.
+AVOID: bubbles, blobs, coral or peach, neon glows, heavy shadows, glassmorphism, star ratings, heart icons, medical crosses, stock-photo clichés, Dribbble-style component sheets.
+Flat high-fidelity UI design, crisp correctly spelled text, realistic content, no lorem ipsum.
+
+Design the WEBSITE HOME PAGE — BOTTOM HALF (desktop, landscape 3:2, no browser frame). The TOP HALF of this page is attached: continue it seamlessly — same margins, grid, fonts, heading style, card style and section spacing; do not repeat the navigation or the hero.
+1. Signature program "Secret Seven": a horizontal 7-step journey — Assessment → Plan → Treatment → Follow-up → Progress → Stabilization → Maintenance — drawn as dots that align step by step and close into a full ring at step 7, with the Deep Teal button "Start your journey".
+2. Online programs: 4 white cards — "Online Nutrition", "Physio Home", "Derm Follow-up", "Chronic Care" — each with 3 short features and "From EGP 499 / month".
+3. Our doctors: 4 white doctor cards (portrait inside a dotted ring, name, specialty, years of experience, branch, a Deep Teal "Book" button). No stars, no hearts.
+4. Branches: a simple map on one side and 5 compact branch cards ("Sheikh Zayed", "Tanta", "Tala", "Heliopolis", "New Cairo") with opening hours and "Directions".
+5. App promo band on the brand gradient: a phone mockup, the white logo and "Your Health Passport in your pocket", App Store / Google Play badges marked "Coming soon".
+6. Footer on Deep Navy: the white logo, a short about line, link columns (Clinic, Programs, Help), legal links and a WhatsApp button.
 ```
 
 ### A3 · الرئيسية على الموبايل · `W-01`
 
 ```text
-Same design system. Design the HOME PAGE as MOBILE WEB: 3 phone screens side by side on a light mint landscape canvas (3:2), modern iPhone proportions, flat front view.
-Screen 1: compact top bar (logo, coral "Book" button, menu icon), the hero with headline, subheadline and two stacked buttons, then the trust numbers in a 2×2 grid.
-Screen 2: the specialties as a 2×2 grid of cards, then the Secret Seven journey as a vertical stepper.
+NEW CHAT — FULL DESIGN SYSTEM (follow exactly). If images are attached: the brand board is the style reference to match exactly, and any attached photo must be used as-is.
+BRAND: "Oxygen" — an Egyptian clinic group for clinical nutrition and physical therapy (also dermatology and internal medicine). English website, Arabic supported.
+LOGO — THE ATTACHED OXYGEN LOGO FILE, USED EXACTLY AS-IS: copy its exact shapes, dots and aqua #2EC4A6 → ocean blue #1769B0 gradient; never redraw, simplify, restyle or invent another logo. It is a stacked logo (the O₂ symbol with its dots, then "OXYGEN", then the tagline "Physical Therapy and Nutrition"). In the navigation, use it as a horizontal lockup: the exact O₂ symbol on the left and the word "OXYGEN" to its right, without the tagline. In dark or gradient areas, the same logo in solid white.
+VISUAL LANGUAGE — "particles that become strength": round dots of different sizes that drift, gather and align. Photos are framed by a ring of dots (larger, denser dots on one side, smaller dots dispersing on the other, aqua to blue). Section dividers are a soft wave of dots. Progress steps are dotted circles joined by dotted lines.
+COLORS: Sand #FAF7F0 page background · white cards with hairline borders #E6E1D6 · Mist #E3F6F2 soft tinted surfaces · Deep Teal #0A7672 primary buttons and links (white text) · Deep Navy #0E2440 headings and text · Slate #4A5D73 secondary text · #8291A0 input borders · Sunlight Gold #F2A93B ONLY for the single main booking button, with Deep Navy text · the brand gradient #2EC4A6 → #1769B0 only for large brand moments, never behind small text · specialty accents for icons and chips only: Nutrition #4F7A28 · Physiotherapy #1769B0 · Dermatology #B8466A · Internal Medicine #5B4BC4.
+TYPE & SHAPE: a clean geometric sans for headlines, a highly legible sans for body text, strong scale contrast; soft 16–24px radii, very soft shadows, thin line icons, lots of white space; everything buildable with Tailwind CSS + shadcn/ui.
+UX: one primary action per area, touch targets of at least 44px, labels above inputs, WCAG AA contrast.
+AVOID: bubbles, blobs, coral or peach, neon glows, heavy shadows, glassmorphism, star ratings, heart icons, medical crosses, stock-photo clichés, Dribbble-style component sheets.
+Flat high-fidelity UI design, crisp correctly spelled text, realistic content, no lorem ipsum.
+
+Design the HOME PAGE as MOBILE WEB: 3 phone screens side by side on a Sand landscape canvas (3:2), modern iPhone proportions, flat front view. The desktop home page is attached (top half and bottom half): adapt the SAME page to mobile — same style, texts, colors, icons and components, only re-laid out for a narrow screen.
+Screen 1: compact top bar (the horizontal logo, gold "Book" button, menu icon), the hero headline "A new breath for your health." and subheadline, the attached physiotherapy photo in its particle ring, the booking bar stacked vertically (Specialty select, Branch select, full-width gold "Book an Appointment") and a full-width outline "Chat on WhatsApp"; then the trust numbers in a 2×2 grid.
+Screen 2: the specialties as a 2×2 grid of tiles, then the Secret Seven journey as a vertical line of dots.
 Screen 3: the open menu drawer (links, language switch "عربي", "Patient Login", "Book Now") and a floating round WhatsApp button in the bottom corner.
+Touch targets at least 44px.
 ```
 
 ### A4 · صفحة تخصص (العلاج الطبيعي) · `W-03`
 
 ```text
-Same design system. Design a SPECIALTY PAGE for "Physiotherapy" (desktop, landscape 3:2).
+NEW CHAT — FULL DESIGN SYSTEM (follow exactly). If images are attached: the brand board is the style reference to match exactly, and any attached photo must be used as-is.
+BRAND: "Oxygen" — an Egyptian clinic group for clinical nutrition and physical therapy (also dermatology and internal medicine). English website, Arabic supported.
+LOGO — THE ATTACHED OXYGEN LOGO FILE, USED EXACTLY AS-IS: copy its exact shapes, dots and aqua #2EC4A6 → ocean blue #1769B0 gradient; never redraw, simplify, restyle or invent another logo. It is a stacked logo (the O₂ symbol with its dots, then "OXYGEN", then the tagline "Physical Therapy and Nutrition"). In the navigation, use it as a horizontal lockup: the exact O₂ symbol on the left and the word "OXYGEN" to its right, without the tagline. In dark or gradient areas, the same logo in solid white.
+VISUAL LANGUAGE — "particles that become strength": round dots of different sizes that drift, gather and align. Photos are framed by a ring of dots (larger, denser dots on one side, smaller dots dispersing on the other, aqua to blue). Section dividers are a soft wave of dots. Progress steps are dotted circles joined by dotted lines.
+COLORS: Sand #FAF7F0 page background · white cards with hairline borders #E6E1D6 · Mist #E3F6F2 soft tinted surfaces · Deep Teal #0A7672 primary buttons and links (white text) · Deep Navy #0E2440 headings and text · Slate #4A5D73 secondary text · #8291A0 input borders · Sunlight Gold #F2A93B ONLY for the single main booking button, with Deep Navy text · the brand gradient #2EC4A6 → #1769B0 only for large brand moments, never behind small text · specialty accents for icons and chips only: Nutrition #4F7A28 · Physiotherapy #1769B0 · Dermatology #B8466A · Internal Medicine #5B4BC4.
+TYPE & SHAPE: a clean geometric sans for headlines, a highly legible sans for body text, strong scale contrast; soft 16–24px radii, very soft shadows, thin line icons, lots of white space; everything buildable with Tailwind CSS + shadcn/ui.
+UX: one primary action per area, touch targets of at least 44px, labels above inputs, WCAG AA contrast.
+AVOID: bubbles, blobs, coral or peach, neon glows, heavy shadows, glassmorphism, star ratings, heart icons, medical crosses, stock-photo clichés, Dribbble-style component sheets.
+Flat high-fidelity UI design, crisp correctly spelled text, realistic content, no lorem ipsum.
+
+Design a SPECIALTY PAGE for "Physiotherapy" (desktop, landscape 3:2, no browser frame). The home page is attached: use the exact same navigation bar, footer, cards, buttons, icons and spacing.
 - Breadcrumb "Home / Specialties / Physiotherapy".
-- Hero with a soft blue (#3B82F6) tint: title "Physiotherapy", promise "Move better, recover faster — with a plan made for you.", buttons "Book an assessment" (coral) and "Talk on WhatsApp" (outline), and a calm photo of a physiotherapist guiding a knee exercise.
-- "What we treat": 6 small cards with icons (Back & neck pain, Sports injuries, Post-surgery rehab, Knee & joint pain, Posture, Neurological rehab).
+- Hero with a very light Physiotherapy-blue (#1769B0) tint: title "Physiotherapy", promise "Move better, recover faster — with a plan made for you.", buttons "Book an assessment" (Sunlight Gold) and "Talk on WhatsApp" (outline), and the attached physiotherapy photo inside the particle ring.
+- "What we treat": 6 small tiles with dotted-line icons (Back & neck pain, Sports injuries, Post-surgery rehab, Knee & joint pain, Posture, Neurological rehab).
 - "Services": a clean list of 3 services with duration and starting price (e.g. "Initial Assessment · 60 min · from EGP 600").
-- "Our physiotherapists": 3 doctor cards.
+- "Our physiotherapists": 3 white doctor cards (portrait inside a dotted ring, name, specialty, years of experience, branch, a Deep Teal "Book" button).
 - A related program card "Physio Home — online exercise program".
-- An FAQ accordion (4 questions) and a final booking banner.
+- An FAQ accordion (4 questions) and a final booking banner on the brand gradient with the white logo symbol.
 ```
 
 ### A5 · الأطباء + بروفايل الطبيب · `W-05`
 
 ```text
-Same design system. Two panels side by side (desktop, landscape 3:2):
-Left — DOCTORS LIST: title "Our doctors & specialists", filter chips (All, Nutrition, Physiotherapy, Dermatology, Internal Medicine) and a branch dropdown, then a grid of 6 doctor cards (photo, name, title, specialty chip, branches, "Book").
-Right — DOCTOR PROFILE: large photo, name "Dr. Omar Hassan", title "Consultant Physiotherapist", specialty chip, short bio, "Available at" (branch + days), services list, and a sticky booking card "Book with Dr. Omar" showing the next available slots.
+NEW CHAT — FULL DESIGN SYSTEM (follow exactly). If images are attached: the brand board is the style reference to match exactly, and any attached photo must be used as-is.
+BRAND: "Oxygen" — an Egyptian clinic group for clinical nutrition and physical therapy (also dermatology and internal medicine). English website, Arabic supported.
+LOGO — THE ATTACHED OXYGEN LOGO FILE, USED EXACTLY AS-IS: copy its exact shapes, dots and aqua #2EC4A6 → ocean blue #1769B0 gradient; never redraw, simplify, restyle or invent another logo. It is a stacked logo (the O₂ symbol with its dots, then "OXYGEN", then the tagline "Physical Therapy and Nutrition"). In the navigation, use it as a horizontal lockup: the exact O₂ symbol on the left and the word "OXYGEN" to its right, without the tagline. In dark or gradient areas, the same logo in solid white.
+VISUAL LANGUAGE — "particles that become strength": round dots of different sizes that drift, gather and align. Photos are framed by a ring of dots (larger, denser dots on one side, smaller dots dispersing on the other, aqua to blue). Section dividers are a soft wave of dots. Progress steps are dotted circles joined by dotted lines.
+COLORS: Sand #FAF7F0 page background · white cards with hairline borders #E6E1D6 · Mist #E3F6F2 soft tinted surfaces · Deep Teal #0A7672 primary buttons and links (white text) · Deep Navy #0E2440 headings and text · Slate #4A5D73 secondary text · #8291A0 input borders · Sunlight Gold #F2A93B ONLY for the single main booking button, with Deep Navy text · the brand gradient #2EC4A6 → #1769B0 only for large brand moments, never behind small text · specialty accents for icons and chips only: Nutrition #4F7A28 · Physiotherapy #1769B0 · Dermatology #B8466A · Internal Medicine #5B4BC4.
+TYPE & SHAPE: a clean geometric sans for headlines, a highly legible sans for body text, strong scale contrast; soft 16–24px radii, very soft shadows, thin line icons, lots of white space; everything buildable with Tailwind CSS + shadcn/ui.
+UX: one primary action per area, touch targets of at least 44px, labels above inputs, WCAG AA contrast.
+AVOID: bubbles, blobs, coral or peach, neon glows, heavy shadows, glassmorphism, star ratings, heart icons, medical crosses, stock-photo clichés, Dribbble-style component sheets.
+Flat high-fidelity UI design, crisp correctly spelled text, realistic content, no lorem ipsum.
+
+Two panels side by side (desktop, landscape 3:2):
+Left — DOCTORS LIST: title "Our doctors & specialists", filter chips (All, Nutrition, Physiotherapy, Dermatology, Internal Medicine) and a branch dropdown, then a grid of 6 white doctor cards (portrait inside a dotted ring, name, specialty, years of experience, branch, a Deep Teal "Book" button).
+Right — DOCTOR PROFILE: large photo in a particle ring, name "Dr. Omar Hassan", title "Consultant Physiotherapist", specialty chip, short bio, "Available at" (branch + days), services list, and a sticky booking card "Book with Dr. Omar" showing the next available slots and the gold "Book" button. No stars, no hearts.
 ```
 
 ### A6 · الحجز · `W-07`
 
 ```text
-Same design system. Design the BOOKING PAGE (desktop, landscape 3:2).
-Top: a 5-step progress bar "1 Service · 2 Branch · 3 Doctor & Time · 4 Your Details · 5 Confirm & Pay" with step 3 active.
-Main: a toggle "Any available doctor / Choose a doctor"; 3 doctor cards with photo and name; a week date strip with the selected day highlighted; time slots grouped Morning / Afternoon / Evening, some disabled, one selected "5:30 PM" in teal.
-Side: a sticky summary card — "Physiotherapy · Initial Assessment (60 min)", "Oxygen New Cairo", "EGP 600", note "Free cancellation up to 24 hours before".
-Bottom: buttons "Back" and "Continue" (coral) and a small lock line "Secure booking · Your data is protected".
+NEW CHAT — FULL DESIGN SYSTEM (follow exactly). If images are attached: the brand board is the style reference to match exactly, and any attached photo must be used as-is.
+BRAND: "Oxygen" — an Egyptian clinic group for clinical nutrition and physical therapy (also dermatology and internal medicine). English website, Arabic supported.
+LOGO — THE ATTACHED OXYGEN LOGO FILE, USED EXACTLY AS-IS: copy its exact shapes, dots and aqua #2EC4A6 → ocean blue #1769B0 gradient; never redraw, simplify, restyle or invent another logo. It is a stacked logo (the O₂ symbol with its dots, then "OXYGEN", then the tagline "Physical Therapy and Nutrition"). In the navigation, use it as a horizontal lockup: the exact O₂ symbol on the left and the word "OXYGEN" to its right, without the tagline. In dark or gradient areas, the same logo in solid white.
+VISUAL LANGUAGE — "particles that become strength": round dots of different sizes that drift, gather and align. Photos are framed by a ring of dots (larger, denser dots on one side, smaller dots dispersing on the other, aqua to blue). Section dividers are a soft wave of dots. Progress steps are dotted circles joined by dotted lines.
+COLORS: Sand #FAF7F0 page background · white cards with hairline borders #E6E1D6 · Mist #E3F6F2 soft tinted surfaces · Deep Teal #0A7672 primary buttons and links (white text) · Deep Navy #0E2440 headings and text · Slate #4A5D73 secondary text · #8291A0 input borders · Sunlight Gold #F2A93B ONLY for the single main booking button, with Deep Navy text · the brand gradient #2EC4A6 → #1769B0 only for large brand moments, never behind small text · specialty accents for icons and chips only: Nutrition #4F7A28 · Physiotherapy #1769B0 · Dermatology #B8466A · Internal Medicine #5B4BC4.
+TYPE & SHAPE: a clean geometric sans for headlines, a highly legible sans for body text, strong scale contrast; soft 16–24px radii, very soft shadows, thin line icons, lots of white space; everything buildable with Tailwind CSS + shadcn/ui.
+UX: one primary action per area, touch targets of at least 44px, labels above inputs, WCAG AA contrast.
+AVOID: bubbles, blobs, coral or peach, neon glows, heavy shadows, glassmorphism, star ratings, heart icons, medical crosses, stock-photo clichés, Dribbble-style component sheets.
+Flat high-fidelity UI design, crisp correctly spelled text, realistic content, no lorem ipsum.
+
+Design the BOOKING PAGE (desktop, landscape 3:2).
+Top: a dotted booking progress (numbered dotted circles joined by dotted lines) with 5 steps "1 Service · 2 Branch · 3 Doctor & Time · 4 Your Details · 5 Confirm & Pay" — steps 1–2 done (solid dots), step 3 active, the dots aligning toward a ring at the last step.
+Main: a toggle "Any available doctor / Choose a doctor"; 3 doctor cards with photo and name; a week date strip with the selected day highlighted in Deep Teal; time slots grouped Morning / Afternoon / Evening, some disabled, one selected "5:30 PM" in Deep Teal.
+Side: a sticky white summary card — "Physiotherapy · Initial Assessment (60 min)", "Oxygen New Cairo", "EGP 600", note "Free cancellation up to 24 hours before".
+Bottom: buttons "Back" (outline) and "Continue" (Sunlight Gold) and a small lock line "Secure booking · Your data is protected".
 ```
 
 ### A7 · بوابة المريض · `PP-01`
 
 ```text
-Same design system. Design the PATIENT PORTAL home (desktop, landscape 3:2) — the patient's private area on the website.
-Left sidebar: "OXYGEN" logo; items Overview (active), Appointments, Health Passport, Documents, Plans, Packages, Invoices, Profile; at the bottom "Need help? WhatsApp".
-Main: greeting "Good evening, Sara"; next appointment card (Physiotherapy session · Tue 5:00 PM · Oxygen New Cairo · Dr. Omar Hassan · buttons "Reschedule" and "Directions"); program card "Secret Seven — Stage 3 of 7: Treatment" with a step progress bar; package card "Physio Package — 7 of 12 sessions left · expires 30 Nov"; a 12-week weight chart (92 → 84 kg, goal line at 80 kg); recent documents (CBC lab report, Knee X-ray, Nutrition plan PDF).
+NEW CHAT — FULL DESIGN SYSTEM (follow exactly). If images are attached: the brand board is the style reference to match exactly, and any attached photo must be used as-is.
+BRAND: "Oxygen" — an Egyptian clinic group for clinical nutrition and physical therapy (also dermatology and internal medicine). English website, Arabic supported.
+LOGO — THE ATTACHED OXYGEN LOGO FILE, USED EXACTLY AS-IS: copy its exact shapes, dots and aqua #2EC4A6 → ocean blue #1769B0 gradient; never redraw, simplify, restyle or invent another logo. It is a stacked logo (the O₂ symbol with its dots, then "OXYGEN", then the tagline "Physical Therapy and Nutrition"). In the navigation, use it as a horizontal lockup: the exact O₂ symbol on the left and the word "OXYGEN" to its right, without the tagline. In dark or gradient areas, the same logo in solid white.
+VISUAL LANGUAGE — "particles that become strength": round dots of different sizes that drift, gather and align. Photos are framed by a ring of dots (larger, denser dots on one side, smaller dots dispersing on the other, aqua to blue). Section dividers are a soft wave of dots. Progress steps are dotted circles joined by dotted lines.
+COLORS: Sand #FAF7F0 page background · white cards with hairline borders #E6E1D6 · Mist #E3F6F2 soft tinted surfaces · Deep Teal #0A7672 primary buttons and links (white text) · Deep Navy #0E2440 headings and text · Slate #4A5D73 secondary text · #8291A0 input borders · Sunlight Gold #F2A93B ONLY for the single main booking button, with Deep Navy text · the brand gradient #2EC4A6 → #1769B0 only for large brand moments, never behind small text · specialty accents for icons and chips only: Nutrition #4F7A28 · Physiotherapy #1769B0 · Dermatology #B8466A · Internal Medicine #5B4BC4.
+TYPE & SHAPE: a clean geometric sans for headlines, a highly legible sans for body text, strong scale contrast; soft 16–24px radii, very soft shadows, thin line icons, lots of white space; everything buildable with Tailwind CSS + shadcn/ui.
+UX: one primary action per area, touch targets of at least 44px, labels above inputs, WCAG AA contrast.
+AVOID: bubbles, blobs, coral or peach, neon glows, heavy shadows, glassmorphism, star ratings, heart icons, medical crosses, stock-photo clichés, Dribbble-style component sheets.
+Flat high-fidelity UI design, crisp correctly spelled text, realistic content, no lorem ipsum.
+
+Design the PATIENT PORTAL home (desktop, landscape 3:2) — the patient's private area on the website.
+Left sidebar on white: the Oxygen logo; items Overview (active, Mist background), Appointments, Health Passport, Documents, Plans, Packages, Invoices, Profile; at the bottom "Need help? WhatsApp".
+Main on Sand: greeting "Good evening, Sara"; next appointment card (Physiotherapy session · Tue 5:00 PM · Oxygen New Cairo · Dr. Omar Hassan · buttons "Reschedule" and "Directions"); program card "Secret Seven — Stage 3 of 7: Treatment" with the dotted progress; package card "Physio Package — 7 of 12 sessions left · expires 30 Nov"; a 12-week weight chart in Deep Teal (92 → 84 kg, dashed goal line at 80 kg); recent documents (CBC lab report, Knee X-ray, Nutrition plan PDF).
 Calm, private and easy for all ages: large readable text.
 ```
 
@@ -240,6 +390,8 @@ Recreate the previous screen in ARABIC with a full right-to-left (RTL) layout: m
 ---
 
 ## B — الداشبورد (محادثة جديدة)
+
+> ⏳ برومبتات B وD لسه بالألوان القديمة، وهتتعدل على [الهوية](#الهوية-نفس-packagesconfigsrctokensts) لما نوصل لجلسة B.
 
 ### B0 · الستايل + شاشة الدخول · `D-01`
 
@@ -340,7 +492,7 @@ Use the specialty colors only as accents and keep plenty of white space.
 
 ```text
 design/
-├── brand/       original/ (مراجع Oxygen زي ما وصلت) · logo-dark.png · logo-white.png · logo-symbol.png · app-icon.png · doctor-avatar.png
+├── brand/       original/ (مراجع Oxygen زي ما وصلت) · logo-color.png · logo-white.png · logo-symbol.png · app-icon.png · doctor-avatar.png
 ├── mocks/       doctor-sample.png (للتطوير بس، مش بتتحط في الموقع الحقيقي)
 ├── website/     A0-design-system-v2.png · W-01-home-top.png · W-01-home-bottom.png · W-01-home-mobile.png
 │                W-03-specialty.png · W-05-doctors.png · W-07-booking.png · PP-01-portal.png · W-01-home-ar.png
@@ -354,8 +506,11 @@ design/
 
 | الصورة | الملف | الحالة | ملاحظات بتتطبق في الكود |
 |---|---|---|---|
-| L1 · اللوجو الغامق (أول نسخة) | `structure and image/ChatGPT Image Oct 5, 2026, 10_44_36 PM.png` (فولدرك) | 🔧 محتاجة تعديل | <ul><li>✅ الرمز مطابق للأصلي، والخلفية شفافة (1254×1254)</li><li>❌ كلمة OXYGEN تقيلة وكبيرة: عرضها حوالي 1.4× الرمز، والمفروض 1.15× تقريبًا، والحروف رفيعة زي الأصلي</li><li>اتبعت برومبت تعديل: نخفف الكلمة ونصغّرها 25%</li></ul> |
-| A0 v2 · على لوجو Oxygen: «نقط بتبقى قوة» | `design/website/A0-design-system-v2.png` | ⏳ مستنية الصورة | برومبت «النَّفَس» اتلغى قبل ما يتبعت ([DEC-22](19-decisions.md#dec-22)) |
+| A3 · الرئيسية على الموبايل | `design/website/W-01-home-mobile.png` | ✅ اتقبلت 2026-10-09 | <ul><li>✅ اللوجو بالعرض · زرار Book دهبي فوق · شريط الحجز تحت بعضه وعرضه كامل · التخصصات 2×2 · Secret Seven بالطول · الـDrawer فيه اللغة ودخول المريض واحجز · زرار واتساب عايم</li><li>**الكلام الصغير** (وصف التخصصات وخطوات Secret Seven) في الصورة حوالي 11px. في الكود مش أقل من 14px</li><li>**"Start your journey"** صغير في الصورة. في الكود ارتفاعه 44px على الأقل وعرضه كامل</li><li>**خطوة 7** في الموبايل مش بتقفل حلقة. في الكود بتقفل زي الكمبيوتر</li><li>**الأرقام 2×2:** النقطة اللي قبل كل رقم مش هتتحط</li><li>**زرار الواتساب العايم** بيستخبى والـDrawer مفتوح، عشان ميغطيش على الزراير</li></ul> |
+| A2 · الرئيسية — النص التاني | `design/website/W-01-home-bottom.png` | ✅ اتقبلت 2026-10-09 | <ul><li>✅ Secret Seven نقط بتتصف وبتقفل حلقة عند 7 · كروت البرامج والأطباء والفروع · شريط التطبيق على التدرّج · الـFooter كحلي · من غير نجوم ولا قلب · الدهبي مش مستخدم (صح، مفيش حجز أساسي هنا)</li><li>**صور الأطباء:** في الكود الصور الحقيقية من الداشبورد ([DEC-21](19-decisions.md#dec-21) · [DEC-25](19-decisions.md#dec-25))، وعلامة التخصص نقطة بلونه</li><li>**المواعيد ووصف خطوات Secret Seven والأسعار:** محتوى وهمي لحد ما Oxygen يبعتوا (16 · 0.2)</li><li>**الخريطة:** في الكود صورة خريطة خفيفة، و"Directions" بيفتح Google Maps، عشان سرعة الصفحة</li><li>**الـFooter:** الكلام الصغير في الصورة صغير وباهت. في الكود مش أقل من 14px وcontrast AA على الكحلي</li><li>**الموبايل اللي في شريط التطبيق:** صورة هتتعمل لما التطبيق يبقى ليه شكل. لحد كده الشريط من غير موبايل أو بموبايل بسيط</li><li>اللوجو في الشريط والـFooter: `logo-white.png`</li></ul> |
+| A1 · الرئيسية — النص الأول | `design/website/W-01-home-top.png` | ✅ اتقبلت 2026-10-09 | <ul><li>✅ الهوية مطابقة: رملي، وزراير تيل، والدهبي للحجز بس والكلام عليه كحلي، وموجة النقط، وشريط الأرقام على Mist، وأيقونات التخصصات منقطة بلون كل تخصص</li><li>**اللوجو في الـNavbar:** ChatGPT رسم لوجو مبسط. في الكود: `logo-symbol.png` + كلمة OXYGEN بالكود جنبه بالعرض</li><li>**صورة الـHero:** ChatGPT رسم الأوضة ورا الناس. في الكود: `A0-photo-hero.png` المفرّغة جوه حلقة النقط، وبتتغير من الداشبورد ([DEC-25](19-decisions.md#dec-25))</li><li>**زرارين دهبي في نفس الشاشة** (Book Now وBook an Appointment): نفس الأكشن، فمقبول</li><li>**أيقونات التخصصات:** Lucide بخط منقط (`strokeDasharray`) بلون التخصص</li><li>**في الكود نتأكد من الـcontrast:** الـPlaceholder الرمادي في الـSelects، و"Learn more" على خلفية التخصص الفاتحة</li><li>**النقط اللي طالعة من الحلقة** بتروح ناحية الكلام، وفي العربي بتتعكس</li></ul> |
+| L1 · اللوجو الغامق (أول نسخة) | `structure and image/ChatGPT Image Oct 5, 2026, 10_44_36 PM.png` (فولدرك) | ➖ مش محتاجينها: اللوجو الملون بداله ([DEC-24](19-decisions.md#dec-24)) | <ul><li>✅ الرمز مطابق للأصلي، والخلفية شفافة (1254×1254)</li><li>❌ كلمة OXYGEN تقيلة وكبيرة: عرضها حوالي 1.4× الرمز، والمفروض 1.15× تقريبًا، والحروف رفيعة زي الأصلي</li><li>اتبعت برومبت تعديل: نخفف الكلمة ونصغّرها 25%</li></ul> |
+| A0 v2 · على لوجو Oxygen: «نقط بتبقى قوة» | `design/website/A0-design-system-v2.png` | ✅ اتقبلت 2026-10-09 | <ul><li>✅ اللوجو والألوان والـComponents نفس اللي في الكود (`tokens.ts`)، وفيها صورتين بس، ومن غير نجوم ولا قلب</li><li>**الأرقام المكتوبة جوه الصورة** فيها فرق بسيط عن الألوان المتسجلة (زي الدهبي والـMist). الكود ماشي على [DEC-23](19-decisions.md#dec-23)، لأن الأرقام دي اتحسب ليها الـcontrast</li><li>**أيقونات التخصصات** هتبقى Lucide بلون التخصص على خلفية فاتحة من نفس اللون</li><li>**«خبرة 7 سنوات»** طالعة مقلوبة في الصورة. في الكود الترتيب صح من ملفات الترجمة</li><li>**زرار الحجز الدهبي:** الكلام عليه كحلي (`text-ink`)</li><li>**حلقة النقط حوالين الصور:** SVG بالكود، ومع `prefers-reduced-motion` بتقف ثابتة</li></ul> |
 | A0 v1 · Design System | `design/website/A0-design-system.png` | ❌ اتستبدلت بـv2 | <ul><li>**ليه اتستبدلت:** شكلها UI Kit جاهز: لستة Components ثابتة، وألوان Tailwind الجاهزة (`#3B82F6` · `#16A34A` · `#F59E0B` · `#65A30D`)، وInter مع كروت بيضا وزوايا 12px، والفقاعات أول فكرة بتيجي في كلمة "أكسجين"</li><li>**غلطتين UX:** الكلام الأبيض على الكورال contrast بتاعه 2.6، وعلى التيل 4.1 (المطلوب 4.5)</li></ul>الملاحظات اللي تحت دي لسه شغالة، واتحطت جوه برومبت v2: <ul><li>الألوان مطابقة لـ`tokens.ts` حرف بحرف</li><li>**كارت الطبيب:** من غير نجوم وتقييمات (التقييم في Phase 2 ولازم يبقى حقيقي)، ومن غير زرار القلب</li><li>**الـStat Card على الموقع:** الرقم والكلام بس، من غير "↑24% compared to last year"</li><li>الكتابة بخط اليد مش مستخدمة (خطين بس)</li><li>جملة "Better Health. More Life." نص في الموقع، مش جزء من اللوجو</li></ul> |
 
 <a id="assets"></a>
@@ -370,18 +525,27 @@ design/
 
 **الحالة:** ✅ وصلت واتظبطت · ⏳ مستنية
 
-> ⏸ صفوف A0 هنا على v1، وهتتعدل بعد ما A0 v2 تتقبل. اللوجو بقى لوجو Oxygen الحقيقي (ملفه الأصلي أو SVG بالكود)، والفقاعات هتبقى "نقط اللوجو" SVG بالكود.
+> الصفوف دي على A0 v2.
 
 | من صورة | العنصر | المصدر | الملف | الحالة |
 |---|---|---|---|---|
-| A0 | اللوجو الكامل | ChatGPT · L1 | `design/brand/logo-full.png` ← SVG للموقع | ⏳ |
-| A0 | اللوجو الأبيض | ChatGPT · L2 | `design/brand/logo-white.png` ← SVG | ⏳ |
-| A0 | رمز اللوجو (الفقاعات) | ChatGPT · L3 | `design/brand/logo-symbol.png` ← Favicon | ⏳ |
+| A0 | اللوجو الملون (شفاف) | **ملفك** + الكود شال الخلفية | `design/brand/logo-color.png` · `apps/web/public/logo.png` · `apps/dashboard/public/logo.png` | ✅ |
+| A0 | اللوجو الأبيض | الكود (من الملون) | `design/brand/logo-white.png` · `apps/web/public/logo-white.png` | ✅ |
+| A0 | رمز اللوجو O2 | الكود (من الملون) | `design/brand/logo-symbol.png` ← Favicon | ✅ |
 | A0 | أيقونة التطبيق | ChatGPT · L4 | `design/brand/app-icon.png` | ⏳ |
+| A0 | صورة العلاج الطبيعي (الـHero) — مفرّغة، من غير خلفية | ملفك (E1) · تتغير من الداشبورد ([DEC-25](19-decisions.md#dec-25)) | `design/website/A0-photo-hero.png` | ✅ |
 | A0 | صور الأطباء (الموقع الحقيقي) | **حقيقية** (ممنوع AI) | من Oxygen ([دليل التصوير](16-website-plan.md)) | ⏳ |
-| A0 | الصورة الافتراضية للطبيب | ChatGPT · L5 | `design/brand/doctor-avatar.png` | ⏳ |
-| A0 | الشخصية: صورة الدكتورة اللي في الكارت (للتطوير بس) | ChatGPT · L6 | `design/mocks/doctor-sample.png` | ⏳ |
-| A0 | فقاعات الخلفيات (الـStat Card والكروت) | SVG (كود) | `components/shared/` | ⏳ |
+| A0 | الصورة الافتراضية للطبيب | ملفك · L5 (بنفس ستايل الأيقونات المنقطة) | `apps/web/public/images/doctors/default.png` | ⏳ |
+| A0 | الشخصية: صورة الدكتورة اللي في الكارت (للتطوير بس) — مفرّغة | ملفك (E2) | `design/mocks/doctor-sample.png` | ✅ |
+| A0 | حلقة النقط حوالين الصور | ملفك (المرجع) ← SVG بالكود | `design/website/A0-particle-ring.png` | ✅ المرجع وصل |
+| A0 | موجة النقط + OXYGEN + الجملة | ملفك (المرجع) ← SVG بالكود | `design/website/A0-dots-wordmark.png` | ✅ المرجع وصل |
+| A0 | موجة النقط (الفاصل بين الأقسام) | ملفك، زي ما هو | `design/website/A0-dot-wave.png` · `apps/web/public/images/shared/dot-wave.png` | ✅ |
+| A0 · A2 | خطوات الحجز وSecret Seven (دواير منقطة فيها أرقام) | الكود ([DEC-27](19-decisions.md#dec-27)) | `components/shared/` | ⏳ |
+| A1 | أيقونات التخصصات الأربعة (منقطة) | ملفك · I1 ← الكود قطّعها 4 ملفات شفافة | `design/website/A1-specialty-icons.png` ← `apps/web/public/images/specialties/` (nutrition · physio · derm · internal) | ✅ |
+| A2 | خريطة الفروع | **Google Maps** (مش صورة — [DEC-28](19-decisions.md#dec-28)) | `A2-branches-map.png` مرجع للشكل بس | ⏳ لينكات الفروع من Oxygen |
+| A2 | الموبايل اللي في شريط التطبيق | ملفك · P1 ← الكود شال الخلفية البيضا اللي بره الموبايل | `design/website/A2-app-phone.png` ← `apps/web/public/images/home/app-phone.png` | ✅ |
+| A2 | صور الأطباء التلاتة (للتطوير بس) | ملفك · D1 ← الكود بيقطّعهم | `design/mocks/doctor-physio.png` · `doctor-derm.png` · `doctor-internal.png` | ⏳ |
+| A2 | علامات App Store وGoogle Play | رسمية من Apple وGoogle | `apps/web/public/images/badges/` | ⏳ |
 | A0 | أيقونات التخصصات والـNavigation والـInputs | Lucide | — | ✅ متسطبة |
 
 - الأسامي فيها أرقام الشاشات اللي في [05](05-apps-structure.md) (`W-xx` · `PP-xx` · `D-xx`).

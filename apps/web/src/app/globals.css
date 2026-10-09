@@ -14,10 +14,13 @@
   --font-heading: var(--font-sans);
   --font-mono: ui-monospace, monospace;
 
-  /* ألوان Oxygen: bg-coral · text-ink · bg-physio/10 … */
+  /* ألوان Oxygen: bg-gold · text-ink · bg-physio/10 · from-brand-from to-brand-to … */
   --color-ink: var(--oxy-ink);
-  --color-mint: var(--oxy-mint);
-  --color-coral: var(--oxy-coral);
+  --color-brand-from: var(--oxy-brand-from);
+  --color-brand-to: var(--oxy-brand-to);
+  --color-mist: var(--oxy-mist);
+  --color-field-border: var(--oxy-field-border);
+  --color-gold: var(--oxy-gold);
   --color-success: var(--oxy-success);
   --color-warning: var(--oxy-warning);
   --color-info: var(--oxy-info);
@@ -78,15 +81,15 @@
   --popover-foreground: var(--oxy-ink);
   --primary: var(--oxy-primary);
   --primary-foreground: var(--oxy-on-primary);
-  --secondary: var(--oxy-mint);
+  --secondary: var(--oxy-mist);
   --secondary-foreground: var(--oxy-ink);
-  --muted: var(--oxy-mint);
+  --muted: var(--oxy-mist);
   --muted-foreground: var(--oxy-muted-text);
-  --accent: var(--oxy-mint);
+  --accent: var(--oxy-mist);
   --accent-foreground: var(--oxy-ink);
   --destructive: var(--oxy-danger);
   --border: var(--oxy-border);
-  --input: var(--oxy-border);
+  --input: var(--oxy-field-border);
   --ring: var(--oxy-primary);
   --chart-1: var(--oxy-primary);
   --chart-2: var(--oxy-nutrition);
@@ -97,7 +100,7 @@
   --sidebar-foreground: var(--oxy-ink);
   --sidebar-primary: var(--oxy-primary);
   --sidebar-primary-foreground: var(--oxy-on-primary);
-  --sidebar-accent: var(--oxy-mint);
+  --sidebar-accent: var(--oxy-mist);
   --sidebar-accent-foreground: var(--oxy-ink);
   --sidebar-border: var(--oxy-border);
   --sidebar-ring: var(--oxy-primary);

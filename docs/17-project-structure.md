@@ -20,10 +20,10 @@ SMART CLINIC OS/
 │   ├── config/              ← ألوان Oxygen والخطوط
 │   └── shared/              ← اللغات، تنسيق الفلوس، الـMocks
 ├── design/                  ← التصميم من ChatGPT (DEC-19 · DEC-20 · DEC-21)
-│   ├── brand/               ← ملفات الهوية: اللوجو بأشكاله، أيقونة التطبيق، صورة الطبيب الافتراضية
-│   │   └── original/        ← مراجع Oxygen زي ما وصلت (من الفيسبوك): oxygen-logo-o2-square.png · oxygen-cover-banner.png
-│   ├── mocks/               ← صور للتطوير بس (زي الشخصية L6)، مش بتتحط في الموقع الحقيقي
-│   ├── website/             ← صور شاشات الموقع المقبولة (A0 v1 اتستبدلت، v2 ⏳ — DEC-22)
+│   ├── brand/               ← ملفات الهوية: logo-color.png · logo-white.png · logo-symbol.png (شفافين، DEC-24) · بعدين: app-icon · doctor-avatar
+│   │   └── original/        ← مراجع Oxygen زي ما وصلت
+│   ├── mocks/               ← صور للتطوير بس: doctor-sample.png (الدكتورة)، مش بتتحط في الموقع الحقيقي
+│   ├── website/             ← صور شاشات الموقع المقبولة: A0-design-system-v2.png ✅ (المرجع) · A0-photo-hero.png · A0-particle-ring.png · A0-dots-wordmark.png · A0-dot-wave.png · A1-specialty-icons.png · A2-branches-map.png · A2-app-phone.png
 │   └── dashboard/ ⏳        ← صور شاشات الداشبورد
 ├── docs/                    ← التوثيق (الملفات دي)
 ├── node_modules/            ← المكتبات المتسطبة (واحد للكل، ومش بيدخل Git)
@@ -82,7 +82,8 @@ apps/web/
 ├── messages/
 │   ├── ar.json · en.json        نصوص الموقع، مقسّمة بالصفحات (home · nav · footer …)
 ├── public/
-│   └── images/                  صور الموقع، مقسّمة بالصفحات
+│   ├── logo.png · logo-white.png   اللوجو الملون والأبيض (شفافين، من design/brand)
+│   └── images/                  صور الموقع، مقسّمة بالصفحات · shared/dot-wave.png (موجة النقط بين الأقسام) · home/app-phone.png (موبايل شريط التطبيق) · specialties/ (nutrition · physio · derm · internal .png — أيقونات التخصصات المنقطة)
 ├── src/
 │   ├── app/                     الصفحات (Next.js App Router)
 │   │   ├── globals.css          بيربط ألوان packages/config بأسامي Tailwind و shadcn (ممنوع hex هنا)
@@ -138,7 +139,8 @@ apps/web/
 ```text
 apps/dashboard/
 ├── public/
-│   └── favicon.svg              ⏳ يتغيّر بلوجو Oxygen
+│   ├── favicon.svg              ⏳ يتغيّر بلوجو Oxygen
+│   └── logo.png                 اللوجو الملون (من design/brand)
 ├── src/
 │   ├── app/                     تشغيل الأبلكيشن
 │   │   ├── providers.tsx        RTL + لغة antd (ar_EG) + Redux + لغة التواريخ

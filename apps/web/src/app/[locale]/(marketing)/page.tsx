@@ -20,7 +20,7 @@ export default async function HomePage() {
       </Reveal>
 
       <div className="flex gap-3">
-        <Button className="bg-coral hover:bg-coral/90">{t('bookNow')}</Button>
+        <Button className="bg-gold text-ink hover:bg-gold/90">{t('bookNow')}</Button>
         <Button variant="outline">{t('patientLogin')}</Button>
       </div>
     </main>
