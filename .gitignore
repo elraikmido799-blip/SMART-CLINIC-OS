@@ -1,3 +1,46 @@
-node_modules
-.next
+# ── المكتبات ─────────────────────────────
+node_modules/
+.pnpm-store/
+
+# ── ملفات الـBuild والـCache ────────────────
+.next/
+out/
+dist/
+dist-ssr/
+build/
+coverage/
+.turbo/
+.vercel/
+.cache/
+.eslintcache
+*.tsbuildinfo
+next-env.d.ts
+
+# ── الـenv: الأسرار مش بتدخل Git، والـexample بيدخل ──
+.env
 .env*.local
+.env.development
+.env.production
+!.env.example
+
+# ── اللوجز ───────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── السيستم والـEditors ───────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+
+# ── ملفات المطوّر الشخصية (مش جزء من المشروع) ──
+structure and image/
+apps/web/public/images/logo.png
+apps/web/public/images/Oxygen Wellness Emblem and Tagline.png
