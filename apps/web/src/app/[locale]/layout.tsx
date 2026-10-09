@@ -6,7 +6,7 @@ import { tokensToCss } from '@oxygen/config';
 import { directionOf, isLocale } from '@oxygen/shared';
 import { Providers } from '@/components/providers';
 import { routing } from '@/i18n/routing';
-import { inter, plexArabic } from '@/lib/fonts';
+import { alexandria, inter, montserrat, plexArabic } from '@/lib/fonts';
 import '../globals.css';
 
 export function generateStaticParams() {
@@ -27,7 +27,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
   const dir = directionOf(locale);
 
   return (
-    <html lang={locale} dir={dir} className={`${plexArabic.variable} ${inter.variable}`}>
+    <html
+      lang={locale}
+      dir={dir}
+      className={`${plexArabic.variable} ${inter.variable} ${montserrat.variable} ${alexandria.variable}`}
+    >
       <head>
         {/* ألوان Oxygen من packages/config — المصدر الوحيد للموقع والداشبورد */}
         <style dangerouslySetInnerHTML={{ __html: tokensToCss() }} />

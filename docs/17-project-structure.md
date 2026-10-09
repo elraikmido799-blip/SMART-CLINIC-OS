@@ -64,6 +64,7 @@ copy apps\dashboard\.env.example apps\dashboard\.env.local
 | الموقع | `apps/web/.env.local` | `NEXT_PUBLIC_SITE_URL` | لينك الموقع (الـSEO والـsitemap) |
 | | | `NEXT_PUBLIC_API_URL` | لينك الـAPI بتاع مبرمج الباك |
 | | | `NEXT_PUBLIC_API_MOCKING` | `enabled` = داتا وهمية · `disabled` = الـAPI الحقيقي |
+| | | `MOCK_SCENARIO` | على السيرفر بس، مع الـMocks: `ok` · `empty` · `network` · `server` · `not-found` · `invalid`. بيجرّب كل حالة خطأ ([DEC-30](19-decisions.md#dec-30)) |
 | | | `NEXT_PUBLIC_WHATSAPP_NUMBER` | رقم الواتساب بالصيغة الدولية من غير + |
 | الداشبورد | `apps/dashboard/.env.local` | `VITE_API_URL` | لينك الـAPI |
 | | | `VITE_API_MOCKING` | `enabled` · `disabled` |
@@ -83,25 +84,37 @@ apps/web/
 │   ├── ar.json · en.json        نصوص الموقع، مقسّمة بالصفحات (home · nav · footer …)
 ├── public/
 │   ├── logo.png · logo-white.png   اللوجو الملون والأبيض (شفافين، من design/brand)
-│   └── images/                  صور الموقع، مقسّمة بالصفحات · shared/dot-wave.png (موجة النقط بين الأقسام) · home/app-phone.png (موبايل شريط التطبيق) · specialties/ (nutrition · physio · derm · internal .png — أيقونات التخصصات المنقطة)
+│   └── images/                  صور الموقع: shared/ (particle-ring · dot-wave · logo-symbol) · home/ (hero · app-phone) · specialties/ (الأيقونات المنقطة) · mocks/ (للتطوير بس)
 ├── src/
 │   ├── app/                     الصفحات (Next.js App Router)
 │   │   ├── globals.css          بيربط ألوان packages/config بأسامي Tailwind و shadcn (ممنوع hex هنا)
-│   │   ├── favicon.ico          ⏳ يتغيّر بلوجو Oxygen
+│   │   ├── icon.png             الـFavicon (رمز O2 من design/brand)
 │   │   └── [locale]/            كل الصفحات تحت اللغة: /ar/… و /en/…
 │   │       ├── layout.tsx       الـRoot layout: اللغة + الاتجاه + الخطوط + الألوان + Providers + Metadata
+│   │       ├── error.tsx        أي خطأ مش متوقع: رسالة + "حاول تاني"
+│   │       ├── not-found.tsx    صفحة 404 بلغة الزائر
+│   │       ├── [...rest]/       أي مسار مش معروف ← not-found
 │   │       ├── (marketing)/     الموقع التعريفي (القوسين = مش بيظهروا في الـURL)
-│   │       │   ├── page.tsx     الصفحة الرئيسية (مؤقتة دلوقتي — المرحلة 3)
+│   │       │   ├── layout.tsx   Navbar + Footer + زرار واتساب + شريط النت المقطوع
+│   │       │   ├── page.tsx     الصفحة الرئيسية W-01 (A1 · A2 · A3)
+│   │       │   ├── _components/ أقسام الرئيسية: hero · booking-bar · trust-bar · specialties · journey · programs · doctors · branches (+ branches-map) · app-promo
 │   │       │   └── …            ⏳ about · specialties · doctors · branches · … (المرحلة 4)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
-│   │   └── public/ ⏳           Functions على السيرفر للصفحات التعريفية (الأطباء، الفروع…)
+│   │   └── public/              Functions على السيرفر للصفحات التعريفية (DEC-11 · DEC-30)
+│   │       ├── fetch-public.ts  GET /public/* ← Result (ok أو نوع الخطأ) + Schema + Mocks + timeout
+│   │       └── specialties · doctors · branches · programs · content .ts   Endpoint في كل ملف
 │   ├── components/
 │   │   ├── ui/                  Components بتاعة shadcn (بنسيبها زي ما الـCLI عملها)
 │   │   ├── shared/              Components بتستخدمها أكتر من صفحة
+│   │   │   ├── brand.ts         زراير الهوية (brandButton) + ألوان كل تخصص + أيقوناته
+│   │   │   ├── container · section-heading · logo · dot-wave · particle-ring-image
+│   │   │   ├── doctor-card · specialty-card
+│   │   │   ├── section-state · retry-button   حالات الخطأ والفاضي في أي قسم
+│   │   │   ├── offline-notice.tsx شريط "إنت مش متصل بالنت"
 │   │   │   └── reveal.tsx       الظهور مع الـScroll (Motion)
-│   │   ├── layout/ ⏳           Navbar · Footer · MobileMenu · LanguageSwitcher · WhatsAppButton
+│   │   ├── layout/              navbar · mobile-menu · language-switcher · footer · whatsapp-button · nav-links
 │   │   └── providers.tsx        الـProviders: الاتجاه · Motion · Redux · Tooltip · Toaster
 │   ├── i18n/                    اللغات (next-intl)
 │   │   ├── routing.ts           اللغات المتاحة (من packages/shared)
@@ -109,17 +122,20 @@ apps/web/
 │   │   └── navigation.ts        Link · useRouter · usePathname (استخدمهم بدل بتوع Next)
 │   ├── lib/
 │   │   ├── env.ts               كل متغيرات الـenv
-│   │   ├── fonts.ts             Inter + IBM Plex Sans Arabic
+│   │   ├── fonts.ts             Inter + IBM Plex Sans Arabic (الكلام) · Montserrat + Alexandria (العناوين — DEC-29)
+│   │   ├── whatsapp.ts          لينك واتساب برسالة جاهزة
 │   │   ├── motion.ts            الحركات المتكررة (fadeUp · stagger)
 │   │   └── utils.ts             cn() — دمج الـClasses
 │   ├── mocks/
-│   │   └── handlers.ts          الداتا الوهمية لكل Endpoint (بيتمسح لما الـAPI يجهز)
+│   │   ├── handlers.ts          الداتا الوهمية لـRTK Query (بيتمسح لما الـAPI يجهز)
+│   │   └── public/              ردود /public/* الوهمية بنفس شكل الـAPI ({ data: [...] })
 │   ├── store/
 │   │   ├── base-api.ts          RTK Query: الأساس اللي كل الـEndpoints بتتضاف عليه
 │   │   ├── store.ts             الـRedux store
 │   │   └── store-provider.tsx   بيدّي الـStore للصفحات
 │   ├── types/
-│   │   └── lead.ts              شكل الـLead اللي بيتبعت
+│   │   ├── lead.ts              شكل الـLead اللي بيتبعت
+│   │   └── public.ts            Schemas (zod) + Types لداتا الصفحات التعريفية
 │   └── proxy.ts                 بيحوّل أي زائر لـ/ar أو /en (Next 16 سمّى middleware بـproxy)
 ├── .env.local · .env.example    §3
 ├── next.config.ts               إعدادات Next (ومنها سطر next-intl — DEC-07)
@@ -251,7 +267,7 @@ apps/dashboard/
   - **ممنوع** `ml-` `mr-` `pl-` `pr-` `left-` `right-`.
   - الأيقونات اللي ليها اتجاه: `rtl:rotate-180`.
 - **الألوان:**
-  - `bg-primary` · `bg-coral` · `text-ink` · `bg-mint` · `bg-physio/10` …
+  - `bg-primary` · `bg-gold` · `text-ink` · `bg-mist` · `bg-physio/10` · `from-brand-from to-brand-to` …
   - **ممنوع hex** جوه أي Component أو في `globals.css`.
 - **Motion** ([DEC-13](19-decisions.md#dec-13)):
   - `<Reveal>` للظهور مع الـScroll.

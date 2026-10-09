@@ -40,7 +40,7 @@
 | 0 | قبل الكود: اتجاه التصميم + المحتوى المطلوب من Oxygen | 2–3 أيام | 🔄 الهوية ✅ · صور الشاشات A1 → A8 ⏳ · المحتوى ⏳ |
 | 1 | التسطيب والأساس (الموقع + الداشبورد) | 3–4 أيام | ✅ |
 | 2 | الصور (برومبتات ChatGPT) | 2–3 أيام (بالتوازي) | ⏳ عليك |
-| 3 | الـLayout + الصفحة الرئيسية | أسبوع | ⏳ |
+| 3 | الـLayout + الصفحة الرئيسية | أسبوع | ✅ ([L-33](18-dev-log.md#l-33)) · آراء المرضى مستنية آراء حقيقية |
 | 4 | باقي صفحات الموقع التعريفي | 2–3 أسابيع | ⏳ |
 | 5 | الحجز + الدفع + الدخول (شكل) | أسبوع | ⏳ |
 | 6 | بوابة المريض (شكل) | أسبوع ونص – أسبوعين | ⏳ |
@@ -252,18 +252,20 @@ New series "Spot illustrations": switch to a minimal line illustration style wit
 
 ---
 
-## المرحلة 3 — الـLayout + الصفحة الرئيسية
+## المرحلة 3 — الـLayout + الصفحة الرئيسية ✅
 
-### 3.1 الـLayout المشترك · `components/layout/`
+> ✅ اتعملت 2026-10-09 ([L-33](18-dev-log.md#l-33)) على صور A1 · A2 · A3. الداتا جاية من `api/public/` بالـMocks، وجاهزة للـAPI ([DEC-30](19-decisions.md#dec-30)).
 
-- **Navbar:** اللوجو · التخصصات · البرامج · Digital · الأطباء · الفروع · Learn · `LanguageSwitcher` · "دخول المريض" (Ghost) · "احجز الآن" (Coral).
+### 3.1 الـLayout المشترك · `components/layout/` ✅
+
+- **Navbar:** اللوجو · التخصصات · البرامج · الأطباء · الفروع · Learn · `LanguageSwitcher` · "دخول المريض" (Outline) · "احجز الآن" (دهبي).
 - **MobileMenu:** `Sheet` بيفتح من ناحية البداية (يمين في العربي).
 - **Footer:** اللينكات · الفروع · السوشيال · الصفحات القانونية.
 - **WhatsAppButton:** زرار عائم، ورسالة جاهزة مختلفة لكل صفحة من `lib/whatsapp.ts`.
 - **LanguageSwitcher:** `router.replace(pathname, { locale })` من `i18n/navigation`.
 - `(marketing)/layout.tsx` بيجمعهم.
 
-### 3.2 الصفحة الرئيسية · `W-01` · `(marketing)/page.tsx`
+### 3.2 الصفحة الرئيسية · `W-01` · `(marketing)/page.tsx` ✅
 
 | Section | الـComponent | الداتا |
 |---|---|---|
@@ -275,8 +277,8 @@ New series "Spot illustrations": switch to a minimal line illustration style wit
 | الأطباء | `_components/doctors-carousel.tsx` + `DoctorCard` (shared) | `getDoctors()` |
 | الفروع | `_components/branches-section.tsx` + `BranchCard` (shared) | `getBranches()` |
 | التطبيق | `_components/app-promo.tsx` | صورة 2.7 |
-| آراء المرضى | `_components/testimonials.tsx` | **حقيقية بس** (تتخفي لحد ما توصل) |
-| CTA أخير | `_components/cta-band.tsx` | — |
+| آراء المرضى | `_components/testimonials.tsx` | **حقيقية بس** · ⏳ متعملتش لحد ما توصل |
+| CTA أخير | — | ❌ مش موجود في صور A1 · A2 · A3، وشريط التطبيق واخد مكانه |
 
 > الصفحة **Server Component**. اللي فيه تفاعل بس (الـCarousel) هو اللي عليه `'use client'`.
 

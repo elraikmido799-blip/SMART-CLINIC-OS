@@ -1,18 +1,169 @@
 {
   "metadata": {
-    "title": "Oxygen Clinics",
-    "description": "Nutrition, Physiotherapy, Dermatology and Internal Medicine — in clinic and online, all in one place."
+    "title": "Oxygen",
+    "description": "Clinical nutrition and physical therapy with a plan designed for your body — plus dermatology and internal medicine, in 5 branches across Egypt."
   },
-  "home": {
-    "title": "Your health journey, connected",
-    "subtitle": "Nutrition, Physiotherapy, Dermatology and Internal Medicine — in clinic and online, all in one place.",
-    "bookNow": "Book Now",
+  "nav": {
+    "home": "Oxygen — home",
+    "mainNav": "Main",
+    "menuTitle": "Menu",
+    "openMenu": "Open menu",
+    "skipToContent": "Skip to content",
+    "specialties": "Specialties",
+    "programs": "Programs",
+    "doctors": "Doctors",
+    "branches": "Branches",
+    "learn": "Learn",
+    "switchLanguage": "عربي",
     "patientLogin": "Patient Login",
-    "specialties": {
-      "nutrition": "Nutrition",
-      "physio": "Physiotherapy",
-      "derm": "Dermatology",
-      "internal": "Internal Medicine"
+    "bookNow": "Book Now"
+  },
+  "hero": {
+    "title": "A new breath for your health.",
+    "subtitle": "Clinical nutrition and physical therapy with a plan designed for your body.",
+    "imageAlt": "A physiotherapist guiding a patient through a knee exercise"
+  },
+  "bookingBar": {
+    "label": "Book an appointment",
+    "specialty": "Specialty",
+    "specialtyPlaceholder": "Choose a specialty",
+    "branch": "Branch",
+    "branchPlaceholder": "Choose a branch",
+    "submit": "Book an Appointment"
+  },
+  "trust": {
+    "label": "Oxygen in numbers",
+    "specialties": "Specialties",
+    "branches": "Branches",
+    "specialists": "Specialists",
+    "patients": "Patients",
+    "atLeast": "{value}+"
+  },
+  "specialtiesSection": {
+    "title": "Our Specialties",
+    "subtitle": "Four specialties working together around one plan for you."
+  },
+  "specialtyCard": {
+    "learnMore": "Learn more"
+  },
+  "specialtyNames": {
+    "nutrition": "Nutrition",
+    "physio": "Physiotherapy",
+    "derm": "Dermatology",
+    "internal": "Internal Medicine"
+  },
+  "journey": {
+    "eyebrow": "Our signature program",
+    "title": "The Secret Seven",
+    "subtitle": "A complete 7-step journey to better health, designed just for you.",
+    "cta": "Start your journey",
+    "steps": {
+      "1": { "title": "Assessment", "body": "Understand your current health." },
+      "2": { "title": "Plan", "body": "Set your personalized plan." },
+      "3": { "title": "Treatment", "body": "Start your program." },
+      "4": { "title": "Follow-up", "body": "Track your progress." },
+      "5": { "title": "Progress", "body": "See real results." },
+      "6": { "title": "Stabilization", "body": "Build healthy habits." },
+      "7": { "title": "Maintenance", "body": "Lasting wellness." }
     }
+  },
+  "programs": {
+    "title": "Online Programs",
+    "subtitle": "Flexible, expert-led programs — from the comfort of your home.",
+    "priceFrom": "From {price} / month"
+  },
+  "doctors": {
+    "title": "Our Doctors",
+    "subtitle": "Experienced specialists, dedicated to your health.",
+    "viewAll": "View all doctors"
+  },
+  "doctorCard": {
+    "experience": "{years, plural, one {# year} other {# years}} of experience",
+    "book": "Book",
+    "bookWith": "Book with {name}",
+    "noPhoto": "{name} — photo coming soon"
+  },
+  "branches": {
+    "title": "Our Branches",
+    "subtitle": "Find the nearest Oxygen clinic to you.",
+    "hours": "{opens} – {closes}",
+    "directions": "Directions",
+    "showOnMap": "— show on map",
+    "mapTitle": "Map of Oxygen {branch}"
+  },
+  "appPromo": {
+    "title": "Your Health Passport in your pocket",
+    "body": "Appointments, results and your plan — all in the Oxygen app.",
+    "comingSoon": "Coming soon",
+    "appStore": "App Store",
+    "googlePlay": "Google Play",
+    "phoneAlt": "The Oxygen app home screen"
+  },
+  "footer": {
+    "about": "Oxygen is an Egyptian clinic group offering clinical nutrition, physical therapy, dermatology and internal medicine — for a healthier you.",
+    "columns": {
+      "clinic": {
+        "title": "Clinic",
+        "branches": "Branches",
+        "doctors": "Doctors",
+        "about": "About Us"
+      },
+      "programs": {
+        "title": "Programs",
+        "nutrition": "Nutrition",
+        "physio": "Physiotherapy",
+        "derm": "Dermatology",
+        "internal": "Internal Medicine"
+      },
+      "help": {
+        "title": "Help",
+        "faqs": "FAQs",
+        "contact": "Contact Us",
+        "book": "Book Appointment"
+      }
+    },
+    "legal": { "privacy": "Privacy Policy", "terms": "Terms of Use", "sitemap": "Sitemap" },
+    "copyright": "© {year} Oxygen. All rights reserved."
+  },
+  "whatsapp": {
+    "cta": "Chat on WhatsApp",
+    "floatingLabel": "Chat with Oxygen on WhatsApp",
+    "defaultMessage": "Hello Oxygen, I'd like to know more."
+  },
+  "states": {
+    "retry": "Try again",
+    "empty": {
+      "title": "Nothing here yet",
+      "body": "We're adding this soon. Please check back later."
+    },
+    "network": {
+      "title": "Can't connect right now",
+      "body": "Check your internet connection, then try again."
+    },
+    "not-found": {
+      "title": "Not available",
+      "body": "This information isn't available at the moment."
+    },
+    "server": {
+      "title": "Something went wrong on our side",
+      "body": "We couldn't load this part. Please try again in a moment."
+    },
+    "invalid-response": {
+      "title": "We couldn't show this part",
+      "body": "We received unexpected data. Please try again in a moment."
+    },
+    "unknown": { "title": "Something went wrong", "body": "Please try again in a moment." },
+    "offline": { "message": "You're offline. Some content may not load until you reconnect." }
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "body": "Sorry — this page couldn't load. Please try again.",
+    "retry": "Try again",
+    "home": "Back to home"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you're looking for doesn't exist or is coming soon.",
+    "home": "Back to home"
   }
 }

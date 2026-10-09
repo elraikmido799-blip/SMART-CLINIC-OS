@@ -12,3 +12,18 @@ export function formatMoney(amountMinor: number, currency: string, locale: Local
     maximumFractionDigits: 2,
   }).format(amountMinor / 100);
 }
+
+/** "08:00" (توقيت الفرع) ← "8:00 AM" أو "8:00 ص" */
+export function formatTime(hhmm: string, locale: Locale): string {
+  const [hours, minutes] = hhmm.split(':').map(Number);
+  return new Intl.DateTimeFormat(NUMBER_LOCALE[locale], {
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'UTC',
+  }).format(Date.UTC(2000, 0, 1, hours, minutes));
+}
+
+/** 10000 ← "10,000" بنفس الأرقام اللي في formatMoney */
+export function formatNumber(value: number, locale: Locale): string {
+  return new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(value);
+}

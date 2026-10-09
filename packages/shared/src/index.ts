@@ -1,5 +1,5 @@
 export { LOCALES, DEFAULT_LOCALE, isLocale, directionOf, type Locale } from './locales';
-export { formatMoney } from './format';
+export { formatMoney, formatNumber, formatTime } from './format';
 export { localized } from './localized';
 export {
   createBaseQuery,

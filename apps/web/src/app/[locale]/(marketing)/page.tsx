@@ -1,28 +1,56 @@
-import { getTranslations } from 'next-intl/server';
+import { getBranches } from '@/api/public/branches';
+import { getHomeContent } from '@/api/public/content';
+import { getDoctors } from '@/api/public/doctors';
+import { getPrograms } from '@/api/public/programs';
+import { getSpecialties } from '@/api/public/specialties';
+import { DotWave } from '@/components/shared/dot-wave';
 import { Reveal } from '@/components/shared/reveal';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { AppPromo } from './_components/app-promo';
+import { BranchesSection } from './_components/branches-section';
+import { DoctorsSection } from './_components/doctors-section';
+import { Hero } from './_components/hero';
+import { JourneySection } from './_components/journey-section';
+import { ProgramsSection } from './_components/programs-section';
+import { SpecialtiesSection } from './_components/specialties-section';
+import { TrustBar } from './_components/trust-bar';
 
-// صفحة مؤقتة عشان نتأكد إن الأساس شغال (اللغة، RTL، الخطوط، الألوان، Motion). هتتبني بجد في المرحلة 3
+/**
+ * الصفحة الرئيسية W-01 (A1 · A2 · A3).
+ * كل الداتا بتتجاب مع بعض على السيرفر، وكل قسم بيتعامل مع الخطأ أو الفاضي بتاعه لوحده،
+ * فلو Endpoint واحد وقع الصفحة بتكمل.
+ */
 export default async function HomePage() {
-  const t = await getTranslations('home');
+  const [content, specialties, doctors, branches, programs] = await Promise.all([
+    getHomeContent(),
+    getSpecialties(),
+    getDoctors(),
+    getBranches(),
+    getPrograms(),
+  ]);
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-3xl flex-col justify-center gap-6 px-4">
-      <h1 className="text-4xl font-bold text-ink">{t('title')}</h1>
-      <p className="text-lg text-muted-foreground">{t('subtitle')}</p>
-
-      <Reveal className="flex flex-wrap gap-2">
-        <Badge className="bg-nutrition">{t('specialties.nutrition')}</Badge>
-        <Badge className="bg-physio">{t('specialties.physio')}</Badge>
-        <Badge className="bg-derm">{t('specialties.derm')}</Badge>
-        <Badge className="bg-internal">{t('specialties.internal')}</Badge>
+    <>
+      <Hero content={content} specialties={specialties} branches={branches} />
+      <TrustBar content={content} />
+      <DotWave className="-mt-4 sm:-mt-6" />
+      <Reveal>
+        <SpecialtiesSection specialties={specialties} />
       </Reveal>
-
-      <div className="flex gap-3">
-        <Button className="bg-gold text-ink hover:bg-gold/90">{t('bookNow')}</Button>
-        <Button variant="outline">{t('patientLogin')}</Button>
-      </div>
-    </main>
+      <Reveal>
+        <JourneySection />
+      </Reveal>
+      <DotWave />
+      <Reveal>
+        <ProgramsSection programs={programs} />
+      </Reveal>
+      <Reveal>
+        <DoctorsSection doctors={doctors} branches={branches} />
+      </Reveal>
+      <DotWave />
+      <Reveal>
+        <BranchesSection branches={branches} />
+      </Reveal>
+      <AppPromo />
+    </>
   );
 }
