@@ -31,7 +31,12 @@ export async function SpecialtyCard({ specialty }: { specialty: PublicSpecialty 
         height={64}
         className="size-12 sm:size-16"
       />
-      <h3 className={cn('mt-3 font-heading text-lg font-bold sm:mt-4 sm:text-xl', styles.text)}>
+      <h3
+        className={cn(
+          'mt-3 font-heading text-lg font-bold break-words sm:mt-4 sm:text-xl',
+          styles.text,
+        )}
+      >
         {name}
       </h3>
       <p className="mt-2 flex-1 text-sm text-muted-foreground">

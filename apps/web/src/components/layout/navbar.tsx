@@ -14,7 +14,7 @@ export async function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/85">
-      <Container className="flex h-18 items-center gap-6">
+      <Container className="flex h-18 items-center gap-3 sm:gap-6">
         <Link href="/" aria-label={t('home')} className="shrink-0 rounded-md">
           <Logo />
         </Link>
@@ -42,8 +42,10 @@ export async function Navbar() {
           >
             {t('patientLogin')}
           </Link>
-          <Link href={BOOK_HREF} className={brandButton({ tone: 'gold' })}>
-            {t('bookNow')}
+          {/* على الموبايل "Book" بس (A3): من غيرها الـNavbar أعرض من شاشة 320 */}
+          <Link href={BOOK_HREF} className={cn(brandButton({ tone: 'gold' }), 'px-4 sm:px-5')}>
+            <span className="sm:hidden">{t('book')}</span>
+            <span className="hidden sm:inline">{t('bookNow')}</span>
           </Link>
           <div className="lg:hidden">
             <MobileMenu />

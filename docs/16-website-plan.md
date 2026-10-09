@@ -413,7 +413,7 @@ New series "Spot illustrations": switch to a minimal line illustration style wit
 ### كل خطوة تعتبر خلصت لما
 
 - [ ] عربي وإنجليزي، والـRTL مظبوط (الأسهم بتتقلب)
-- [ ] Responsive من 360px لحد الديسكتوب
+- [ ] Responsive من 320px لحد الديسكتوب (P-16)
 - [ ] مفيش نص ولا لون مكتوب جوه Component
 - [ ] الـComponents المشتركة مستخدمة، ومفيش حاجة متنسخة
 - [ ] حالات Loading / Empty / Error (في الصفحات اللي فيها RTK Query)

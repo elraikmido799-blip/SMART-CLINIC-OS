@@ -35,7 +35,7 @@ export function Logo({ variant = 'color', layout = 'horizontal', className }: Lo
       <span
         dir="ltr"
         className={cn(
-          'font-heading text-lg font-semibold tracking-[0.45em]',
+          'font-heading text-base font-semibold tracking-[0.35em] sm:text-lg sm:tracking-[0.45em]',
           variant === 'white' ? 'text-white' : 'text-ink',
         )}
       >
