@@ -4,6 +4,7 @@ import type { PublicResult } from '@/api/public/fetch-public';
 import { Container } from '@/components/shared/container';
 import { DoctorCard } from '@/components/shared/doctor-card';
 import { SectionHeading } from '@/components/shared/section-heading';
+import { RevealGroup, RevealItem } from '@/components/shared/reveal-group';
 import { SectionState } from '@/components/shared/section-state';
 import { Link } from '@/i18n/navigation';
 import type { PublicBranch, PublicDoctor } from '@/types/public';
@@ -24,7 +25,7 @@ export async function DoctorsSection({ doctors, branches }: DoctorsSectionProps)
   return (
     <section aria-labelledby="doctors-title" className="py-14 lg:py-20">
       <Container>
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <div className="flex flex-col items-center gap-2 lg:flex-row lg:items-end lg:justify-between lg:gap-4">
           <SectionHeading id="doctors-title" title={t('title')} subtitle={t('subtitle')} />
           <Link
             href="/doctors"
@@ -40,13 +41,13 @@ export async function DoctorsSection({ doctors, branches }: DoctorsSectionProps)
           ) : doctors.data.length === 0 ? (
             <SectionState state="empty" />
           ) : (
-            <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <RevealGroup className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {doctors.data.slice(0, HOME_DOCTORS_LIMIT).map((doctor) => (
-                <li key={doctor.id}>
+                <RevealItem key={doctor.id}>
                   <DoctorCard doctor={doctor} branches={branchList} />
-                </li>
+                </RevealItem>
               ))}
-            </ul>
+            </RevealGroup>
           )}
         </div>
       </Container>

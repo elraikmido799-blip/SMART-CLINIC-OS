@@ -14,10 +14,19 @@ type ParticleRingImageProps = {
   sizes: string;
   preload?: boolean;
   className?: string;
+  // حركة على الحلقة بس (مش الصورة)، زي motion-safe:animate-breathe في الـHero
+  ringClassName?: string;
 };
 
 /** أي صورة جوه حلقة النقط (A0). النقط اللي بتتفرق بتروح ناحية الكلام، وبتتعكس في العربي */
-export function ParticleRingImage({ src, alt, sizes, preload, className }: ParticleRingImageProps) {
+export function ParticleRingImage({
+  src,
+  alt,
+  sizes,
+  preload,
+  className,
+  ringClassName,
+}: ParticleRingImageProps) {
   return (
     <div className={cn('relative aspect-square', className)}>
       <div className="absolute overflow-hidden rounded-full bg-mist" style={{ inset: HOLE_INSET }}>
@@ -36,14 +45,17 @@ export function ParticleRingImage({ src, alt, sizes, preload, className }: Parti
           </div>
         )}
       </div>
-      <Image
-        src={RING_SRC}
-        alt=""
-        aria-hidden
-        fill
-        sizes={sizes}
-        className="pointer-events-none object-contain rtl:-scale-x-100"
-      />
+      {/* الحلقة بتتعكس في العربي على الـwrapper عشان الحركة (scale) متلغيش العكس */}
+      <div className="pointer-events-none absolute inset-0 rtl:-scale-x-100">
+        <Image
+          src={RING_SRC}
+          alt=""
+          aria-hidden
+          fill
+          sizes={sizes}
+          className={cn('pointer-events-none object-contain', ringClassName)}
+        />
+      </div>
     </div>
   );
 }

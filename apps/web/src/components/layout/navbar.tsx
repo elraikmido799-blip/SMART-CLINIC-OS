@@ -19,7 +19,7 @@ export async function Navbar() {
           <Logo />
         </Link>
 
-        <nav aria-label={t('mainNav')} className="hidden flex-1 justify-center lg:flex">
+        <nav aria-label={t('mainNav')} className="hidden flex-1 justify-center xl:flex">
           <ul className="flex items-center gap-1">
             {NAV_LINKS.map((link) => (
               <li key={link.key}>
@@ -34,11 +34,11 @@ export async function Navbar() {
           </ul>
         </nav>
 
-        <div className="ms-auto flex items-center gap-2 lg:ms-0">
-          <LanguageSwitcher className="hidden lg:inline-flex" />
+        <div className="ms-auto flex items-center gap-2 xl:ms-0">
+          <LanguageSwitcher className="hidden xl:inline-flex" />
           <Link
             href={LOGIN_HREF}
-            className={cn(brandButton({ tone: 'outline' }), 'hidden lg:inline-flex')}
+            className={cn(brandButton({ tone: 'outline' }), 'hidden xl:inline-flex')}
           >
             {t('patientLogin')}
           </Link>
@@ -47,7 +47,7 @@ export async function Navbar() {
             <span className="sm:hidden">{t('book')}</span>
             <span className="hidden sm:inline">{t('bookNow')}</span>
           </Link>
-          <div className="lg:hidden">
+          <div className="xl:hidden">
             <MobileMenu />
           </div>
         </div>

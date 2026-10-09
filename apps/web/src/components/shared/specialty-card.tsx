@@ -19,7 +19,7 @@ export async function SpecialtyCard({ specialty }: { specialty: PublicSpecialty 
     <Link
       href={`/specialties/${specialty.slug}`}
       className={cn(
-        'group flex h-full flex-col rounded-lg border p-4 transition-shadow hover:shadow-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none sm:p-6',
+        'group flex h-full flex-col rounded-lg border p-4 transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-lg focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none sm:p-6',
         styles.tint,
         styles.border,
       )}

@@ -113,6 +113,7 @@ apps/web/
 │   │   │   ├── doctor-card · specialty-card
 │   │   │   ├── section-state · retry-button   حالات الخطأ والفاضي في أي قسم
 │   │   │   ├── offline-notice.tsx شريط "إنت مش متصل بالنت"
+│   │   │   ├── reveal-group.tsx Lists عناصرها بتظهر ورا بعض (RevealGroup · RevealItem)
 │   │   │   └── reveal.tsx       الظهور مع الـScroll (Motion)
 │   │   ├── layout/              navbar · mobile-menu · language-switcher · footer · whatsapp-button · nav-links
 │   │   └── providers.tsx        الـProviders: الاتجاه · Motion · Redux · Tooltip · Toaster

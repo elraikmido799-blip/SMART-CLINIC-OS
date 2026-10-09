@@ -26,7 +26,7 @@ export async function DoctorCard({ doctor, branches }: DoctorCardProps) {
   const styles = specialtyStyles[doctor.specialty];
 
   return (
-    <article className="flex items-center gap-4 rounded-lg border border-border bg-card p-4">
+    <article className="flex h-full items-center gap-4 rounded-lg border border-border bg-card p-4 transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-lg">
       <ParticleRingImage
         src={doctor.photo_url}
         alt={doctor.photo_url ? name : t('noPhoto', { name })}

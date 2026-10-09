@@ -6,6 +6,7 @@ import type { PublicResult } from '@/api/public/fetch-public';
 import { specialtyIcon, specialtyStyles } from '@/components/shared/brand';
 import { Container } from '@/components/shared/container';
 import { SectionHeading } from '@/components/shared/section-heading';
+import { RevealGroup, RevealItem } from '@/components/shared/reveal-group';
 import { SectionState } from '@/components/shared/section-state';
 import { cn } from '@/lib/utils';
 import type { PublicProgram } from '@/types/public';
@@ -26,13 +27,13 @@ export async function ProgramsSection({ programs }: { programs: PublicResult<Pub
           ) : programs.data.length === 0 ? (
             <SectionState state="empty" />
           ) : (
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+            <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
               {programs.data.map((program) => {
                 const styles = specialtyStyles[program.specialty];
                 const features = locale === 'ar' ? program.features_ar : program.features_en;
                 return (
-                  <li key={program.id}>
-                    <article className="flex h-full flex-col rounded-lg border border-border bg-card p-5">
+                  <RevealItem key={program.id}>
+                    <article className="flex h-full flex-col rounded-lg border border-border bg-card p-5 transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-lg">
                       <div className="flex items-center gap-3">
                         <Image
                           src={specialtyIcon(program.specialty)}
@@ -62,10 +63,10 @@ export async function ProgramsSection({ programs }: { programs: PublicResult<Pub
                         })}
                       </p>
                     </article>
-                  </li>
+                  </RevealItem>
                 );
               })}
-            </ul>
+            </RevealGroup>
           )}
         </div>
       </Container>
