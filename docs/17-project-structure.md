@@ -97,7 +97,7 @@ apps/web/
 │   │       ├── (marketing)/     الموقع التعريفي (القوسين = مش بيظهروا في الـURL)
 │   │       │   ├── layout.tsx   Navbar + Footer + زرار واتساب + شريط النت المقطوع
 │   │       │   ├── page.tsx     الصفحة الرئيسية W-01 (A1 · A2 · A3)
-│   │       │   ├── _components/ أقسام الرئيسية: hero · booking-bar · trust-bar · specialties · journey · programs · doctors · branches (+ branches-map) · app-promo
+│   │       │   ├── _components/ أقسام الرئيسية: hero · booking-bar · trust-bar · specialties · journey (+ journey-steps) · programs · doctors · branches (+ branches-map) · app-promo
 │   │       │   └── …            ⏳ about · specialties · doctors · branches · … (المرحلة 4)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
