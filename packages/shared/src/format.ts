@@ -23,6 +23,40 @@ export function formatTime(hhmm: string, locale: Locale): string {
   }).format(Date.UTC(2000, 0, 1, hours, minutes));
 }
 
+// الأيام والمواعيد بتوقيت مصر، مهما كان توقيت جهاز الزائر
+const CLINIC_TIME_ZONE = 'Africa/Cairo';
+
+/** رقم اليوم (0 = الحد … 6 = السبت) ← "الأحد" أو "Sunday" */
+export function formatWeekday(
+  day: number,
+  locale: Locale,
+  width: 'long' | 'short' = 'long',
+): string {
+  // 7 يناير 2024 كان حد
+  return new Intl.DateTimeFormat(NUMBER_LOCALE[locale], { weekday: width, timeZone: 'UTC' }).format(
+    Date.UTC(2024, 0, 7 + day),
+  );
+}
+
+/** "2026-10-12T17:30:00+03:00" ← { day: "Mon 12 Oct", time: "5:30 PM" } */
+export function formatSlot(iso: string, locale: Locale): { day: string; time: string } {
+  const date = new Date(iso);
+  const options = { timeZone: CLINIC_TIME_ZONE } as const;
+  return {
+    day: new Intl.DateTimeFormat(NUMBER_LOCALE[locale], {
+      ...options,
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+    }).format(date),
+    time: new Intl.DateTimeFormat(NUMBER_LOCALE[locale], {
+      ...options,
+      hour: 'numeric',
+      minute: '2-digit',
+    }).format(date),
+  };
+}
+
 /** 10000 ← "10,000" بنفس الأرقام اللي في formatMoney */
 export function formatNumber(value: number, locale: Locale): string {
   return new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(value);

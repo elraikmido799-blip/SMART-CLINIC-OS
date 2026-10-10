@@ -180,8 +180,6 @@
     "bookAssessment": "Book an assessment",
     "conditionsTitle": "What we treat",
     "servicesTitle": "Services",
-    "serviceDuration": "{minutes} min",
-    "servicePrice": "from {price}",
     "doctorsTitle": "Our specialists",
     "relatedProgram": "Online program",
     "learnMore": "Learn more",
@@ -205,5 +203,35 @@
     "doctors": "Specialists for this service",
     "bannerTitle": "Ready to start? Book in under a minute.",
     "metaDescription": "{name} at Oxygen — {summary}"
+  },
+  "serviceList": {
+    "duration": "{minutes} min",
+    "price": "from {price}"
+  },
+  "doctorsPage": {
+    "title": "Our doctors & specialists",
+    "subtitle": "Experienced professionals, dedicated to your health.",
+    "filterLabel": "Filter by specialty",
+    "all": "All",
+    "branchLabel": "Branch",
+    "allBranches": "All branches",
+    "noMatch": "No doctors match these filters yet.",
+    "clearFilters": "Show all doctors",
+    "metaDescription": "Meet the Oxygen doctors and specialists in nutrition, physiotherapy, dermatology and internal medicine."
+  },
+  "doctorProfile": {
+    "availableAt": "Available at",
+    "services": "Services",
+    "about": "About {name}",
+    "education": "Education",
+    "languages": "Languages",
+    "bookWith": "Book with {name}",
+    "nextSlots": "Next available times",
+    "noSlots": "No times available online right now — book and we will find a time for you.",
+    "book": "Book",
+    "allTimes": "View all available times",
+    "slotLabel": "Book {day} at {time}",
+    "bannerTitle": "Ready to start? Book in under a minute.",
+    "metaDescription": "{name}, {title} at Oxygen."
   }
 }

@@ -36,6 +36,30 @@ export const publicDoctorSchema = z.object({
   photo_url: z.string().nullable(),
 });
 
+/**
+ * بروفايل الطبيب (GET /public/doctors/{slug}).
+ * الخدمات slugs من /public/services (DEC-31)، والمواعيد الجاية للعرض بس: صفحة الحجز بتتأكد منها تاني.
+ */
+export const publicDoctorDetailSchema = publicDoctorSchema.extend({
+  title_ar: z.string(),
+  title_en: z.string(),
+  bio_ar: z.string(),
+  bio_en: z.string(),
+  // الأيام بأرقام JavaScript: 0 = الحد … 6 = السبت
+  schedule: z.array(
+    z.object({ branch_id: z.string(), days: z.array(z.number().int().min(0).max(6)) }),
+  ),
+  service_slugs: z.array(z.string()),
+  // null = مش بيظهر (مراجعة A5: التعليم واللغات بيظهروا بس لو الداتا موجودة)
+  education_ar: z.string().nullable(),
+  education_en: z.string().nullable(),
+  languages_ar: z.array(z.string()),
+  languages_en: z.array(z.string()),
+  next_slots: z.array(
+    z.object({ starts_at: z.iso.datetime({ offset: true }), branch_id: z.string() }),
+  ),
+});
+
 const timeSchema = z.string().regex(/^\d{2}:\d{2}$/);
 
 export const publicBranchSchema = z.object({
@@ -148,6 +172,7 @@ export const homeContentSchema = z.object({
 
 export type PublicSpecialty = z.infer<typeof publicSpecialtySchema>;
 export type PublicDoctor = z.infer<typeof publicDoctorSchema>;
+export type PublicDoctorDetail = z.infer<typeof publicDoctorDetailSchema>;
 export type PublicBranch = z.infer<typeof publicBranchSchema>;
 export type PublicProgram = z.infer<typeof publicProgramSchema>;
 export type PublicSpecialtyDetail = z.infer<typeof publicSpecialtyDetailSchema>;

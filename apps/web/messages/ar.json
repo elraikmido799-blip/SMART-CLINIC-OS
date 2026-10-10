@@ -171,8 +171,6 @@
     "bookAssessment": "احجز تقييم",
     "conditionsTitle": "بنعالج إيه",
     "servicesTitle": "الخدمات",
-    "serviceDuration": "{minutes} دقيقة",
-    "servicePrice": "يبدأ من {price}",
     "doctorsTitle": "الأخصائيين",
     "relatedProgram": "برنامج أونلاين",
     "learnMore": "اعرف أكتر",
@@ -196,5 +194,35 @@
     "doctors": "الأخصائيين في الخدمة دي",
     "bannerTitle": "جاهز تبدأ؟ احجز في أقل من دقيقة.",
     "metaDescription": "{name} في Oxygen — {summary}"
+  },
+  "serviceList": {
+    "duration": "{minutes} دقيقة",
+    "price": "يبدأ من {price}"
+  },
+  "doctorsPage": {
+    "title": "أطباؤنا وأخصائيينا",
+    "subtitle": "خبرة حقيقية، ومهتمين بصحتك.",
+    "filterLabel": "فلتر بالتخصص",
+    "all": "الكل",
+    "branchLabel": "الفرع",
+    "allBranches": "كل الفروع",
+    "noMatch": "مفيش أطباء بالفلاتر دي لسه.",
+    "clearFilters": "اعرض كل الأطباء",
+    "metaDescription": "اتعرف على أطباء وأخصائيين Oxygen في التغذية والعلاج الطبيعي والجلدية والباطنة."
+  },
+  "doctorProfile": {
+    "availableAt": "متاح في",
+    "services": "الخدمات",
+    "about": "عن {name}",
+    "education": "التعليم",
+    "languages": "اللغات",
+    "bookWith": "احجز مع {name}",
+    "nextSlots": "أقرب مواعيد متاحة",
+    "noSlots": "مفيش مواعيد متاحة أونلاين دلوقتي — احجز وإحنا نلاقيلك ميعاد.",
+    "book": "احجز",
+    "allTimes": "شوف كل المواعيد",
+    "slotLabel": "احجز {day} الساعة {time}",
+    "bannerTitle": "جاهز تبدأ؟ احجز في أقل من دقيقة.",
+    "metaDescription": "{name}، {title} في Oxygen."
   }
 }

@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { ArrowRight, Clock } from 'lucide-react';
-import { formatMoney, isLocale, localized } from '@oxygen/shared';
+import { ArrowRight } from 'lucide-react';
+import { isLocale, localized } from '@oxygen/shared';
 import type { PublicResult } from '@/api/public/fetch-public';
 import { Container } from '@/components/shared/container';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { SectionState } from '@/components/shared/section-state';
+import { ServiceList } from '@/components/shared/service-list';
 import { Link } from '@/i18n/navigation';
 import type { PublicProgram, PublicSpecialtyDetail } from '@/types/public';
 
@@ -33,41 +34,7 @@ export async function ServicesSection({ specialty, programs }: ServicesSectionPr
             {specialty.services.length === 0 ? (
               <SectionState state="empty" />
             ) : (
-              <ul className="space-y-3">
-                {specialty.services.map((service) => (
-                  <li key={service.id}>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="group flex min-h-11 items-center gap-4 rounded-lg border border-border bg-card p-4 transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none sm:p-5"
-                    >
-                      <div className="min-w-0 flex-1">
-                        <p className="font-semibold text-ink">
-                          {localized(service, 'name', locale)}
-                        </p>
-                        <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
-                          <span className="inline-flex items-center gap-1">
-                            <Clock className="size-4" aria-hidden />
-                            {t('serviceDuration', { minutes: service.duration_minutes })}
-                          </span>
-                          <span className="font-semibold text-primary">
-                            {t('servicePrice', {
-                              price: formatMoney(
-                                service.price_from_minor,
-                                service.currency,
-                                locale,
-                              ),
-                            })}
-                          </span>
-                        </p>
-                      </div>
-                      <ArrowRight
-                        className="size-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5"
-                        aria-hidden
-                      />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <ServiceList services={specialty.services} />
             )}
           </div>
         </div>

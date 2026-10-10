@@ -102,20 +102,23 @@ apps/web/
 │   │       │   │   └── [slug]/_components/ specialty-hero · conditions-section · services-section (+ البرنامج)
 │   │       │   ├── services/[slug]/ W-04 صفحة الخدمة
 │   │       │   │   └── _components/ service-hero · service-details · service-booking-card
-│   │       │   └── …            ⏳ about · doctors · branches · … (المرحلة 4)
+│   │       │   ├── doctors/     W-05 (A5): page.tsx القايمة بالفلاتر (+ _components/branch-filter)
+│   │       │   │   └── [slug]/      البروفايل: page.tsx + _components/ doctor-profile-hero · doctor-booking-card
+│   │       │   └── …            ⏳ about · branches · … (المرحلة 4)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
 │   │   └── public/              Functions على السيرفر للصفحات التعريفية (DEC-11 · DEC-30)
 │   │       ├── fetch-public.ts  GET /public/* ← Result (ok أو نوع الخطأ) + Schema + Mocks + timeout
-│   │       └── specialties · doctors · branches · programs · content .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug)) · services (getServices · getService)
+│   │       └── specialties · doctors · branches · programs · content .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug)) · services (getServices · getService) · doctors (+ getDoctor)
 │   ├── components/
 │   │   ├── ui/                  Components بتاعة shadcn (بنسيبها زي ما الـCLI عملها)
 │   │   ├── shared/              Components بتستخدمها أكتر من صفحة
 │   │   │   ├── brand.ts         زراير الهوية (brandButton) + ألوان كل تخصص + أيقوناته
 │   │   │   ├── container · section-heading · logo · dot-wave · particle-ring-image
 │   │   │   ├── doctor-card · specialty-card · page-breadcrumb (مسار الصفحة، "الرئيسية" أوله)
-│   │   │   ├── faq-section · booking-banner · doctors-grid-section   أقسام بتتكرر في صفحات المرحلة 4
+│   │   │   ├── faq-section · booking-banner · doctors-grid-section · service-list   أقسام بتتكرر في صفحات المرحلة 4
+│   │   │   ├── select-styles.ts شكل خانات الاختيار (شريط الحجز + فلتر الفروع)
 │   │   │   ├── section-state · retry-button   حالات الخطأ والفاضي في أي قسم
 │   │   │   ├── offline-notice.tsx شريط "إنت مش متصل بالنت"
 │   │   │   ├── reveal-group.tsx Lists عناصرها بتظهر ورا بعض (RevealGroup · RevealItem)
