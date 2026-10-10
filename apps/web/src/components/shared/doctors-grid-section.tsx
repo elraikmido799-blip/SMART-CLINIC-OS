@@ -1,4 +1,3 @@
-import type { Specialty } from '@oxygen/config';
 import type { PublicResult } from '@/api/public/fetch-public';
 import type { PublicBranch, PublicDoctor } from '@/types/public';
 import { Container } from './container';
@@ -11,20 +10,16 @@ type DoctorsGridSectionProps = {
   title: string;
   doctors: PublicResult<PublicDoctor[]>;
   branches: PublicResult<PublicBranch[]>;
-  specialty: Specialty;
+  // مين يظهر: أطباء التخصص (صفحة التخصص والخدمة) أو أطباء الفرع (صفحة الفرع)
+  match: (doctor: PublicDoctor) => boolean;
 };
 
 /**
- * أطباء تخصص واحد (صفحة التخصص والخدمة). لو الأطباء فشلوا رسالة،
- * ولو التخصص ملوش أطباء لسه القسم مش بيظهر. لو الفروع فشلت الكروت من غير اسم الفرع.
+ * أطباء تخصص أو فرع (صفحات التخصص والخدمة والفرع). لو الأطباء فشلوا رسالة،
+ * ولو مفيش أطباء لسه القسم مش بيظهر. لو الفروع فشلت الكروت من غير اسم الفرع.
  */
-export function DoctorsGridSection({
-  title,
-  doctors,
-  branches,
-  specialty,
-}: DoctorsGridSectionProps) {
-  const list = doctors.ok ? doctors.data.filter((doctor) => doctor.specialty === specialty) : [];
+export function DoctorsGridSection({ title, doctors, branches, match }: DoctorsGridSectionProps) {
+  const list = doctors.ok ? doctors.data.filter(match) : [];
   if (doctors.ok && list.length === 0) return null;
 
   return (

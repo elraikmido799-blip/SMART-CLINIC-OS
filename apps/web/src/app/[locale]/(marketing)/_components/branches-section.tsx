@@ -5,7 +5,7 @@ import { Container } from '@/components/shared/container';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { SectionState } from '@/components/shared/section-state';
 import type { PublicBranch } from '@/types/public';
-import { BranchesMap, type BranchView } from './branches-map';
+import { BranchesMap, type BranchView } from '@/components/shared/branches-map';
 
 // الفروع (A2) على Google Maps (DEC-28)
 export async function BranchesSection({ branches }: { branches: PublicResult<PublicBranch[]> }) {

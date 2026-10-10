@@ -84,7 +84,7 @@ export default async function SpecialtyPage({ params }: PageProps<'/[locale]/spe
           title={t('doctorsTitle')}
           doctors={doctors}
           branches={branches}
-          specialty={slug}
+          match={(doctor) => doctor.specialty === slug}
         />
       </Reveal>
       <Reveal>

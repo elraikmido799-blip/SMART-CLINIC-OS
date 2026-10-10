@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ArrowUpRight, Clock, MapPin } from 'lucide-react';
 import type { Locale } from '@oxygen/shared';
+import { Link } from '@/i18n/navigation';
+import { mapsEmbedUrl } from '@/lib/maps';
 import { cn } from '@/lib/utils';
 
 export type BranchView = {
@@ -13,13 +15,9 @@ export type BranchView = {
   mapsUrl: string;
   latitude: number;
   longitude: number;
+  // لينك صفحة الفرع (صفحة الفروع بس). في الرئيسية مش موجود
+  href?: string;
 };
-
-const MAP_ZOOM = 14;
-
-// Google Maps Embed من غير API key: بيعرض مكان واحد، وبلغة الزائر
-const embedUrl = (branch: BranchView, locale: Locale) =>
-  `https://maps.google.com/maps?q=${branch.latitude},${branch.longitude}&z=${MAP_ZOOM}&hl=${locale}&output=embed`;
 
 /** الخريطة بتعرض الفرع المختار. الخريطة نفسها بتتحمّل لما الزائر يوصل لها (loading=lazy) */
 export function BranchesMap({ branches, locale }: { branches: BranchView[]; locale: Locale }) {
@@ -32,7 +30,7 @@ export function BranchesMap({ branches, locale }: { branches: BranchView[]; loca
       <div className="aspect-[4/3] overflow-hidden rounded-lg border border-border bg-mist lg:aspect-auto lg:min-h-80">
         <iframe
           key={selected.id}
-          src={embedUrl(selected, locale)}
+          src={mapsEmbedUrl(selected.latitude, selected.longitude, locale)}
           title={t('mapTitle', { branch: selected.name })}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -75,6 +73,15 @@ export function BranchesMap({ branches, locale }: { branches: BranchView[]; loca
                 <span className="sr-only"> — {branch.name}</span>
                 <ArrowUpRight className="size-4 rtl:-scale-x-100" aria-hidden />
               </a>
+              {branch.href && (
+                <Link
+                  href={branch.href}
+                  className="inline-flex min-h-11 items-center gap-1 self-start text-sm font-semibold text-ink hover:text-primary hover:underline"
+                >
+                  {t('details')}
+                  <span className="sr-only"> — {branch.name}</span>
+                </Link>
+              )}
             </li>
           );
         })}

@@ -76,6 +76,20 @@ export const publicBranchSchema = z.object({
   longitude: z.number().min(-180).max(180),
 });
 
+/**
+ * صفحة الفرع (GET /public/branches/{slug}). الأطباء من /public/doctors متفلترين بـbranch_ids (DEC-31).
+ * التليفون والواتساب null = الزرار بتاعهم مش بيظهر (الواتساب بيرجع لرقم Oxygen العام).
+ */
+export const publicBranchDetailSchema = publicBranchSchema.extend({
+  address_ar: z.string(),
+  address_en: z.string(),
+  phone: z.string().nullable(),
+  whatsapp: z.string().nullable(),
+  specialties: z.array(specialtySchema),
+  // صور الفرع الحقيقية من الداشبورد. فاضية = القسم مش بيظهر
+  photos: z.array(z.object({ url: z.string(), alt_ar: z.string(), alt_en: z.string() })),
+});
+
 export const publicProgramSchema = z.object({
   id: z.string(),
   specialty: specialtySchema,
@@ -174,6 +188,7 @@ export type PublicSpecialty = z.infer<typeof publicSpecialtySchema>;
 export type PublicDoctor = z.infer<typeof publicDoctorSchema>;
 export type PublicDoctorDetail = z.infer<typeof publicDoctorDetailSchema>;
 export type PublicBranch = z.infer<typeof publicBranchSchema>;
+export type PublicBranchDetail = z.infer<typeof publicBranchDetailSchema>;
 export type PublicProgram = z.infer<typeof publicProgramSchema>;
 export type PublicSpecialtyDetail = z.infer<typeof publicSpecialtyDetailSchema>;
 export type PublicFaq = z.infer<typeof faqSchema>;

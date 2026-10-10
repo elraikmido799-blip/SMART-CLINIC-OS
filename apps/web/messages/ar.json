@@ -90,7 +90,8 @@
     "hours": "{opens} – {closes}",
     "directions": "الاتجاهات",
     "showOnMap": "— اعرضه على الخريطة",
-    "mapTitle": "خريطة أكسجين {branch}"
+    "mapTitle": "خريطة أكسجين {branch}",
+    "details": "تفاصيل الفرع"
   },
   "appPromo": {
     "title": "باسبور صحتك في جيبك",
@@ -224,5 +225,22 @@
     "slotLabel": "احجز {day} الساعة {time}",
     "bannerTitle": "جاهز تبدأ؟ احجز في أقل من دقيقة.",
     "metaDescription": "{name}، {title} في Oxygen."
+  },
+  "branchesPage": {
+    "title": "فروعنا",
+    "subtitle": "5 عيادات Oxygen في القاهرة والجيزة والدلتا.",
+    "metaDescription": "اعرف أقرب فرع Oxygen ليك: العنوان والمواعيد والاتجاهات."
+  },
+  "branchPage": {
+    "name": "Oxygen {name}",
+    "book": "احجز في الفرع ده",
+    "call": "اتصل",
+    "directions": "الاتجاهات",
+    "hours": "مفتوح كل يوم",
+    "specialties": "التخصصات في الفرع ده",
+    "doctors": "الأطباء في الفرع ده",
+    "photos": "من جوه العيادة",
+    "bannerTitle": "مستنيينك في Oxygen {name}.",
+    "metaDescription": "Oxygen {name}: {address}. مفتوح كل يوم {hours}."
   }
 }

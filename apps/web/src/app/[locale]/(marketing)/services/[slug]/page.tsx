@@ -79,7 +79,7 @@ export default async function ServicePage({ params }: PageProps<'/[locale]/servi
           title={t('doctors')}
           doctors={doctors}
           branches={branches}
-          specialty={service.data.specialty}
+          match={(doctor) => doctor.specialty === service.data.specialty}
         />
       </Reveal>
       <Reveal>

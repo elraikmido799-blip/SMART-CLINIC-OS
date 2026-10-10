@@ -90,7 +90,8 @@
     "hours": "{opens} – {closes}",
     "directions": "Directions",
     "showOnMap": "— show on map",
-    "mapTitle": "Map of Oxygen {branch}"
+    "mapTitle": "Map of Oxygen {branch}",
+    "details": "Branch details"
   },
   "appPromo": {
     "title": "Your Health Passport in your pocket",
@@ -233,5 +234,22 @@
     "slotLabel": "Book {day} at {time}",
     "bannerTitle": "Ready to start? Book in under a minute.",
     "metaDescription": "{name}, {title} at Oxygen."
+  },
+  "branchesPage": {
+    "title": "Our branches",
+    "subtitle": "Five Oxygen clinics across Cairo, Giza and the Delta.",
+    "metaDescription": "Find the nearest Oxygen clinic: addresses, opening hours and directions."
+  },
+  "branchPage": {
+    "name": "Oxygen {name}",
+    "book": "Book at this branch",
+    "call": "Call",
+    "directions": "Directions",
+    "hours": "Open daily",
+    "specialties": "Specialties at this branch",
+    "doctors": "Doctors at this branch",
+    "photos": "Inside the clinic",
+    "bannerTitle": "Visit us at Oxygen {name}.",
+    "metaDescription": "Oxygen {name}: {address}. Open daily {hours}."
   }
 }
