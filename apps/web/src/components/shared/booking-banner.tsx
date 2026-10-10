@@ -1,6 +1,4 @@
-import { getTranslations } from 'next-intl/server';
 import { ArrowRight } from 'lucide-react';
-import type { Specialty } from '@oxygen/config';
 import { brandButton } from '@/components/shared/brand';
 import { Container } from '@/components/shared/container';
 import { Logo } from '@/components/shared/logo';
@@ -10,9 +8,14 @@ import { Link } from '@/i18n/navigation';
  * شريط الحجز في آخر الصفحة (A4). نفس تدرّج شريط التطبيق (Teal → Ocean) عشان الأبيض يبقى AA.
  * الزرار Outline أبيض: الدهبي واحد بس في الصفحة (اللي في الـHero).
  */
-export async function BookingBanner({ specialty }: { specialty: Specialty }) {
-  const t = await getTranslations('specialtyPage');
+type BookingBannerProps = {
+  title: string;
+  cta: string;
+  // بيتبعت لصفحة الحجز عشان الخطوات اللي اتعرفت تتملي لوحدها (specialty · service · doctor)
+  bookQuery: Record<string, string>;
+};
 
+export function BookingBanner({ title, cta, bookQuery }: BookingBannerProps) {
   return (
     <section aria-labelledby="booking-banner-title" className="pt-6 pb-14 lg:pb-20">
       <Container>
@@ -23,13 +26,13 @@ export async function BookingBanner({ specialty }: { specialty: Specialty }) {
             id="booking-banner-title"
             className="flex-1 font-heading text-2xl font-semibold sm:text-3xl"
           >
-            {t('bannerTitle')}
+            {title}
           </h2>
           <Link
-            href={{ pathname: '/book', query: { specialty } }}
+            href={{ pathname: '/book', query: bookQuery }}
             className={brandButton({ tone: 'onDark', size: 'lg' })}
           >
-            {t('bookAssessment')}
+            {cta}
             <ArrowRight className="rtl:rotate-180" aria-hidden />
           </Link>
         </div>

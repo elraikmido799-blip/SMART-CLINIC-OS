@@ -176,8 +176,25 @@
     "doctorsTitle": "الأخصائيين",
     "relatedProgram": "برنامج أونلاين",
     "learnMore": "اعرف أكتر",
-    "faqTitle": "الأسئلة الشائعة",
     "bannerTitle": "رحلة تعافيك بتبدأ بالخطة الصح.",
     "metaDescription": "{name} في Oxygen: {tagline}"
+  },
+  "faq": {
+    "title": "الأسئلة الشائعة"
+  },
+  "servicePage": {
+    "bookCta": "احجز الخدمة دي",
+    "duration": "المدة",
+    "durationValue": "{minutes} دقيقة",
+    "priceFrom": "يبدأ من",
+    "priceNote": "السعر النهائي بيعتمد على خطتك.",
+    "suitableFor": "مناسبة لمين؟",
+    "expect": "هتلاقي إيه",
+    "preparation": "تجهّز إزاي",
+    "branches": "متاحة في",
+    "directions": "الاتجاهات",
+    "doctors": "الأخصائيين في الخدمة دي",
+    "bannerTitle": "جاهز تبدأ؟ احجز في أقل من دقيقة.",
+    "metaDescription": "{name} في Oxygen — {summary}"
   }
 }

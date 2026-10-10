@@ -69,6 +69,14 @@ export const publicProgramSchema = z.object({
  * صفحة التخصص (GET /public/specialties/{slug}). الأطباء والبرامج مش جوه الرد:
  * بيتجابوا من /public/doctors و/public/programs ويتفلتروا بالتخصص، فمفيش داتا متكررة.
  */
+const faqSchema = z.object({
+  id: z.string(),
+  question_ar: z.string(),
+  question_en: z.string(),
+  answer_ar: z.string(),
+  answer_en: z.string(),
+});
+
 export const publicSpecialtyDetailSchema = publicSpecialtySchema.extend({
   tagline_ar: z.string(),
   tagline_en: z.string(),
@@ -94,15 +102,37 @@ export const publicSpecialtyDetailSchema = publicSpecialtySchema.extend({
       currency: z.string(),
     }),
   ),
-  faqs: z.array(
-    z.object({
-      id: z.string(),
-      question_ar: z.string(),
-      question_en: z.string(),
-      answer_ar: z.string(),
-      answer_en: z.string(),
-    }),
-  ),
+  faqs: z.array(faqSchema),
+});
+
+// الخدمة في الـList (GET /public/services) — بتستخدم لـgenerateStaticParams
+export const publicServiceSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  specialty: specialtySchema,
+  name_ar: z.string(),
+  name_en: z.string(),
+  duration_minutes: z.number().int().positive(),
+  price_from_minor: z.number().int().nonnegative(),
+  currency: z.string(),
+});
+
+/**
+ * صفحة الخدمة (GET /public/services/{slug}). الأطباء مش جوه الرد:
+ * بيتجابوا من /public/doctors ويتفلتروا بتخصص الخدمة (DEC-31). الفروع ids من /public/branches.
+ */
+export const publicServiceDetailSchema = publicServiceSchema.extend({
+  summary_ar: z.string(),
+  summary_en: z.string(),
+  // "مناسبة لمين" · "تتوقع إيه" · "التحضير": Lists قصيرة، وأي واحدة فاضية القسم بتاعها مش بيظهر
+  suitable_for_ar: z.array(z.string()),
+  suitable_for_en: z.array(z.string()),
+  expect_ar: z.array(z.string()),
+  expect_en: z.array(z.string()),
+  preparation_ar: z.array(z.string()),
+  preparation_en: z.array(z.string()),
+  branch_ids: z.array(z.string()),
+  faqs: z.array(faqSchema),
 });
 
 // محتوى الصفحة الرئيسية اللي بيتغير من الداشبورد
@@ -121,5 +151,8 @@ export type PublicDoctor = z.infer<typeof publicDoctorSchema>;
 export type PublicBranch = z.infer<typeof publicBranchSchema>;
 export type PublicProgram = z.infer<typeof publicProgramSchema>;
 export type PublicSpecialtyDetail = z.infer<typeof publicSpecialtyDetailSchema>;
+export type PublicFaq = z.infer<typeof faqSchema>;
+export type PublicService = z.infer<typeof publicServiceSchema>;
+export type PublicServiceDetail = z.infer<typeof publicServiceDetailSchema>;
 export type HomeContent = z.infer<typeof homeContentSchema>;
 export type ListResponse<T> = { data: T[] };

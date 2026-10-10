@@ -185,8 +185,25 @@
     "doctorsTitle": "Our specialists",
     "relatedProgram": "Online program",
     "learnMore": "Learn more",
-    "faqTitle": "Frequently asked questions",
     "bannerTitle": "Your recovery journey starts with the right plan.",
     "metaDescription": "{name} at Oxygen: {tagline}"
+  },
+  "faq": {
+    "title": "Frequently asked questions"
+  },
+  "servicePage": {
+    "bookCta": "Book this service",
+    "duration": "Duration",
+    "durationValue": "{minutes} min",
+    "priceFrom": "Starts from",
+    "priceNote": "The final price depends on your plan.",
+    "suitableFor": "Who is it for?",
+    "expect": "What to expect",
+    "preparation": "How to prepare",
+    "branches": "Available at",
+    "directions": "Directions",
+    "doctors": "Specialists for this service",
+    "bannerTitle": "Ready to start? Book in under a minute.",
+    "metaDescription": "{name} at Oxygen — {summary}"
   }
 }

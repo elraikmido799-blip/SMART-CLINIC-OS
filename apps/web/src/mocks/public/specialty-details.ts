@@ -31,7 +31,7 @@ const service = (
   currency: 'EGP',
 });
 
-const faq = (
+export const faq = (
   id: string,
   question_en: string,
   question_ar: string,
@@ -45,7 +45,7 @@ const faq = (
   answer_ar,
 });
 
-const EXTRAS: Record<Specialty, DetailExtras> = {
+export const SPECIALTY_EXTRAS: Record<Specialty, DetailExtras> = {
   physio: {
     tagline_en: 'Move better, recover faster — with a plan made for you.',
     tagline_ar: 'اتحرك أحسن، واتعافى أسرع — بخطة معمولة ليك.',
@@ -156,5 +156,5 @@ const EXTRAS: Record<Specialty, DetailExtras> = {
 
 export const specialtyDetailMock = (slug: Specialty): PublicSpecialtyDetail | undefined => {
   const base = specialtiesMock.data.find((item) => item.slug === slug);
-  return base && { ...base, ...EXTRAS[slug] };
+  return base && { ...base, ...SPECIALTY_EXTRAS[slug] };
 };

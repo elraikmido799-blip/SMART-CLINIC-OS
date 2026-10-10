@@ -51,6 +51,7 @@
 | [L-37](#l-37) | الموقع جاهز لـVercel: الصور كلها في Git، والـMocks شغالة من غير env | — | 2026-10-09 | ✅ |
 | [L-38](#l-38) | صور الشاشات A4 → A8: برومبتات + مراجعة كل صورة | 0.1 | 2026-10-11 | ✅ |
 | [L-39](#l-39) | صفحة التخصصات + صفحة كل تخصص (A4 · A8) | 4.1 | 2026-10-11 | ✅ |
+| [L-40](#l-40) | صفحة الخدمة `/services/[slug]` | 4.2 | 2026-10-11 | ✅ |
 
 ---
 
@@ -751,6 +752,22 @@
     - `/en/specialties/xyz` = 404.
     - الصفحة فيها الخدمات والأسعار والأطباء والأسئلة، والعنوان "Physiotherapy · Oxygen".
 - **لسه:** أيقونات "بنعالج إيه" المنقطة (صور من اليوزر، DEC-27)، وصور Hero لباقي التخصصات.
+
+### L-40 · صفحة الخدمة
+
+- **اتعمل:** `/services/[slug]` لكل الخدمات (7 في الـMock)، عربي وإنجليزي ([DEC-32](19-decisions.md#dec-32)). الصفحة فيها:
+  - رأس بلون التخصص، وفيه مسار الصفحة: الرئيسية / التخصصات / التخصص / الخدمة.
+  - "مناسبة لمين" · "هتلاقي إيه" (خطوات منقطة) · "تجهّز إزاي".
+  - كارت الحجز Sticky: المدة، و"يبدأ من" بأيقونة إيصال مش $، والزرار الدهبي لـ`/book?service=`، والفروع بلينك الاتجاهات.
+  - الأطباء · الأسئلة · شريط الحجز.
+- **الداتا:** `getServices` · `getService` + Mock مبني من خدمات التخصصات، عشان السعر يبقى نفس الرقم في الصفحتين.
+- **اتنقل للمشترك:** `faq-section` · `booking-banner` · `doctors-grid-section`. صفحة التخصص بقت بتستخدمهم.
+- **الملفات:** `app/[locale]/(marketing)/services/**` · `api/public/services.ts` · `mocks/public/services.ts` · `mocks/public/specialty-details.ts` · `types/public.ts` · `components/shared/{faq-section,booking-banner,doctors-grid-section}.tsx` · `specialties/[slug]/page.tsx` · `messages/*.json`.
+- **اتأكدنا إزاي:**
+  - `tsc` و`eslint` من غير أخطاء.
+  - `/en/services/physio-assessment` و`/ar/…` و`/en/services/derm-consultation` كلهم 200، و`/en/services/nope` 404. صفحة التخصص لسه 200.
+  - صورة Edge headless على 1440: الرأس وكارت الحجز والخطوات والفروع مظبوطين.
+  - الأقسام اللي بتظهر مع الـScroll بتبان فاضية في الصورة الثابتة بس، لأن الصورة مش بتعمل Scroll.
 
 ---
 

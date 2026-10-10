@@ -8,18 +8,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import type { PublicSpecialtyDetail } from '@/types/public';
+import type { PublicFaq } from '@/types/public';
 
-// الأسئلة الشائعة (A4). مفيش أسئلة = القسم مش بيظهر
-export async function FaqSection({ faqs }: { faqs: PublicSpecialtyDetail['faqs'] }) {
+// الأسئلة الشائعة (A4) في أي صفحة. مفيش أسئلة = القسم مش بيظهر
+export async function FaqSection({ faqs }: { faqs: PublicFaq[] }) {
   const locale = await getLocale();
   if (!isLocale(locale) || faqs.length === 0) return null;
-  const t = await getTranslations('specialtyPage');
+  const t = await getTranslations('faq');
 
   return (
     <section aria-labelledby="faq-title" className="py-12 lg:py-16">
       <Container className="max-w-3xl">
-        <SectionHeading id="faq-title" title={t('faqTitle')} />
+        <SectionHeading id="faq-title" title={t('title')} />
         <Accordion
           type="single"
           collapsible
