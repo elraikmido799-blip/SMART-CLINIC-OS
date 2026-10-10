@@ -8,8 +8,9 @@ import { OfflineNotice } from '@/components/shared/offline-notice';
 export default async function MarketingLayout({ children }: { children: React.ReactNode }) {
   const t = await getTranslations('nav');
 
+  // الـFooter دايمًا في آخر الشاشة، حتى لو الصفحة قصيرة (main بياخد المساحة الفاضية)
   return (
-    <>
+    <div className="flex min-h-dvh flex-col">
       <a
         href="#main"
         className="sr-only rounded-md bg-ink px-4 py-3 text-white focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50"
@@ -17,10 +18,12 @@ export default async function MarketingLayout({ children }: { children: React.Re
         {t('skipToContent')}
       </a>
       <Navbar />
-      <main id="main">{children}</main>
+      <main id="main" className="flex-1">
+        {children}
+      </main>
       <Footer />
       <WhatsAppButton />
       <OfflineNotice />
-    </>
+    </div>
   );
 }
