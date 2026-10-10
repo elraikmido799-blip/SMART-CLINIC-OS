@@ -1,2 +1,2 @@
-export { tokens, type Specialty } from './tokens';
+export { tokens, SPECIALTIES, type Specialty } from './tokens';
 export { tokensToCss } from './css';

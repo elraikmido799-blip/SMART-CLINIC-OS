@@ -157,5 +157,27 @@
     "title": "الصفحة مش موجودة",
     "body": "الصفحة اللي بتدور عليها مش موجودة، أو لسه جاية قريب.",
     "home": "ارجع للرئيسية"
+  },
+  "breadcrumb": {
+    "label": "مسار الصفحة",
+    "home": "الرئيسية"
+  },
+  "specialtiesPage": {
+    "title": "تخصصاتنا",
+    "subtitle": "4 تخصصات في مكان واحد — في العيادة وأونلاين.",
+    "metaDescription": "التغذية العلاجية والعلاج الطبيعي والجلدية والباطنة في فروع Oxygen في مصر."
+  },
+  "specialtyPage": {
+    "bookAssessment": "احجز تقييم",
+    "conditionsTitle": "بنعالج إيه",
+    "servicesTitle": "الخدمات",
+    "serviceDuration": "{minutes} دقيقة",
+    "servicePrice": "يبدأ من {price}",
+    "doctorsTitle": "الأخصائيين",
+    "relatedProgram": "برنامج أونلاين",
+    "learnMore": "اعرف أكتر",
+    "faqTitle": "الأسئلة الشائعة",
+    "bannerTitle": "رحلة تعافيك بتبدأ بالخطة الصح.",
+    "metaDescription": "{name} في Oxygen: {tagline}"
   }
 }

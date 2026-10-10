@@ -166,5 +166,27 @@
     "title": "Page not found",
     "body": "The page you're looking for doesn't exist or is coming soon.",
     "home": "Back to home"
+  },
+  "breadcrumb": {
+    "label": "Breadcrumb",
+    "home": "Home"
+  },
+  "specialtiesPage": {
+    "title": "Our specialties",
+    "subtitle": "Four specialties under one roof — in the clinic and online.",
+    "metaDescription": "Clinical nutrition, physiotherapy, dermatology and internal medicine at Oxygen clinics across Egypt."
+  },
+  "specialtyPage": {
+    "bookAssessment": "Book an assessment",
+    "conditionsTitle": "What we treat",
+    "servicesTitle": "Services",
+    "serviceDuration": "{minutes} min",
+    "servicePrice": "from {price}",
+    "doctorsTitle": "Our specialists",
+    "relatedProgram": "Online program",
+    "learnMore": "Learn more",
+    "faqTitle": "Frequently asked questions",
+    "bannerTitle": "Your recovery journey starts with the right plan.",
+    "metaDescription": "{name} at Oxygen: {tagline}"
   }
 }

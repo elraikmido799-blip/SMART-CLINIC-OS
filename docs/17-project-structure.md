@@ -98,19 +98,21 @@ apps/web/
 │   │       │   ├── layout.tsx   Navbar + Footer + زرار واتساب + شريط النت المقطوع
 │   │       │   ├── page.tsx     الصفحة الرئيسية W-01 (A1 · A2 · A3)
 │   │       │   ├── _components/ أقسام الرئيسية: hero · booking-bar · trust-bar · specialties · journey (+ journey-steps) · programs · doctors · branches (+ branches-map) · app-promo
-│   │       │   └── …            ⏳ about · specialties · doctors · branches · … (المرحلة 4)
+│   │       │   ├── specialties/ W-03 (A4 · A8): page.tsx القايمة · [slug]/page.tsx صفحة التخصص
+│   │       │   │   └── [slug]/_components/ specialty-hero · conditions-section · services-section (+ البرنامج) · faq-section · booking-banner
+│   │       │   └── …            ⏳ about · services · doctors · branches · … (المرحلة 4)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
 │   │   └── public/              Functions على السيرفر للصفحات التعريفية (DEC-11 · DEC-30)
 │   │       ├── fetch-public.ts  GET /public/* ← Result (ok أو نوع الخطأ) + Schema + Mocks + timeout
-│   │       └── specialties · doctors · branches · programs · content .ts   Endpoint في كل ملف
+│   │       └── specialties · doctors · branches · programs · content .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug))
 │   ├── components/
 │   │   ├── ui/                  Components بتاعة shadcn (بنسيبها زي ما الـCLI عملها)
 │   │   ├── shared/              Components بتستخدمها أكتر من صفحة
 │   │   │   ├── brand.ts         زراير الهوية (brandButton) + ألوان كل تخصص + أيقوناته
 │   │   │   ├── container · section-heading · logo · dot-wave · particle-ring-image
-│   │   │   ├── doctor-card · specialty-card
+│   │   │   ├── doctor-card · specialty-card · page-breadcrumb (مسار الصفحة، "الرئيسية" أوله)
 │   │   │   ├── section-state · retry-button   حالات الخطأ والفاضي في أي قسم
 │   │   │   ├── offline-notice.tsx شريط "إنت مش متصل بالنت"
 │   │   │   ├── reveal-group.tsx Lists عناصرها بتظهر ورا بعض (RevealGroup · RevealItem)

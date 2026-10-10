@@ -61,6 +61,48 @@ export const publicProgramSchema = z.object({
   features_en: z.array(z.string()),
   price_from_minor: z.number().int().nonnegative(),
   currency: z.string(),
+  // صورة الكارت في صفحة التخصص (بتتغير من الداشبورد). null = الكارت من غير صورة
+  image_url: z.string().nullable(),
+});
+
+/**
+ * صفحة التخصص (GET /public/specialties/{slug}). الأطباء والبرامج مش جوه الرد:
+ * بيتجابوا من /public/doctors و/public/programs ويتفلتروا بالتخصص، فمفيش داتا متكررة.
+ */
+export const publicSpecialtyDetailSchema = publicSpecialtySchema.extend({
+  tagline_ar: z.string(),
+  tagline_en: z.string(),
+  // null = لسه مفيش صورة، والـHero بيعرض أيقونة التخصص جوه الحلقة
+  hero_image_url: z.string().nullable(),
+  conditions: z.array(
+    z.object({
+      id: z.string(),
+      name_ar: z.string(),
+      name_en: z.string(),
+      // أيقونة منقطة (DEC-27). null = نقطة بلون التخصص
+      icon_url: z.string().nullable(),
+    }),
+  ),
+  services: z.array(
+    z.object({
+      id: z.string(),
+      slug: z.string(),
+      name_ar: z.string(),
+      name_en: z.string(),
+      duration_minutes: z.number().int().positive(),
+      price_from_minor: z.number().int().nonnegative(),
+      currency: z.string(),
+    }),
+  ),
+  faqs: z.array(
+    z.object({
+      id: z.string(),
+      question_ar: z.string(),
+      question_en: z.string(),
+      answer_ar: z.string(),
+      answer_en: z.string(),
+    }),
+  ),
 });
 
 // محتوى الصفحة الرئيسية اللي بيتغير من الداشبورد
@@ -78,5 +120,6 @@ export type PublicSpecialty = z.infer<typeof publicSpecialtySchema>;
 export type PublicDoctor = z.infer<typeof publicDoctorSchema>;
 export type PublicBranch = z.infer<typeof publicBranchSchema>;
 export type PublicProgram = z.infer<typeof publicProgramSchema>;
+export type PublicSpecialtyDetail = z.infer<typeof publicSpecialtyDetailSchema>;
 export type HomeContent = z.infer<typeof homeContentSchema>;
 export type ListResponse<T> = { data: T[] };

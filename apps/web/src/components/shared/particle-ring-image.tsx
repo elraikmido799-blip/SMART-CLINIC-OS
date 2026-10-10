@@ -16,6 +16,8 @@ type ParticleRingImageProps = {
   className?: string;
   // حركة على الحلقة بس (مش الصورة)، زي motion-safe:animate-breathe في الـHero
   ringClassName?: string;
+  // contain: للأيقونات (زي أيقونة التخصص لما مفيش صورة)، عشان متتقصّش
+  fit?: 'cover' | 'contain';
 };
 
 /** أي صورة جوه حلقة النقط (A0). النقط اللي بتتفرق بتروح ناحية الكلام، وبتتعكس في العربي */
@@ -26,6 +28,7 @@ export function ParticleRingImage({
   preload,
   className,
   ringClassName,
+  fit = 'cover',
 }: ParticleRingImageProps) {
   return (
     <div className={cn('relative aspect-square', className)}>
@@ -37,7 +40,7 @@ export function ParticleRingImage({
             fill
             sizes={sizes}
             preload={preload}
-            className="object-cover object-top"
+            className={fit === 'cover' ? 'object-cover object-top' : 'object-contain p-[18%]'}
           />
         ) : (
           <div role="img" aria-label={alt} className="grid size-full place-items-center">

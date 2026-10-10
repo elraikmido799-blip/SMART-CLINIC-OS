@@ -39,3 +39,6 @@ export const tokens = {
 } as const;
 
 export type Specialty = keyof typeof tokens.specialty;
+
+// الـslugs بتاعة التخصصات الـ4 (صفحات /specialties/[slug] وأي فلتر بالتخصص)
+export const SPECIALTIES = Object.keys(tokens.specialty) as Specialty[];

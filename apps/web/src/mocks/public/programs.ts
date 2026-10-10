@@ -14,6 +14,7 @@ export const programsMock: ListResponse<PublicProgram> = {
       features_ar: ['خطة أكل مخصوصة ليك', 'أخصائيين تغذية', 'متابعة لتقدّمك'],
       price_from_minor: PRICE_FROM_MINOR,
       currency: 'EGP',
+      image_url: null,
     },
     {
       id: 'prog-physio-home',
@@ -24,6 +25,7 @@ export const programsMock: ListResponse<PublicProgram> = {
       features_ar: ['تمارين بإشراف', 'استشارات فيديو', 'متابعة وإنت في البيت'],
       price_from_minor: PRICE_FROM_MINOR,
       currency: 'EGP',
+      image_url: '/images/specialties/physio-home.png',
     },
     {
       id: 'prog-derm-follow-up',
@@ -34,6 +36,7 @@ export const programsMock: ListResponse<PublicProgram> = {
       features_ar: ['خطة عناية بالبشرة', 'متابعة دورية', 'نصايح من متخصص'],
       price_from_minor: PRICE_FROM_MINOR,
       currency: 'EGP',
+      image_url: null,
     },
     {
       id: 'prog-chronic-care',
@@ -44,6 +47,7 @@ export const programsMock: ListResponse<PublicProgram> = {
       features_ar: ['متابعة على المدى الطويل', 'مراقبة صحتك', 'تعديل نمط الحياة'],
       price_from_minor: PRICE_FROM_MINOR,
       currency: 'EGP',
+      image_url: null,
     },
   ],
 };

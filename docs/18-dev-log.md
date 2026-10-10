@@ -50,6 +50,7 @@
 | [L-36](#l-36) | `.gitignore` كامل + ربط الـRepo على GitHub | — | 2026-10-09 | 🔄 الـPush مستني صلاحية |
 | [L-37](#l-37) | الموقع جاهز لـVercel: الصور كلها في Git، والـMocks شغالة من غير env | — | 2026-10-09 | ✅ |
 | [L-38](#l-38) | صور الشاشات A4 → A8: برومبتات + مراجعة كل صورة | 0.1 | 2026-10-11 | ✅ |
+| [L-39](#l-39) | صفحة التخصصات + صفحة كل تخصص (A4 · A8) | 4.1 | 2026-10-11 | ✅ |
 
 ---
 
@@ -720,6 +721,36 @@
   - **A8 المحاولة التانية اتقبلت:** شات جديد ومعاه `W-03-specialty.png` واللوجو. اتحفظت في `design/website/W-03-specialty-ar.png`، وبرومبت A8 العام في 14 اتعدل بنفس الطريقة.
 - **اتأكدنا إزاي:** كل صورة اتراجعت قدام البرومبت والهوية، والملاحظات اللي هتتعمل في الكود في [سجل المراجعة](14-design-prompts.md#review).
 - **الجاي:** المرحلة 4 (16 · 4.1 التخصصات).
+
+### L-39 · صفحة التخصصات + صفحة كل تخصص
+
+- **اتعمل:**
+  - **`/specialties`:** مسار الصفحة + العنوان + نفس مربعات التخصصات بتاعة الرئيسية.
+  - **`/specialties/[slug]`** (الـ4 تخصصات، عربي وإنجليزي):
+    - Hero بلون التخصص الفاتح، وفيه المسار والاسم والجملة و"احجز تقييم" (الدهبي) و"واتساب"، والصورة جوه حلقة النقط.
+    - "بنعالج إيه".
+    - الخدمات بالمدة والسعر، ولينك كل خدمة `/services/{slug}` (صفحتها في 4.2).
+    - كارت البرنامج الأونلاين بصورة Physio Home.
+    - الأطباء بتوع التخصص.
+    - الأسئلة الشائعة (Accordion).
+    - شريط الحجز على التدرّج، وزراره Outline أبيض.
+  - **الداتا:** `getSpecialty(slug)` + Mock للـ4 تخصصات + Schema ([DEC-31](19-decisions.md#dec-31)).
+  - **مشترك جديد:** `PageBreadcrumb` (هيتستخدم في كل صفحات المرحلة 4)، و`fit="contain"` في `ParticleRingImage` للأيقونات، و`SPECIALTIES` في `packages/config`.
+  - **shadcn:** `breadcrumb`.
+- **ملاحظات المراجعة اللي اتطبقت:**
+  - الـFooter نفس بتاع الرئيسية.
+  - مفيش كلام أقل من 14px.
+  - الدهبي واحد بس في المحتوى.
+  - أيقونة "آلام الضهر" مش راس بمخ (مفيش أيقونات لسه، فبتظهر دايرة منقطة).
+- **الملفات:** `app/[locale]/(marketing)/specialties/**` · `api/public/specialties.ts` · `mocks/public/specialty-details.ts` · `mocks/public/programs.ts` · `types/public.ts` · `components/shared/page-breadcrumb.tsx` · `components/shared/particle-ring-image.tsx` · `components/ui/breadcrumb.tsx` · `messages/*.json` · `public/images/specialties/physio-home.png` · `packages/config/src/tokens.ts`.
+- **المشاكل:** `prettier` على ملفات الترجمة فرد كل الأسطر القديمة. رجّعناها، وضفنا المفاتيح الجديدة بس.
+- **اتأكدنا إزاي:**
+  - `tsc` و`eslint` من غير أخطاء.
+  - على السيرفر المحلي:
+    - `/en/specialties` و`/en/specialties/physio` و`/ar/specialties/physio` و`/en/specialties/derm` كلهم 200.
+    - `/en/specialties/xyz` = 404.
+    - الصفحة فيها الخدمات والأسعار والأطباء والأسئلة، والعنوان "Physiotherapy · Oxygen".
+- **لسه:** أيقونات "بنعالج إيه" المنقطة (صور من اليوزر، DEC-27)، وصور Hero لباقي التخصصات.
 
 ---
 
