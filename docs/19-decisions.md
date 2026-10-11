@@ -728,4 +728,4 @@
   - الخطأ بالأحمر: مش مقروء كفاية (AA).
   - نرفض الرقم لو فيه مسافات: المستخدم المصري بيكتبه بأشكال كتير.
 - **التأثير:** أي فورم جديد بينسخ `contact-form.tsx`. محتاج من مبرمج الباك: `POST /public/leads` يقبل `phone` بشكل `+201XXXXXXXXX` ويرجّع 429 و422 بكود.
-- **نرجع له إمتى:** لما يبقى فيه فورم تاني (4.9): لو التكرار كتير، نطلّع `FieldMessage` و`toSubmitError` لـ`components/shared`.
+- **نرجع له إمتى:** ✅ اتعمل في [L-49](18-dev-log.md#l-49): الفورم كله بقى `components/shared/lead-form.tsx` (`LeadForm`) بـprops: `landingPage` · `idPrefix` · `title` · `submitLabel` · `withMessage` · `tone`. الكلام المشترك في `messages` (`leadForm`).

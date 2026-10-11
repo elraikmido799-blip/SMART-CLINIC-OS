@@ -107,15 +107,16 @@ apps/web/
 │   │       │   ├── branches/    W-06: page.tsx الخريطة + الفروع · [slug]/ صفحة الفرع (+ _components/branch-hero)
 │   │       │   ├── programs/    W-09: page.tsx (Secret Seven + الأونلاين) · [slug]/ صفحة البرنامج (+ _components/program-hero)
 │   │       │   ├── about/       W-02 "عن Oxygen"
-│   │       │   ├── contact/     W-14: page.tsx + _components/contact-form (فورم Lead)
+│   │       │   ├── contact/     W-14 (الفورم = LeadForm المشترك)
+│   │       │   ├── offers/[slug]/ W-12: صفحة أي عرض (حملة إعلانية)
 │   │       │   ├── learn/       W-13: page.tsx (فلتر + كروت) · [slug]/ المقالة (+ _components/article-body: الـMarkdown)
-│   │       │   └── …            ⏳ offers · online-consultation · digital · app · legal (المرحلة 4)
+│   │       │   └── …            ⏳ online-consultation · digital · app · legal (المرحلة 4)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
 │   │   └── public/              Functions على السيرفر للصفحات التعريفية (DEC-11 · DEC-30)
 │   │       ├── fetch-public.ts  GET /public/* ← Result (ok أو نوع الخطأ) + Schema + Mocks + timeout
-│   │       └── specialties · doctors · branches · programs · content (home + about) .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug)) · services (getServices · getService) · doctors (+ getDoctor) · branches (+ getBranch) · programs (+ getProgram) · articles (getArticles · getArticle)
+│   │       └── specialties · doctors · branches · programs · content (home + about) .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug)) · services (getServices · getService) · doctors (+ getDoctor) · branches (+ getBranch) · programs (+ getProgram) · articles (getArticles · getArticle) · offers (getOffers · getOffer)
 │   ├── components/
 │   │   ├── ui/                  Components بتاعة shadcn (بنسيبها زي ما الـCLI عملها)
 │   │   ├── shared/              Components بتستخدمها أكتر من صفحة
@@ -126,6 +127,7 @@ apps/web/
 │   │   │   ├── select-styles.ts شكل خانات الاختيار (شريط الحجز + فلتر الفروع)
 │   │   │   ├── branches-map.tsx الخريطة + كروت الفروع (الرئيسية وصفحة الفروع)
 │   │   │   ├── journey-section (+ journey-steps) · programs-section   Secret Seven والبرامج الأونلاين (الرئيسية وصفحة البرامج)
+│   │   │   ├── lead-form.tsx    أي فورم Lead (تواصل · العروض · …) — DEC-36
 │   │   │   ├── article-card · specialty-chips   كارت المقالة · فلتر التخصص (الأطباء والمقالات)
 │   │   │   ├── trust-bar.tsx    شريط الأرقام (الرئيسية و"عن Oxygen")
 │   │   │   ├── dotted-steps.tsx خطوات مرقّمة منقطة بالطول (الخدمة ومراحل البرنامج)

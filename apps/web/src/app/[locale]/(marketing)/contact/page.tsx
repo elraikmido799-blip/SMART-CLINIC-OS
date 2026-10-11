@@ -5,11 +5,11 @@ import { formatTime, isLocale, localized } from '@oxygen/shared';
 import { getBranches } from '@/api/public/branches';
 import { brandButton } from '@/components/shared/brand';
 import { Container } from '@/components/shared/container';
+import { LeadForm } from '@/components/shared/lead-form';
 import { PageBreadcrumb } from '@/components/shared/page-breadcrumb';
 import { SectionState } from '@/components/shared/section-state';
 import { Link } from '@/i18n/navigation';
 import { whatsappUrl } from '@/lib/whatsapp';
-import { ContactForm } from './_components/contact-form';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('contactPage');
@@ -43,7 +43,14 @@ export default async function ContactPage() {
         </div>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-start">
-          <ContactForm />
+          <LeadForm
+            landingPage="/contact"
+            idPrefix="contact"
+            title={t('formTitle')}
+            subtitle={t('formSubtitle')}
+            submitLabel={t('send')}
+            withMessage
+          />
 
           <div className="space-y-4">
             {/* أسرع طريقة: واتساب */}

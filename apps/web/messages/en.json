@@ -289,32 +289,7 @@
     "subtitle": "Questions about a service, a program or a price? Send us a message and we will call you back.",
     "formTitle": "Send us a message",
     "formSubtitle": "We reply within one working day.",
-    "fields": {
-      "name": "Full name",
-      "phone": "Mobile number",
-      "phoneHint": "Egyptian mobile, e.g. <num>010 1234 5678</num>",
-      "message": "Your message",
-      "optional": "(optional)"
-    },
-    "validation": {
-      "name": "Please write your name.",
-      "phone": "Please write a valid Egyptian mobile number (11 digits starting with 01).",
-      "messageMax": "Your message is too long (max {max} characters)."
-    },
     "send": "Send message",
-    "sending": "Sending…",
-    "privacyNote": "We only use your number to reply to you.",
-    "errors": {
-      "network": "You seem to be offline. Check your connection, then try again — your message is still here.",
-      "rate-limited": "You sent several messages in a short time. Please wait a few minutes, then try again.",
-      "invalid": "Something in the form isn’t right. Check your name and number, then try again.",
-      "server": "We couldn’t send your message right now. Please try again, or message us on WhatsApp."
-    },
-    "success": {
-      "title": "Message sent",
-      "body": "Thank you! Our team will call you back within one working day.",
-      "again": "Send another message"
-    },
     "whatsappTitle": "Fastest: WhatsApp",
     "whatsappBody": "Chat with our team now.",
     "bookTitle": "Ready to book?",
@@ -342,5 +317,48 @@
     "related": "More to read",
     "bannerTitle": "Have a question about {specialty}?",
     "bannerCta": "Book an assessment"
+  },
+  "leadForm": {
+    "fields": {
+      "name": "Full name",
+      "phone": "Mobile number",
+      "phoneHint": "Egyptian mobile, e.g. <num>010 1234 5678</num>",
+      "message": "Your message",
+      "optional": "(optional)"
+    },
+    "validation": {
+      "name": "Please write your name.",
+      "phone": "Please write a valid Egyptian mobile number (11 digits starting with 01).",
+      "messageMax": "Your message is too long (max {max} characters)."
+    },
+    "errors": {
+      "network": "You seem to be offline. Check your connection, then try again — your message is still here.",
+      "rate-limited": "You sent several messages in a short time. Please wait a few minutes, then try again.",
+      "invalid": "Something in the form isn’t right. Check your name and number, then try again.",
+      "server": "We couldn’t send your message right now. Please try again, or message us on WhatsApp."
+    },
+    "success": {
+      "title": "Request received",
+      "body": "Thank you! Our team will call you back within one working day.",
+      "again": "Send another request"
+    },
+    "sending": "Sending…",
+    "privacyNote": "We only use your number to reply to you."
+  },
+  "offerPage": {
+    "endsOn": "Offer ends {date}",
+    "limited": "Limited-time offer",
+    "ended": "Offer ended",
+    "priceNow": "Offer price:",
+    "priceBefore": "Usual price:",
+    "save": "Save {percent}%",
+    "formTitle": "Get this offer",
+    "formSubtitle": "Leave your number and we’ll call you to book your branch and time.",
+    "formSubmit": "Get the offer",
+    "endedTitle": "This offer has ended",
+    "endedBody": "You can still book at our usual prices, or ask us about current offers.",
+    "endedBook": "Book an appointment",
+    "endedContact": "Ask about current offers",
+    "terms": "Terms & conditions"
   }
 }

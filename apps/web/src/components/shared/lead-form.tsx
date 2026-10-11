@@ -15,7 +15,7 @@ import { normalizeEgyptianMobile } from '@/lib/phone';
 
 const MESSAGE_MAX = 1000;
 
-// كل الأخطاء اللي ممكن ترجع من POST /public/leads، وكل واحد ليه رسالة في contactPage.errors
+// كل الأخطاء اللي ممكن ترجع من POST /public/leads، وكل واحد ليه رسالة في leadForm.errors
 type SubmitError = 'network' | 'rate-limited' | 'invalid' | 'server';
 
 function toSubmitError(error: unknown): SubmitError {
@@ -40,13 +40,35 @@ function FieldMessage({ error }: { error?: string }) {
   );
 }
 
+type LeadFormProps = {
+  // بيتبعت مع الـLead عشان الـCRM يعرف الزائر جه منين (/contact · /offers/<slug> · /digital/<slug>)
+  landingPage: string;
+  // بادئة الـids عشان لو فيه فورمين في نفس الصفحة
+  idPrefix: string;
+  title: string;
+  subtitle?: string;
+  submitLabel: string;
+  // خانة "رسالتك" (اختياري) — في "تواصل" بس
+  withMessage?: boolean;
+  // الدهبي لما الفورم هو الزرار الأساسي في الصفحة (العروض)، والتيل في الباقي
+  tone?: 'primary' | 'gold';
+};
+
 /**
- * فورم "تواصل" ← Lead في الـCRM (useCreateLeadMutation).
+ * أي فورم Lead في الموقع ← الـCRM (useCreateLeadMutation) — DEC-36.
  * الحالات: بيتبعت (الزرار بيتقفل) · اتبعت (رسالة نجاح مكان الفورم) · خطأ (رسالة فوق الزرار، والكلام اللي اتكتب بيفضل).
  * الرقم بيتقبل بأي شكل (مسافات، +20، أرقام عربي) وبيتبعت "+201XXXXXXXXX".
  */
-export function ContactForm() {
-  const t = useTranslations('contactPage');
+export function LeadForm({
+  landingPage,
+  idPrefix,
+  title,
+  subtitle,
+  submitLabel,
+  withMessage = false,
+  tone = 'primary',
+}: LeadFormProps) {
+  const t = useTranslations('leadForm');
   const [createLead, { isLoading }] = useCreateLeadMutation();
   const [submitError, setSubmitError] = useState<SubmitError | null>(null);
   const [sent, setSent] = useState(false);
@@ -84,7 +106,7 @@ export function ContactForm() {
         full_name: values.full_name,
         phone: normalizeEgyptianMobile(values.phone)!,
         message: values.message || undefined,
-        landing_page: '/contact',
+        landing_page: landingPage,
       }).unwrap();
       setSent(true);
       form.reset();
@@ -117,13 +139,13 @@ export function ContactForm() {
     <form
       noValidate
       onSubmit={form.handleSubmit(onSubmit)}
-      aria-labelledby="contact-form-title"
+      aria-labelledby={`${idPrefix}-title`}
       className="rounded-2xl border border-border bg-card p-5 sm:p-8"
     >
-      <h2 id="contact-form-title" className="font-heading text-2xl font-bold text-ink">
-        {t('formTitle')}
+      <h2 id={`${idPrefix}-title`} className="font-heading text-2xl font-bold text-ink">
+        {title}
       </h2>
-      <p className="mt-1 text-muted-foreground">{t('formSubtitle')}</p>
+      {subtitle && <p className="mt-1 text-muted-foreground">{subtitle}</p>}
 
       <FieldGroup className="mt-6 gap-5">
         <Controller
@@ -131,12 +153,12 @@ export function ContactForm() {
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="contact-name" className="text-ink">
+              <FieldLabel htmlFor={`${idPrefix}-name`} className="text-ink">
                 {t('fields.name')}
               </FieldLabel>
               <Input
                 {...field}
-                id="contact-name"
+                id={`${idPrefix}-name`}
                 autoComplete="name"
                 aria-invalid={fieldState.invalid}
                 className="h-11 border-field-border bg-card text-base"
@@ -150,22 +172,22 @@ export function ContactForm() {
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="contact-phone" className="text-ink">
+              <FieldLabel htmlFor={`${idPrefix}-phone`} className="text-ink">
                 {t('fields.phone')}
               </FieldLabel>
               <Input
                 {...field}
-                id="contact-phone"
+                id={`${idPrefix}-phone`}
                 type="tel"
                 inputMode="tel"
                 autoComplete="tel"
                 dir="ltr"
                 placeholder="01X XXXX XXXX"
                 aria-invalid={fieldState.invalid}
-                aria-describedby="contact-phone-hint"
+                aria-describedby={`${idPrefix}-phone-hint`}
                 className="h-11 border-field-border bg-card text-base rtl:text-right"
               />
-              <FieldDescription id="contact-phone-hint">
+              <FieldDescription id={`${idPrefix}-phone-hint`}>
                 {/* الرقم جوه <bdi dir="ltr"> عشان ميتقلبش في العربي (5678 1234 010) */}
                 {t.rich('fields.phoneHint', {
                   num: (chunks) => <bdi dir="ltr">{chunks}</bdi>,
@@ -175,27 +197,29 @@ export function ContactForm() {
             </Field>
           )}
         />
-        <Controller
-          name="message"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="contact-message" className="text-ink">
-                {t('fields.message')}
-                <span className="font-normal text-muted-foreground"> {t('fields.optional')}</span>
-              </FieldLabel>
-              <Textarea
-                {...field}
-                id="contact-message"
-                rows={4}
-                maxLength={MESSAGE_MAX}
-                aria-invalid={fieldState.invalid}
-                className="min-h-28 resize-none border-field-border bg-card text-base"
-              />
-              <FieldMessage error={fieldState.error?.message} />
-            </Field>
-          )}
-        />
+        {withMessage && (
+          <Controller
+            name="message"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor={`${idPrefix}-message`} className="text-ink">
+                  {t('fields.message')}
+                  <span className="font-normal text-muted-foreground"> {t('fields.optional')}</span>
+                </FieldLabel>
+                <Textarea
+                  {...field}
+                  id={`${idPrefix}-message`}
+                  rows={4}
+                  maxLength={MESSAGE_MAX}
+                  aria-invalid={fieldState.invalid}
+                  className="min-h-28 resize-none border-field-border bg-card text-base"
+                />
+                <FieldMessage error={fieldState.error?.message} />
+              </Field>
+            )}
+          />
+        )}
       </FieldGroup>
 
       {submitError && (
@@ -212,14 +236,14 @@ export function ContactForm() {
         type="submit"
         disabled={isLoading}
         className={brandButton({
-          tone: 'primary',
+          tone,
           size: 'lg',
           block: true,
           className: 'mt-6 disabled:opacity-70',
         })}
       >
         {isLoading && <Loader2 className="animate-spin" aria-hidden />}
-        {isLoading ? t('sending') : t('send')}
+        {isLoading ? t('sending') : submitLabel}
       </button>
       <p className="mt-3 text-center text-sm text-muted-foreground">{t('privacyNote')}</p>
     </form>

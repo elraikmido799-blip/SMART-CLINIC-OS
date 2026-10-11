@@ -241,6 +241,33 @@ export const publicArticleDetailSchema = publicArticleSchema.extend({
   reviewed_by: z.string().nullable(),
 });
 
+/**
+ * صفحة العرض (GET /public/offers/{slug}) — Template واحد لكل حملة (W-12). الـList (GET /public/offers) للـslugs بس.
+ * ends_at: آخر يوم في العرض. بعده الصفحة بتقول "العرض خلص" بدل الفورم. null = مفتوح.
+ */
+export const publicOfferSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+});
+
+export const publicOfferDetailSchema = publicOfferSchema.extend({
+  specialty: specialtySchema.nullable(),
+  title_ar: z.string(),
+  title_en: z.string(),
+  subtitle_ar: z.string(),
+  subtitle_en: z.string(),
+  image_url: z.string().nullable(),
+  price_before_minor: z.number().int().nonnegative(),
+  price_after_minor: z.number().int().nonnegative(),
+  currency: z.string(),
+  ends_at: z.iso.date().nullable(),
+  benefits_ar: z.array(z.string()),
+  benefits_en: z.array(z.string()),
+  terms_ar: z.array(z.string()),
+  terms_en: z.array(z.string()),
+  faqs: z.array(faqSchema),
+});
+
 // صفحة "عن Oxygen" (GET /public/content/about) — بتتغير من الداشبورد. الأرقام من content/home
 export const aboutContentSchema = z.object({
   intro_ar: z.string(),
@@ -277,6 +304,7 @@ export type PublicService = z.infer<typeof publicServiceSchema>;
 export type PublicServiceDetail = z.infer<typeof publicServiceDetailSchema>;
 export type HomeContent = z.infer<typeof homeContentSchema>;
 export type AboutContent = z.infer<typeof aboutContentSchema>;
+export type PublicOfferDetail = z.infer<typeof publicOfferDetailSchema>;
 export type PublicArticle = z.infer<typeof publicArticleSchema>;
 export type PublicArticleDetail = z.infer<typeof publicArticleDetailSchema>;
 export type ListResponse<T> = { data: T[] };
