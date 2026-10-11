@@ -109,6 +109,7 @@ apps/web/
 │   │       │   ├── about/       W-02 "عن Oxygen"
 │   │       │   ├── contact/     W-14 (الفورم = LeadForm المشترك)
 │   │       │   ├── offers/[slug]/ W-12: صفحة أي عرض (حملة إعلانية)
+│   │       │   ├── online-consultation/ W-08: الاستشارة الأونلاين (السعر لكل تخصص من content/online-consultation)
 │   │       │   ├── learn/       W-13: page.tsx (فلتر + كروت) · [slug]/ المقالة (+ _components/article-body: الـMarkdown)
 │   │       │   └── …            ⏳ online-consultation · digital · app · legal (المرحلة 4)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
@@ -116,7 +117,7 @@ apps/web/
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
 │   │   └── public/              Functions على السيرفر للصفحات التعريفية (DEC-11 · DEC-30)
 │   │       ├── fetch-public.ts  GET /public/* ← Result (ok أو نوع الخطأ) + Schema + Mocks + timeout
-│   │       └── specialties · doctors · branches · programs · content (home + about) .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug)) · services (getServices · getService) · doctors (+ getDoctor) · branches (+ getBranch) · programs (+ getProgram) · articles (getArticles · getArticle) · offers (getOffers · getOffer)
+│   │       └── specialties · doctors · branches · programs · content (home + about + online-consultation) .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug)) · services (getServices · getService) · doctors (+ getDoctor) · branches (+ getBranch) · programs (+ getProgram) · articles (getArticles · getArticle) · offers (getOffers · getOffer)
 │   ├── components/
 │   │   ├── ui/                  Components بتاعة shadcn (بنسيبها زي ما الـCLI عملها)
 │   │   ├── shared/              Components بتستخدمها أكتر من صفحة
