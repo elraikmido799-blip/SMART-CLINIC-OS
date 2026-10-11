@@ -119,7 +119,11 @@ apps/web/
 │   │       │   ├── app/         W-15: تحميل التطبيق (بادجات "قريبًا" + فورم "بلّغني")
 │   │       │   ├── (legal)/     W-18: privacy · terms · refund-policy · medical-disclaimer · delete-account (+ _components/legal-page = الـTemplate)
 │   │       │   ├── learn/       W-13: page.tsx (فلتر + كروت) · [slug]/ المقالة (+ _components/article-body: الـMarkdown)
-│   │       │   └── …            ⏳ portal (المرحلة 6)
+│   │       │   └── …            (المرحلة 4 و5 كاملين)
+│   │       ├── portal/          بوابة المريض (المرحلة 6 · DEC-39): layout.tsx لوحده (Sidebar + Bottom nav + Guard) · noindex
+│   │       │   ├── page.tsx · appointments · passport · documents · plans · packages · invoices · profile   PP-01 → PP-08 (كل page.tsx سطرين، والصفحة في _components)
+│   │       │   ├── _api/        appointments · care (البرنامج والباقات والـPassport والخطط) · documents · account (الفواتير والبروفايل)
+│   │       │   └── _components/ portal-shell · portal-nav · <اسم>-view · page-header · portal-card · status-badge · program-stages · progress-bar · document-icon · weight-chart (SVG) · query-error
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
@@ -146,6 +150,7 @@ apps/web/
 │   │   │   ├── store-badges.tsx بادجات المتاجر "قريبًا" (شريط التطبيق في الرئيسية + صفحة التطبيق)
 │   │   │   ├── slot-picker · phone-otp-form   اختيار الميعاد (الحجز + التأجيل) · الدخول برقم الموبايل + OTP
 │   │   │   ├── booking-details · sign-in-gate   تفاصيل حجز (الدفع والنجاح والبوابة) · الدخول مكان الصفحة لو مش داخل
+│   │   │   ├── empty-state.tsx      الحالة الفاضية (أيقونة في دايرة منقطة + زرار) — البوابة وأي List
 │   │   │   ├── markdown-body · field-message   كلام Markdown (المقالات والقانوني) · رسايل أخطاء الفورمات
 │   │   │   ├── dotted-steps.tsx خطوات مرقّمة منقطة بالطول (الخدمة ومراحل البرنامج)
 │   │   │   ├── section-state · retry-button   حالات الخطأ والفاضي في أي قسم
@@ -163,7 +168,7 @@ apps/web/
 │   │   ├── programs.ts         SECRET_SEVEN_SLUG
 │   │   ├── offers.ts           todayInCairo · isOfferActive (العرض شغال ولا خلص)
 │   │   ├── submit-error.ts     toSubmitError · isOffline (أي فورم بيبعت)
-│   │   ├── dates.ts            توقيت مصر: todayInCairo · addDays · cairoIso · cairoHourOf (صيفي وشتوي)
+│   │   ├── dates.ts            توقيت مصر: todayInCairo · addDays · cairoIso · cairoHourOf · isUpcoming · hoursUntil · greetingPeriod
 │   │   ├── calendar.ts         "ضيف للتقويم": ملف .ics + لينك Google Calendar
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── fonts.ts             Inter + IBM Plex Sans Arabic (الكلام) · Montserrat + Alexandria (العناوين — DEC-29)
@@ -173,7 +178,7 @@ apps/web/
 │   │   └── utils.ts             cn() — دمج الـClasses
 │   ├── mocks/
 │   │   ├── handlers.ts          الداتا الوهمية لـRTK Query (بيتمسح لما الـAPI يجهز)
-│   │   ├── db.ts · auth.ts · booking.ts · payments.ts · test-phones.ts   Mocks ليها حالة (localStorage: الجلسة والحجوزات) — DEC-38
+│   │   ├── db.ts · auth.ts · booking.ts · payments.ts · portal.ts (تاريخ تجريبي) · test-phones.ts   Mocks ليها حالة (localStorage: الجلسة والحجوزات) — DEC-38
 │   │   └── public/              ردود /public/* الوهمية بنفس شكل الـAPI ({ data: [...] })
 │   ├── store/
 │   │   ├── base-api.ts          RTK Query: الأساس اللي كل الـEndpoints بتتضاف عليه
@@ -181,7 +186,7 @@ apps/web/
 │   │   └── store-provider.tsx   بيدّي الـStore للصفحات
 │   ├── types/
 │   │   ├── lead.ts              شكل الـLead اللي بيتبعت
-│   │   ├── booking.ts · auth.ts · payment.ts · account.ts   Schemas الحجز والدخول والدفع + طلب حذف الحساب
+│   │   ├── booking.ts · auth.ts · payment.ts · portal.ts · account.ts   Schemas الحجز والدخول والدفع والبوابة + طلب حذف الحساب
 │   │   └── public.ts            Schemas (zod) + Types لداتا الصفحات التعريفية
 │   └── proxy.ts                 بيحوّل أي زائر لـ/ar أو /en (Next 16 سمّى middleware بـproxy)
 ├── .env.local · .env.example    §3

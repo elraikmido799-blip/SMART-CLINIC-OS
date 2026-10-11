@@ -1,6 +1,7 @@
 import { MockHttpError, type MockHandlers } from '@oxygen/shared';
 import type { SendOtpBody, VerifyOtpBody } from '@/types/auth';
 import { readDb, writeDb } from './db';
+import { seedPatient } from './portal';
 import { throwTestPhoneError } from './test-phones';
 
 // الكود الوهمي في الـMocks (16 · 5.1 · 5.3). أي كود تاني = "الكود غلط"
@@ -28,6 +29,8 @@ export const authHandlers: MockHandlers = {
       if (!user) {
         user = { id: crypto.randomUUID(), full_name: full_name?.trim() ?? '', phone };
         draft.users.push(user);
+        // مريض جديد: تاريخ تجريبي في البوابة (إلا رقم "المريض الفاضي")
+        seedPatient(draft, user.id, phone);
       } else if (full_name?.trim() && !user.full_name) {
         user.full_name = full_name.trim();
       }

@@ -114,6 +114,20 @@ function nextAvailable(query: SlotsQuery): string | null {
   return null;
 }
 
+/** الميعاد لسه فاضي؟ (حد تاني ممكن يكون حجزه وإنت بتملا البيانات). excludeBookingId: في التأجيل */
+export function isSlotFree(data: CreateBookingBody, excludeBookingId?: string): boolean {
+  const slot = slotsFor({
+    mode: data.mode,
+    specialty: data.specialty,
+    service: data.service_slug ?? undefined,
+    branch: branchesMock.data.find((item) => item.id === data.branch_id)?.slug,
+    doctor: data.doctor_slug,
+    date: data.starts_at.slice(0, 10),
+    exclude_booking: excludeBookingId,
+  }).find((item) => new Date(item.starts_at).getTime() === new Date(data.starts_at).getTime());
+  return Boolean(slot?.available);
+}
+
 const params = (args: FetchArgs) => (args.params ?? {}) as Record<string, string | undefined>;
 
 function toSlotsQuery(args: FetchArgs): SlotsQuery {
@@ -136,7 +150,7 @@ function requireSession() {
 }
 
 // الحجز كامل بالأسامي (زي رد الـAPI)، عشان الدفع والبوابة يعرضوه من غير طلبات زيادة
-function buildBooking(
+export function buildBooking(
   body: CreateBookingBody,
   patientId: string,
 ): Booking & { patient_id: string } {
@@ -213,17 +227,7 @@ export const bookingHandlers: MockHandlers = {
   createBooking: ({ body }) => {
     const session = requireSession();
     const data = body as CreateBookingBody;
-    const date = data.starts_at.slice(0, 10);
-    // الميعاد لسه فاضي؟ (حد تاني ممكن يكون حجزه وإنت بتملا البيانات)
-    const slot = slotsFor({
-      mode: data.mode,
-      specialty: data.specialty,
-      service: data.service_slug ?? undefined,
-      branch: branchesMock.data.find((item) => item.id === data.branch_id)?.slug,
-      doctor: data.doctor_slug,
-      date,
-    }).find((item) => new Date(item.starts_at).getTime() === new Date(data.starts_at).getTime());
-    if (!slot?.available) throw new MockHttpError(409, 'SLOT_TAKEN');
+    if (!isSlotFree(data)) throw new MockHttpError(409, 'SLOT_TAKEN');
     const booking = buildBooking(data, session.id);
     writeDb((db) => {
       db.bookings.push(booking);

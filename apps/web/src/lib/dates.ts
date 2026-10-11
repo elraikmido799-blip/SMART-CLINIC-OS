@@ -46,3 +46,15 @@ export function cairoHourOf(iso: string): number {
     }).format(new Date(iso)),
   );
 }
+
+/** الميعاد لسه مجاش؟ */
+export const isUpcoming = (iso: string) => new Date(iso).getTime() > Date.now();
+
+/** كام ساعة فاضلة على الميعاد (بالسالب لو فات) */
+export const hoursUntil = (iso: string) => (new Date(iso).getTime() - Date.now()) / 3_600_000;
+
+/** "صباح الخير" ولا "مساء الخير" بتوقيت مصر */
+export function greetingPeriod(): 'morning' | 'afternoon' | 'evening' {
+  const hour = cairoHourOf(new Date().toISOString());
+  return hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : 'evening';
+}

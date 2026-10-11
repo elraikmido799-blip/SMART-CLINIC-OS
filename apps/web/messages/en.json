@@ -60,13 +60,34 @@
     "subtitle": "A complete 7-step journey to better health, designed just for you.",
     "cta": "Start your journey",
     "steps": {
-      "1": { "title": "Assessment", "body": "Understand your current health." },
-      "2": { "title": "Plan", "body": "Set your personalized plan." },
-      "3": { "title": "Treatment", "body": "Start your program." },
-      "4": { "title": "Follow-up", "body": "Track your progress." },
-      "5": { "title": "Progress", "body": "See real results." },
-      "6": { "title": "Stabilization", "body": "Build healthy habits." },
-      "7": { "title": "Maintenance", "body": "Lasting wellness." }
+      "1": {
+        "title": "Assessment",
+        "body": "Understand your current health."
+      },
+      "2": {
+        "title": "Plan",
+        "body": "Set your personalized plan."
+      },
+      "3": {
+        "title": "Treatment",
+        "body": "Start your program."
+      },
+      "4": {
+        "title": "Follow-up",
+        "body": "Track your progress."
+      },
+      "5": {
+        "title": "Progress",
+        "body": "See real results."
+      },
+      "6": {
+        "title": "Stabilization",
+        "body": "Build healthy habits."
+      },
+      "7": {
+        "title": "Maintenance",
+        "body": "Lasting wellness."
+      }
     }
   },
   "programs": {
@@ -161,8 +182,13 @@
       "title": "We couldn't show this part",
       "body": "We received unexpected data. Please try again in a moment."
     },
-    "unknown": { "title": "Something went wrong", "body": "Please try again in a moment." },
-    "offline": { "message": "You're offline. Some content may not load until you reconnect." }
+    "unknown": {
+      "title": "Something went wrong",
+      "body": "Please try again in a moment."
+    },
+    "offline": {
+      "message": "You're offline. Some content may not load until you reconnect."
+    }
   },
   "errorPage": {
     "title": "Something went wrong",
@@ -778,6 +804,304 @@
         "title": "Packages and invoices",
         "body": "Remaining sessions and every payment."
       }
+    }
+  },
+  "portal": {
+    "title": "My portal",
+    "patient": "Oxygen patient",
+    "redirecting": "Taking you to sign in…",
+    "skip": "Skip to content",
+    "navLabel": "Portal",
+    "accountMenu": "Account menu",
+    "website": "Back to website",
+    "signOut": "Sign out",
+    "more": "More",
+    "help": "Need help?",
+    "helpWhatsapp": "WhatsApp",
+    "error": "We couldn’t load this right now.",
+    "retry": "Try again",
+    "nav": {
+      "overview": "Overview",
+      "appointments": "Appointments",
+      "passport": "Health Passport",
+      "documents": "Documents",
+      "plans": "Plans",
+      "packages": "Packages",
+      "invoices": "Invoices",
+      "profile": "Profile"
+    },
+    "chart": {
+      "summary": "Weight went from {from} kg to {to} kg over {weeks} weeks",
+      "weeks": "Week",
+      "goal": "Goal: {goal} kg",
+      "kg": "{value} kg",
+      "tableCaption": "Weekly weight",
+      "date": "Date",
+      "weight": "Weight"
+    },
+    "overview": {
+      "greeting": {
+        "morning": "Good morning, {name}",
+        "afternoon": "Good afternoon, {name}",
+        "evening": "Good evening, {name}"
+      },
+      "greetingNoName": {
+        "morning": "Good morning",
+        "afternoon": "Good afternoon",
+        "evening": "Good evening"
+      },
+      "subtitle": "Your health journey is in good hands.",
+      "next": "Next appointment",
+      "noNext": "You have no upcoming appointments.",
+      "book": "Book an appointment",
+      "branch": "Oxygen {name}",
+      "online": "Online · video call",
+      "reschedule": "Reschedule",
+      "directions": "Directions",
+      "callDetails": "Call details",
+      "payNow": "Pay now",
+      "program": "Your program",
+      "noProgram": "You’re not in a program yet.",
+      "explorePrograms": "Explore programs",
+      "stage": "Stage {stage} of {total}: {title}",
+      "stageLabel": "Stage {stage} of {total}",
+      "programDetails": "View program details",
+      "package": "Your package",
+      "noPackage": "You have no active package.",
+      "sessionsLeft": "{left} of {total} sessions left",
+      "expires": "Expires {date}",
+      "packageDetails": "View package details",
+      "progress": "Your {weeks}-week progress",
+      "passport": "Health Passport",
+      "weight": "Weight",
+      "kg": "{value} kg",
+      "goal": "Goal: {value} kg",
+      "noMeasurements": "Your measurements appear here after your first visit.",
+      "documents": "Recent documents",
+      "viewAll": "View all",
+      "noDocuments": "No documents yet.",
+      "addName": "Add your name so your doctor and our team know how to call you.",
+      "addNameCta": "Complete profile"
+    },
+    "navShort": {
+      "overview": "Overview",
+      "appointments": "Appointments",
+      "passport": "Passport",
+      "documents": "Documents"
+    },
+    "status": {
+      "pending_payment": "Awaiting payment",
+      "confirmed": "Confirmed",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "paid": "Paid",
+      "unpaid": "Unpaid",
+      "refunded": "Refunded",
+      "active": "Active",
+      "expired": "Expired",
+      "finished": "Finished"
+    },
+    "appointments": {
+      "title": "Appointments",
+      "subtitle": "Reschedule, cancel or book again in a tap.",
+      "book": "Book an appointment",
+      "upcoming": "Upcoming ({count})",
+      "past": "Past ({count})",
+      "emptyUpcoming": "No upcoming appointments",
+      "emptyUpcomingBody": "Book your next visit or an online consultation.",
+      "emptyPast": "No past appointments yet",
+      "time": "Time",
+      "doctor": "Doctor",
+      "place": "Place",
+      "branch": "Oxygen {name}",
+      "online": "Online · video call",
+      "payNow": "Pay now",
+      "join": "Join the call",
+      "joinLater": "The call link opens 15 minutes before.",
+      "reschedule": "Reschedule",
+      "directions": "Directions",
+      "cancel": "Cancel",
+      "bookAgain": "Book again",
+      "rescheduleTitle": "Choose a new time",
+      "rescheduleBody": "{service} with {doctor}.",
+      "confirmReschedule": "Confirm new time",
+      "keep": "Keep my appointment",
+      "slotTaken": "Someone just booked this time. Please pick another one.",
+      "rescheduled": "Done — your appointment moved to {day} at {time}.",
+      "cancelTitle": "Cancel this appointment?",
+      "cancelBody": "{service} on {day} at {time}.",
+      "policyFree": "Cancelling now is free.",
+      "policyFreePaid": "Cancelling now is free, and your payment is refunded in 7–14 working days.",
+      "policyLate": "Your appointment is in less than 24 hours, so the payment can’t be refunded — but you can move it to another time instead.",
+      "policyLink": "Refund policy",
+      "confirmCancel": "Yes, cancel it",
+      "cancelled": "Your appointment was cancelled."
+    },
+    "passport": {
+      "title": "Health Passport",
+      "subtitle": "Every visit, measurement and plan — in one timeline.",
+      "emptyTitle": "Your Health Passport is empty",
+      "emptyBody": "After your first visit, your measurements and progress appear here.",
+      "kg": "{value} kg",
+      "cm": "{value} cm",
+      "stats": {
+        "start": "Starting weight",
+        "now": "Current weight",
+        "change": "Change",
+        "goal": "Goal",
+        "waist": "Waist"
+      },
+      "weightTitle": "Weight",
+      "timelineTitle": "Timeline",
+      "filter": "Filter by specialty",
+      "all": "All",
+      "kinds": {
+        "visit": "Visit",
+        "measurement": "Measurement",
+        "plan": "Plan",
+        "document": "Document",
+        "note": "Note"
+      }
+    },
+    "documents": {
+      "title": "Documents",
+      "subtitle": "Your results, reports and plans — always with you.",
+      "upload": "Upload a file",
+      "uploadHint": "PDF, JPG or PNG up to {max} MB — like old lab results or X-ray reports.",
+      "uploaded": "File uploaded.",
+      "uploadFailed": "We couldn’t upload the file. Please try again.",
+      "wrongType": "Please upload a PDF, JPG or PNG file.",
+      "tooBig": "The file is larger than {max} MB.",
+      "filter": "Filter by type",
+      "filters": {
+        "all": "All",
+        "lab": "Lab results",
+        "imaging": "Imaging",
+        "plan": "Plans",
+        "upload": "My uploads"
+      },
+      "kinds": {
+        "lab": "Lab result",
+        "imaging": "Imaging",
+        "plan": "Plan",
+        "prescription": "Prescription",
+        "report": "Report",
+        "upload": "Uploaded by you"
+      },
+      "size": "{size} KB",
+      "view": "View",
+      "delete": "Delete",
+      "deleted": "File deleted.",
+      "deleteFailed": "We couldn’t delete the file.",
+      "emptyTitle": "No documents yet",
+      "emptyBody": "Results and plans from your visits appear here. You can also upload your own.",
+      "emptyFilter": "No documents of this type",
+      "noPreview": "Preview isn’t available for this file yet.",
+      "previewNote": "Issued by Oxygen. For questions about your results, ask your doctor.",
+      "close": "Close",
+      "print": "Print / Save as PDF"
+    },
+    "plans": {
+      "title": "Plans",
+      "subtitle": "Your meal plan and home exercises from your specialists.",
+      "emptyTitle": "No plans yet",
+      "emptyBody": "Your specialist adds your plan after your assessment.",
+      "book": "Book an assessment",
+      "by": "By {doctor} · updated {date}",
+      "progress": "{done} of {total} done today",
+      "watch": "Watch the video",
+      "videoSoon": "Your physiotherapist will add the video soon",
+      "markDone": "Mark “{item}” as done today"
+    },
+    "packages": {
+      "title": "Packages",
+      "subtitle": "Your program and prepaid sessions.",
+      "program": "Your program",
+      "stage": "Stage {stage} of {total}: {title}",
+      "stageLabel": "Stage {stage} of {total}",
+      "programDetails": "View program details",
+      "emptyTitle": "No packages yet",
+      "emptyBody": "Packages save you money on regular sessions. Ask us which one suits you.",
+      "ask": "Ask about packages",
+      "left": "{left} sessions left",
+      "ofTotal": "of {total}",
+      "progressLabel": "{left} of {total} sessions left",
+      "used": "{used} sessions used",
+      "expires": "Valid until {date}",
+      "bookSession": "Book a session"
+    },
+    "invoices": {
+      "title": "Invoices",
+      "subtitle": "Every payment, with a printable invoice.",
+      "emptyTitle": "No invoices yet",
+      "emptyBody": "Your invoices appear here after your first payment.",
+      "paidTotal": "Total paid:",
+      "number": "Invoice",
+      "date": "Date",
+      "item": "Item",
+      "amount": "Amount",
+      "status": "Status",
+      "actions": "Actions",
+      "payNow": "Pay now",
+      "view": "View",
+      "invoiceTitle": "Invoice {number}",
+      "invoice": "Invoice",
+      "billedTo": "Billed to",
+      "total": "Total",
+      "close": "Close",
+      "download": "Print / Save as PDF"
+    },
+    "profile": {
+      "title": "Profile & privacy",
+      "subtitle": "Your details, what we can send you, and your data.",
+      "details": "Your details",
+      "phoneHint": "This is the number you sign in with. To change it, <link>contact us</link>.",
+      "email": "Email",
+      "emailInvalid": "Please write a valid email.",
+      "birthDate": "Date of birth",
+      "gender": "Gender",
+      "genders": {
+        "female": "Female",
+        "male": "Male"
+      },
+      "save": "Save changes",
+      "saved": "Your details were saved.",
+      "saveFailed": "We couldn’t save that. Please try again.",
+      "consents": "What we can send you",
+      "consentsHint": "Change these any time. Medical messages about your visits always reach you.",
+      "consentSaved": "Saved.",
+      "consentItems": {
+        "reminders_whatsapp": {
+          "title": "Reminders on WhatsApp",
+          "body": "Appointment and exercise reminders."
+        },
+        "offers_whatsapp": {
+          "title": "Offers on WhatsApp",
+          "body": "New offers and programs — a few times a month."
+        },
+        "offers_sms": {
+          "title": "Offers by SMS",
+          "body": "The same offers as text messages."
+        },
+        "progress_photos": {
+          "title": "Progress photos",
+          "body": "Let your specialist keep before/after photos in your file. Never shared publicly."
+        }
+      },
+      "privacy": "Your data",
+      "exportTitle": "Download a copy of your data",
+      "exportBody": "We send a copy of your file to your mobile within 48 hours.",
+      "exportCta": "Request my data",
+      "exportRequested": "Request received — your data arrives within 48 hours.",
+      "deleteTitle": "Delete your account",
+      "deleteBody": "Your account and app data are deleted. Medical records are kept as the law requires.",
+      "deleteCta": "Delete my account",
+      "deleteConfirmTitle": "Delete your account?",
+      "deleteConfirmBody": "You’ll be signed out, and your upcoming appointments are cancelled. This can’t be undone.",
+      "deleteUnderstood": "I understand that my account will be deleted and can’t be restored.",
+      "keepAccount": "Keep my account",
+      "deleteForever": "Delete forever",
+      "deleted": "Your account was deleted."
     }
   }
 }

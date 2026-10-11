@@ -4,6 +4,7 @@ import type { CreateLeadBody } from '@/types/lead';
 import { authHandlers } from './auth';
 import { bookingHandlers } from './booking';
 import { paymentHandlers } from './payments';
+import { portalHandlers } from './portal';
 import { throwTestPhoneError } from './test-phones';
 
 /**
@@ -24,4 +25,5 @@ export const mockHandlers: MockHandlers = {
   ...authHandlers,
   ...bookingHandlers,
   ...paymentHandlers,
+  ...portalHandlers,
 };
