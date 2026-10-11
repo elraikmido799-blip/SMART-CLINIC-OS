@@ -110,8 +110,9 @@ apps/web/
 │   │       │   ├── contact/     W-14 (الفورم = LeadForm المشترك)
 │   │       │   ├── offers/[slug]/ W-12: صفحة أي عرض (حملة إعلانية)
 │   │       │   ├── online-consultation/ W-08: الاستشارة الأونلاين (السعر لكل تخصص من content/online-consultation)
+│   │       │   ├── digital/     W-10: صفحة واحدة (المنتجات = البرامج الأونلاين · فورم "مهتم بإيه؟") — DEC-37
 │   │       │   ├── learn/       W-13: page.tsx (فلتر + كروت) · [slug]/ المقالة (+ _components/article-body: الـMarkdown)
-│   │       │   └── …            ⏳ digital · app · legal (المرحلة 4)
+│   │       │   └── …            ⏳ app · legal (المرحلة 4)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
@@ -128,7 +129,7 @@ apps/web/
 │   │   │   ├── select-styles.ts شكل خانات الاختيار (شريط الحجز + فلتر الفروع)
 │   │   │   ├── branches-map.tsx الخريطة + كروت الفروع (الرئيسية وصفحة الفروع)
 │   │   │   ├── journey-section (+ journey-steps) · programs-section   Secret Seven والبرامج الأونلاين (الرئيسية وصفحة البرامج)
-│   │   │   ├── lead-form.tsx    أي فورم Lead (تواصل · العروض · …) — DEC-36
+│   │   │   ├── lead-form.tsx    أي فورم Lead (تواصل · العروض · ديجيتال) — DEC-36 · interest = "مهتم بإيه؟" (DEC-37)
 │   │   │   ├── article-card · specialty-chips   كارت المقالة · فلتر التخصص (الأطباء والمقالات)
 │   │   │   ├── trust-bar.tsx    شريط الأرقام (الرئيسية و"عن Oxygen")
 │   │   │   ├── dotted-steps.tsx خطوات مرقّمة منقطة بالطول (الخدمة ومراحل البرنامج)
