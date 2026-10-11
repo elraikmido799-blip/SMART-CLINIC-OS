@@ -665,5 +665,89 @@
     "verifying": "Checking…",
     "resendIn": "Send the code again in {seconds}s",
     "resend": "Send the code again"
+  },
+  "checkout": {
+    "title": "Payment",
+    "subtitle": "Your booking is saved. Pay now to confirm it.",
+    "signInTitle": "Sign in to pay",
+    "notFoundTitle": "We couldn’t find this booking",
+    "notFoundBody": "It may belong to another account, or the link is incomplete.",
+    "bookNew": "Book an appointment",
+    "alreadyPaid": "This booking is already paid",
+    "viewBooking": "View booking",
+    "methodTitle": "Payment method",
+    "methods": {
+      "card": {
+        "title": "Bank card",
+        "body": "Visa, Mastercard or Meeza."
+      },
+      "wallet": {
+        "title": "Mobile wallet",
+        "body": "Vodafone Cash, Orange, Etisalat or WE Pay."
+      }
+    },
+    "couponLabel": "Have a discount code?",
+    "apply": "Apply",
+    "couponApplied": "Code {code} applied — you save {amount}.",
+    "couponErrors": {
+      "invalid": "This code isn’t valid. Check it and try again.",
+      "expired": "This code has expired."
+    },
+    "pay": "Pay {amount}",
+    "secure": "Secure payment. We never see or store your card details.",
+    "summary": "Your booking",
+    "demo": {
+      "title": "Demo payment page",
+      "body": "This is a demo — no money is charged. On the real site this is your bank’s payment page. Choose the result you want to try:",
+      "succeed": "Payment succeeds",
+      "fail": "Payment fails"
+    }
+  },
+  "checkoutResult": {
+    "signInTitle": "Sign in to see your booking",
+    "notFound": "We couldn’t find this booking",
+    "bookNew": "Book an appointment",
+    "successTitle": "You’re booked!",
+    "status": {
+      "paid": "Payment received — your appointment is confirmed.",
+      "payAtClinic": "Your appointment is confirmed. You’ll pay at the clinic.",
+      "pending": "Your booking is saved and waiting for payment."
+    },
+    "onlineNote": "Your video link arrives on WhatsApp and by SMS, with a reminder one hour before the call.",
+    "calendarHeading": "Add it to your calendar",
+    "googleCalendar": "Google Calendar",
+    "icsFile": "Apple / Outlook (.ics)",
+    "calendarTitle": "Oxygen — {service}",
+    "calendarDescription": "With {doctor}. Booking number {reference}.",
+    "myAppointments": "My appointments",
+    "getApp": "Get the app",
+    "failedTitle": "Payment didn’t go through",
+    "failedBody": "No money was taken. Your booking is saved — try again or pay another way.",
+    "reasons": {
+      "balance": "Not enough balance on the card or wallet",
+      "details": "A mistake in the card details or the code",
+      "bank": "Your bank declined online payments — call them to enable it"
+    },
+    "tryAgain": "Try again",
+    "whatsappMessage": "Hello Oxygen, my payment for booking {reference} didn’t go through."
+  },
+  "bookingDetails": {
+    "minutes": "{minutes} min",
+    "doctor": "Doctor",
+    "when": "Date & time",
+    "place": "Place",
+    "branch": "Oxygen {name}",
+    "directions": "Get directions",
+    "online": "Online · video call",
+    "onlineHint": "The link reaches you on WhatsApp",
+    "reference": "Booking number",
+    "price": "Price",
+    "discount": "Discount",
+    "total": "Total"
+  },
+  "signInGate": {
+    "title": "Sign in",
+    "body": "Enter your mobile number and we’ll send you a code.",
+    "submit": "Sign in"
   }
 }

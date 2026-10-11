@@ -656,5 +656,89 @@
     "verifying": "بنتأكد…",
     "resendIn": "ابعت الكود تاني بعد {seconds} ثانية",
     "resend": "ابعت الكود تاني"
+  },
+  "checkout": {
+    "title": "الدفع",
+    "subtitle": "حجزك متسجل. ادفع دلوقتي عشان يتأكد.",
+    "signInTitle": "ادخل عشان تدفع",
+    "notFoundTitle": "مش لاقيين الحجز ده",
+    "notFoundBody": "ممكن يكون على حساب تاني، أو اللينك ناقص.",
+    "bookNew": "احجز موعد",
+    "alreadyPaid": "الحجز ده اتدفع خلاص",
+    "viewBooking": "شوف الحجز",
+    "methodTitle": "طريقة الدفع",
+    "methods": {
+      "card": {
+        "title": "كارت بنك",
+        "body": "فيزا أو ماستركارد أو ميزة."
+      },
+      "wallet": {
+        "title": "محفظة موبايل",
+        "body": "فودافون كاش، أورنج، اتصالات، أو WE Pay."
+      }
+    },
+    "couponLabel": "معاك كود خصم؟",
+    "apply": "طبّق",
+    "couponApplied": "الكود {code} اتطبق — وفّرت {amount}.",
+    "couponErrors": {
+      "invalid": "الكود ده مش صح. راجعه وجرب تاني.",
+      "expired": "الكود ده خلص."
+    },
+    "pay": "ادفع {amount}",
+    "secure": "دفع آمن. إحنا مش بنشوف ولا بنحفظ بيانات الكارت.",
+    "summary": "حجزك",
+    "demo": {
+      "title": "صفحة دفع تجريبية",
+      "body": "دي تجربة — مفيش فلوس هتتخصم. في الموقع الحقيقي هنا صفحة الدفع بتاعة البنك. اختار النتيجة اللي عايز تجربها:",
+      "succeed": "الدفع ينجح",
+      "fail": "الدفع يفشل"
+    }
+  },
+  "checkoutResult": {
+    "signInTitle": "ادخل عشان تشوف حجزك",
+    "notFound": "مش لاقيين الحجز ده",
+    "bookNew": "احجز موعد",
+    "successTitle": "حجزك اتأكد!",
+    "status": {
+      "paid": "الفلوس وصلت — وميعادك اتأكد.",
+      "payAtClinic": "ميعادك اتأكد. هتدفع في العيادة.",
+      "pending": "حجزك متسجل ومستني الدفع."
+    },
+    "onlineNote": "لينك الفيديو هيوصلك على واتساب وفي رسالة، ومعاه تذكير قبل المكالمة بساعة.",
+    "calendarHeading": "ضيفه للتقويم",
+    "googleCalendar": "تقويم جوجل",
+    "icsFile": "آيفون / أوتلوك (.ics)",
+    "calendarTitle": "Oxygen — {service}",
+    "calendarDescription": "مع {doctor}. رقم الحجز {reference}.",
+    "myAppointments": "مواعيدي",
+    "getApp": "حمّل الأبلكيشن",
+    "failedTitle": "الدفع ماتمش",
+    "failedBody": "مفيش فلوس اتخصمت. حجزك متسجل — جرب تاني أو ادفع بطريقة تانية.",
+    "reasons": {
+      "balance": "الرصيد في الكارت أو المحفظة مش كفاية",
+      "details": "غلطة في بيانات الكارت أو الكود",
+      "bank": "البنك قافل الدفع أونلاين — كلّمهم يفتحوه"
+    },
+    "tryAgain": "جرب تاني",
+    "whatsappMessage": "أهلًا Oxygen، الدفع لحجز رقم {reference} ماتمش."
+  },
+  "bookingDetails": {
+    "minutes": "{minutes} دقيقة",
+    "doctor": "الطبيب",
+    "when": "اليوم والساعة",
+    "place": "المكان",
+    "branch": "Oxygen {name}",
+    "directions": "الاتجاهات",
+    "online": "أونلاين · مكالمة فيديو",
+    "onlineHint": "اللينك هيوصلك على واتساب",
+    "reference": "رقم الحجز",
+    "price": "السعر",
+    "discount": "الخصم",
+    "total": "الإجمالي"
+  },
+  "signInGate": {
+    "title": "تسجيل الدخول",
+    "body": "اكتب رقم موبايلك وهنبعتلك كود.",
+    "submit": "ادخل"
   }
 }

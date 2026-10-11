@@ -108,6 +108,9 @@ export function useBookingState(catalog: BookingCatalog, isSignedIn: boolean) {
   const update = useCallback(
     (patch: Partial<Record<ParamKey, string | undefined>>, options: { push?: boolean } = {}) => {
       const next = new URLSearchParams(window.location.search);
+      // الخطوة بتتثبت في الـURL مع أي تغيير: من غيرها الخطوة بتتحسب "أول حاجة ناقصة"،
+      // فاختيار الميعاد كان بيودّي على "بياناتك" لوحده من غير "كمّل" (L-58)
+      if (!('step' in patch)) next.set('step', step);
       for (const [key, value] of Object.entries(patch)) {
         if (value === undefined || value === '') next.delete(key);
         else next.set(key, value);
@@ -120,7 +123,7 @@ export function useBookingState(catalog: BookingCatalog, isSignedIn: boolean) {
         window.history.replaceState(null, '', url);
       }
     },
-    [],
+    [step],
   );
 
   return {
