@@ -1,13 +1,14 @@
 import Image from 'next/image';
-import { UserRound } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // الحلقة مقصوصة مربع مركزه هو مركز الفتحة، والفتحة قطرها 63% من المربع (اتقاس من الصورة)
 const RING_SRC = '/images/shared/particle-ring.png';
 const HOLE_INSET = '18.5%';
+// أي دكتور ملوش صورة (L-48): أيقونة منقطة جوه دايرة Mist، فبتملا فتحة الحلقة
+const DEFAULT_AVATAR = '/images/doctors/default.png';
 
 type ParticleRingImageProps = {
-  // الصورة بتتغير من الداشبورد (DEC-25)، فممكن تكون مفرّغة أو بخلفية، أو null
+  // الصورة بتتغير من الداشبورد (DEC-25)، فممكن تكون مفرّغة أو بخلفية، أو null (= الصورة الافتراضية)
   src: string | null;
   alt: string;
   // المقاس اللي بيتعرض بيه (لـnext/image)
@@ -33,20 +34,20 @@ export function ParticleRingImage({
   return (
     <div className={cn('relative aspect-square', className)}>
       <div className="absolute overflow-hidden rounded-full bg-mist" style={{ inset: HOLE_INSET }}>
-        {src ? (
-          <Image
-            src={src}
-            alt={alt}
-            fill
-            sizes={sizes}
-            preload={preload}
-            className={fit === 'cover' ? 'object-cover object-top' : 'object-contain p-[18%]'}
-          />
-        ) : (
-          <div role="img" aria-label={alt} className="grid size-full place-items-center">
-            <UserRound className="size-1/2 text-primary/40" strokeWidth={1.25} />
-          </div>
-        )}
+        <Image
+          src={src ?? DEFAULT_AVATAR}
+          alt={alt}
+          fill
+          sizes={sizes}
+          preload={preload}
+          className={
+            !src
+              ? 'scale-125 object-cover'
+              : fit === 'cover'
+                ? 'object-cover object-top'
+                : 'object-contain p-[18%]'
+          }
+        />
       </div>
       {/* الحلقة بتتعكس في العربي على الـwrapper عشان الحركة (scale) متلغيش العكس */}
       <div className="pointer-events-none absolute inset-0 rtl:-scale-x-100">

@@ -475,6 +475,35 @@ Use the specialty colors only as accents and keep plenty of white space.
 
 ---
 
+## صور صفحات المرحلة 4 (L-48)
+
+> الصور اللي الصفحات الجديدة كانت محتاجاها. كل برومبت في شات جديد ومعاه الصورة المرجع. النص الكامل للبرومبتات اتبعت في الشات، والأساس بتاعهم هنا.
+
+**بلوك الستايل للصور الحقيقية** (أول كل برومبت صورة، ومعاه `A0-photo-hero.png`):
+
+```text
+NEW CHAT — STYLE (follow exactly). Brand: "Oxygen", an Egyptian clinic group for clinical nutrition and physical therapy (also dermatology and internal medicine). The attached photo is the approved brand photo: match its look exactly — bright, airy, natural daylight, a clean modern Egyptian clinic, soft shadows, calm and warm, real Egyptian people with natural expressions. Color grade: whites and soft mint #E3F6F2, with small natural touches of Deep Teal #0A7672 and Ocean Blue #1769B0. AVOID: any text, logos or watermarks, medical crosses, hearts, stars, needles, blood, exaggerated before/after, stock-photo clichés, heavy filters, neon, coral or peach. Photorealistic, high resolution.
+```
+
+| الصورة | الموضوع (بعد البلوك) | المقاس | الحالة |
+|---|---|---|---|
+| `hero-nutrition.png` | أخصائية تغذية بتشرح طبق متوازن لمريضة | 1:1، الناس في النص وفوق (هتتقص في دايرة) | ✅ |
+| `hero-derm.png` | دكتورة جلدية بتفحص خد مريضة بلمبة مكبّرة | 1:1 | ✅ |
+| `hero-internal.png` | دكتور باطنة بيقيس ضغط راجل في الخمسينات | 1:1 | ✅ (فيه نسخة تانية `hero-internal-alt.png`) |
+| `icons-physio.png` | استخراج الـ6 أيقونات من `W-03-specialty.png`، كلهم #1769B0، والضهر عمود فقري مش مخ | صف واحد 3:1، شفاف | ✅ |
+| `icons-nutrition.png` | ميزان + ورقة · نقطة + تفاحة · زجاجة + دمبل · أم وبيبي — #4F7A28، بستايل `A1-specialty-icons.png` | صف واحد 3:1 | ✅ |
+| `icons-internal.png` | جهاز ضغط من غير قلب · جهاز سكر · معدة · كليب بورد — #5B4BC4 | صف واحد 3:1 | ✅ |
+| `icons-derm.png` | حب الشباب · تصبغات · تساقط شعر · إكزيما — #B8466A | صف واحد 3:1 | ⏳ |
+| `cover-desk-back-pain.png` | موظف قاعد صح، واللابتوب على ستاند، وهيقوم يتحرك | 16:9 | ✅ |
+| `cover-knee-pain-stairs` · `cover-balanced-plate` · `cover-healthy-iftar` · `cover-sunscreen-basics` · `cover-blood-pressure-at-home` | أغلفة باقي المقالات | 16:9 | ⏳ |
+| `doctor-default.png` | شخص بالطو وسماعة، منقط #0A7672 جوه دايرة Mist (برومبت L5) | 1:1 | ✅ (اتختارت النسخة اللي الشكل فيها مقفول) |
+
+**المراجعة:**
+- **الأيقونات:** اتقصّت أوتوماتيك من الصف (كل أيقونة في مربع 256 شفاف بهامش 8%)، وكلها مظبوطة. أيقونة الضهر بقت عمود فقري زي ما اتطلب.
+- **الصور:** الناس في النص وفوق، فبيتقصّوا صح في الحلقة. مفيش كلام ولا لوجوهات ولا صلبان.
+- **صورة التغذية:** المريضة ضهرها للكاميرا، وده مقبول، لأن الدكتورة والطبق هما الأساس.
+- **الصورة الافتراضية للدكتور:** بتتعرض مكبّرة 125% عشان دايرتها تملا فتحة الحلقة.
+
 ## برومبتات التعديل
 
 | عايز إيه | الصق ده |
@@ -498,6 +527,7 @@ design/
 ├── mocks/       doctor-sample.png (للتطوير بس، مش بتتحط في الموقع الحقيقي)
 ├── website/     A0-design-system-v2.png · W-01-home-top.png · W-01-home-bottom.png · W-01-home-mobile.png
 │                W-03-specialty.png · W-03-specialty-ar.png · A4-physio-home.png · W-05-doctors.png · W-07-booking.png · PP-01-portal.png
+│                hero-{nutrition,derm,internal}.png · icons-{physio,nutrition,internal}.png · cover-*.png · doctor-default.png (L-48)
 └── dashboard/   D-01-login.png · D-02-reception.png · D-09-patient-360.png · D-11-encounter.png
                  D-20-crm.png · D-28-executive.png · D-02-reception-ar.png
 ```

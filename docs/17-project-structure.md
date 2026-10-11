@@ -84,7 +84,7 @@ apps/web/
 │   ├── ar.json · en.json        نصوص الموقع، مقسّمة بالصفحات (home · nav · footer …)
 ├── public/
 │   ├── logo.png · logo-white.png   اللوجو الملون والأبيض (شفافين، من design/brand)
-│   └── images/                  صور الموقع: shared/ (particle-ring · dot-wave · logo-symbol) · home/ (hero · app-phone) · specialties/ (الأيقونات المنقطة) · mocks/ (للتطوير بس)
+│   └── images/                  صور الموقع: shared/ (particle-ring · dot-wave · logo-symbol) · home/ (hero · app-phone) · specialties/ (الأيقونات المنقطة + hero-<تخصص> + physio-home) · conditions/ (أيقونات "بنعالج إيه": <تخصص>-<id>.png) · articles/ (الأغلفة: <slug>.png) · doctors/ (default.png) · mocks/ (للتطوير بس)
 ├── src/
 │   ├── app/                     الصفحات (Next.js App Router)
 │   │   ├── globals.css          بيربط ألوان packages/config بأسامي Tailwind و shadcn (ممنوع hex هنا)

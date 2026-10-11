@@ -8,7 +8,7 @@ import {
 /**
  * نفس رد GET /public/articles و GET /public/articles/{slug}.
  * كلام عام وآمن للتجربة بس — المقالات الحقيقية بيكتبها ويراجعها أطباء Oxygen من الداشبورد.
- * الأغلفة null لحد ما الصور توصل (16 · 2.9).
+ * الأغلفة null لحد ما الصور توصل (16 · 2.9). وصل غلاف واحد بس لحد دلوقتي (L-48).
  */
 type ArticleSeed = PublicArticleDetail;
 
@@ -21,7 +21,7 @@ const ARTICLES: ArticleSeed[] = [
     title_ar: '5 عادات بتحمي ضهرك لو شغلك على مكتب',
     excerpt_en: 'Small changes to how you sit and move during the day can make a real difference.',
     excerpt_ar: 'تغييرات صغيرة في طريقة قعدتك وحركتك طول اليوم ممكن تفرق معاك.',
-    cover_url: null,
+    cover_url: '/images/articles/desk-back-pain.png',
     reading_minutes: 4,
     published_at: '2026-09-20',
     reviewed_by: 'omar-hassan',

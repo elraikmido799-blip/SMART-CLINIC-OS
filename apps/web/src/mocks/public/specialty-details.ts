@@ -103,7 +103,7 @@ export const SPECIALTY_EXTRAS: Record<Specialty, DetailExtras> = {
   nutrition: {
     tagline_en: 'Eat well, feel better — with a plan that fits your life.',
     tagline_ar: 'كُل صح، وحس بفرق — بخطة تناسب حياتك.',
-    hero_image_url: null,
+    hero_image_url: '/images/specialties/hero-nutrition.png',
     conditions: [
       condition('weight', 'Weight management', 'التحكم في الوزن'),
       condition('diabetes', 'Diabetes nutrition', 'تغذية مرضى السكر'),
@@ -127,7 +127,7 @@ export const SPECIALTY_EXTRAS: Record<Specialty, DetailExtras> = {
   derm: {
     tagline_en: 'Healthy skin, lasting confidence.',
     tagline_ar: 'بشرة صحية، وثقة تدوم.',
-    hero_image_url: null,
+    hero_image_url: '/images/specialties/hero-derm.png',
     conditions: [
       condition('acne', 'Acne', 'حب الشباب'),
       condition('pigmentation', 'Pigmentation', 'التصبغات'),
@@ -140,7 +140,7 @@ export const SPECIALTY_EXTRAS: Record<Specialty, DetailExtras> = {
   internal: {
     tagline_en: 'Comprehensive care for your overall health.',
     tagline_ar: 'رعاية شاملة لصحتك كلها.',
-    hero_image_url: null,
+    hero_image_url: '/images/specialties/hero-internal.png',
     conditions: [
       condition('blood-pressure', 'Blood pressure', 'الضغط'),
       condition('diabetes-care', 'Diabetes', 'السكر'),
@@ -154,7 +154,36 @@ export const SPECIALTY_EXTRAS: Record<Specialty, DetailExtras> = {
   },
 };
 
+// الأيقونات المنقطة اللي وصلت (16 · 2.x — L-48): public/images/conditions/<تخصص>-<id>.png. الجلدية لسه
+const CONDITION_ICONS = new Set([
+  'physio-back-neck',
+  'physio-sports',
+  'physio-post-surgery',
+  'physio-knee-joint',
+  'physio-posture',
+  'physio-neuro',
+  'nutrition-weight',
+  'nutrition-diabetes',
+  'nutrition-sports-nutrition',
+  'nutrition-pregnancy',
+  'internal-blood-pressure',
+  'internal-diabetes-care',
+  'internal-digestive',
+  'internal-checkup',
+]);
+
 export const specialtyDetailMock = (slug: Specialty): PublicSpecialtyDetail | undefined => {
   const base = specialtiesMock.data.find((item) => item.slug === slug);
-  return base && { ...base, ...SPECIALTY_EXTRAS[slug] };
+  if (!base) return undefined;
+  const extras = SPECIALTY_EXTRAS[slug];
+  return {
+    ...base,
+    ...extras,
+    conditions: extras.conditions.map((item) => ({
+      ...item,
+      icon_url: CONDITION_ICONS.has(`${slug}-${item.id}`)
+        ? `/images/conditions/${slug}-${item.id}.png`
+        : null,
+    })),
+  };
 };
