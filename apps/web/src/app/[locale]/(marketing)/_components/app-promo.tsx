@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import { Play, Smartphone } from 'lucide-react';
 import { Container } from '@/components/shared/container';
 import { Logo } from '@/components/shared/logo';
+import { StoreBadges } from '@/components/shared/store-badges';
 
 /**
  * شريط التطبيق (A2). التدرّج هنا من Deep Teal لـOcean عشان الكلام الأبيض يبقى مقروء (AA)،
  * لأن الأبيض على الأكوا contrast بتاعه 2.2 بس (DEC-23).
- * علامات المتاجر الرسمية هتتحط لما التطبيق ينزل، ولحد كده "قريبًا".
+ * البادجات في StoreBadges (مشتركة مع صفحة التطبيق).
  */
 export async function AppPromo() {
   const t = await getTranslations('appPromo');
@@ -35,23 +35,8 @@ export async function AppPromo() {
             <p className="max-w-md text-white/90">{t('body')}</p>
           </div>
 
-          <div className="flex flex-col gap-3 pb-2 lg:pb-0">
-            <p className="text-sm font-semibold">{t('comingSoon')}</p>
-            <div className="flex flex-wrap gap-3">
-              {[
-                { key: 'appStore', Icon: Smartphone },
-                { key: 'googlePlay', Icon: Play },
-              ].map(({ key, Icon }) => (
-                <span
-                  key={key}
-                  aria-disabled
-                  className="inline-flex h-12 items-center gap-2 rounded-lg border border-white/40 bg-ink/80 px-4 text-sm font-semibold"
-                >
-                  <Icon className="size-5" aria-hidden />
-                  {t(key)}
-                </span>
-              ))}
-            </div>
+          <div className="pb-2 lg:pb-0">
+            <StoreBadges />
           </div>
         </div>
       </Container>

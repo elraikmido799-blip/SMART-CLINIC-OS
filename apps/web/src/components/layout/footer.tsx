@@ -34,6 +34,7 @@ const COLUMNS = [
       { key: 'faqs', href: '/faqs' },
       { key: 'contact', href: '/contact' },
       { key: 'book', href: '/book' },
+      { key: 'app', href: '/app' },
     ],
   },
 ] as const;

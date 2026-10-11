@@ -127,6 +127,7 @@
         "faqs": "FAQs",
         "contact": "Contact Us",
         "book": "Book Appointment",
+        "app": "Get the app",
         "offer": "Current offer"
       }
     },
@@ -452,5 +453,45 @@
     "formSubmit": "Register my interest",
     "interestLegend": "Which program interests you?",
     "metaDescription": "Oxygen Digital: online nutrition, physio at home, skin follow-up and chronic care programs with Oxygen specialists. Register your interest."
+  },
+  "appPage": {
+    "title": "The Oxygen app",
+    "heading": "Oxygen in your pocket",
+    "subtitle": "Book, get reminders, follow your plan and see your results — your whole Oxygen journey in one app.",
+    "notifyCta": "Notify me at launch",
+    "featuresTitle": "What you can do in the app",
+    "features": {
+      "book": {
+        "title": "Book in seconds",
+        "body": "Pick a specialty, a branch or online, and a time that suits you."
+      },
+      "reminders": {
+        "title": "Reminders",
+        "body": "Appointment and exercise reminders, so nothing slips."
+      },
+      "passport": {
+        "title": "Health Passport",
+        "body": "Your visits, measurements and progress in one timeline."
+      },
+      "plans": {
+        "title": "Plans and exercise videos",
+        "body": "Your meal plan and your physio exercises, with videos."
+      },
+      "documents": {
+        "title": "Results and documents",
+        "body": "Lab results, reports and prescriptions, always with you."
+      },
+      "invoices": {
+        "title": "Packages and invoices",
+        "body": "Remaining sessions, payments and invoices in one place."
+      }
+    },
+    "portalTitle": "Can’t wait? Use the web portal",
+    "portalBody": "Everything the app does is already in your patient portal on the web. Sign in with your mobile number.",
+    "portalCta": "Open the patient portal",
+    "formTitle": "Tell me when it’s out",
+    "formSubtitle": "We will send you the download link as soon as the app launches.",
+    "formSubmit": "Notify me",
+    "metaDescription": "The Oxygen app: book appointments, get reminders, follow your plan and see your results. Coming soon to the App Store and Google Play."
   }
 }
