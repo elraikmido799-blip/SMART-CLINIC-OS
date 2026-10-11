@@ -9,8 +9,8 @@ import { AppPromo } from './_components/app-promo';
 import { BranchesSection } from './_components/branches-section';
 import { DoctorsSection } from './_components/doctors-section';
 import { Hero } from './_components/hero';
-import { JourneySection } from './_components/journey-section';
-import { ProgramsSection } from './_components/programs-section';
+import { JourneySection } from '@/components/shared/journey-section';
+import { ProgramsSection } from '@/components/shared/programs-section';
 import { SpecialtiesSection } from './_components/specialties-section';
 import { TrustBar } from './_components/trust-bar';
 

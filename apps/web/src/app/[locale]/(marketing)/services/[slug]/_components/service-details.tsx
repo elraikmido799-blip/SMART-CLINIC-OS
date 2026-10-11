@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { Check } from 'lucide-react';
 import { isLocale } from '@oxygen/shared';
 import { specialtyStyles } from '@/components/shared/brand';
+import { DottedSteps } from '@/components/shared/dotted-steps';
 import { cn } from '@/lib/utils';
 import type { PublicServiceDetail } from '@/types/public';
 
@@ -39,23 +40,9 @@ export async function ServiceDetails({ service }: { service: PublicServiceDetail
           <h2 id="expect-title" className="font-heading text-2xl font-bold text-ink">
             {t('expect')}
           </h2>
-          {/* خطوات منقطة زي Secret Seven: دواير منقطة متوصلة بخط منقط (A0) */}
-          <ol className="mt-5">
-            {expect.map((item, index) => (
-              <li key={item} className="relative flex gap-4 pb-6 last:pb-0">
-                {index < expect.length - 1 && (
-                  <span
-                    aria-hidden
-                    className="absolute start-[1.125rem] top-10 bottom-1 border-s-2 border-dotted border-primary/40"
-                  />
-                )}
-                <span className="grid size-9 shrink-0 place-items-center rounded-full border-2 border-dotted border-primary bg-card text-sm font-bold text-primary">
-                  {index + 1}
-                </span>
-                <p className="pt-1.5 text-base text-ink">{item}</p>
-              </li>
-            ))}
-          </ol>
+          <div className="mt-5">
+            <DottedSteps steps={expect.map((item) => ({ id: item, title: item }))} />
+          </div>
         </section>
       )}
 

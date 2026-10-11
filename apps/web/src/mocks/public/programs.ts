@@ -7,6 +7,7 @@ export const programsMock: ListResponse<PublicProgram> = {
   data: [
     {
       id: 'prog-online-nutrition',
+      slug: 'online-nutrition',
       specialty: 'nutrition',
       name_en: 'Online Nutrition',
       name_ar: 'التغذية أونلاين',
@@ -18,6 +19,7 @@ export const programsMock: ListResponse<PublicProgram> = {
     },
     {
       id: 'prog-physio-home',
+      slug: 'physio-home',
       specialty: 'physio',
       name_en: 'Physio Home',
       name_ar: 'علاج طبيعي في البيت',
@@ -29,6 +31,7 @@ export const programsMock: ListResponse<PublicProgram> = {
     },
     {
       id: 'prog-derm-follow-up',
+      slug: 'derm-follow-up',
       specialty: 'derm',
       name_en: 'Derm Follow-up',
       name_ar: 'متابعة الجلدية',
@@ -40,6 +43,7 @@ export const programsMock: ListResponse<PublicProgram> = {
     },
     {
       id: 'prog-chronic-care',
+      slug: 'chronic-care',
       specialty: 'internal',
       name_en: 'Chronic Care',
       name_ar: 'رعاية الأمراض المزمنة',

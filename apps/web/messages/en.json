@@ -71,7 +71,8 @@
   "programs": {
     "title": "Online Programs",
     "subtitle": "Flexible, expert-led programs — from the comfort of your home.",
-    "priceFrom": "From {price} / month"
+    "priceFrom": "From {price} / month",
+    "learnMore": "Learn more"
   },
   "doctors": {
     "title": "Our Doctors",
@@ -253,5 +254,23 @@
     "photos": "Inside the clinic",
     "bannerTitle": "Visit us at Oxygen {name}.",
     "metaDescription": "Oxygen {name}: {address}. Open daily {hours}."
+  },
+  "programsPage": {
+    "title": "Our programs",
+    "subtitle": "A signature journey in the clinic, and flexible programs from home.",
+    "metaDescription": "The Secret Seven journey and Oxygen online programs for nutrition, physiotherapy, dermatology and internal medicine."
+  },
+  "programPage": {
+    "forWhom": "Who is it for?",
+    "stagesSignature": "The seven stages",
+    "stagesOnline": "How it works",
+    "includes": "What you get",
+    "priceFrom": "From {price} / month",
+    "priceOnAssessment": "Price set after your assessment",
+    "startCta": "Start with an assessment",
+    "joinCta": "Join the program",
+    "note": "Every body is different: your plan and timeline are set by your specialist after the assessment.",
+    "bannerTitle": "Ready to start your journey?",
+    "metaDescription": "{name} at Oxygen — {summary}"
   }
 }

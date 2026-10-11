@@ -4,6 +4,7 @@ import { brandButton } from '@/components/shared/brand';
 import { Container } from '@/components/shared/container';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { Link } from '@/i18n/navigation';
+import { SECRET_SEVEN_SLUG } from '@/lib/programs';
 import { cn } from '@/lib/utils';
 import { JourneySteps } from './journey-steps';
 
@@ -34,7 +35,7 @@ export async function JourneySection() {
             className="lg:mx-auto lg:text-center xl:mx-0 xl:text-start"
           />
           <Link
-            href="/programs/secret-seven"
+            href={`/programs/${SECRET_SEVEN_SLUG}`}
             className={cn(brandButton({ tone: 'primary' }), 'group mt-6 w-full sm:w-auto')}
           >
             {t('cta')}

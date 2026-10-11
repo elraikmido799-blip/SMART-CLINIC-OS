@@ -67,7 +67,7 @@ export async function ServicesSection({ specialty, programs }: ServicesSectionPr
               />
             )}
             <Link
-              href="/programs"
+              href={`/programs/${program.slug}`}
               className="mt-2 inline-flex h-11 items-center gap-1 text-sm font-semibold text-primary hover:underline"
             >
               {t('learnMore')}

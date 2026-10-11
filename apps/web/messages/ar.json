@@ -71,7 +71,8 @@
   "programs": {
     "title": "البرامج الأونلاين",
     "subtitle": "برامج مرنة مع متخصصين، وإنت في بيتك.",
-    "priceFrom": "تبدأ من {price} / الشهر"
+    "priceFrom": "تبدأ من {price} / الشهر",
+    "learnMore": "اعرف أكتر"
   },
   "doctors": {
     "title": "أطباؤنا",
@@ -244,5 +245,23 @@
     "photos": "من جوه العيادة",
     "bannerTitle": "مستنيينك في Oxygen {name}.",
     "metaDescription": "Oxygen {name}: {address}. مفتوح كل يوم {hours}."
+  },
+  "programsPage": {
+    "title": "برامجنا",
+    "subtitle": "رحلة مميزة في العيادة، وبرامج مرنة من البيت.",
+    "metaDescription": "رحلة Secret Seven وبرامج Oxygen الأونلاين للتغذية والعلاج الطبيعي والجلدية والباطنة."
+  },
+  "programPage": {
+    "forWhom": "مناسب لمين؟",
+    "stagesSignature": "المراحل السبعة",
+    "stagesOnline": "بيمشي إزاي",
+    "includes": "هتاخد إيه",
+    "priceFrom": "من {price} / شهر",
+    "priceOnAssessment": "السعر بيتحدد بعد التقييم",
+    "startCta": "ابدأ بالتقييم",
+    "joinCta": "اشترك في البرنامج",
+    "note": "كل جسم مختلف: خطتك ومدتها بيحددهم الأخصائي بعد التقييم.",
+    "bannerTitle": "جاهز تبدأ رحلتك؟",
+    "metaDescription": "{name} في Oxygen — {summary}"
   }
 }

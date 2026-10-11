@@ -92,6 +92,7 @@ export const publicBranchDetailSchema = publicBranchSchema.extend({
 
 export const publicProgramSchema = z.object({
   id: z.string(),
+  slug: z.string(),
   specialty: specialtySchema,
   name_ar: z.string(),
   name_en: z.string(),
@@ -173,6 +174,38 @@ export const publicServiceDetailSchema = publicServiceSchema.extend({
   faqs: z.array(faqSchema),
 });
 
+/**
+ * صفحة البرنامج (GET /public/programs/{slug}): البرامج الأونلاين + Secret Seven.
+ * Secret Seven مش في الـList (مش برنامج أونلاين، وبيجمع أكتر من تخصص)، فالتخصص والسعر ممكن يبقوا null.
+ */
+export const publicProgramDetailSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  specialty: specialtySchema.nullable(),
+  name_ar: z.string(),
+  name_en: z.string(),
+  summary_ar: z.string(),
+  summary_en: z.string(),
+  price_from_minor: z.number().int().nonnegative().nullable(),
+  currency: z.string(),
+  image_url: z.string().nullable(),
+  for_whom_ar: z.array(z.string()),
+  for_whom_en: z.array(z.string()),
+  // المراحل بالترتيب: Secret Seven = 7، والبرامج الأونلاين = خطوات "بيمشي إزاي"
+  stages: z.array(
+    z.object({
+      id: z.string(),
+      title_ar: z.string(),
+      title_en: z.string(),
+      body_ar: z.string(),
+      body_en: z.string(),
+      includes_ar: z.array(z.string()),
+      includes_en: z.array(z.string()),
+    }),
+  ),
+  faqs: z.array(faqSchema),
+});
+
 // محتوى الصفحة الرئيسية اللي بيتغير من الداشبورد
 export const homeContentSchema = z.object({
   hero_image_url: z.string(),
@@ -190,6 +223,7 @@ export type PublicDoctorDetail = z.infer<typeof publicDoctorDetailSchema>;
 export type PublicBranch = z.infer<typeof publicBranchSchema>;
 export type PublicBranchDetail = z.infer<typeof publicBranchDetailSchema>;
 export type PublicProgram = z.infer<typeof publicProgramSchema>;
+export type PublicProgramDetail = z.infer<typeof publicProgramDetailSchema>;
 export type PublicSpecialtyDetail = z.infer<typeof publicSpecialtyDetailSchema>;
 export type PublicFaq = z.infer<typeof faqSchema>;
 export type PublicService = z.infer<typeof publicServiceSchema>;

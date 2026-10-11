@@ -97,7 +97,7 @@ apps/web/
 │   │       ├── (marketing)/     الموقع التعريفي (القوسين = مش بيظهروا في الـURL)
 │   │       │   ├── layout.tsx   Navbar + Footer + زرار واتساب + شريط النت المقطوع
 │   │       │   ├── page.tsx     الصفحة الرئيسية W-01 (A1 · A2 · A3)
-│   │       │   ├── _components/ أقسام الرئيسية: hero · booking-bar · trust-bar · specialties · journey (+ journey-steps) · programs · doctors · branches · app-promo
+│   │       │   ├── _components/ أقسام الرئيسية: hero · booking-bar · trust-bar · specialties · doctors · branches · app-promo
 │   │       │   ├── specialties/ W-03 (A4 · A8): page.tsx القايمة · [slug]/page.tsx صفحة التخصص
 │   │       │   │   └── [slug]/_components/ specialty-hero · conditions-section · services-section (+ البرنامج)
 │   │       │   ├── services/[slug]/ W-04 صفحة الخدمة
@@ -105,13 +105,14 @@ apps/web/
 │   │       │   ├── doctors/     W-05 (A5): page.tsx القايمة بالفلاتر (+ _components/branch-filter)
 │   │       │   │   └── [slug]/      البروفايل: page.tsx + _components/ doctor-profile-hero · doctor-booking-card
 │   │       │   ├── branches/    W-06: page.tsx الخريطة + الفروع · [slug]/ صفحة الفرع (+ _components/branch-hero)
+│   │       │   ├── programs/    W-09: page.tsx (Secret Seven + الأونلاين) · [slug]/ صفحة البرنامج (+ _components/program-hero)
 │   │       │   └── …            ⏳ about · contact · learn · … (المرحلة 4)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
 │   │   └── public/              Functions على السيرفر للصفحات التعريفية (DEC-11 · DEC-30)
 │   │       ├── fetch-public.ts  GET /public/* ← Result (ok أو نوع الخطأ) + Schema + Mocks + timeout
-│   │       └── specialties · doctors · branches · programs · content .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug)) · services (getServices · getService) · doctors (+ getDoctor) · branches (+ getBranch)
+│   │       └── specialties · doctors · branches · programs · content .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug)) · services (getServices · getService) · doctors (+ getDoctor) · branches (+ getBranch) · programs (+ getProgram)
 │   ├── components/
 │   │   ├── ui/                  Components بتاعة shadcn (بنسيبها زي ما الـCLI عملها)
 │   │   ├── shared/              Components بتستخدمها أكتر من صفحة
@@ -121,6 +122,8 @@ apps/web/
 │   │   │   ├── faq-section · booking-banner · doctors-grid-section · service-list   أقسام بتتكرر في صفحات المرحلة 4
 │   │   │   ├── select-styles.ts شكل خانات الاختيار (شريط الحجز + فلتر الفروع)
 │   │   │   ├── branches-map.tsx الخريطة + كروت الفروع (الرئيسية وصفحة الفروع)
+│   │   │   ├── journey-section (+ journey-steps) · programs-section   Secret Seven والبرامج الأونلاين (الرئيسية وصفحة البرامج)
+│   │   │   ├── dotted-steps.tsx خطوات مرقّمة منقطة بالطول (الخدمة ومراحل البرنامج)
 │   │   │   ├── section-state · retry-button   حالات الخطأ والفاضي في أي قسم
 │   │   │   ├── offline-notice.tsx شريط "إنت مش متصل بالنت"
 │   │   │   ├── reveal-group.tsx Lists عناصرها بتظهر ورا بعض (RevealGroup · RevealItem)
@@ -133,6 +136,7 @@ apps/web/
 │   │   └── navigation.ts        Link · useRouter · usePathname (استخدمهم بدل بتوع Next)
 │   ├── lib/
 │   │   ├── maps.ts             لينك Google Maps Embed (الرئيسية والفروع)
+│   │   ├── programs.ts         SECRET_SEVEN_SLUG
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── fonts.ts             Inter + IBM Plex Sans Arabic (الكلام) · Montserrat + Alexandria (العناوين — DEC-29)
 │   │   ├── whatsapp.ts          لينك واتساب برسالة جاهزة

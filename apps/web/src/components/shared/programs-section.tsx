@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { Check } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { formatMoney, isLocale, localized } from '@oxygen/shared';
 import type { PublicResult } from '@/api/public/fetch-public';
 import { specialtyIcon, specialtyStyles } from '@/components/shared/brand';
@@ -8,6 +8,7 @@ import { Container } from '@/components/shared/container';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { RevealGroup, RevealItem } from '@/components/shared/reveal-group';
 import { SectionState } from '@/components/shared/section-state';
+import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import type { PublicProgram } from '@/types/public';
 
@@ -33,7 +34,7 @@ export async function ProgramsSection({ programs }: { programs: PublicResult<Pub
                 const features = locale === 'ar' ? program.features_ar : program.features_en;
                 return (
                   <RevealItem key={program.id}>
-                    <article className="flex h-full flex-col rounded-lg border border-border bg-card p-5 transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-lg">
+                    <article className="group relative flex h-full flex-col rounded-lg border border-border bg-card p-5 transition-[transform,box-shadow,border-color] hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg has-[a:focus-visible]:ring-3 has-[a:focus-visible]:ring-ring/50">
                       <div className="flex items-center gap-3">
                         <Image
                           src={specialtyIcon(program.specialty)}
@@ -42,7 +43,7 @@ export async function ProgramsSection({ programs }: { programs: PublicResult<Pub
                           height={40}
                           className="size-10"
                         />
-                        <h3 className="font-semibold text-ink">
+                        <h3 className="font-semibold text-ink group-hover:text-primary">
                           {localized(program, 'name', locale)}
                         </h3>
                       </div>
@@ -62,6 +63,18 @@ export async function ProgramsSection({ programs }: { programs: PublicResult<Pub
                           price: formatMoney(program.price_from_minor, program.currency, locale),
                         })}
                       </p>
+                      {/* الكارت كله بيفتح صفحة البرنامج، زي كارت الطبيب (DEC-34) */}
+                      <Link
+                        href={`/programs/${program.slug}`}
+                        className="mt-3 inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-primary after:absolute after:inset-0 after:rounded-lg focus-visible:outline-none"
+                      >
+                        {t('learnMore')}
+                        <span className="sr-only"> — {localized(program, 'name', locale)}</span>
+                        <ArrowRight
+                          className="size-4 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5"
+                          aria-hidden
+                        />
+                      </Link>
                     </article>
                   </RevealItem>
                 );

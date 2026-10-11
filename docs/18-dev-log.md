@@ -55,6 +55,7 @@
 | [L-41](#l-41) | صفحة الأطباء بالفلاتر + بروفايل الطبيب (A5) | 4.3 | 2026-10-11 | ✅ |
 | [L-42](#l-42) | صفحة الفروع + صفحة كل فرع | 4.4 | 2026-10-11 | ✅ |
 | [L-43](#l-43) | كارت الطبيب أوضح: الكارت كله للبروفايل + "احجز" واحد + شكل واحد · إصلاح P-18 | 4.3 | 2026-10-11 | ✅ |
+| [L-44](#l-44) | صفحة البرامج + صفحة كل برنامج (Secret Seven + الأونلاين) | 4.5 | 2026-10-11 | ✅ |
 
 ---
 
@@ -857,6 +858,32 @@
   - صور للرئيسية والتخصص على 1280، والرئيسية العربي على 320. مفيش Scroll بالعرض.
   - `tsc` و`eslint` من غير أخطاء.
 - **اتعلمنا:** صور Edge headless العادية مبتشغلش حركة الظهور مع الـScroll. من هنا ورايح التجربة بالـScript ده، مش بالصورة الثابتة بس.
+
+### L-44 · صفحة البرامج + صفحة كل برنامج
+
+- **اتعمل** ([DEC-35](19-decisions.md#dec-35)):
+  - **`/programs`:** العنوان + Secret Seven (نفس قسم الرئيسية) + البرامج الأونلاين. الكروت كلها بتتداس، و"اعرف أكتر".
+  - **`/programs/[slug]`:**
+    - رأس بلون التخصص (Secret Seven على الـMist برمز Oxygen، وPhysio Home بصورته).
+    - "مناسب لمين".
+    - المراحل بخطوات منقطة. في Secret Seven آخر خطوة بتقفل بلون الأوشن، وكل مرحلة فيها "هتاخد إيه".
+    - كارت Sticky: السعر أو "بيتحدد بعد التقييم"، والزرار الدهبي، والواتساب، وسطر "كل جسم مختلف".
+    - الأسئلة · شريط الحجز.
+  - **اتنقل للمشترك:**
+    - `journey-section` و`journey-steps` و`programs-section` (من أقسام الرئيسية).
+    - `dotted-steps` جديد: الخدمة بقت بتستخدمه كمان.
+  - كارت البرنامج في صفحة التخصص بقى بيودّي لصفحة البرنامج نفسه.
+- **الملفات:** `app/[locale]/(marketing)/programs/**` · `components/shared/{journey-section,journey-steps,programs-section,dotted-steps}.tsx` · `services/[slug]/_components/service-details.tsx` · `specialties/[slug]/_components/services-section.tsx` · `page.tsx` (الرئيسية) · `api/public/programs.ts` · `mocks/public/{programs,program-details}.ts` · `types/public.ts` · `lib/programs.ts` · `messages/*.json`.
+- **اتأكدنا إزاي:**
+  - `tsc` و`eslint` من غير أخطاء.
+  - الـ200 و404:
+    - `/en|ar/programs` · `/en|ar/programs/secret-seven` · `physio-home` · `chronic-care` = 200.
+    - `/en/programs/nope` = 404.
+    - الرئيسية والتخصص والخدمة لسه 200.
+  - **Edge حقيقي (puppeteer):**
+    - 4/4 كروت ظاهرة.
+    - الضغط على أيقونة الكارت فتح `/en/programs/online-nutrition`.
+    - Secret Seven على 1280، وبالعربي على 320 من غير Scroll بالعرض.
 
 ---
 
