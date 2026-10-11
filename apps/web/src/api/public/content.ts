@@ -1,5 +1,5 @@
-import { aboutContentMock, homeContentMock } from '@/mocks/public/content';
-import { aboutContentSchema, homeContentSchema } from '@/types/public';
+import { aboutContentMock, homeContentMock, onlineConsultationMock } from '@/mocks/public/content';
+import { aboutContentSchema, homeContentSchema, onlineConsultationSchema } from '@/types/public';
 import { fetchPublic } from './fetch-public';
 
 export const getHomeContent = () =>
@@ -7,3 +7,8 @@ export const getHomeContent = () =>
 
 export const getAboutContent = () =>
   fetchPublic('content/about', aboutContentSchema, { data: aboutContentMock });
+
+export const getOnlineConsultation = () =>
+  fetchPublic('content/online-consultation', onlineConsultationSchema, {
+    data: onlineConsultationMock,
+  });

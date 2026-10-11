@@ -61,6 +61,7 @@
 | [L-47](#l-47) | المقالات: القايمة بفلتر التخصص + صفحة المقالة (Markdown) | 4.8 | 2026-10-11 | ✅ |
 | [L-48](#l-48) | صور صفحات المرحلة 4: صور التخصصات + أيقونات "بنعالج إيه" + غلاف + الدكتور الافتراضي | 2 · 4 | 2026-10-11 | ✅ |
 | [L-49](#l-49) | صفحة العروض (Template) + الفورم بقى مشترك (LeadForm) | 4.9 | 2026-10-11 | ✅ |
+| [L-51](#l-51) | صفحة الاستشارة الأونلاين | 4.10 | 2026-10-11 | ✅ |
 | [L-50](#l-50) | لينك "العرض الحالي" في الـFooter + خطوة 4.14 (شريط العروض في الرئيسية) اتضافت للخطة | 4.9 | 2026-10-11 | ✅ |
 
 ---
@@ -1034,6 +1035,21 @@
 - **الملفات:** `components/layout/footer.tsx` · `lib/offers.ts` · `types/public.ts` · `mocks/public/offers.ts` · `offers/[slug]/page.tsx` · `messages/*.json`.
 - **اتأكدنا إزاي:** `tsc` و`eslint` من غير أخطاء · الـFooter في `/ar` فيه `href="/ar/offers/physio-start"`.
 - محتاج من مبرمج الباك: `ends_at` في رد `GET /public/offers` (القايمة) كمان.
+
+### L-51 · صفحة الاستشارة الأونلاين
+
+- **اتعمل:** `/online-consultation` (W-08 · WEB-06). مفيش صورة تصميم ([DEC-32](19-decisions.md#dec-32))، وصورة 2.5 لسه مجتش. فيها:
+  - **Hero على الـMist:** شيب "مكالمة فيديو · من أي مكان"، والعنوان، و"تبدأ من 400 ج.م" (أقل سعر من الداتا)، والزرار الدهبي "احجز استشارة أونلاين"، وواتساب برسالة جاهزة. الصورة: `image_url` لو موجودة، وإلا رمز Oxygen وجنبه دايرة فيها أيقونة فيديو.
+  - **بتشتغل إزاي:** 3 كروت مرقّمة (احجز وادفع ← يوصلك اللينك ← ادخل المكالمة).
+  - **التخصصات المتاحة:** كارت لكل تخصص بلونه: الأيقونة والمدة والسعر. الكارت كله بيفتح `/book?mode=online&specialty=…` (نفس فكرة [DEC-34](19-decisions.md#dec-34)).
+  - **هتحتاج إيه** (4 حاجات) + "محتاج كشف في العيادة؟" + "مش للطوارئ (123)".
+  - الأسئلة · شريط الحجز (`?mode=online`).
+  - لينك "الاستشارة الأونلاين" في عمود "العيادة" في الـFooter.
+- **الداتا:** `GET /public/content/online-consultation` (`onlineConsultationSchema`): الصورة، والعملة، و`specialties[{specialty, price_minor, duration_minutes}]`، والأسئلة. الأسعار وهمية لحد ما Oxygen يبعتوا (16 · 0.2). الخطوات والمتطلبات كلام ثابت في `messages`.
+- **للحجز (5.1):** الـWizard لازم يفهم `?mode=online`: من غير خطوة الفرع، والميعاد مكالمة فيديو.
+- **الملفات:** `app/[locale]/(marketing)/online-consultation/page.tsx` · `api/public/content.ts` · `mocks/public/content.ts` · `types/public.ts` · `components/layout/footer.tsx` · `messages/*.json`.
+- **اتأكدنا إزاي:** `tsc` و`eslint` من غير أخطاء · `/en|ar/online-consultation` = 200 · Edge حقيقي: 1280 إنجليزي، و320 عربي من غير Scroll بالعرض (`scrollWidth = 320`)، ومفيش Errors في الـConsole.
+- محتاج من مبرمج الباك: `GET /public/content/online-consultation` بنفس شكل `onlineConsultationSchema`.
 
 ---
 

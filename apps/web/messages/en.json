@@ -111,7 +111,8 @@
         "title": "Clinic",
         "branches": "Branches",
         "doctors": "Doctors",
-        "about": "About Us"
+        "about": "About Us",
+        "online": "Online consultation"
       },
       "programs": {
         "title": "Programs",
@@ -361,5 +362,46 @@
     "endedBook": "Book an appointment",
     "endedContact": "Ask about current offers",
     "terms": "Terms & conditions"
+  },
+  "onlineConsultationPage": {
+    "title": "Online consultation",
+    "badge": "Video call · from anywhere",
+    "heading": "See an Oxygen specialist from home",
+    "subtitle": "A private video call with a nutrition, physiotherapy, dermatology or internal medicine specialist — the same team as our clinics, without the traffic.",
+    "priceFrom": "From {price} per consultation",
+    "cta": "Book an online consultation",
+    "whatsappMessage": "Hello Oxygen, I'd like to book an online consultation.",
+    "howTitle": "How it works",
+    "steps": {
+      "book": {
+        "title": "Book and pay",
+        "body": "Choose the specialty and a time that suits you, then pay online."
+      },
+      "link": {
+        "title": "Get your link",
+        "body": "We send the video link by WhatsApp and SMS, with a reminder before the call."
+      },
+      "call": {
+        "title": "Join the call",
+        "body": "Open the link from your phone or laptop. Your plan and notes appear in your patient portal."
+      }
+    },
+    "specialtiesTitle": "Available specialties",
+    "specialtiesSubtitle": "Prices include the consultation and a written plan in your portal.",
+    "minutes": "{minutes} min video call",
+    "bookSpecialty": "Book online",
+    "needsTitle": "What you need",
+    "needs": {
+      "device": "A phone or laptop with a camera",
+      "internet": "A stable internet connection",
+      "place": "A quiet place with good light",
+      "reports": "Your recent lab results or reports, if you have any"
+    },
+    "inPersonTitle": "Need a physical exam?",
+    "inPersonBody": "If your specialist needs to see you in person, we will help you book a visit at the closest branch.",
+    "emergencyTitle": "Not for emergencies",
+    "emergencyBody": "For severe pain, chest pain or breathing trouble, call 123 or go to the nearest emergency room.",
+    "bannerTitle": "Your specialist is one call away.",
+    "metaDescription": "Book a video consultation with an Oxygen specialist in nutrition, physiotherapy, dermatology or internal medicine — from anywhere in Egypt."
   }
 }

@@ -270,6 +270,21 @@ export const publicOfferDetailSchema = publicOfferSchema.extend({
 });
 
 // صفحة "عن Oxygen" (GET /public/content/about) — بتتغير من الداشبورد. الأرقام من content/home
+// صفحة الاستشارة الأونلاين W-08: السعر والمدة لكل تخصص متاح أونلاين + الأسئلة
+export const onlineConsultationSchema = z.object({
+  // null = لسه مفيش صورة (16 · 2.5)، والـHero بيعرض رمز Oxygen
+  image_url: z.string().nullable(),
+  currency: z.string(),
+  specialties: z.array(
+    z.object({
+      specialty: specialtySchema,
+      price_minor: z.number().int().nonnegative(),
+      duration_minutes: z.number().int().positive(),
+    }),
+  ),
+  faqs: z.array(faqSchema),
+});
+
 export const aboutContentSchema = z.object({
   intro_ar: z.string(),
   intro_en: z.string(),
@@ -304,6 +319,7 @@ export type PublicFaq = z.infer<typeof faqSchema>;
 export type PublicService = z.infer<typeof publicServiceSchema>;
 export type PublicServiceDetail = z.infer<typeof publicServiceDetailSchema>;
 export type HomeContent = z.infer<typeof homeContentSchema>;
+export type OnlineConsultation = z.infer<typeof onlineConsultationSchema>;
 export type AboutContent = z.infer<typeof aboutContentSchema>;
 export type PublicOffer = z.infer<typeof publicOfferSchema>;
 export type PublicOfferDetail = z.infer<typeof publicOfferDetailSchema>;

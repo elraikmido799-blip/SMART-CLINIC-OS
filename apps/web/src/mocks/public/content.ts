@@ -1,4 +1,5 @@
-import type { AboutContent, HomeContent } from '@/types/public';
+import type { AboutContent, HomeContent, OnlineConsultation } from '@/types/public';
+import { faq } from './specialty-details';
 
 // نفس رد GET /public/content/home. الأرقام الحقيقية جاية من Oxygen (16 · 0.2)
 export const homeContentMock: HomeContent = {
@@ -54,4 +55,46 @@ export const aboutContentMock: AboutContent = {
     },
   ],
   photos: [],
+};
+
+// نفس رد GET /public/content/online-consultation. الأسعار الحقيقية جاية من Oxygen (16 · 0.2)
+export const onlineConsultationMock: OnlineConsultation = {
+  image_url: null,
+  currency: 'EGP',
+  specialties: [
+    { specialty: 'nutrition', price_minor: 40000, duration_minutes: 30 },
+    { specialty: 'physio', price_minor: 45000, duration_minutes: 30 },
+    { specialty: 'derm', price_minor: 50000, duration_minutes: 20 },
+    { specialty: 'internal', price_minor: 50000, duration_minutes: 20 },
+  ],
+  faqs: [
+    faq(
+      'online-how-join',
+      'How do I join the call?',
+      'بدخل المكالمة إزاي؟',
+      'After you pay, we send you a video link by WhatsApp and SMS. Open it from your phone or laptop at your appointment time — no app needed.',
+      'بعد ما تدفع بنبعتلك لينك الفيديو على واتساب وفي رسالة. افتحه من موبايلك أو اللابتوب في ميعادك، من غير ما تنزّل أي برنامج.',
+    ),
+    faq(
+      'online-reports',
+      'Can I share my lab results or reports?',
+      'ينفع أبعت التحاليل أو التقارير؟',
+      'Yes. Upload them in your patient portal before the call, or show them to the doctor on camera.',
+      'أيوه. ارفعها في البوابة بتاعتك قبل المكالمة، أو وريها للدكتور في الكاميرا.',
+    ),
+    faq(
+      'online-in-person',
+      'What if I need to be examined in person?',
+      'ولو محتاج كشف في العيادة؟',
+      'Your specialist will tell you, and we will help you book a visit at the branch closest to you.',
+      'الدكتور هيقولك، وإحنا هنساعدك تحجز زيارة في أقرب فرع ليك.',
+    ),
+    faq(
+      'online-reschedule',
+      'Can I reschedule?',
+      'ينفع أغيّر الميعاد؟',
+      'Yes, from your patient portal, up to 6 hours before the call.',
+      'أيوه، من البوابة بتاعتك، لحد قبل المكالمة بـ6 ساعات.',
+    ),
+  ],
 };

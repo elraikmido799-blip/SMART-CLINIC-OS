@@ -15,6 +15,7 @@ const COLUMNS = [
       { key: 'branches', href: '/branches' },
       { key: 'doctors', href: '/doctors' },
       { key: 'about', href: '/about' },
+      { key: 'online', href: '/online-consultation' },
     ],
   },
   {
