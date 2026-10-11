@@ -111,16 +111,19 @@ apps/web/
 │   │       │   ├── offers/[slug]/ W-12: صفحة أي عرض (حملة إعلانية)
 │   │       │   ├── (الرئيسية) _components/offers-strip.tsx  شريط "عروض الشهر" (العروض الشغالة بس) — 4.14
 │   │       │   ├── online-consultation/ W-08: الاستشارة الأونلاين (السعر لكل تخصص من content/online-consultation)
+│   │       │   ├── book/        W-07: الحجز (page.tsx سيرفر + _components: الـWizard · الخطوات · الملخص · use-booking-state)
 │   │       │   ├── faqs/        الأسئلة الشائعة متجمعة (التخصصات + الأونلاين + Secret Seven) — L-56
 │   │       │   ├── digital/     W-10: صفحة واحدة (المنتجات = البرامج الأونلاين · فورم "مهتم بإيه؟") — DEC-37
 │   │       │   ├── app/         W-15: تحميل التطبيق (بادجات "قريبًا" + فورم "بلّغني")
 │   │       │   ├── (legal)/     W-18: privacy · terms · refund-policy · medical-disclaimer · delete-account (+ _components/legal-page = الـTemplate)
 │   │       │   ├── learn/       W-13: page.tsx (فلتر + كروت) · [slug]/ المقالة (+ _components/article-body: الـMarkdown)
-│   │       │   └── …            ⏳ (المرحلة 5: book · checkout · login)
+│   │       │   └── …            ⏳ (المرحلة 5: checkout · login)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
 │   │   ├── account-deletion.api.ts RTK Query: طلب حذف الحساب (W-18)
+│   │   ├── auth.api.ts          RTK Query: الدخول بالـOTP (getMe · sendOtp · verifyOtp · logout) — الحجز والدخول والبوابة
+│   │   ├── bookings.api.ts      RTK Query: المواعيد الفاضية · إنشاء حجز · حجز واحد — الحجز والدفع والبوابة (DEC-38)
 │   │   └── public/              Functions على السيرفر للصفحات التعريفية (DEC-11 · DEC-30)
 │   │       ├── fetch-public.ts  GET /public/* ← Result (ok أو نوع الخطأ) + Schema + Mocks + timeout
 │   │       └── specialties · doctors · branches · programs · content (home + about + online-consultation) .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug)) · services (getServices · getService) · doctors (+ getDoctor) · branches (+ getBranch) · programs (+ getProgram) · articles (getArticles · getArticle) · offers (getOffers · getOffer)
@@ -138,6 +141,7 @@ apps/web/
 │   │   │   ├── article-card · specialty-chips   كارت المقالة · فلتر التخصص (الأطباء والمقالات)
 │   │   │   ├── trust-bar.tsx    شريط الأرقام (الرئيسية و"عن Oxygen")
 │   │   │   ├── store-badges.tsx بادجات المتاجر "قريبًا" (شريط التطبيق في الرئيسية + صفحة التطبيق)
+│   │   │   ├── slot-picker · phone-otp-form   اختيار الميعاد (الحجز + التأجيل) · الدخول برقم الموبايل + OTP
 │   │   │   ├── markdown-body · field-message   كلام Markdown (المقالات والقانوني) · رسايل أخطاء الفورمات
 │   │   │   ├── dotted-steps.tsx خطوات مرقّمة منقطة بالطول (الخدمة ومراحل البرنامج)
 │   │   │   ├── section-state · retry-button   حالات الخطأ والفاضي في أي قسم
@@ -155,14 +159,16 @@ apps/web/
 │   │   ├── programs.ts         SECRET_SEVEN_SLUG
 │   │   ├── offers.ts           todayInCairo · isOfferActive (العرض شغال ولا خلص)
 │   │   ├── submit-error.ts     toSubmitError · isOffline (أي فورم بيبعت)
+│   │   ├── dates.ts            توقيت مصر: todayInCairo · addDays · cairoIso · cairoHourOf (صيفي وشتوي)
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── fonts.ts             Inter + IBM Plex Sans Arabic (الكلام) · Montserrat + Alexandria (العناوين — DEC-29)
 │   │   ├── whatsapp.ts          لينك واتساب برسالة جاهزة (+ رقم فرع)
-│   │   ├── phone.ts             normalizeEgyptianMobile: أي شكل للرقم ← "+201XXXXXXXXX"
+│   │   ├── phone.ts             normalizeEgyptianMobile: أي شكل للرقم ← "+201XXXXXXXXX" · formatEgyptianMobile للعرض
 │   │   ├── motion.ts            الحركات المتكررة (fadeUp · stagger)
 │   │   └── utils.ts             cn() — دمج الـClasses
 │   ├── mocks/
 │   │   ├── handlers.ts          الداتا الوهمية لـRTK Query (بيتمسح لما الـAPI يجهز)
+│   │   ├── db.ts · auth.ts · booking.ts · test-phones.ts   Mocks ليها حالة (localStorage: الجلسة والحجوزات) — DEC-38
 │   │   └── public/              ردود /public/* الوهمية بنفس شكل الـAPI ({ data: [...] })
 │   ├── store/
 │   │   ├── base-api.ts          RTK Query: الأساس اللي كل الـEndpoints بتتضاف عليه
@@ -170,6 +176,7 @@ apps/web/
 │   │   └── store-provider.tsx   بيدّي الـStore للصفحات
 │   ├── types/
 │   │   ├── lead.ts              شكل الـLead اللي بيتبعت
+│   │   ├── booking.ts · auth.ts · account.ts   Schemas الحجز والدخول + طلب حذف الحساب
 │   │   └── public.ts            Schemas (zod) + Types لداتا الصفحات التعريفية
 │   └── proxy.ts                 بيحوّل أي زائر لـ/ar أو /en (Next 16 سمّى middleware بـproxy)
 ├── .env.local · .env.example    §3

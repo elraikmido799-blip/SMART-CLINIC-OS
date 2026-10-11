@@ -536,5 +536,134 @@
     "stillBody": "Our team replies on WhatsApp during working hours.",
     "contact": "Send us a message",
     "metaDescription": "Answers to common questions about Oxygen’s nutrition, physiotherapy, dermatology and internal medicine services, online consultations and programs."
+  },
+  "booking": {
+    "metaTitle": "Book an appointment",
+    "metaDescription": "Book a visit or an online consultation with an Oxygen specialist in a few steps.",
+    "back": "Back",
+    "continue": "Continue",
+    "steps": {
+      "label": "Booking steps",
+      "counter": "Step {current} of {total}",
+      "done": "(done — edit)",
+      "service": "Service",
+      "branch": "Branch",
+      "time": "Doctor & time",
+      "details": "Your details",
+      "confirm": "Confirm & pay"
+    },
+    "service": {
+      "title": "What would you like to book?",
+      "subtitle": "Choose a service. You can change it later.",
+      "onlineTitle": "Online consultation — which specialty?",
+      "onlineSubtitle": "A private video call with an Oxygen specialist.",
+      "filter": "Filter by specialty",
+      "all": "All",
+      "minutes": "{minutes} min",
+      "from": "From {price}",
+      "programNote": "You’re starting the {program} program. Book an assessment first — your specialist builds the plan with you."
+    },
+    "branch": {
+      "title": "Which branch suits you?",
+      "subtitle": "Only branches with a specialist for this service are shown.",
+      "name": "Oxygen {name}",
+      "doctors": "{count, plural, one {# specialist} other {# specialists}}",
+      "empty": "No branch offers this service right now. Try another service or message us on WhatsApp."
+    },
+    "time": {
+      "title": "Choose your doctor and time",
+      "subtitle": "Pick any available doctor for more times, or choose a doctor you know.",
+      "doctorMode": "Doctor",
+      "any": "Any available doctor",
+      "choose": "Choose a doctor",
+      "anyHint": "We assign the first free specialist at the time you choose.",
+      "years": "{years} years of experience",
+      "pickDoctorFirst": "Choose a doctor above to see their times.",
+      "onlyDoctor": "Your specialist"
+    },
+    "details": {
+      "title": "Your details",
+      "subtitle": "We’ll send a code to your mobile to confirm it’s you. No password needed.",
+      "signedInSubtitle": "You’re booking as:",
+      "noName": "Oxygen patient",
+      "notYou": "Not you?",
+      "verify": "Confirm the code"
+    },
+    "confirm": {
+      "title": "Confirm your booking",
+      "subtitle": "Check the summary, then choose how you’d like to pay.",
+      "payTitle": "How would you like to pay?",
+      "methods": {
+        "clinic": {
+          "title": "Pay at the clinic",
+          "body": "Cash or card when you arrive."
+        },
+        "online": {
+          "title": "Pay online now",
+          "body": "Card or mobile wallet — your place is secured."
+        }
+      },
+      "notes": "Anything we should know?",
+      "notesPlaceholder": "e.g. knee pain for 2 weeks, or I prefer a female doctor",
+      "policy": "Free cancellation up to 24 hours before your appointment. <link>Refund policy</link>",
+      "submit": "Confirm booking",
+      "toPayment": "Continue to payment",
+      "slotTaken": "Someone just booked this time. Please pick another one.",
+      "pickAnother": "Choose another time",
+      "signedOut": "Your session ended. Please confirm your number again."
+    },
+    "summary": {
+      "title": "Booking summary",
+      "service": "Service",
+      "place": "Place",
+      "doctor": "Doctor",
+      "when": "Date & time",
+      "price": "Price",
+      "notChosen": "not chosen yet",
+      "online": "Online consultation · {specialty}",
+      "minutes": "{minutes} min",
+      "videoCall": "Online · video call",
+      "videoDetail": "The link reaches you on WhatsApp",
+      "branch": "Oxygen {name}",
+      "anyDoctor": "Any available doctor",
+      "program": "Program: {program}",
+      "priceFrom": "Starting price — confirmed at the clinic",
+      "priceOnline": "Total price",
+      "cancellation": "Free cancellation up to 24 hours before your appointment.",
+      "edit": "Edit"
+    }
+  },
+  "slotPicker": {
+    "dateTitle": "Select a date",
+    "timeTitle": "Select a time",
+    "today": "Today",
+    "previousDays": "Previous days",
+    "nextDays": "Next days",
+    "periods": {
+      "morning": "Morning",
+      "afternoon": "Afternoon",
+      "evening": "Evening"
+    },
+    "periodEmpty": "No times",
+    "taken": "{time} — booked",
+    "noSlots": "No free times on this day.",
+    "nextAvailable": "Nearest free day: {day}",
+    "error": "We couldn’t load the times.",
+    "retry": "Try again"
+  },
+  "otp": {
+    "sendCode": "Send me a code",
+    "phoneHint": "We’ll send a 6-digit code by SMS.",
+    "agree": "By continuing you agree to our <terms>Terms</terms> and <privacy>Privacy Policy</privacy>.",
+    "codeTitle": "Enter the code",
+    "codeSent": "We sent a 6-digit code to <phone></phone>.",
+    "changeNumber": "Change number",
+    "codeLabel": "Verification code",
+    "codeHint": "The code reaches you in a few seconds.",
+    "demoHint": "Demo: use the code {code}",
+    "wrongCode": "That code isn’t right. Check the SMS and try again.",
+    "verifying": "Checking…",
+    "resendIn": "Send the code again in {seconds}s",
+    "resend": "Send the code again"
   }
 }

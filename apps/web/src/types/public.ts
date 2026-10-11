@@ -7,7 +7,7 @@ import type { Specialty } from '@oxygen/config';
  * اللي ليه لغتين بيرجع _ar و _en، والفلوس بالقروش (ملف 15).
  */
 
-const specialtySchema = z.enum([
+export const specialtySchema = z.enum([
   'nutrition',
   'physio',
   'derm',

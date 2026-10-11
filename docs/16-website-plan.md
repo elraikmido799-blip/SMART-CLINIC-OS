@@ -42,7 +42,7 @@
 | 2 | الصور (برومبتات ChatGPT) | 2–3 أيام (بالتوازي) | 🔄 صور التخصصات + الأيقونات (ما عدا الجلدية) + الدكتور الافتراضي ✅ · غلاف 1 من 6 ([L-48](18-dev-log.md#l-48)) · الباقي ⏳ |
 | 3 | الـLayout + الصفحة الرئيسية | أسبوع | ✅ ([L-33](18-dev-log.md#l-33)) · آراء المرضى مستنية آراء حقيقية |
 | 4 | باقي صفحات الموقع التعريفي | 2–3 أسابيع | ✅ 4.1 → 4.14 + المراجعة ([L-56](18-dev-log.md#l-56)) |
-| 5 | الحجز + الدفع + الدخول (شكل) | أسبوع | ⏳ |
+| 5 | الحجز + الدفع + الدخول (شكل) | أسبوع | 🔄 5.1 ✅ ([L-57](18-dev-log.md#l-57)) |
 | 6 | بوابة المريض (شكل) | أسبوع ونص – أسبوعين | ⏳ |
 | 7 | SEO + الأداء + المراجعة النهائية | أسبوع | ⏳ |
 | | **الإجمالي** | **~9–10 أسابيع** | |
@@ -320,7 +320,7 @@ New series "Spot illustrations": switch to a minimal line illustration style wit
 
 ## المرحلة 5 — الحجز + الدفع + الدخول (شكل)
 
-### 5.1 الحجز · `W-07` · `/book`
+### 5.1 الحجز · `W-07` · `/book` ✅ ([L-57](18-dev-log.md#l-57) · [DEC-38](19-decisions.md#dec-38))
 
 - `book/page.tsx` (Server) بيجيب التخصصات والخدمات والفروع والأطباء من `src/api/public` ويبعتهم للـWizard.
 - **حالة الـWizard في الـURL:** `?service=&branch=&doctor=&slot=`. كده الـRefresh وزرار الرجوع بيشتغلوا، واللينك ينفع يتبعت.
@@ -332,8 +332,8 @@ New series "Spot illustrations": switch to a minimal line illustration style wit
   5. التأكيد أو الدفع.
 - **`?mode=online`** (من صفحة الاستشارة الأونلاين، [L-51](18-dev-log.md#l-51)): من غير خطوة الفرع، والميعاد مكالمة فيديو.
 - **كارت الملخص** ثابت جنب الخطوات (تحتها على الموبايل).
-- `book/_api/booking.api.ts`: `getSlots` · `createBooking` (+ الـMocks بتاعتهم في `mocks/handlers.ts`).
-- shadcn: `radio-group` · `calendar` · `popover` · `input-otp` · `progress`.
+- `api/bookings.api.ts` (مشترك مع الدفع والبوابة، [DEC-38](19-decisions.md#dec-38)): `getSlots` · `createBooking` · `getBooking` (+ الـMocks في `mocks/booking.ts`).
+- shadcn: `input-otp` بس، والباقي معمول على الهوية ([L-57](18-dev-log.md#l-57)).
 
 ### 5.2 الدفع · `W-16` · `/checkout`
 

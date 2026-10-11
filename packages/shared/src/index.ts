@@ -1,6 +1,7 @@
 export { LOCALES, DEFAULT_LOCALE, isLocale, directionOf, type Locale } from './locales';
 export {
   formatDate,
+  formatDayParts,
   formatMoney,
   formatNumber,
   formatSlot,

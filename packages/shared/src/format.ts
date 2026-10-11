@@ -71,3 +71,20 @@ export function formatDate(isoDate: string, locale: Locale): string {
 export function formatNumber(value: number, locale: Locale): string {
   return new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(value);
 }
+
+/** "2026-10-12" ← { weekday: "Mon", day: "12 Oct" } (شريط الأيام في الحجز) */
+export function formatDayParts(isoDate: string, locale: Locale): { weekday: string; day: string } {
+  const date = new Date(`${isoDate}T12:00:00Z`);
+  const options = { timeZone: 'UTC' } as const;
+  return {
+    weekday: new Intl.DateTimeFormat(NUMBER_LOCALE[locale], {
+      ...options,
+      weekday: 'short',
+    }).format(date),
+    day: new Intl.DateTimeFormat(NUMBER_LOCALE[locale], {
+      ...options,
+      day: 'numeric',
+      month: 'short',
+    }).format(date),
+  };
+}

@@ -11,3 +11,9 @@ export function normalizeEgyptianMobile(input: string): string | null {
   const local = digits.replace(/^(\+20|0020|20)(?=1)/, '0');
   return /^01[0125]\d{8}$/.test(local) ? `+2${local}` : null;
 }
+
+/** "+201123456789" ← "+20 112 345 6789" (للعرض بس، وجوه <bdi dir="ltr">) */
+export function formatEgyptianMobile(phone: string): string {
+  const match = phone.match(/^\+20(\d{3})(\d{3})(\d{4})$/);
+  return match ? `+20 ${match[1]} ${match[2]} ${match[3]}` : phone;
+}
