@@ -15,6 +15,8 @@ import { RevealGroup, RevealItem } from '@/components/shared/reveal-group';
 import { SectionHeading } from '@/components/shared/section-heading';
 import { SectionState } from '@/components/shared/section-state';
 import { SpecialtyCard } from '@/components/shared/specialty-card';
+import { JsonLd } from '@/components/shared/json-ld';
+import { absoluteUrl, openingHours, SCHEMA_SPECIALTY } from '@/lib/seo';
 import { BranchHero } from './_components/branch-hero';
 
 // الفروع بتتبني وقت الـBuild، والفرع الجديد من الداشبورد بيتبني أول ما حد يفتحه (DEC-32)
@@ -78,6 +80,28 @@ export default async function BranchPage({ params }: PageProps<'/[locale]/branch
 
   return (
     <>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'MedicalClinic',
+          name: `Oxygen ${name}`,
+          url: absoluteUrl(locale, `/branches/${branch.data.slug}`),
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: localized(branch.data, 'address', locale),
+            addressCountry: 'EG',
+          },
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: branch.data.latitude,
+            longitude: branch.data.longitude,
+          },
+          ...(branch.data.phone && { telephone: branch.data.phone }),
+          openingHours: openingHours(branch.data.opens_at, branch.data.closes_at),
+          medicalSpecialty: branch.data.specialties.map((item) => SCHEMA_SPECIALTY[item]),
+          hasMap: branch.data.maps_url,
+        }}
+      />
       <BranchHero branch={branch.data} />
       <DotWave className="mt-8" />
 

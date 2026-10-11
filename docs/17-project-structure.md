@@ -87,12 +87,14 @@ apps/web/
 │   └── images/                  صور الموقع: shared/ (particle-ring · dot-wave · logo-symbol) · home/ (hero · app-phone) · specialties/ (الأيقونات المنقطة + hero-<تخصص> + physio-home) · conditions/ (أيقونات "بنعالج إيه": <تخصص>-<id>.png) · articles/ (الأغلفة: <slug>.png) · doctors/ (default.png) · mocks/ (للتطوير بس)
 ├── src/
 │   ├── app/                     الصفحات (Next.js App Router)
-│   │   ├── globals.css          بيربط ألوان packages/config بأسامي Tailwind و shadcn (ممنوع hex هنا)
+│   │   ├── globals.css          بيربط ألوان packages/config بأسامي Tailwind و shadcn (ممنوع hex هنا) + قواعد الطباعة (.print-area)
 │   │   ├── icon.png             الـFavicon (رمز O2 من design/brand)
+│   │   ├── sitemap.ts · robots.ts   sitemap.xml (كل الصفحات باللغتين) · robots.txt (البوابة والدفع والدخول مقفولين) — 7.1
 │   │   └── [locale]/            كل الصفحات تحت اللغة: /ar/… و /en/…
 │   │       ├── layout.tsx       الـRoot layout: اللغة + الاتجاه + الخطوط + الألوان + Providers + Metadata
 │   │       ├── error.tsx        أي خطأ مش متوقع: رسالة + "حاول تاني"
 │   │       ├── not-found.tsx    صفحة 404 بلغة الزائر
+│   │       ├── opengraph-image.tsx صورة المشاركة لكل الصفحات (next/og: تدرّج + لوجو)
 │   │       ├── [...rest]/       أي مسار مش معروف ← not-found
 │   │       ├── (marketing)/     الموقع التعريفي (القوسين = مش بيظهروا في الـURL)
 │   │       │   ├── layout.tsx   Navbar + Footer + زرار واتساب + شريط النت المقطوع
@@ -150,6 +152,7 @@ apps/web/
 │   │   │   ├── slot-picker · phone-otp-form   اختيار الميعاد (الحجز + التأجيل) · الدخول برقم الموبايل + OTP
 │   │   │   ├── booking-details · sign-in-gate   تفاصيل حجز (الدفع والنجاح والبوابة) · الدخول مكان الصفحة لو مش داخل
 │   │   │   ├── empty-state.tsx      الحالة الفاضية (أيقونة في دايرة منقطة + زرار) — البوابة وأي List
+│   │   │   ├── json-ld.tsx          داتا منظمة لجوجل (MedicalOrganization · MedicalClinic · Physician)
 │   │   │   ├── markdown-body · field-message   كلام Markdown (المقالات والقانوني) · رسايل أخطاء الفورمات
 │   │   │   ├── dotted-steps.tsx خطوات مرقّمة منقطة بالطول (الخدمة ومراحل البرنامج)
 │   │   │   ├── section-state · retry-button   حالات الخطأ والفاضي في أي قسم
@@ -169,6 +172,7 @@ apps/web/
 │   │   ├── submit-error.ts     toSubmitError · isOffline (أي فورم بيبعت)
 │   │   ├── dates.ts            توقيت مصر: todayInCairo · addDays · cairoIso · cairoHourOf · isUpcoming · hoursUntil · greetingPeriod
 │   │   ├── calendar.ts         "ضيف للتقويم": ملف .ics + لينك Google Calendar
+│   │   ├── seo.ts              absoluteUrl · languageAlternates · openingHours · SCHEMA_SPECIALTY
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── fonts.ts             Inter + IBM Plex Sans Arabic (الكلام) · Montserrat + Alexandria (العناوين — DEC-29)
 │   │   ├── whatsapp.ts          لينك واتساب برسالة جاهزة (+ رقم فرع)

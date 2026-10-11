@@ -1,3 +1,5 @@
+import { getLocale } from 'next-intl/server';
+import { isLocale, localized } from '@oxygen/shared';
 import { getBranches } from '@/api/public/branches';
 import { getHomeContent } from '@/api/public/content';
 import { getDoctors } from '@/api/public/doctors';
@@ -5,7 +7,10 @@ import { getOffers } from '@/api/public/offers';
 import { getPrograms } from '@/api/public/programs';
 import { getSpecialties } from '@/api/public/specialties';
 import { DotWave } from '@/components/shared/dot-wave';
+import { JsonLd } from '@/components/shared/json-ld';
 import { Reveal } from '@/components/shared/reveal';
+import { env } from '@/lib/env';
+import { absoluteUrl, SCHEMA_SPECIALTY } from '@/lib/seo';
 import { AppPromo } from './_components/app-promo';
 import { BranchesSection } from './_components/branches-section';
 import { DoctorsSection } from './_components/doctors-section';
@@ -31,8 +36,33 @@ export default async function HomePage() {
     getOffers(),
   ]);
 
+  const locale = await getLocale();
+  if (!isLocale(locale)) return null;
+
   return (
     <>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'MedicalOrganization',
+          name: 'Oxygen',
+          url: absoluteUrl(locale),
+          logo: new URL('/logo.png', env.siteUrl).toString(),
+          medicalSpecialty: Object.values(SCHEMA_SPECIALTY),
+          ...(branches.ok && {
+            department: branches.data.map((branch) => ({
+              '@type': 'MedicalClinic',
+              name: `Oxygen ${localized(branch, 'name', locale)}`,
+              url: absoluteUrl(locale, `/branches/${branch.slug}`),
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: branch.latitude,
+                longitude: branch.longitude,
+              },
+            })),
+          }),
+        }}
+      />
       <Hero content={content} specialties={specialties} branches={branches} />
       <TrustBar content={content} />
       <DotWave className="-mt-4 sm:-mt-6" />

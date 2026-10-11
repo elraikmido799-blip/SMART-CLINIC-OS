@@ -12,6 +12,9 @@ import { DotWave } from '@/components/shared/dot-wave';
 import { SectionState } from '@/components/shared/section-state';
 import { ServiceList } from '@/components/shared/service-list';
 import { DoctorBookingCard } from './_components/doctor-booking-card';
+import { JsonLd } from '@/components/shared/json-ld';
+import { env } from '@/lib/env';
+import { absoluteUrl, SCHEMA_SPECIALTY } from '@/lib/seo';
 import { DoctorProfileHero } from './_components/doctor-profile-hero';
 
 // الأطباء بيتبنوا وقت الـBuild، والدكتور الجديد من الداشبورد بيتبني أول ما حد يفتحه (زي الخدمات — DEC-32)
@@ -66,8 +69,30 @@ export default async function DoctorPage({ params }: PageProps<'/[locale]/doctor
   const education = locale === 'ar' ? doctor.data.education_ar : doctor.data.education_en;
   const languages = locale === 'ar' ? doctor.data.languages_ar : doctor.data.languages_en;
 
+  const doctorBranches = branches.ok
+    ? branches.data.filter((item) => doctor.data.branch_ids.includes(item.id))
+    : [];
+
   return (
     <>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Physician',
+          name,
+          url: absoluteUrl(locale, `/doctors/${doctor.data.slug}`),
+          medicalSpecialty: SCHEMA_SPECIALTY[doctor.data.specialty],
+          ...(doctor.data.photo_url && {
+            image: new URL(doctor.data.photo_url, env.siteUrl).toString(),
+          }),
+          ...(languages.length > 0 && { knowsLanguage: languages }),
+          worksFor: doctorBranches.map((item) => ({
+            '@type': 'MedicalClinic',
+            name: `Oxygen ${localized(item, 'name', locale)}`,
+            url: absoluteUrl(locale, `/branches/${item.slug}`),
+          })),
+        }}
+      />
       <DoctorProfileHero doctor={doctor.data} branches={branches.ok ? branches.data : []} />
       <DotWave className="mt-6" />
       <Container className="grid gap-10 pb-10 lg:grid-cols-[1fr_360px] lg:items-start lg:gap-12 lg:pb-14">

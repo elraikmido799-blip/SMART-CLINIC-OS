@@ -70,6 +70,7 @@
 | [L-58](#l-58) | الدفع + صفحة النجاح والفشل + "ضيف للتقويم" + الدخول مكان الصفحة (SignInGate) | 5.2 | 2026-10-11 | ✅ |
 | [L-59](#l-59) | صفحة الدخول + "بوابتي" في الـNavbar لما تكون داخل | 5.3 | 2026-10-11 | ✅ |
 | [L-60](#l-60) | بوابة المريض كاملة: الهيكل + الـ8 صفحات + تاريخ تجريبي في الـMocks | 6.1 → 6.8 | 2026-10-11 | ✅ |
+| [L-61](#l-61) | الـSEO: sitemap · robots · JSON-LD · صورة المشاركة · metadataBase | 7.1 | 2026-10-11 | ✅ |
 | [L-51](#l-51) | صفحة الاستشارة الأونلاين | 4.10 | 2026-10-11 | ✅ |
 | [L-50](#l-50) | لينك "العرض الحالي" في الـFooter + خطوة 4.14 (شريط العروض في الرئيسية) اتضافت للخطة | 4.9 | 2026-10-11 | ✅ |
 
@@ -1311,6 +1312,35 @@
     - عربي على 360: من غير Scroll بالعرض، و"المزيد" فيه الخطط والباقات والفواتير والبروفايل.
     - مفيش Errors في الـConsole.
 - محتاج من مبرمج الباك: `GET /me/bookings` · `POST /bookings/{id}/cancel` (409 `NOT_CANCELLABLE`) · `POST /bookings/{id}/reschedule` (409 `SLOT_TAKEN`) · `GET /me/program` · `GET /me/packages` · `GET /me/passport` · `GET /me/documents` + رفع ملف حقيقي (لينك رفع مباشر) + `DELETE /me/documents/{id}` · `GET /me/plans` · `GET /me/invoices` · `GET|PATCH /me/profile` · `POST /me/export` · `DELETE /me` — بنفس الأشكال اللي في `types/portal.ts`.
+
+### L-61 · الـSEO
+
+- **اتعمل:**
+  - **hreflang:** next-intl بيبعته لوحده في هيدر `Link` لكل صفحة (`ar` · `en` · `x-default`)، واتأكدنا منه بـ`curl -I`. مضفناش حاجة.
+  - **`metadataBase`** (من `NEXT_PUBLIC_SITE_URL`) + Open Graph افتراضي (`siteName` · `ar_EG`/`en_EG`) + `twitter: summary_large_image` في `[locale]/layout.tsx`.
+  - **`app/sitemap.ts`:**
+    - 54 صفحة × لغتين = 108 لينك، وكل لينك معاه نسخته التانية.
+    - الـslugs من نفس الـAPI: الخدمات، والأطباء، والفروع، والبرامج، والمقالات، والعروض **الشغالة** بس.
+    - بيتبني تاني كل ساعة.
+  - **`app/robots.ts`:** كله مفتوح ما عدا `/*/portal` و`/*/checkout` و`/*/login` + لينك الـsitemap. الصفحات دي `noindex` كمان (L-58 · L-59 · L-60).
+  - **JSON-LD** (`components/shared/json-ld.tsx`):
+    - `MedicalOrganization` في الرئيسية، والفروع جواه `department`.
+    - `MedicalClinic` في صفحة الفرع: العنوان، والمكان، والمواعيد، والتخصصات، والخريطة.
+    - `Physician` في صفحة الدكتور: التخصص، والصورة، واللغات، والفروع.
+    - التخصصات بأسامي schema.org (`SCHEMA_SPECIALTY` في `lib/seo.ts`).
+  - **صورة المشاركة** (`[locale]/opengraph-image.tsx`، بـ`next/og`):
+    - 1200×630: تدرّج الهوية + اللوجو الأبيض + "A new breath for your health.".
+    - الألوان من `tokens`.
+    - النسخة العربي من غير كلام، لأن خط `next/og` مفيهوش عربي.
+    - كل الصفحات بتاخدها.
+  - `lib/seo.ts`: `absoluteUrl` · `languageAlternates` · `openingHours` · `SCHEMA_SPECIALTY`.
+- **الملفات:** `app/{sitemap,robots}.ts` · `app/[locale]/{layout,opengraph-image}.tsx` · `(marketing)/{page,branches/[slug]/page,doctors/[slug]/page}.tsx` · `components/shared/json-ld.tsx` · `lib/seo.ts`.
+- **اتأكدنا إزاي:**
+  - `tsc` و`eslint` من غير أخطاء.
+  - `/robots.txt` و`/sitemap.xml` = 200، والـsitemap فيه 108 `<loc>`.
+  - JSON-LD ظاهر في `/en/branches/new-cairo` (MedicalClinic) و`/ar/doctors/omar-hassan` (Physician بالعربي).
+  - `og:image` في الرئيسية، و`/en/opengraph-image` = PNG (اتشافت).
+- محتاج من مبرمج الباك: مفيش. **محتاج من Oxygen:** الدومين الحقيقي (`NEXT_PUBLIC_SITE_URL`) ومواعيد كل فرع الحقيقية (الأيام).
 
 ---
 
