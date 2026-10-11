@@ -57,6 +57,7 @@ export function StepDetails({ state, me }: StepDetailsProps) {
           <PhoneOtpForm
             idPrefix="booking"
             askName
+            tone="gold"
             submitLabel={t('details.verify')}
             onSignedIn={() => state.update({ step: 'confirm' }, { push: true })}
           />

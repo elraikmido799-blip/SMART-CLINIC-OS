@@ -113,12 +113,13 @@ apps/web/
 │   │       │   ├── online-consultation/ W-08: الاستشارة الأونلاين (السعر لكل تخصص من content/online-consultation)
 │   │       │   ├── book/        W-07: الحجز (page.tsx سيرفر + _components: الـWizard · الخطوات · الملخص · use-booking-state)
 │   │       │   ├── checkout/    W-16: الدفع (page) · success/ · failed/ (+ _components: checkout-view · result-view) — noindex
+│   │       │   ├── login/       W-17: الدخول (PhoneOtpForm + "في البوابة بتاعتك") — ?next= · noindex
 │   │       │   ├── faqs/        الأسئلة الشائعة متجمعة (التخصصات + الأونلاين + Secret Seven) — L-56
 │   │       │   ├── digital/     W-10: صفحة واحدة (المنتجات = البرامج الأونلاين · فورم "مهتم بإيه؟") — DEC-37
 │   │       │   ├── app/         W-15: تحميل التطبيق (بادجات "قريبًا" + فورم "بلّغني")
 │   │       │   ├── (legal)/     W-18: privacy · terms · refund-policy · medical-disclaimer · delete-account (+ _components/legal-page = الـTemplate)
 │   │       │   ├── learn/       W-13: page.tsx (فلتر + كروت) · [slug]/ المقالة (+ _components/article-body: الـMarkdown)
-│   │       │   └── …            ⏳ (المرحلة 5: login)
+│   │       │   └── …            ⏳ portal (المرحلة 6)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
@@ -151,7 +152,7 @@ apps/web/
 │   │   │   ├── offline-notice.tsx شريط "إنت مش متصل بالنت"
 │   │   │   ├── reveal-group.tsx Lists عناصرها بتظهر ورا بعض (RevealGroup · RevealItem)
 │   │   │   └── reveal.tsx       الظهور مع الـScroll (Motion)
-│   │   ├── layout/              navbar · mobile-menu · language-switcher · footer · whatsapp-button · nav-links
+│   │   ├── layout/              navbar · mobile-menu · language-switcher · footer · whatsapp-button · nav-links · account-link ("دخول المريض" أو "بوابتي")
 │   │   └── providers.tsx        الـProviders: الاتجاه · Motion · Redux · Tooltip · Toaster
 │   ├── i18n/                    اللغات (next-intl)
 │   │   ├── routing.ts           اللغات المتاحة (من packages/shared)

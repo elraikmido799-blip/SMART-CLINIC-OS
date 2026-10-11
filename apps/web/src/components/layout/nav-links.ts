@@ -9,3 +9,4 @@ export const NAV_LINKS = [
 
 export const BOOK_HREF = '/book';
 export const LOGIN_HREF = '/login';
+export const PORTAL_HREF = '/portal';

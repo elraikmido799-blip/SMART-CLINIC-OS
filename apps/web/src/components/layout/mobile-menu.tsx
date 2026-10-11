@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ChevronRight, Menu, UserRound } from 'lucide-react';
+import { ChevronRight, Menu } from 'lucide-react';
 import { directionOf, isLocale } from '@oxygen/shared';
 import { brandButton } from '@/components/shared/brand';
 import { Logo } from '@/components/shared/logo';
@@ -10,7 +10,8 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/s
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './language-switcher';
-import { BOOK_HREF, LOGIN_HREF, NAV_LINKS } from './nav-links';
+import { AccountLink } from './account-link';
+import { BOOK_HREF, NAV_LINKS } from './nav-links';
 
 // القايمة في الموبايل (A3): بتفتح من ناحية البداية (يمين في العربي)
 export function MobileMenu() {
@@ -49,14 +50,7 @@ export function MobileMenu() {
         </nav>
         <LanguageSwitcher className="-ms-3 mt-4 self-start" />
         <div className="mt-6 flex flex-col gap-3">
-          <Link
-            href={LOGIN_HREF}
-            onClick={close}
-            className={brandButton({ tone: 'outline', size: 'lg', block: true })}
-          >
-            <UserRound aria-hidden />
-            {t('patientLogin')}
-          </Link>
+          <AccountLink size="lg" block withIcon onClick={close} />
           <Link
             href={BOOK_HREF}
             onClick={close}

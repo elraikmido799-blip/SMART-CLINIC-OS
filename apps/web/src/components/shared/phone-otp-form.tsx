@@ -27,6 +27,8 @@ type PhoneOtpFormProps = {
   askName?: boolean;
   submitLabel: string;
   onSignedIn: (me: Me) => void;
+  // دهبي جوه الحجز بس (الدهبي للحجز — A0)، وTeal في الدخول والبوابة
+  tone?: 'primary' | 'gold';
 };
 
 type CodeError = 'wrong' | SubmitError;
@@ -47,6 +49,7 @@ export function PhoneOtpForm({
   askName = false,
   submitLabel,
   onSignedIn,
+  tone = 'primary',
 }: PhoneOtpFormProps) {
   const t = useTranslations('otp');
   const tForm = useTranslations('leadForm');
@@ -208,7 +211,7 @@ export function PhoneOtpForm({
             type="submit"
             disabled={code.length !== CODE_LENGTH || verifying.isLoading}
             className={brandButton({
-              tone: 'gold',
+              tone,
               size: 'lg',
               block: true,
               className: 'mt-6 disabled:cursor-not-allowed disabled:opacity-60',
@@ -297,7 +300,7 @@ export function PhoneOtpForm({
         type="submit"
         disabled={sending.isLoading}
         className={brandButton({
-          tone: 'gold',
+          tone,
           size: 'lg',
           block: true,
           className: 'mt-6 disabled:opacity-70',

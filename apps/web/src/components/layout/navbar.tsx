@@ -6,7 +6,8 @@ import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './language-switcher';
 import { MobileMenu } from './mobile-menu';
-import { BOOK_HREF, LOGIN_HREF, NAV_LINKS } from './nav-links';
+import { AccountLink } from './account-link';
+import { BOOK_HREF, NAV_LINKS } from './nav-links';
 
 // الـNavbar (A1 · A3): ثابت فوق. في الموبايل اللوجو + احجز + القايمة
 export async function Navbar() {
@@ -36,12 +37,7 @@ export async function Navbar() {
 
         <div className="ms-auto flex items-center gap-2 xl:ms-0">
           <LanguageSwitcher className="hidden xl:inline-flex" />
-          <Link
-            href={LOGIN_HREF}
-            className={cn(brandButton({ tone: 'outline' }), 'hidden xl:inline-flex')}
-          >
-            {t('patientLogin')}
-          </Link>
+          <AccountLink className="hidden xl:inline-flex" />
           {/* على الموبايل "Book" بس (A3): من غيرها الـNavbar أعرض من شاشة 320 */}
           <Link href={BOOK_HREF} className={cn(brandButton({ tone: 'gold' }), 'px-4 sm:px-5')}>
             <span className="sm:hidden">{t('book')}</span>

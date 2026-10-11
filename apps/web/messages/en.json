@@ -16,6 +16,7 @@
     "learn": "Learn",
     "switchLanguage": "عربي",
     "patientLogin": "Patient Login",
+    "myPortal": "My portal",
     "book": "Book",
     "bookNow": "Book Now"
   },
@@ -749,5 +750,34 @@
     "title": "Sign in",
     "body": "Enter your mobile number and we’ll send you a code.",
     "submit": "Sign in"
+  },
+  "login": {
+    "title": "Sign in to your portal",
+    "subtitle": "No password — just your mobile number and a code.",
+    "submit": "Sign in",
+    "newHere": "New to Oxygen? <book>Book your first visit</book> — your account is created with it.",
+    "signedInTitle": "You’re signed in as {name}",
+    "patient": "Oxygen patient",
+    "toPortal": "Go to my portal",
+    "signOut": "Sign out",
+    "perksTitle": "In your portal",
+    "perks": {
+      "appointments": {
+        "title": "Your appointments",
+        "body": "Upcoming and past visits — reschedule or cancel in a tap."
+      },
+      "passport": {
+        "title": "Health Passport",
+        "body": "Your measurements and progress in one timeline."
+      },
+      "documents": {
+        "title": "Results and documents",
+        "body": "Lab results, reports and plans, always with you."
+      },
+      "invoices": {
+        "title": "Packages and invoices",
+        "body": "Remaining sessions and every payment."
+      }
+    }
   }
 }
