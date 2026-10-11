@@ -1,4 +1,9 @@
-import type { ListResponse, PublicOffer, PublicOfferDetail } from '@/types/public';
+import {
+  publicOfferSchema,
+  type ListResponse,
+  type PublicOffer,
+  type PublicOfferDetail,
+} from '@/types/public';
 import { faq } from './specialty-details';
 
 /**
@@ -53,6 +58,35 @@ const OFFERS: PublicOfferDetail[] = [
     ],
   },
   {
+    id: 'offer-nutrition-kickoff',
+    slug: 'nutrition-kickoff',
+    specialty: 'nutrition',
+    title_en: 'Nutrition kickoff: InBody + plan',
+    title_ar: 'بداية التغذية: InBody + خطة',
+    subtitle_en: 'A body-composition scan, a consultation and your first meal plan.',
+    subtitle_ar: 'قياس تكوين الجسم واستشارة وأول خطة أكل ليك.',
+    image_url: null,
+    price_before_minor: 90000,
+    price_after_minor: 64900,
+    currency: 'EGP',
+    ends_at: '2026-11-30',
+    benefits_en: [
+      'InBody body-composition scan',
+      'Consultation with a dietitian',
+      'Your first meal plan',
+      'A follow-up call after 2 weeks',
+    ],
+    benefits_ar: [
+      'قياس InBody لتكوين الجسم',
+      'استشارة مع أخصائي تغذية',
+      'أول خطة أكل ليك',
+      'مكالمة متابعة بعد أسبوعين',
+    ],
+    terms_en: ['Valid until 30 November 2026.', 'For new nutrition patients.'],
+    terms_ar: ['ساري لحد 30 نوفمبر 2026.', 'للمرضى الجداد في التغذية.'],
+    faqs: [],
+  },
+  {
     id: 'offer-ended',
     slug: 'ended-example',
     specialty: 'nutrition',
@@ -73,8 +107,9 @@ const OFFERS: PublicOfferDetail[] = [
   },
 ];
 
+// القايمة = بيانات الكارت بس: الـparse بيشيل المزايا والشروط والأسئلة
 export const offersMock: ListResponse<PublicOffer> = {
-  data: OFFERS.map(({ id, slug, ends_at }) => ({ id, slug, ends_at })),
+  data: OFFERS.map((offer) => publicOfferSchema.parse(offer)),
 };
 
 export const offerDetailMock = (slug: string) => OFFERS.find((offer) => offer.slug === slug);

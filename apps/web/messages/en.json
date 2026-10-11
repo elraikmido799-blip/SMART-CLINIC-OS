@@ -355,7 +355,7 @@
     "ended": "Offer ended",
     "priceNow": "Offer price:",
     "priceBefore": "Usual price:",
-    "save": "Save {percent}%",
+    "save": "Save <num>{percent}%</num>",
     "formTitle": "Get this offer",
     "formSubtitle": "Leave your number and we’ll call you to book your branch and time.",
     "formSubmit": "Get the offer",
@@ -514,5 +514,15 @@
     "submit": "Send deletion request",
     "successTitle": "Request received",
     "successBody": "Our team will call you within 2 working days to confirm. Your account will be deleted within 30 days."
+  },
+  "offersStrip": {
+    "eyebrow": "Limited time",
+    "title": "This month’s offers",
+    "subtitle": "Start for less — each offer runs until the date on its card.",
+    "save": "Save <num>{percent}%</num>",
+    "endsOn": "Until {date}",
+    "priceNow": "Offer price:",
+    "priceBefore": "Regular price:",
+    "cta": "See the offer"
   }
 }

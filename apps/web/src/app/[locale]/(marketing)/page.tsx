@@ -1,6 +1,7 @@
 import { getBranches } from '@/api/public/branches';
 import { getHomeContent } from '@/api/public/content';
 import { getDoctors } from '@/api/public/doctors';
+import { getOffers } from '@/api/public/offers';
 import { getPrograms } from '@/api/public/programs';
 import { getSpecialties } from '@/api/public/specialties';
 import { DotWave } from '@/components/shared/dot-wave';
@@ -9,6 +10,7 @@ import { AppPromo } from './_components/app-promo';
 import { BranchesSection } from './_components/branches-section';
 import { DoctorsSection } from './_components/doctors-section';
 import { Hero } from './_components/hero';
+import { OffersStrip } from './_components/offers-strip';
 import { JourneySection } from '@/components/shared/journey-section';
 import { ProgramsSection } from '@/components/shared/programs-section';
 import { SpecialtiesSection } from './_components/specialties-section';
@@ -20,12 +22,13 @@ import { TrustBar } from '@/components/shared/trust-bar';
  * فلو Endpoint واحد وقع الصفحة بتكمل.
  */
 export default async function HomePage() {
-  const [content, specialties, doctors, branches, programs] = await Promise.all([
+  const [content, specialties, doctors, branches, programs, offers] = await Promise.all([
     getHomeContent(),
     getSpecialties(),
     getDoctors(),
     getBranches(),
     getPrograms(),
+    getOffers(),
   ]);
 
   return (
@@ -35,6 +38,9 @@ export default async function HomePage() {
       <DotWave className="-mt-4 sm:-mt-6" />
       <Reveal>
         <SpecialtiesSection specialties={specialties} />
+      </Reveal>
+      <Reveal>
+        <OffersStrip offers={offers} />
       </Reveal>
       <Reveal>
         <JourneySection />

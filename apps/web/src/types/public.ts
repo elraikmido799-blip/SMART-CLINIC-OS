@@ -242,17 +242,14 @@ export const publicArticleDetailSchema = publicArticleSchema.extend({
 });
 
 /**
- * صفحة العرض (GET /public/offers/{slug}) — Template واحد لكل حملة (W-12). الـList (GET /public/offers) للـslugs بس.
+ * صفحة العرض (GET /public/offers/{slug}) — Template واحد لكل حملة (W-12).
+ * الـList (GET /public/offers) فيها بيانات الكارت (شريط "عروض الشهر" في الرئيسية + لينك الـFooter)، والتفاصيل زيادة عليها.
  * ends_at: آخر يوم في العرض. بعده الصفحة بتقول "العرض خلص" بدل الفورم. null = مفتوح.
  */
 export const publicOfferSchema = z.object({
   id: z.string(),
   slug: z.string(),
-  // في القايمة كمان عشان الـFooter يعرف العرض الشغال من غير ما يجيب التفاصيل
   ends_at: z.iso.date().nullable(),
-});
-
-export const publicOfferDetailSchema = publicOfferSchema.extend({
   specialty: specialtySchema.nullable(),
   title_ar: z.string(),
   title_en: z.string(),
@@ -262,6 +259,9 @@ export const publicOfferDetailSchema = publicOfferSchema.extend({
   price_before_minor: z.number().int().nonnegative(),
   price_after_minor: z.number().int().nonnegative(),
   currency: z.string(),
+});
+
+export const publicOfferDetailSchema = publicOfferSchema.extend({
   benefits_ar: z.array(z.string()),
   benefits_en: z.array(z.string()),
   terms_ar: z.array(z.string()),

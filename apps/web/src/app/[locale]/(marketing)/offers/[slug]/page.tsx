@@ -13,7 +13,7 @@ import { ParticleRingImage } from '@/components/shared/particle-ring-image';
 import { Reveal } from '@/components/shared/reveal';
 import { SectionState } from '@/components/shared/section-state';
 import { Link } from '@/i18n/navigation';
-import { isOfferActive } from '@/lib/offers';
+import { isOfferActive, offerSavingPercent } from '@/lib/offers';
 import { cn } from '@/lib/utils';
 
 // العرض بيخلص بالتاريخ، فالصفحة بتتبني تاني كل 5 دقايق حتى مع الـMocks (DEC-11)
@@ -65,9 +65,7 @@ export default async function OfferPage({ params }: PageProps<'/[locale]/offers/
   const benefits = ar ? data.benefits_ar : data.benefits_en;
   const terms = ar ? data.terms_ar : data.terms_en;
   const ended = !isOfferActive(data);
-  const savingPercent = Math.round(
-    (1 - data.price_after_minor / Math.max(data.price_before_minor, 1)) * 100,
-  );
+  const savingPercent = offerSavingPercent(data);
   const styles = data.specialty ? specialtyStyles[data.specialty] : null;
 
   return (
@@ -127,7 +125,10 @@ export default async function OfferPage({ params }: PageProps<'/[locale]/offers/
               </p>
               {savingPercent > 0 && (
                 <p className="rounded-full bg-mist px-3 py-1 text-sm font-bold text-primary">
-                  {t('save', { percent: savingPercent })}
+                  {t.rich('save', {
+                    percent: savingPercent,
+                    num: (chunks) => <bdi dir="ltr">{chunks}</bdi>,
+                  })}
                 </p>
               )}
             </div>

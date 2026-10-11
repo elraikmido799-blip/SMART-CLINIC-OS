@@ -346,7 +346,7 @@
     "ended": "العرض خلص",
     "priceNow": "سعر العرض:",
     "priceBefore": "السعر العادي:",
-    "save": "وفّر {percent}%",
+    "save": "وفّر <num>{percent}%</num>",
     "formTitle": "احجز العرض",
     "formSubtitle": "سيب رقمك وهنكلمك تختار الفرع والميعاد.",
     "formSubmit": "عايز العرض",
@@ -505,5 +505,15 @@
     "submit": "ابعت طلب الحذف",
     "successTitle": "طلبك وصل",
     "successBody": "فريقنا هيكلمك خلال يومين شغل يتأكد. وحسابك هيتمسح خلال 30 يوم."
+  },
+  "offersStrip": {
+    "eyebrow": "لفترة محدودة",
+    "title": "عروض الشهر",
+    "subtitle": "ابدأ بسعر أقل — كل عرض شغال لحد التاريخ اللي على الكارت.",
+    "save": "وفّر <num>{percent}%</num>",
+    "endsOn": "لحد {date}",
+    "priceNow": "سعر العرض:",
+    "priceBefore": "السعر العادي:",
+    "cta": "شوف العرض"
   }
 }
