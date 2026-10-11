@@ -190,7 +190,7 @@ export function ContactForm() {
                 rows={4}
                 maxLength={MESSAGE_MAX}
                 aria-invalid={fieldState.invalid}
-                className="min-h-28 border-field-border bg-card text-base"
+                className="min-h-28 resize-none border-field-border bg-card text-base"
               />
               <FieldMessage error={fieldState.error?.message} />
             </Field>
