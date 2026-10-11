@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { ClientMessages } from '@/components/client-messages';
 import { Container } from '@/components/shared/container';
 import { Skeleton } from '@/components/ui/skeleton';
 import { CheckoutView } from './_components/checkout-view';
@@ -15,9 +16,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function CheckoutPage() {
   return (
     <Container className="py-10 lg:py-14">
-      <Suspense fallback={<Skeleton className="h-96 rounded-2xl" />}>
-        <CheckoutView />
-      </Suspense>
+      <ClientMessages namespaces={['checkout', 'bookingDetails', 'otp', 'signInGate']}>
+        <Suspense fallback={<Skeleton className="h-96 rounded-2xl" />}>
+          <CheckoutView />
+        </Suspense>
+      </ClientMessages>
     </Container>
   );
 }

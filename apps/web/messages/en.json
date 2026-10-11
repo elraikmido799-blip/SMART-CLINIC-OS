@@ -208,7 +208,8 @@
   "specialtiesPage": {
     "title": "Our specialties",
     "subtitle": "Four specialties under one roof — in the clinic and online.",
-    "metaDescription": "Clinical nutrition, physiotherapy, dermatology and internal medicine at Oxygen clinics across Egypt."
+    "metaDescription": "Clinical nutrition, physiotherapy, dermatology and internal medicine at Oxygen clinics across Egypt.",
+    "listTitle": "All specialties"
   },
   "specialtyPage": {
     "bookAssessment": "Book an assessment",
@@ -251,7 +252,8 @@
     "allBranches": "All branches",
     "noMatch": "No doctors match these filters yet.",
     "clearFilters": "Show all doctors",
-    "metaDescription": "Meet the Oxygen doctors and specialists in nutrition, physiotherapy, dermatology and internal medicine."
+    "metaDescription": "Meet the Oxygen doctors and specialists in nutrition, physiotherapy, dermatology and internal medicine.",
+    "listTitle": "All doctors"
   },
   "doctorProfile": {
     "availableAt": "Available at",
@@ -339,7 +341,8 @@
     "all": "All",
     "noMatch": "No articles in this specialty yet.",
     "clearFilter": "Show all articles",
-    "metaDescription": "Health tips on nutrition, physiotherapy, skin care and internal medicine from Oxygen specialists."
+    "metaDescription": "Health tips on nutrition, physiotherapy, skin care and internal medicine from Oxygen specialists.",
+    "listTitle": "All articles"
   },
   "articlePage": {
     "reviewedBy": "Reviewed by <doctor></doctor>",

@@ -46,6 +46,9 @@ const FREE_CANCEL_HOURS = 24;
 // لينك الفيديو بيفتح قبل المكالمة بربع ساعة
 const JOIN_BEFORE_HOURS = 0.25;
 
+// الكلام في التاب اللي مش مختار كان foreground/60 (contrast قليل — axe، L-62)
+const TAB_CLASS = 'text-muted-foreground data-active:text-ink';
+
 const isActiveBooking = (booking: Booking) =>
   (booking.status === 'confirmed' || booking.status === 'pending_payment') &&
   isUpcoming(booking.starts_at);
@@ -91,8 +94,12 @@ export function AppointmentsView() {
       ) : (
         <Tabs defaultValue="upcoming">
           <TabsList>
-            <TabsTrigger value="upcoming">{t('upcoming', { count: upcoming.length })}</TabsTrigger>
-            <TabsTrigger value="past">{t('past', { count: past.length })}</TabsTrigger>
+            <TabsTrigger value="upcoming" className={TAB_CLASS}>
+              {t('upcoming', { count: upcoming.length })}
+            </TabsTrigger>
+            <TabsTrigger value="past" className={TAB_CLASS}>
+              {t('past', { count: past.length })}
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="upcoming" className="mt-5">
             {upcoming.length === 0 ? (
@@ -186,9 +193,9 @@ function AppointmentCard({ booking, onReschedule, onCancel }: CardProps) {
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-heading text-lg font-bold text-ink">
+          <h2 className="font-heading text-lg font-bold text-ink">
             {localized(booking.service, 'name', locale)}
-          </h3>
+          </h2>
           <StatusBadge status={booking.status} />
         </div>
         <dl className="mt-2 grid gap-1 text-sm text-ink sm:grid-cols-2">
@@ -274,7 +281,7 @@ function AppointmentCard({ booking, onReschedule, onCancel }: CardProps) {
             <button
               type="button"
               onClick={onCancel}
-              className="inline-flex min-h-11 items-center px-2 text-sm font-semibold text-destructive hover:underline"
+              className="inline-flex min-h-11 items-center px-2 text-sm font-semibold text-ink underline decoration-destructive decoration-2 underline-offset-4 hover:no-underline"
             >
               {t('cancel')}
             </button>
@@ -418,7 +425,7 @@ function CancelDialog({ booking, onClose }: { booking: Booking; onClose: () => v
             type="button"
             disabled={isLoading}
             onClick={() => void confirm()}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-destructive px-5 text-sm font-semibold text-destructive hover:bg-destructive/5 disabled:opacity-60"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-destructive px-5 text-sm font-semibold text-ink hover:bg-destructive/5 disabled:opacity-60"
           >
             {isLoading && <Loader2 className="size-4 animate-spin" aria-hidden />}
             {t('confirmCancel')}

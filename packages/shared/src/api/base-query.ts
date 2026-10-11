@@ -28,10 +28,16 @@ const MOCK_DELAY_MS = 400; // عشان حالة الـLoading تبان زي ال
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function createMockBaseQuery(handlers: MockHandlers): OxygenBaseQuery {
+// الـMocks ممكن تيجي جاهزة أو بـimport() متأخر (عشان داتتها متبقاش في الـJS بتاع كل صفحة)
+type MockHandlersSource = MockHandlers | (() => Promise<MockHandlers>);
+
+function createMockBaseQuery(source: MockHandlersSource): OxygenBaseQuery {
+  let loaded: Promise<MockHandlers> | null = null;
+  const load = () => (loaded ??= typeof source === 'function' ? source() : Promise.resolve(source));
+
   return async (args, api) => {
     const fetchArgs = typeof args === 'string' ? { url: args } : args;
-    await delay(MOCK_DELAY_MS);
+    const [handlers] = await Promise.all([load(), delay(MOCK_DELAY_MS)]);
 
     const handler = handlers[api.endpoint];
     if (!handler) {
@@ -52,7 +58,8 @@ function createMockBaseQuery(handlers: MockHandlers): OxygenBaseQuery {
 type BaseQueryOptions = {
   baseUrl: string;
   mocking: boolean;
-  mockHandlers: MockHandlers;
+  // جاهزة، أو function بترجّعهم بـimport() (بتتحمّل أول طلب بس)
+  mockHandlers: MockHandlersSource;
 };
 
 /**

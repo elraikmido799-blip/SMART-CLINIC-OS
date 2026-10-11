@@ -6,6 +6,7 @@ import { getOnlineConsultation } from '@/api/public/content';
 import { getDoctors } from '@/api/public/doctors';
 import { getProgram, getPrograms } from '@/api/public/programs';
 import { getServices } from '@/api/public/services';
+import { ClientMessages } from '@/components/client-messages';
 import { Container } from '@/components/shared/container';
 import { SectionState } from '@/components/shared/section-state';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -22,7 +23,10 @@ export async function generateMetadata(): Promise<Metadata> {
  * صفحة الحجز W-07 (16 · 5.1). الداتا الثابتة (الخدمات والفروع والأطباء والأسعار) بتتجاب هنا على السيرفر
  * وتتبعت للـWizard، والمواعيد بس من المتصفح. أي حاجة أساسية فشلت = رسالة بدل Wizard ناقص.
  */
-export default async function BookPage() {
+export default async function BookPage({ searchParams }: PageProps<'/[locale]/book'>) {
+  // قراية الـURL على السيرفر بتخلي الصفحة تتبني مع كل طلب، فالخطوة الصح بتيجي في الـHTML على طول
+  // بدل ما تستنى الـJS (الـLCP كان 5 ثواني — L-62)
+  await searchParams;
   const t = await getTranslations('booking');
   const [services, branches, doctors, online, programs, secretSeven] = await Promise.all([
     getServices(),
@@ -44,28 +48,30 @@ export default async function BookPage() {
         {failed && !failed.ok ? (
           <SectionState state={failed.error} className="py-16" />
         ) : services.ok && branches.ok && doctors.ok ? (
-          <Suspense fallback={<WizardSkeleton />}>
-            <BookingWizard
-              catalog={
-                {
-                  services: services.data,
-                  branches: branches.data,
-                  doctors: doctors.data,
-                  online: online.ok ? online.data.specialties : [],
-                  onlineCurrency: online.ok ? online.data.currency : 'EGP',
-                  programs: [
-                    ...(secretSeven.ok ? [secretSeven.data] : []),
-                    ...(programs.ok ? programs.data : []),
-                  ].map(({ slug, name_ar, name_en, specialty }) => ({
-                    slug,
-                    name_ar,
-                    name_en,
-                    specialty,
-                  })),
-                } satisfies BookingCatalog
-              }
-            />
-          </Suspense>
+          <ClientMessages namespaces={['booking', 'slotPicker', 'otp']}>
+            <Suspense fallback={<WizardSkeleton />}>
+              <BookingWizard
+                catalog={
+                  {
+                    services: services.data,
+                    branches: branches.data,
+                    doctors: doctors.data,
+                    online: online.ok ? online.data.specialties : [],
+                    onlineCurrency: online.ok ? online.data.currency : 'EGP',
+                    programs: [
+                      ...(secretSeven.ok ? [secretSeven.data] : []),
+                      ...(programs.ok ? programs.data : []),
+                    ].map(({ slug, name_ar, name_en, specialty }) => ({
+                      slug,
+                      name_ar,
+                      name_en,
+                      specialty,
+                    })),
+                  } satisfies BookingCatalog
+                }
+              />
+            </Suspense>
+          </ClientMessages>
         ) : null}
       </Container>
     </section>

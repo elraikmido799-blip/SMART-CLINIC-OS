@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { tokensToCss } from '@oxygen/config';
 import { directionOf, isLocale } from '@oxygen/shared';
+import { ClientMessages } from '@/components/client-messages';
 import { Providers } from '@/components/providers';
 import { env } from '@/lib/env';
 import { routing } from '@/i18n/routing';
@@ -48,9 +48,9 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
         <style dangerouslySetInnerHTML={{ __html: tokensToCss() }} />
       </head>
       <body className="min-h-dvh antialiased">
-        <NextIntlClientProvider>
+        <ClientMessages>
           <Providers dir={dir}>{children}</Providers>
-        </NextIntlClientProvider>
+        </ClientMessages>
       </body>
     </html>
   );

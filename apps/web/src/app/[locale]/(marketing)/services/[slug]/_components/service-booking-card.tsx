@@ -26,32 +26,34 @@ export async function ServiceBookingCard({ service, branches }: ServiceBookingCa
     : [];
 
   return (
-    <aside
+    <section
       aria-label={t('bookCta')}
       className="rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6 lg:sticky lg:top-24"
     >
       <dl className="space-y-4">
-        <div className="flex items-center gap-3">
-          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-mist text-primary">
-            <Clock className="size-5" aria-hidden />
-          </span>
-          <div>
-            <dt className="text-sm text-muted-foreground">{t('duration')}</dt>
-            <dd className="font-semibold text-ink">
-              {t('durationValue', { minutes: service.duration_minutes })}
-            </dd>
-          </div>
+        {/* جوه <dl> مسموح div فيه dt وdd بس، فالأيقونة جوه الـdt (axe — L-62) */}
+        <div className="relative flex min-h-10 flex-col justify-center ps-13">
+          <dt className="text-sm text-muted-foreground">
+            <span className="absolute start-0 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-mist text-primary">
+              <Clock className="size-5" aria-hidden />
+            </span>
+            {t('duration')}
+          </dt>
+          <dd className="font-semibold text-ink">
+            {t('durationValue', { minutes: service.duration_minutes })}
+          </dd>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-mist text-primary">
-            <ReceiptText className="size-5" aria-hidden />
-          </span>
-          <div>
-            <dt className="text-sm text-muted-foreground">{t('priceFrom')}</dt>
-            <dd className="font-semibold text-ink">
-              {formatMoney(service.price_from_minor, service.currency, locale)}
-            </dd>
-          </div>
+        {/* جوه <dl> مسموح div فيه dt وdd بس، فالأيقونة جوه الـdt (axe — L-62) */}
+        <div className="relative flex min-h-10 flex-col justify-center ps-13">
+          <dt className="text-sm text-muted-foreground">
+            <span className="absolute start-0 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-mist text-primary">
+              <ReceiptText className="size-5" aria-hidden />
+            </span>
+            {t('priceFrom')}
+          </dt>
+          <dd className="font-semibold text-ink">
+            {formatMoney(service.price_from_minor, service.currency, locale)}
+          </dd>
         </div>
       </dl>
       <p className="mt-3 text-sm text-muted-foreground">{t('priceNote')}</p>
@@ -87,6 +89,6 @@ export async function ServiceBookingCard({ service, branches }: ServiceBookingCa
           </ul>
         </div>
       )}
-    </aside>
+    </section>
   );
 }

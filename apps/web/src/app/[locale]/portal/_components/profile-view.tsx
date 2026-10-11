@@ -368,7 +368,7 @@ function PrivacyCard() {
           <button
             type="button"
             onClick={() => setConfirmOpen(true)}
-            className="mt-3 inline-flex h-11 items-center gap-2 rounded-md border border-destructive px-5 text-sm font-semibold text-destructive hover:bg-destructive/5"
+            className="mt-3 inline-flex h-11 items-center gap-2 rounded-md border border-destructive px-5 text-sm font-semibold text-ink hover:bg-destructive/5 [&_svg]:text-destructive"
           >
             <Trash2 className="size-4" aria-hidden />
             {t('deleteCta')}
@@ -411,7 +411,7 @@ function PrivacyCard() {
               type="button"
               disabled={!understood || deleting.isLoading}
               onClick={() => void removeAccount()}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-destructive px-5 text-sm font-semibold text-destructive hover:bg-destructive/5 disabled:opacity-50"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-destructive px-5 text-sm font-semibold text-ink hover:bg-destructive/5 disabled:opacity-50"
             >
               {deleting.isLoading && <Loader2 className="size-4 animate-spin" aria-hidden />}
               {t('deleteForever')}

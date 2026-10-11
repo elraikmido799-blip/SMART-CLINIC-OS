@@ -57,6 +57,8 @@ export function ParticleRingImage({
           aria-hidden
           fill
           sizes={sizes}
+          // الحلقة هي أكبر حاجة في الـHero (الـLCP في Lighthouse)، فبتتحمّل بدري مع الصورة (L-62)
+          preload={preload}
           className={cn('pointer-events-none object-contain', ringClassName)}
         />
       </div>

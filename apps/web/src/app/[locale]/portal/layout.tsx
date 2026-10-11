@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { ClientMessages } from '@/components/client-messages';
 import { OfflineNotice } from '@/components/shared/offline-notice';
 import { PortalShell } from './_components/portal-shell';
 
@@ -18,9 +19,9 @@ export async function generateMetadata(): Promise<Metadata> {
  */
 export default function PortalLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <ClientMessages namespaces={['portal', 'slotPicker', 'bookingDetails', 'otp', 'signInGate']}>
       <PortalShell>{children}</PortalShell>
       <OfflineNotice />
-    </>
+    </ClientMessages>
   );
 }

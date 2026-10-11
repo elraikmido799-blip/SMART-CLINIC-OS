@@ -38,13 +38,16 @@ export default async function SpecialtiesPage() {
           ) : specialties.data.length === 0 ? (
             <SectionState state="empty" />
           ) : (
-            <RevealGroup className="grid grid-cols-1 gap-3 min-[400px]:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-6">
-              {specialties.data.map((specialty) => (
-                <RevealItem key={specialty.id} className="min-w-0">
-                  <SpecialtyCard specialty={specialty} />
-                </RevealItem>
-              ))}
-            </RevealGroup>
+            <>
+              <h2 className="sr-only">{t('listTitle')}</h2>
+              <RevealGroup className="grid grid-cols-1 gap-3 min-[400px]:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-6">
+                {specialties.data.map((specialty) => (
+                  <RevealItem key={specialty.id} className="min-w-0">
+                    <SpecialtyCard specialty={specialty} />
+                  </RevealItem>
+                ))}
+              </RevealGroup>
+            </>
           )}
         </div>
       </Container>

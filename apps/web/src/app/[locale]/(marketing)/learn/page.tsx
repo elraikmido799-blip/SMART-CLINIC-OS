@@ -69,17 +69,21 @@ export default async function LearnPage({ searchParams }: PageProps<'/[locale]/l
               </Link>
             </div>
           ) : (
-            // الـkey بيتغير مع الفلتر عشان الكروت تظهر تاني (P-18)
-            <RevealGroup
-              key={specialty ?? 'all'}
-              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
-            >
-              {filtered.map((article) => (
-                <RevealItem key={article.id}>
-                  <ArticleCard article={article} />
-                </RevealItem>
-              ))}
-            </RevealGroup>
+            <>
+              {/* الكروت عناوينها h3، فلازم h2 قبلها عشان ترتيب العناوين (Lighthouse a11y — L-62) */}
+              <h2 className="sr-only">{t('listTitle')}</h2>
+              {/* الـkey بيتغير مع الفلتر عشان الكروت تظهر تاني (P-18) */}
+              <RevealGroup
+                key={specialty ?? 'all'}
+                className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
+              >
+                {filtered.map((article) => (
+                  <RevealItem key={article.id}>
+                    <ArticleCard article={article} />
+                  </RevealItem>
+                ))}
+              </RevealGroup>
+            </>
           )}
         </div>
       </Container>

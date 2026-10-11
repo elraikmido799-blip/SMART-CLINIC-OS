@@ -94,18 +94,21 @@ export default async function DoctorsPage({ searchParams }: PageProps<'/[locale]
               </Link>
             </div>
           ) : (
-            // الـkey بيتغير مع الفلتر، فالـList بتتعمل من جديد والكروت بتظهر تاني.
-            // من غيره الكروت الجديدة بتفضل مستخبية، لأن "الظهور مع الـScroll" اشتغل مرة واحدة قبل كده (P-18)
-            <RevealGroup
-              key={`${specialty ?? 'all'}-${branch?.slug ?? 'all'}`}
-              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-            >
-              {filtered.map((doctor) => (
-                <RevealItem key={doctor.id}>
-                  <DoctorCard doctor={doctor} branches={branchList} />
-                </RevealItem>
-              ))}
-            </RevealGroup>
+            <>
+              {/* الـkey بيتغير مع الفلتر، فالـList بتتعمل من جديد والكروت بتظهر تاني. */}
+              {/* من غيره الكروت الجديدة بتفضل مستخبية، لأن "الظهور مع الـScroll" اشتغل مرة واحدة قبل كده (P-18) */}
+              <h2 className="sr-only">{t('listTitle')}</h2>
+              <RevealGroup
+                key={`${specialty ?? 'all'}-${branch?.slug ?? 'all'}`}
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              >
+                {filtered.map((doctor) => (
+                  <RevealItem key={doctor.id}>
+                    <DoctorCard doctor={doctor} branches={branchList} />
+                  </RevealItem>
+                ))}
+              </RevealGroup>
+            </>
           )}
         </div>
       </Container>

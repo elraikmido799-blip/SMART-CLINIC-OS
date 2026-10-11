@@ -6,15 +6,18 @@ import { whatsappUrl } from '@/lib/whatsapp';
 export async function WhatsAppButton() {
   const t = await getTranslations('whatsapp');
 
+  // جوه <aside> عشان مايبقاش بره أي منطقة في الصفحة (axe: region — L-62)
   return (
-    <a
-      href={whatsappUrl(t('defaultMessage'))}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={t('floatingLabel')}
-      className="fixed end-4 bottom-4 z-30 inline-flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-105 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none sm:end-6 sm:bottom-6"
-    >
-      <MessageCircle className="size-7" aria-hidden />
-    </a>
+    <aside aria-label={t('floatingLabel')}>
+      <a
+        href={whatsappUrl(t('defaultMessage'))}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={t('floatingLabel')}
+        className="fixed end-4 bottom-4 z-30 inline-flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-105 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none sm:end-6 sm:bottom-6"
+      >
+        <MessageCircle className="size-7" aria-hidden />
+      </a>
+    </aside>
   );
 }

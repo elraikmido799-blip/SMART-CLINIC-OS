@@ -159,8 +159,9 @@ apps/web/
 │   │   │   ├── offline-notice.tsx شريط "إنت مش متصل بالنت"
 │   │   │   ├── reveal-group.tsx Lists عناصرها بتظهر ورا بعض (RevealGroup · RevealItem)
 │   │   │   └── reveal.tsx       الظهور مع الـScroll (Motion)
-│   │   ├── layout/              navbar · mobile-menu · language-switcher · footer · whatsapp-button · nav-links · account-link ("دخول المريض" أو "بوابتي")
+│   │   ├── layout/              navbar · mobile-menu · language-switcher · footer · whatsapp-button · nav-links · account-link (+ -view: الشكل · -live: بيسأل الـAPI، lazy — "دخول المريض" أو "بوابتي")
 │   │   └── providers.tsx        الـProviders: الاتجاه · Motion · Redux · Tooltip · Toaster
+│   │   ├── client-messages.tsx  الترجمات اللي بتروح للمتصفح بالـnamespace (BASE + اللي الصفحة محتاجاه) — DEC-40
 │   ├── i18n/                    اللغات (next-intl)
 │   │   ├── routing.ts           اللغات المتاحة (من packages/shared)
 │   │   ├── request.ts           بيحدد اللغة ويحمّل ملف الترجمة

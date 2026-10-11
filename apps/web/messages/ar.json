@@ -208,7 +208,8 @@
   "specialtiesPage": {
     "title": "تخصصاتنا",
     "subtitle": "4 تخصصات في مكان واحد — في العيادة وأونلاين.",
-    "metaDescription": "التغذية العلاجية والعلاج الطبيعي والجلدية والباطنة في فروع Oxygen في مصر."
+    "metaDescription": "التغذية العلاجية والعلاج الطبيعي والجلدية والباطنة في فروع Oxygen في مصر.",
+    "listTitle": "كل التخصصات"
   },
   "specialtyPage": {
     "bookAssessment": "احجز تقييم",
@@ -251,7 +252,8 @@
     "allBranches": "كل الفروع",
     "noMatch": "مفيش أطباء بالفلاتر دي لسه.",
     "clearFilters": "اعرض كل الأطباء",
-    "metaDescription": "اتعرف على أطباء وأخصائيين Oxygen في التغذية والعلاج الطبيعي والجلدية والباطنة."
+    "metaDescription": "اتعرف على أطباء وأخصائيين Oxygen في التغذية والعلاج الطبيعي والجلدية والباطنة.",
+    "listTitle": "كل الأطباء"
   },
   "doctorProfile": {
     "availableAt": "متاح في",
@@ -339,7 +341,8 @@
     "all": "الكل",
     "noMatch": "لسه مفيش مقالات في التخصص ده.",
     "clearFilter": "اعرض كل المقالات",
-    "metaDescription": "نصايح صحية في التغذية والعلاج الطبيعي والبشرة والباطنة من أخصائيين Oxygen."
+    "metaDescription": "نصايح صحية في التغذية والعلاج الطبيعي والبشرة والباطنة من أخصائيين Oxygen.",
+    "listTitle": "كل المقالات"
   },
   "articlePage": {
     "reviewedBy": "راجعها <doctor></doctor>",

@@ -40,7 +40,7 @@ export async function ServicesSection({ specialty, programs }: ServicesSectionPr
         </div>
 
         {program && (
-          <aside
+          <section
             aria-labelledby="related-program-title"
             className="relative overflow-hidden rounded-2xl border border-border bg-mist p-6 lg:mt-14"
           >
@@ -74,7 +74,7 @@ export async function ServicesSection({ specialty, programs }: ServicesSectionPr
               <span className="sr-only"> — {localized(program, 'name', locale)}</span>
               <ArrowRight className="size-4 rtl:rotate-180" aria-hidden />
             </Link>
-          </aside>
+          </section>
         )}
       </Container>
     </section>

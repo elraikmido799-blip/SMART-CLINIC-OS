@@ -18,6 +18,8 @@ export function Logo({ variant = 'color', layout = 'horizontal', className }: Lo
         alt="Oxygen — Physical Therapy and Nutrition"
         width={1153}
         height={1061}
+        // من غير sizes الصورة كانت بتتحمّل بعرض 3840 عشان تتعرض 128px (L-62)
+        sizes="160px"
         className={cn('h-auto w-32', className)}
       />
     );
@@ -30,6 +32,7 @@ export function Logo({ variant = 'color', layout = 'horizontal', className }: Lo
         alt=""
         width={882}
         height={882}
+        sizes="44px"
         className={cn('size-11', variant === 'white' && 'brightness-0 invert')}
       />
       <span

@@ -110,7 +110,7 @@ export function BookingSummary({
   ];
 
   return (
-    <aside
+    <section
       aria-labelledby="summary-title"
       className="rounded-2xl border border-border bg-card p-5 shadow-sm"
     >
@@ -129,32 +129,35 @@ export function BookingSummary({
               {row.icon}
               <span className="sr-only">{row.label}</span>
             </dt>
-            <dd className="min-w-0 flex-1">
-              {row.value ? (
-                <>
-                  <span className="block font-semibold text-ink">{row.value}</span>
-                  {row.detail && (
-                    <span className="block text-sm text-muted-foreground">{row.detail}</span>
-                  )}
-                </>
-              ) : (
-                <span className="block text-sm text-muted-foreground">
-                  {row.label} · {t('notChosen')}
-                </span>
-              )}
+            {/* "تعديل" جوه الـdd: جوه <dl> مسموح dt وdd بس (axe — L-62) */}
+            <dd className="flex min-w-0 flex-1 items-start justify-between gap-2">
+              <span className="min-w-0">
+                {row.value ? (
+                  <>
+                    <span className="block font-semibold text-ink">{row.value}</span>
+                    {row.detail && (
+                      <span className="block text-sm text-muted-foreground">{row.detail}</span>
+                    )}
+                  </>
+                ) : (
+                  <span className="block text-sm text-muted-foreground">
+                    {row.label} · {t('notChosen')}
+                  </span>
+                )}
+              </span>
+              {row.value &&
+                row.step !== state.step &&
+                state.steps.indexOf(row.step) < state.steps.indexOf(state.step) && (
+                  <button
+                    type="button"
+                    onClick={() => state.goTo(row.step)}
+                    className="inline-flex min-h-11 shrink-0 items-center text-sm font-semibold text-primary hover:underline"
+                  >
+                    {t('edit')}
+                    <span className="sr-only"> — {row.label}</span>
+                  </button>
+                )}
             </dd>
-            {row.value &&
-              row.step !== state.step &&
-              state.steps.indexOf(row.step) < state.steps.indexOf(state.step) && (
-                <button
-                  type="button"
-                  onClick={() => state.goTo(row.step)}
-                  className="inline-flex min-h-11 shrink-0 items-center text-sm font-semibold text-primary hover:underline"
-                >
-                  {t('edit')}
-                  <span className="sr-only"> — {row.label}</span>
-                </button>
-              )}
           </div>
         ))}
         <div className="flex items-center gap-3 py-3">
@@ -182,6 +185,6 @@ export function BookingSummary({
         <TimerReset className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
         {t('cancellation')}
       </p>
-    </aside>
+    </section>
   );
 }

@@ -16,7 +16,7 @@ export async function DoctorBookingCard({ doctor }: { doctor: PublicDoctorDetail
   const name = localized(doctor, 'name', locale);
 
   return (
-    <aside
+    <section
       aria-labelledby="doctor-booking-title"
       className="rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6 lg:sticky lg:top-24"
     >
@@ -65,6 +65,6 @@ export async function DoctorBookingCard({ doctor }: { doctor: PublicDoctorDetail
         {t('allTimes')}
         <ArrowRight className="size-4 rtl:rotate-180" aria-hidden />
       </Link>
-    </aside>
+    </section>
   );
 }

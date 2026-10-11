@@ -17,7 +17,8 @@ type Status =
 const TONES: Record<Status, string> = {
   confirmed: 'bg-mist text-primary',
   active: 'bg-mist text-primary',
-  paid: 'bg-success/10 text-success',
+  // الأخضر على أخضر فاتح contrast قليل (axe) — الكلام كحلي
+  paid: 'bg-success/15 text-ink',
   completed: 'bg-muted text-muted-foreground',
   finished: 'bg-muted text-muted-foreground',
   pending_payment: 'bg-warning/15 text-ink',

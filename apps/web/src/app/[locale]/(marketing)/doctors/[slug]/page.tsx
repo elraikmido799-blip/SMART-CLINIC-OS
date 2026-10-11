@@ -121,21 +121,23 @@ export default async function DoctorPage({ params }: PageProps<'/[locale]/doctor
               </h2>
               <dl className="mt-4 grid gap-4 sm:grid-cols-2">
                 {education && (
-                  <div className="flex gap-3 rounded-lg border border-border bg-card p-4">
-                    <GraduationCap className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
-                    <div>
-                      <dt className="text-sm text-muted-foreground">{t('education')}</dt>
-                      <dd className="mt-1 font-medium text-ink">{education}</dd>
-                    </div>
+                  <div className="rounded-lg border border-border bg-card p-4">
+                    {/* جوه <dl> مسموح بـdiv فيه dt وdd بس، فالأيقونة جوه الـdt (Lighthouse a11y — L-62) */}
+                    <dt className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <GraduationCap className="size-5 shrink-0 text-primary" aria-hidden />
+                      {t('education')}
+                    </dt>
+                    <dd className="mt-1 ps-8 font-medium text-ink">{education}</dd>
                   </div>
                 )}
                 {languages.length > 0 && (
-                  <div className="flex gap-3 rounded-lg border border-border bg-card p-4">
-                    <Languages className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
-                    <div>
-                      <dt className="text-sm text-muted-foreground">{t('languages')}</dt>
-                      <dd className="mt-1 font-medium text-ink">{languages.join(' · ')}</dd>
-                    </div>
+                  <div className="rounded-lg border border-border bg-card p-4">
+                    {/* جوه <dl> مسموح بـdiv فيه dt وdd بس، فالأيقونة جوه الـdt (Lighthouse a11y — L-62) */}
+                    <dt className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <Languages className="size-5 shrink-0 text-primary" aria-hidden />
+                      {t('languages')}
+                    </dt>
+                    <dd className="mt-1 ps-8 font-medium text-ink">{languages.join(' · ')}</dd>
                   </div>
                 )}
               </dl>

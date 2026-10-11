@@ -71,7 +71,7 @@ export default async function ProgramPage({ params }: PageProps<'/[locale]/progr
       <ProgramHero program={data} />
       <Container className="grid gap-10 py-10 lg:grid-cols-[1fr_360px] lg:items-start lg:gap-12 lg:py-14">
         {/* كارت البداية: على الموبايل قبل التفاصيل، وSticky على الكمبيوتر */}
-        <aside
+        <section
           aria-label={cta}
           className="rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6 lg:sticky lg:top-24 lg:order-last"
         >
@@ -106,7 +106,7 @@ export default async function ProgramPage({ params }: PageProps<'/[locale]/progr
             <Info className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
             {t('note')}
           </p>
-        </aside>
+        </section>
 
         <div className="space-y-10">
           {forWhom.length > 0 && (

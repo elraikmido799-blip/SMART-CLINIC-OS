@@ -57,7 +57,11 @@ function PlanTabs({ plans }: { plans: Plan[] }) {
     <Tabs defaultValue={plans[0].id}>
       <TabsList className="h-auto flex-wrap">
         {plans.map((plan) => (
-          <TabsTrigger key={plan.id} value={plan.id} className="gap-2">
+          <TabsTrigger
+            key={plan.id}
+            value={plan.id}
+            className="gap-2 text-muted-foreground data-active:text-ink"
+          >
             <Image
               src={specialtyIcon(plan.specialty)}
               alt=""
@@ -89,8 +93,11 @@ function PlanBody({ plan }: { plan: Plan }) {
     );
 
   return (
-    <section aria-label={localized(plan, 'title', locale)}>
-      <p className="text-sm text-muted-foreground">
+    <section aria-labelledby={`plan-${plan.id}`}>
+      <h2 id={`plan-${plan.id}`} className="font-heading text-xl font-bold text-ink">
+        {localized(plan, 'title', locale)}
+      </h2>
+      <p className="mt-1 text-sm text-muted-foreground">
         {t('by', {
           doctor: localized(plan, 'doctor_name', locale),
           date: formatDate(plan.updated_at, locale),

@@ -1,3 +1,4 @@
+import { ClientMessages } from '@/components/client-messages';
 import { LegalPage, legalMetadata } from '../_components/legal-page';
 import { DeleteAccountForm } from './_components/delete-account-form';
 
@@ -7,7 +8,9 @@ export const generateMetadata = () => legalMetadata('delete-account');
 export default function Page() {
   return (
     <LegalPage slug="delete-account">
-      <DeleteAccountForm />
+      <ClientMessages namespaces={['deleteAccount']}>
+        <DeleteAccountForm />
+      </ClientMessages>
     </LegalPage>
   );
 }

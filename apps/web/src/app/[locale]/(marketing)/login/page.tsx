@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { CalendarCheck, FileHeart, FolderOpen, ReceiptText } from 'lucide-react';
+import { ClientMessages } from '@/components/client-messages';
 import { Container } from '@/components/shared/container';
 import { Skeleton } from '@/components/ui/skeleton';
 import { LoginView } from './_components/login-view';
@@ -31,9 +32,11 @@ export default async function LoginPage() {
     <section className="py-10 lg:py-16">
       <Container className="grid max-w-5xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div className="mx-auto w-full max-w-md lg:mx-0">
-          <Suspense fallback={<Skeleton className="h-96 rounded-2xl" />}>
-            <LoginView />
-          </Suspense>
+          <ClientMessages namespaces={['login', 'otp']}>
+            <Suspense fallback={<Skeleton className="h-96 rounded-2xl" />}>
+              <LoginView />
+            </Suspense>
+          </ClientMessages>
         </div>
 
         <aside
