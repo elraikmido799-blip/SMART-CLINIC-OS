@@ -4,42 +4,19 @@ import { useMemo, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
-import { CircleAlert, CircleCheck, Loader2 } from 'lucide-react';
+import { CircleCheck, Loader2 } from 'lucide-react';
 import { z } from 'zod';
 import { useCreateLeadMutation } from '@/api/leads.api';
 import { brandButton } from '@/components/shared/brand';
+import { FieldMessage, SubmitErrorMessage } from '@/components/shared/field-message';
 import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { normalizeEgyptianMobile } from '@/lib/phone';
+import { isOffline, toSubmitError, type SubmitError } from '@/lib/submit-error';
 import { cn } from '@/lib/utils';
 
 const MESSAGE_MAX = 1000;
-
-// كل الأخطاء اللي ممكن ترجع من POST /public/leads، وكل واحد ليه رسالة في leadForm.errors
-type SubmitError = 'network' | 'rate-limited' | 'invalid' | 'server';
-
-function toSubmitError(error: unknown): SubmitError {
-  const status = (error as { status?: unknown } | null)?.status;
-  if (status === 'FETCH_ERROR' || status === 'TIMEOUT_ERROR') return 'network';
-  if (status === 429) return 'rate-limited';
-  if (status === 400 || status === 422) return 'invalid';
-  return 'server';
-}
-
-/**
- * رسالة الخطأ تحت الخانة: الكلام بالكحلي وجنبه أيقونة حمرا، لأن الأحمر (#E5484D) على الأبيض
- * contrast بتاعه 3.9 بس، وده أقل من AA للكلام الصغير (4.5).
- */
-function FieldMessage({ error }: { error?: string }) {
-  if (!error) return null;
-  return (
-    <p role="alert" className="flex items-start gap-1.5 text-sm font-medium text-ink">
-      <CircleAlert className="mt-0.5 size-4 shrink-0 text-destructive" aria-hidden />
-      {error}
-    </p>
-  );
-}
 
 type LeadFormProps = {
   // بيتبعت مع الـLead عشان الـCRM يعرف الزائر جه منين (/contact · /offers/<slug> · /digital/<slug>)
@@ -107,8 +84,7 @@ export function LeadForm({
 
   const onSubmit = async (values: Values) => {
     setSubmitError(null);
-    // النت مقطوع: منبعتش أصلًا، والكلام يفضل
-    if (typeof navigator !== 'undefined' && !navigator.onLine) {
+    if (isOffline()) {
       setSubmitError('network');
       return;
     }
@@ -275,15 +251,7 @@ export function LeadForm({
         )}
       </FieldGroup>
 
-      {submitError && (
-        <p
-          role="alert"
-          className="mt-5 flex items-start gap-2 rounded-md border border-destructive/30 bg-destructive/5 p-3 text-sm text-ink"
-        >
-          <CircleAlert className="mt-0.5 size-4 shrink-0 text-destructive" aria-hidden />
-          {t(`errors.${submitError}`)}
-        </p>
-      )}
+      {submitError && <SubmitErrorMessage>{t(`errors.${submitError}`)}</SubmitErrorMessage>}
 
       <button
         type="submit"

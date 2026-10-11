@@ -285,6 +285,25 @@ export const onlineConsultationSchema = z.object({
   faqs: z.array(faqSchema),
 });
 
+// الصفحات القانونية W-18: كلام Markdown من الداشبورد + آخر تحديث
+export const LEGAL_SLUGS = [
+  'privacy',
+  'terms',
+  'refund-policy',
+  'medical-disclaimer',
+  'delete-account',
+] as const;
+export const legalSlugSchema = z.enum(LEGAL_SLUGS);
+
+export const publicLegalPageSchema = z.object({
+  slug: legalSlugSchema,
+  title_ar: z.string(),
+  title_en: z.string(),
+  body_ar: z.string(),
+  body_en: z.string(),
+  updated_at: z.iso.date(),
+});
+
 export const aboutContentSchema = z.object({
   intro_ar: z.string(),
   intro_en: z.string(),
@@ -320,6 +339,8 @@ export type PublicService = z.infer<typeof publicServiceSchema>;
 export type PublicServiceDetail = z.infer<typeof publicServiceDetailSchema>;
 export type HomeContent = z.infer<typeof homeContentSchema>;
 export type OnlineConsultation = z.infer<typeof onlineConsultationSchema>;
+export type LegalSlug = z.infer<typeof legalSlugSchema>;
+export type PublicLegalPage = z.infer<typeof publicLegalPageSchema>;
 export type AboutContent = z.infer<typeof aboutContentSchema>;
 export type PublicOffer = z.infer<typeof publicOfferSchema>;
 export type PublicOfferDetail = z.infer<typeof publicOfferDetailSchema>;

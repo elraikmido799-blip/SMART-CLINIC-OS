@@ -7,6 +7,7 @@ import { Logo } from '@/components/shared/logo';
 import { Link } from '@/i18n/navigation';
 import { isOfferActive } from '@/lib/offers';
 import { whatsappUrl } from '@/lib/whatsapp';
+import { LEGAL_SLUGS } from '@/types/public';
 
 const COLUMNS = [
   {
@@ -39,16 +40,11 @@ const COLUMNS = [
   },
 ] as const;
 
-const LEGAL_LINKS = [
-  { key: 'privacy', href: '/privacy' },
-  { key: 'terms', href: '/terms' },
-  { key: 'sitemap', href: '/sitemap' },
-] as const;
-
 // الـFooter (A2): كحلي، والكلام فيه مش أقل من 14px عشان يتقري (مراجعة A2)
 export async function Footer() {
   const t = await getTranslations('footer');
   const tWhatsapp = await getTranslations('whatsapp');
+  const tLegal = await getTranslations('legal');
   // صفحات العروض أصلًا بتيجي من الإعلانات (L-49). اللينك هنا بيظهر بس وفيه عرض شغال (L-50)
   const offers = await getOffers();
   const activeOffer = offers.ok ? offers.data.find(isOfferActive) : undefined;
@@ -105,10 +101,10 @@ export async function Footer() {
       <div className="border-t border-white/15">
         <Container className="flex flex-col gap-3 py-5 text-sm text-white/80 sm:flex-row sm:items-center sm:justify-between">
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
-            {LEGAL_LINKS.map((link) => (
-              <li key={link.key}>
-                <Link href={link.href} className="hover:text-white">
-                  {t(`legal.${link.key}`)}
+            {LEGAL_SLUGS.map((slug) => (
+              <li key={slug}>
+                <Link href={`/${slug}`} className="hover:text-white">
+                  {tLegal(`pages.${slug}`)}
                 </Link>
               </li>
             ))}

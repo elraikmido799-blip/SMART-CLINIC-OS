@@ -131,7 +131,6 @@
         "offer": "Current offer"
       }
     },
-    "legal": { "privacy": "Privacy Policy", "terms": "Terms of Use", "sitemap": "Sitemap" },
     "copyright": "© {year} Oxygen. All rights reserved."
   },
   "whatsapp": {
@@ -337,10 +336,10 @@
       "interest": "Please choose what you are interested in."
     },
     "errors": {
-      "network": "You seem to be offline. Check your connection, then try again — your message is still here.",
-      "rate-limited": "You sent several messages in a short time. Please wait a few minutes, then try again.",
+      "network": "You seem to be offline. Check your connection, then try again — what you wrote is still here.",
+      "rate-limited": "You sent several requests in a short time. Please wait a few minutes, then try again.",
       "invalid": "Something in the form isn’t right. Check your name and number, then try again.",
-      "server": "We couldn’t send your message right now. Please try again, or message us on WhatsApp."
+      "server": "We couldn’t send your request right now. Please try again, or message us on WhatsApp."
     },
     "success": {
       "title": "Request received",
@@ -493,5 +492,27 @@
     "formSubtitle": "We will send you the download link as soon as the app launches.",
     "formSubmit": "Notify me",
     "metaDescription": "The Oxygen app: book appointments, get reminders, follow your plan and see your results. Coming soon to the App Store and Google Play."
+  },
+  "legal": {
+    "navLabel": "Legal",
+    "updated": "Last updated",
+    "pages": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use",
+      "refund-policy": "Refund Policy",
+      "medical-disclaimer": "Medical Disclaimer",
+      "delete-account": "Delete your account"
+    }
+  },
+  "deleteAccount": {
+    "formTitle": "Request account deletion",
+    "formSubtitle": "We will call you on this number to confirm it is you before deleting anything.",
+    "phoneLabel": "Mobile number on your account",
+    "reasonLabel": "Why are you leaving?",
+    "confirm": "I understand that my account and app data will be deleted and cannot be restored.",
+    "confirmRequired": "Please confirm that you understand.",
+    "submit": "Send deletion request",
+    "successTitle": "Request received",
+    "successBody": "Our team will call you within 2 working days to confirm. Your account will be deleted within 30 days."
   }
 }

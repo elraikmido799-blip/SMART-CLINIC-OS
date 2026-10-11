@@ -112,11 +112,13 @@ apps/web/
 │   │       │   ├── online-consultation/ W-08: الاستشارة الأونلاين (السعر لكل تخصص من content/online-consultation)
 │   │       │   ├── digital/     W-10: صفحة واحدة (المنتجات = البرامج الأونلاين · فورم "مهتم بإيه؟") — DEC-37
 │   │       │   ├── app/         W-15: تحميل التطبيق (بادجات "قريبًا" + فورم "بلّغني")
+│   │       │   ├── (legal)/     W-18: privacy · terms · refund-policy · medical-disclaimer · delete-account (+ _components/legal-page = الـTemplate)
 │   │       │   ├── learn/       W-13: page.tsx (فلتر + كروت) · [slug]/ المقالة (+ _components/article-body: الـMarkdown)
-│   │       │   └── …            ⏳ legal (المرحلة 4)
+│   │       │   └── …            ⏳ (المرحلة 5: book · checkout · login)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
+│   │   ├── account-deletion.api.ts RTK Query: طلب حذف الحساب (W-18)
 │   │   └── public/              Functions على السيرفر للصفحات التعريفية (DEC-11 · DEC-30)
 │   │       ├── fetch-public.ts  GET /public/* ← Result (ok أو نوع الخطأ) + Schema + Mocks + timeout
 │   │       └── specialties · doctors · branches · programs · content (home + about + online-consultation) .ts   Endpoint في كل ملف (specialties فيه كمان getSpecialty(slug)) · services (getServices · getService) · doctors (+ getDoctor) · branches (+ getBranch) · programs (+ getProgram) · articles (getArticles · getArticle) · offers (getOffers · getOffer)
@@ -134,6 +136,7 @@ apps/web/
 │   │   │   ├── article-card · specialty-chips   كارت المقالة · فلتر التخصص (الأطباء والمقالات)
 │   │   │   ├── trust-bar.tsx    شريط الأرقام (الرئيسية و"عن Oxygen")
 │   │   │   ├── store-badges.tsx بادجات المتاجر "قريبًا" (شريط التطبيق في الرئيسية + صفحة التطبيق)
+│   │   │   ├── markdown-body · field-message   كلام Markdown (المقالات والقانوني) · رسايل أخطاء الفورمات
 │   │   │   ├── dotted-steps.tsx خطوات مرقّمة منقطة بالطول (الخدمة ومراحل البرنامج)
 │   │   │   ├── section-state · retry-button   حالات الخطأ والفاضي في أي قسم
 │   │   │   ├── offline-notice.tsx شريط "إنت مش متصل بالنت"
@@ -149,6 +152,7 @@ apps/web/
 │   │   ├── maps.ts             لينك Google Maps Embed (الرئيسية والفروع)
 │   │   ├── programs.ts         SECRET_SEVEN_SLUG
 │   │   ├── offers.ts           todayInCairo · isOfferActive (العرض شغال ولا خلص)
+│   │   ├── submit-error.ts     toSubmitError · isOffline (أي فورم بيبعت)
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── fonts.ts             Inter + IBM Plex Sans Arabic (الكلام) · Montserrat + Alexandria (العناوين — DEC-29)
 │   │   ├── whatsapp.ts          لينك واتساب برسالة جاهزة (+ رقم فرع)

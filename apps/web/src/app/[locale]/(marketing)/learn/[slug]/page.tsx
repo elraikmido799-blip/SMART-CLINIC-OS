@@ -11,6 +11,7 @@ import { BookingBanner } from '@/components/shared/booking-banner';
 import { specialtyStyles } from '@/components/shared/brand';
 import { Container } from '@/components/shared/container';
 import { DotWave } from '@/components/shared/dot-wave';
+import { MarkdownBody } from '@/components/shared/markdown-body';
 import { PageBreadcrumb } from '@/components/shared/page-breadcrumb';
 import { Reveal } from '@/components/shared/reveal';
 import { RevealGroup, RevealItem } from '@/components/shared/reveal-group';
@@ -18,7 +19,6 @@ import { SectionHeading } from '@/components/shared/section-heading';
 import { SectionState } from '@/components/shared/section-state';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
-import { ArticleBody } from './_components/article-body';
 
 const RELATED_LIMIT = 3;
 
@@ -145,7 +145,7 @@ export default async function ArticlePage({ params }: PageProps<'/[locale]/learn
           )}
 
           <div className="mt-8">
-            <ArticleBody markdown={localized(data, 'body', locale)} />
+            <MarkdownBody markdown={localized(data, 'body', locale)} />
           </div>
 
           <p className="mt-10 flex gap-3 rounded-lg bg-mist p-4 text-sm text-ink">

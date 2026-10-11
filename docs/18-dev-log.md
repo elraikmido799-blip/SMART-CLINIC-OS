@@ -63,6 +63,7 @@
 | [L-49](#l-49) | صفحة العروض (Template) + الفورم بقى مشترك (LeadForm) | 4.9 | 2026-10-11 | ✅ |
 | [L-52](#l-52) | صفحة البرامج الرقمية (Oxygen ديجيتال) + "مهتم بإيه؟" في الفورم المشترك | 4.11 | 2026-10-11 | ✅ |
 | [L-53](#l-53) | صفحة تحميل التطبيق + بادجات المتاجر بقت مشتركة | 4.12 | 2026-10-11 | ✅ |
+| [L-54](#l-54) | الصفحات القانونية (5) + فورم حذف الحساب + لينكات الـFooter القانونية | 4.13 | 2026-10-11 | ✅ |
 | [L-51](#l-51) | صفحة الاستشارة الأونلاين | 4.10 | 2026-10-11 | ✅ |
 | [L-50](#l-50) | لينك "العرض الحالي" في الـFooter + خطوة 4.14 (شريط العروض في الرئيسية) اتضافت للخطة | 4.9 | 2026-10-11 | ✅ |
 
@@ -1075,6 +1076,22 @@
 - **الملفات:** `app/[locale]/(marketing)/app/page.tsx` · `_components/app-promo.tsx` · `components/shared/{store-badges,page-breadcrumb}.tsx` · `components/layout/footer.tsx` · `messages/*.json`.
 - **اتأكدنا إزاي:** `tsc` و`eslint` من غير أخطاء · Edge حقيقي: 1280 إنجليزي، و320 عربي من غير Scroll بالعرض · الرئيسية لسه 200 وشريط التطبيق زي ما هو.
 
+### L-54 · الصفحات القانونية + حذف الحساب
+
+- **اتعمل:** W-18. 5 صفحات بنفس الـTemplate: `/privacy` · `/terms` · `/refund-policy` · `/medical-disclaimer` · `/delete-account`.
+  - **الـTemplate** (`(legal)/_components/legal-page.tsx`): المسار، والعنوان، و"آخر تحديث"، والكلام (Markdown). جنبه قايمة الصفحات القانونية والحالية مختارة (على الموبايل شيبس فوق الكلام). كل صفحة `page.tsx` فيها سطرين.
+  - **`MarkdownBody`** (كان `ArticleBody` في المقالات) اتنقل لـ`components/shared/markdown-body.tsx`. اللينك اللي جوه الكلام وبيبدأ بـ`/` بقى `Link` بتاع اللغات، فـ`/contact` في الإنجليزي بيروح `/en/contact`.
+  - **حذف الحساب:** الكلام (إيه اللي بيحصل · إيه اللي بيتمسح · إيه اللي لازم نحتفظ بيه) + فورم: الاسم، والموبايل، وليه (اختياري)، و"أنا فاهم" (Checkbox إجباري). بيبعت `POST /public/account-deletion-requests` (`useRequestAccountDeletionMutation`). Google Play وApp Store طالبين صفحة حذف من غير Login.
+  - **اتنقلوا للمشترك:** `FieldMessage` و`SubmitErrorMessage` (`components/shared/field-message.tsx`) · `toSubmitError` و`isOffline` (`lib/submit-error.ts`). `LeadForm` وفورم الحذف بيستخدموهم.
+  - رسايل الأخطاء بقت "طلبك" بدل "رسالتك"، عشان تنفع لأي فورم.
+  - **الـFooter:** تحت فيه الـ5 صفحات من `LEGAL_SLUGS`. لينك "خريطة الموقع" اتشال، لأنه كان بيودّي لصفحة مش موجودة (الـ`sitemap.xml` لجوجل في 7.1).
+  - shadcn: `checkbox` (الـCLI عمل ملف واحد بس).
+- **الداتا:** `GET /public/legal/{slug}` (`publicLegalPageSchema`). ⚠️ **الكلام مسودة** لشكل الصفحات بس، ولازم محامي Oxygen يراجعه ويبعته (في "مستنيين إيه").
+- **الملفات:** `app/[locale]/(marketing)/(legal)/**` · `components/shared/{markdown-body,field-message,lead-form}.tsx` · `lib/submit-error.ts` · `api/public/legal.ts` · `api/account-deletion.api.ts` · `types/{public,account}.ts` · `mocks/public/legal.ts` · `mocks/handlers.ts` · `components/ui/checkbox.tsx` · `components/layout/footer.tsx` · `learn/[slug]/page.tsx` · `messages/*.json`.
+- **المشاكل:** القايمة الجانبية خدت العمود الواسع والكلام اتحشر في 220px: الأعمدة كانت `[220px_1fr]` والقايمة `order-last`. بقت `[1fr_220px]` (اتصلحت قبل الـCommit).
+- **اتأكدنا إزاي:** `tsc` و`eslint` من غير أخطاء · الـ5 صفحات = 200 · Edge حقيقي: الفورم فاضي طلّع 3 أخطاء (الاسم · الرقم · "ياريت تأكد إنك فاهم") · `01000000500` طلّع رسالة السيرفر · رقم بأرقام عربي (٠١١…) اتبعت ("طلبك وصل") · لينك `/contact` جوه سياسة الخصوصية الإنجليزي = `/en/contact` · 320 عربي من غير Scroll بالعرض.
+- محتاج من مبرمج الباك: `GET /public/legal/{slug}` بنفس شكل `publicLegalPageSchema` + `POST /public/account-deletion-requests` (`full_name` · `phone` · `reason`) بيرجّع 422 و429 بكود.
+
 ---
 
 ## المشاكل وحلولها
@@ -1307,4 +1324,5 @@
 | فولدر `structure and image/` في الـ`.gitignore` ✅ ([L-36](#l-36)) | — | — |
 | صلاحية الحساب على الـRepo عشان الـPush ([L-36](#l-36)) | إنت | الرفع |
 | اللوجو ✅ ([L-20](#l-20)). لو Oxygen عندهم **الملف الأصلي** (SVG أو AI)، هيبقى أحسن من الـPNG | Oxygen (عن طريقك) | مش مستعجل |
+| **نص الصفحات القانونية النهائي** (الموجود مسودة — [L-54](#l-54)) | محامي Oxygen | قبل الإطلاق |
 | **تأكيد الفروع والتليفون** (البوستات فيها قايمتين فروع مختلفتين — [L-17](#l-17)) | Oxygen | صفحة الفروع والـFooter |
