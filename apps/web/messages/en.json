@@ -524,5 +524,17 @@
     "priceNow": "Offer price:",
     "priceBefore": "Regular price:",
     "cta": "See the offer"
+  },
+  "faqsPage": {
+    "title": "Frequently asked questions",
+    "subtitle": "Quick answers about our specialties, online consultations and the Secret Seven program.",
+    "jump": "Jump to a topic",
+    "online": "Online consultation",
+    "secretSeven": "Secret Seven",
+    "more": "Learn more",
+    "stillTitle": "Didn’t find your answer?",
+    "stillBody": "Our team replies on WhatsApp during working hours.",
+    "contact": "Send us a message",
+    "metaDescription": "Answers to common questions about Oxygen’s nutrition, physiotherapy, dermatology and internal medicine services, online consultations and programs."
   }
 }

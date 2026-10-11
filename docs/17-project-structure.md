@@ -111,6 +111,7 @@ apps/web/
 │   │       │   ├── offers/[slug]/ W-12: صفحة أي عرض (حملة إعلانية)
 │   │       │   ├── (الرئيسية) _components/offers-strip.tsx  شريط "عروض الشهر" (العروض الشغالة بس) — 4.14
 │   │       │   ├── online-consultation/ W-08: الاستشارة الأونلاين (السعر لكل تخصص من content/online-consultation)
+│   │       │   ├── faqs/        الأسئلة الشائعة متجمعة (التخصصات + الأونلاين + Secret Seven) — L-56
 │   │       │   ├── digital/     W-10: صفحة واحدة (المنتجات = البرامج الأونلاين · فورم "مهتم بإيه؟") — DEC-37
 │   │       │   ├── app/         W-15: تحميل التطبيق (بادجات "قريبًا" + فورم "بلّغني")
 │   │       │   ├── (legal)/     W-18: privacy · terms · refund-policy · medical-disclaimer · delete-account (+ _components/legal-page = الـTemplate)
