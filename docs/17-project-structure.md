@@ -124,7 +124,6 @@ apps/web/
 │   │       │   ├── page.tsx · appointments · passport · documents · plans · packages · invoices · profile   PP-01 → PP-08 (كل page.tsx سطرين، والصفحة في _components)
 │   │       │   ├── _api/        appointments · care (البرنامج والباقات والـPassport والخطط) · documents · account (الفواتير والبروفايل)
 │   │       │   └── _components/ portal-shell · portal-nav · <اسم>-view · page-header · portal-card · status-badge · program-stages · progress-bar · document-icon · weight-chart (SVG) · query-error
-│   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
 │   │   ├── account-deletion.api.ts RTK Query: طلب حذف الحساب (W-18)
