@@ -1,4 +1,4 @@
-import type { ListResponse, PublicOfferDetail } from '@/types/public';
+import type { ListResponse, PublicOffer, PublicOfferDetail } from '@/types/public';
 import { faq } from './specialty-details';
 
 /**
@@ -73,8 +73,8 @@ const OFFERS: PublicOfferDetail[] = [
   },
 ];
 
-export const offersMock: ListResponse<{ id: string; slug: string }> = {
-  data: OFFERS.map(({ id, slug }) => ({ id, slug })),
+export const offersMock: ListResponse<PublicOffer> = {
+  data: OFFERS.map(({ id, slug, ends_at }) => ({ id, slug, ends_at })),
 };
 
 export const offerDetailMock = (slug: string) => OFFERS.find((offer) => offer.slug === slug);

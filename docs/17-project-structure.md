@@ -144,6 +144,7 @@ apps/web/
 │   ├── lib/
 │   │   ├── maps.ts             لينك Google Maps Embed (الرئيسية والفروع)
 │   │   ├── programs.ts         SECRET_SEVEN_SLUG
+│   │   ├── offers.ts           todayInCairo · isOfferActive (العرض شغال ولا خلص)
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── fonts.ts             Inter + IBM Plex Sans Arabic (الكلام) · Montserrat + Alexandria (العناوين — DEC-29)
 │   │   ├── whatsapp.ts          لينك واتساب برسالة جاهزة (+ رقم فرع)

@@ -124,7 +124,8 @@
         "title": "Help",
         "faqs": "FAQs",
         "contact": "Contact Us",
-        "book": "Book Appointment"
+        "book": "Book Appointment",
+        "offer": "Current offer"
       }
     },
     "legal": { "privacy": "Privacy Policy", "terms": "Terms of Use", "sitemap": "Sitemap" },

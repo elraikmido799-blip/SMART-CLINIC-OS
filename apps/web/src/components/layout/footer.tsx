@@ -1,9 +1,11 @@
 import { getTranslations } from 'next-intl/server';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Tag } from 'lucide-react';
+import { getOffers } from '@/api/public/offers';
 import { brandButton } from '@/components/shared/brand';
 import { Container } from '@/components/shared/container';
 import { Logo } from '@/components/shared/logo';
 import { Link } from '@/i18n/navigation';
+import { isOfferActive } from '@/lib/offers';
 import { whatsappUrl } from '@/lib/whatsapp';
 
 const COLUMNS = [
@@ -44,6 +46,9 @@ const LEGAL_LINKS = [
 export async function Footer() {
   const t = await getTranslations('footer');
   const tWhatsapp = await getTranslations('whatsapp');
+  // صفحات العروض أصلًا بتيجي من الإعلانات (L-49). اللينك هنا بيظهر بس وفيه عرض شغال (L-50)
+  const offers = await getOffers();
+  const activeOffer = offers.ok ? offers.data.find(isOfferActive) : undefined;
 
   return (
     <footer className="bg-ink text-white">
@@ -66,6 +71,17 @@ export async function Footer() {
                   </Link>
                 </li>
               ))}
+              {column.key === 'help' && activeOffer && (
+                <li>
+                  <Link
+                    href={`/offers/${activeOffer.slug}`}
+                    className="inline-flex items-center gap-1.5 text-sm text-white/80 hover:text-white"
+                  >
+                    <Tag className="size-3.5" aria-hidden />
+                    {t('columns.help.offer')}
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
         ))}

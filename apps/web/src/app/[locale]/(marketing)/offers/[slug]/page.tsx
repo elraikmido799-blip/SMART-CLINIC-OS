@@ -13,6 +13,7 @@ import { ParticleRingImage } from '@/components/shared/particle-ring-image';
 import { Reveal } from '@/components/shared/reveal';
 import { SectionState } from '@/components/shared/section-state';
 import { Link } from '@/i18n/navigation';
+import { isOfferActive } from '@/lib/offers';
 import { cn } from '@/lib/utils';
 
 // العرض بيخلص بالتاريخ، فالصفحة بتتبني تاني كل 5 دقايق حتى مع الـMocks (DEC-11)
@@ -36,10 +37,6 @@ export async function generateMetadata({
     ...(result.data.image_url && { openGraph: { images: [result.data.image_url] } }),
   };
 }
-
-// النهارده بتوقيت مصر "YYYY-MM-DD" (en-CA بيكتب التاريخ بالشكل ده)
-const todayInCairo = () =>
-  new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Cairo' }).format(new Date());
 
 /**
  * صفحة العرض W-12: Template واحد لأي حملة (بتيجي من الإعلانات، فمش في الـNavbar).
@@ -67,7 +64,7 @@ export default async function OfferPage({ params }: PageProps<'/[locale]/offers/
   const title = localized(data, 'title', locale);
   const benefits = ar ? data.benefits_ar : data.benefits_en;
   const terms = ar ? data.terms_ar : data.terms_en;
-  const ended = data.ends_at !== null && data.ends_at < todayInCairo();
+  const ended = !isOfferActive(data);
   const savingPercent = Math.round(
     (1 - data.price_after_minor / Math.max(data.price_before_minor, 1)) * 100,
   );

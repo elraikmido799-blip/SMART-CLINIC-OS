@@ -248,6 +248,8 @@ export const publicArticleDetailSchema = publicArticleSchema.extend({
 export const publicOfferSchema = z.object({
   id: z.string(),
   slug: z.string(),
+  // في القايمة كمان عشان الـFooter يعرف العرض الشغال من غير ما يجيب التفاصيل
+  ends_at: z.iso.date().nullable(),
 });
 
 export const publicOfferDetailSchema = publicOfferSchema.extend({
@@ -260,7 +262,6 @@ export const publicOfferDetailSchema = publicOfferSchema.extend({
   price_before_minor: z.number().int().nonnegative(),
   price_after_minor: z.number().int().nonnegative(),
   currency: z.string(),
-  ends_at: z.iso.date().nullable(),
   benefits_ar: z.array(z.string()),
   benefits_en: z.array(z.string()),
   terms_ar: z.array(z.string()),
@@ -304,6 +305,7 @@ export type PublicService = z.infer<typeof publicServiceSchema>;
 export type PublicServiceDetail = z.infer<typeof publicServiceDetailSchema>;
 export type HomeContent = z.infer<typeof homeContentSchema>;
 export type AboutContent = z.infer<typeof aboutContentSchema>;
+export type PublicOffer = z.infer<typeof publicOfferSchema>;
 export type PublicOfferDetail = z.infer<typeof publicOfferDetailSchema>;
 export type PublicArticle = z.infer<typeof publicArticleSchema>;
 export type PublicArticleDetail = z.infer<typeof publicArticleDetailSchema>;
