@@ -42,3 +42,7 @@ export type Specialty = keyof typeof tokens.specialty;
 
 // الـslugs بتاعة التخصصات الـ4 (صفحات /specialties/[slug] وأي فلتر بالتخصص)
 export const SPECIALTIES = Object.keys(tokens.specialty) as Specialty[];
+
+// قيمة من الـURL أو الـAPI ← تخصص من الـ4، أو false
+export const isSpecialty = (value: unknown): value is Specialty =>
+  typeof value === 'string' && (SPECIALTIES as readonly string[]).includes(value);

@@ -57,6 +57,16 @@ export function formatSlot(iso: string, locale: Locale): { day: string; time: st
   };
 }
 
+/** "2026-10-01" ← "1 Oct 2026" أو "1 أكتوبر 2026" */
+export function formatDate(isoDate: string, locale: Locale): string {
+  return new Intl.DateTimeFormat(NUMBER_LOCALE[locale], {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${isoDate}T00:00:00Z`));
+}
+
 /** 10000 ← "10,000" بنفس الأرقام اللي في formatMoney */
 export function formatNumber(value: number, locale: Locale): string {
   return new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(value);

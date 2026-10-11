@@ -313,5 +313,25 @@
     "bookCta": "احجز موعد",
     "branchesTitle": "فروعنا",
     "metaDescription": "تواصل مع Oxygen: ابعت رسالة، أو كلمنا على واتساب، أو اعرف أقرب فرع ليك."
+  },
+  "articles": {
+    "readingTime": "قراية {minutes} دقايق",
+    "read": "اقرا"
+  },
+  "learnPage": {
+    "title": "تعلّم",
+    "subtitle": "نصايح صحية بسيطة وموثوقة من فريق Oxygen.",
+    "filterLabel": "فلتر بالتخصص",
+    "all": "الكل",
+    "noMatch": "لسه مفيش مقالات في التخصص ده.",
+    "clearFilter": "اعرض كل المقالات",
+    "metaDescription": "نصايح صحية في التغذية والعلاج الطبيعي والبشرة والباطنة من أخصائيين Oxygen."
+  },
+  "articlePage": {
+    "reviewedBy": "راجعها <doctor></doctor>",
+    "disclaimer": "المقالة دي معلومات عامة، ومش بديل عن الكشف. لو عندك أعراض، احجز تقييم مع أخصائي.",
+    "related": "اقرا كمان",
+    "bannerTitle": "عندك سؤال في {specialty}؟",
+    "bannerCta": "احجز تقييم"
   }
 }

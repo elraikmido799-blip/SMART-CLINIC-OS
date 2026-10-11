@@ -322,5 +322,25 @@
     "bookCta": "Book an appointment",
     "branchesTitle": "Our branches",
     "metaDescription": "Contact Oxygen: send a message, chat on WhatsApp or find your nearest branch."
+  },
+  "articles": {
+    "readingTime": "{minutes} min read",
+    "read": "Read"
+  },
+  "learnPage": {
+    "title": "Learn",
+    "subtitle": "Simple, trusted health tips from the Oxygen team.",
+    "filterLabel": "Filter by specialty",
+    "all": "All",
+    "noMatch": "No articles in this specialty yet.",
+    "clearFilter": "Show all articles",
+    "metaDescription": "Health tips on nutrition, physiotherapy, skin care and internal medicine from Oxygen specialists."
+  },
+  "articlePage": {
+    "reviewedBy": "Reviewed by <doctor></doctor>",
+    "disclaimer": "This article is general information and doesn’t replace a medical consultation. If you have symptoms, book an assessment with a specialist.",
+    "related": "More to read",
+    "bannerTitle": "Have a question about {specialty}?",
+    "bannerCta": "Book an assessment"
   }
 }

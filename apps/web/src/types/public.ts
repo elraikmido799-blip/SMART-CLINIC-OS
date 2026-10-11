@@ -217,6 +217,30 @@ export const homeContentSchema = z.object({
   }),
 });
 
+// المقالة في الـList (GET /public/articles) — الغلاف من الداشبورد (16 · 2.9)، null = كارت بلون التخصص
+export const publicArticleSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  specialty: specialtySchema,
+  title_ar: z.string(),
+  title_en: z.string(),
+  excerpt_ar: z.string(),
+  excerpt_en: z.string(),
+  cover_url: z.string().nullable(),
+  reading_minutes: z.number().int().positive(),
+  published_at: z.iso.date(),
+});
+
+/**
+ * صفحة المقالة (GET /public/articles/{slug}). الكلام Markdown بلغتين.
+ * reviewed_by: slug الدكتور اللي راجع المقالة (ثقة طبية) — بيتجاب اسمه من /public/doctors. null = مش بيظهر
+ */
+export const publicArticleDetailSchema = publicArticleSchema.extend({
+  body_ar: z.string(),
+  body_en: z.string(),
+  reviewed_by: z.string().nullable(),
+});
+
 // صفحة "عن Oxygen" (GET /public/content/about) — بتتغير من الداشبورد. الأرقام من content/home
 export const aboutContentSchema = z.object({
   intro_ar: z.string(),
@@ -253,4 +277,6 @@ export type PublicService = z.infer<typeof publicServiceSchema>;
 export type PublicServiceDetail = z.infer<typeof publicServiceDetailSchema>;
 export type HomeContent = z.infer<typeof homeContentSchema>;
 export type AboutContent = z.infer<typeof aboutContentSchema>;
+export type PublicArticle = z.infer<typeof publicArticleSchema>;
+export type PublicArticleDetail = z.infer<typeof publicArticleDetailSchema>;
 export type ListResponse<T> = { data: T[] };

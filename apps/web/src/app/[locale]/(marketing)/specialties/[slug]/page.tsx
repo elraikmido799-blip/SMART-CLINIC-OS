@@ -13,7 +13,7 @@ import { DotWave } from '@/components/shared/dot-wave';
 import { FaqSection } from '@/components/shared/faq-section';
 import { Reveal } from '@/components/shared/reveal';
 import { SectionState } from '@/components/shared/section-state';
-import { SPECIALTIES, type Specialty } from '@oxygen/config';
+import { isSpecialty, SPECIALTIES } from '@oxygen/config';
 import { ConditionsSection } from './_components/conditions-section';
 import { ServicesSection } from './_components/services-section';
 import { SpecialtyHero } from './_components/specialty-hero';
@@ -24,9 +24,6 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return SPECIALTIES.map((slug) => ({ slug }));
 }
-
-const isSpecialty = (slug: string): slug is Specialty =>
-  (SPECIALTIES as readonly string[]).includes(slug);
 
 export async function generateMetadata({
   params,
