@@ -107,7 +107,8 @@ apps/web/
 │   │       │   ├── branches/    W-06: page.tsx الخريطة + الفروع · [slug]/ صفحة الفرع (+ _components/branch-hero)
 │   │       │   ├── programs/    W-09: page.tsx (Secret Seven + الأونلاين) · [slug]/ صفحة البرنامج (+ _components/program-hero)
 │   │       │   ├── about/       W-02 "عن Oxygen"
-│   │       │   └── …            ⏳ contact · learn · offers · … (المرحلة 4)
+│   │       │   ├── contact/     W-14: page.tsx + _components/contact-form (فورم Lead)
+│   │       │   └── …            ⏳ learn · offers · … (المرحلة 4)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)
@@ -141,7 +142,8 @@ apps/web/
 │   │   ├── programs.ts         SECRET_SEVEN_SLUG
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── fonts.ts             Inter + IBM Plex Sans Arabic (الكلام) · Montserrat + Alexandria (العناوين — DEC-29)
-│   │   ├── whatsapp.ts          لينك واتساب برسالة جاهزة
+│   │   ├── whatsapp.ts          لينك واتساب برسالة جاهزة (+ رقم فرع)
+│   │   ├── phone.ts             normalizeEgyptianMobile: أي شكل للرقم ← "+201XXXXXXXXX"
 │   │   ├── motion.ts            الحركات المتكررة (fadeUp · stagger)
 │   │   └── utils.ts             cn() — دمج الـClasses
 │   ├── mocks/

@@ -283,5 +283,44 @@
     "bannerTitle": "Come see the difference in person.",
     "bannerCta": "Book a visit",
     "metaDescription": "Oxygen is an Egyptian clinic group for clinical nutrition and physical therapy, with dermatology and internal medicine."
+  },
+  "contactPage": {
+    "title": "Contact us",
+    "subtitle": "Questions about a service, a program or a price? Send us a message and we will call you back.",
+    "formTitle": "Send us a message",
+    "formSubtitle": "We reply within one working day.",
+    "fields": {
+      "name": "Full name",
+      "phone": "Mobile number",
+      "phoneHint": "Egyptian mobile, e.g. <num>010 1234 5678</num>",
+      "message": "Your message",
+      "optional": "(optional)"
+    },
+    "validation": {
+      "name": "Please write your name.",
+      "phone": "Please write a valid Egyptian mobile number (11 digits starting with 01).",
+      "messageMax": "Your message is too long (max {max} characters)."
+    },
+    "send": "Send message",
+    "sending": "Sending…",
+    "privacyNote": "We only use your number to reply to you.",
+    "errors": {
+      "network": "You seem to be offline. Check your connection, then try again — your message is still here.",
+      "rate-limited": "You sent several messages in a short time. Please wait a few minutes, then try again.",
+      "invalid": "Something in the form isn’t right. Check your name and number, then try again.",
+      "server": "We couldn’t send your message right now. Please try again, or message us on WhatsApp."
+    },
+    "success": {
+      "title": "Message sent",
+      "body": "Thank you! Our team will call you back within one working day.",
+      "again": "Send another message"
+    },
+    "whatsappTitle": "Fastest: WhatsApp",
+    "whatsappBody": "Chat with our team now.",
+    "bookTitle": "Ready to book?",
+    "bookBody": "Choose your service, branch and time in a few steps.",
+    "bookCta": "Book an appointment",
+    "branchesTitle": "Our branches",
+    "metaDescription": "Contact Oxygen: send a message, chat on WhatsApp or find your nearest branch."
   }
 }
