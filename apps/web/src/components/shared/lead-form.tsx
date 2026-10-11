@@ -12,6 +12,7 @@ import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/components/ui
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { normalizeEgyptianMobile } from '@/lib/phone';
+import { cn } from '@/lib/utils';
 
 const MESSAGE_MAX = 1000;
 
@@ -52,6 +53,8 @@ type LeadFormProps = {
   withMessage?: boolean;
   // الدهبي لما الفورم هو الزرار الأساسي في الصفحة (العروض)، والتيل في الباقي
   tone?: 'primary' | 'gold';
+  // "مهتم بإيه؟" (اختيار واحد إجباري). الاختيار بيتضاف للـlanding_page: /digital ← /digital/<value>
+  interest?: { legend: string; options: { value: string; label: string }[]; defaultValue?: string };
 };
 
 /**
@@ -67,12 +70,14 @@ export function LeadForm({
   submitLabel,
   withMessage = false,
   tone = 'primary',
+  interest,
 }: LeadFormProps) {
   const t = useTranslations('leadForm');
   const [createLead, { isLoading }] = useCreateLeadMutation();
   const [submitError, setSubmitError] = useState<SubmitError | null>(null);
   const [sent, setSent] = useState(false);
 
+  const hasInterest = Boolean(interest);
   const schema = useMemo(
     () =>
       z.object({
@@ -84,14 +89,20 @@ export function LeadForm({
           .string()
           .trim()
           .max(MESSAGE_MAX, t('validation.messageMax', { max: MESSAGE_MAX })),
+        interest: hasInterest ? z.string().min(1, t('validation.interest')) : z.string(),
       }),
-    [t],
+    [t, hasInterest],
   );
   type Values = z.infer<typeof schema>;
 
   const form = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { full_name: '', phone: '', message: '' },
+    defaultValues: {
+      full_name: '',
+      phone: '',
+      message: '',
+      interest: interest?.defaultValue ?? '',
+    },
   });
 
   const onSubmit = async (values: Values) => {
@@ -106,7 +117,7 @@ export function LeadForm({
         full_name: values.full_name,
         phone: normalizeEgyptianMobile(values.phone)!,
         message: values.message || undefined,
-        landing_page: landingPage,
+        landing_page: values.interest ? `${landingPage}/${values.interest}` : landingPage,
       }).unwrap();
       setSent(true);
       form.reset();
@@ -148,6 +159,48 @@ export function LeadForm({
       {subtitle && <p className="mt-1 text-muted-foreground">{subtitle}</p>}
 
       <FieldGroup className="mt-6 gap-5">
+        {interest && (
+          <Controller
+            name="interest"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <fieldset
+                aria-invalid={fieldState.invalid}
+                aria-describedby={fieldState.error ? `${idPrefix}-interest-error` : undefined}
+              >
+                <legend className="mb-2 text-sm font-medium text-ink">{interest.legend}</legend>
+                <div className="flex flex-wrap gap-2">
+                  {interest.options.map((option) => (
+                    <label
+                      key={option.value}
+                      className={cn(
+                        'inline-flex min-h-11 cursor-pointer items-center rounded-full border px-4 text-sm font-semibold transition-colors has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-ring/50',
+                        field.value === option.value
+                          ? 'border-primary bg-primary text-primary-foreground'
+                          : 'border-field-border bg-card text-ink hover:border-primary',
+                        fieldState.invalid && field.value !== option.value && 'border-destructive',
+                      )}
+                    >
+                      <input
+                        type="radio"
+                        name={field.name}
+                        value={option.value}
+                        checked={field.value === option.value}
+                        onChange={() => field.onChange(option.value)}
+                        onBlur={field.onBlur}
+                        className="sr-only"
+                      />
+                      {option.label}
+                    </label>
+                  ))}
+                </div>
+                <div id={`${idPrefix}-interest-error`} className="mt-2">
+                  <FieldMessage error={fieldState.error?.message} />
+                </div>
+              </fieldset>
+            )}
+          />
+        )}
         <Controller
           name="full_name"
           control={form.control}

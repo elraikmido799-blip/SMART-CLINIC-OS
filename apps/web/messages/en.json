@@ -119,7 +119,8 @@
         "nutrition": "Nutrition",
         "physio": "Physiotherapy",
         "derm": "Dermatology",
-        "internal": "Internal Medicine"
+        "internal": "Internal Medicine",
+        "digital": "Oxygen Digital"
       },
       "help": {
         "title": "Help",
@@ -331,7 +332,8 @@
     "validation": {
       "name": "Please write your name.",
       "phone": "Please write a valid Egyptian mobile number (11 digits starting with 01).",
-      "messageMax": "Your message is too long (max {max} characters)."
+      "messageMax": "Your message is too long (max {max} characters).",
+      "interest": "Please choose what you are interested in."
     },
     "errors": {
       "network": "You seem to be offline. Check your connection, then try again — your message is still here.",
@@ -403,5 +405,52 @@
     "emergencyBody": "For severe pain, chest pain or breathing trouble, call 123 or go to the nearest emergency room.",
     "bannerTitle": "Your specialist is one call away.",
     "metaDescription": "Book a video consultation with an Oxygen specialist in nutrition, physiotherapy, dermatology or internal medicine — from anywhere in Egypt."
+  },
+  "digitalPage": {
+    "title": "Oxygen Digital",
+    "badge": "Monthly plans · coming soon",
+    "heading": "Your Oxygen care, between visits",
+    "subtitle": "Nutrition, physiotherapy, skin care and chronic-care programs you follow from home — with the same specialists who see you in our clinics.",
+    "cta": "Register your interest",
+    "benefitsTitle": "Why go digital with Oxygen",
+    "benefits": {
+      "team": {
+        "title": "The same team",
+        "body": "Your plan comes from Oxygen specialists, not a generic app."
+      },
+      "app": {
+        "title": "All in your phone",
+        "body": "Plans, exercise videos and progress in your portal and the Oxygen app."
+      },
+      "chat": {
+        "title": "Regular check-ins",
+        "body": "Your specialist follows up and adjusts the plan as you go."
+      },
+      "human": {
+        "title": "A clinic when you need it",
+        "body": "If you need to be seen in person, we book you a visit at the nearest branch."
+      }
+    },
+    "nextTitle": "Be the first to know",
+    "nextSubtitle": "Monthly digital plans are launching soon. Register now and we will reach out first.",
+    "next": {
+      "call": {
+        "title": "We call you",
+        "body": "Our team calls you to understand your goal and answer your questions."
+      },
+      "launch": {
+        "title": "You hear first at launch",
+        "body": "We message you as soon as your program opens, with the final price."
+      },
+      "priority": {
+        "title": "Founding-member priority",
+        "body": "Early registrations get the first places in each program."
+      }
+    },
+    "formTitle": "Register your interest",
+    "formSubtitle": "No payment now — just tell us what interests you.",
+    "formSubmit": "Register my interest",
+    "interestLegend": "Which program interests you?",
+    "metaDescription": "Oxygen Digital: online nutrition, physio at home, skin follow-up and chronic care programs with Oxygen specialists. Register your interest."
   }
 }

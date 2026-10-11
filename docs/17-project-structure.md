@@ -111,7 +111,7 @@ apps/web/
 │   │       │   ├── offers/[slug]/ W-12: صفحة أي عرض (حملة إعلانية)
 │   │       │   ├── online-consultation/ W-08: الاستشارة الأونلاين (السعر لكل تخصص من content/online-consultation)
 │   │       │   ├── learn/       W-13: page.tsx (فلتر + كروت) · [slug]/ المقالة (+ _components/article-body: الـMarkdown)
-│   │       │   └── …            ⏳ online-consultation · digital · app · legal (المرحلة 4)
+│   │       │   └── …            ⏳ digital · app · legal (المرحلة 4)
 │   │       ├── book/ ⏳ · checkout/ ⏳ · login/ ⏳ · portal/ ⏳     (المرحلة 5 و 6)
 │   ├── api/                     الكلام مع الـAPI اللي بتستخدمه أكتر من صفحة
 │   │   ├── leads.api.ts         RTK Query: إرسال أي فورم (Contact · العروض …)

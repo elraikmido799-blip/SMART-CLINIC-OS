@@ -25,6 +25,7 @@ const COLUMNS = [
       { key: 'physio', href: '/specialties/physio' },
       { key: 'derm', href: '/specialties/derm' },
       { key: 'internal', href: '/specialties/internal' },
+      { key: 'digital', href: '/digital' },
     ],
   },
   {
