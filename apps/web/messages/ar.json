@@ -263,5 +263,16 @@
     "note": "كل جسم مختلف: خطتك ومدتها بيحددهم الأخصائي بعد التقييم.",
     "bannerTitle": "جاهز تبدأ رحلتك؟",
     "metaDescription": "{name} في Oxygen — {summary}"
+  },
+  "aboutPage": {
+    "title": "عن Oxygen",
+    "story": "حكايتنا",
+    "mission": "رسالتنا",
+    "values": "بنؤمن بإيه",
+    "photos": "من جوه Oxygen",
+    "imageAlt": "أخصائي علاج طبيعي بيساعد مريض في Oxygen",
+    "bannerTitle": "تعالى شوف الفرق بنفسك.",
+    "bannerCta": "احجز زيارة",
+    "metaDescription": "Oxygen مجموعة عيادات مصرية للتغذية العلاجية والعلاج الطبيعي، ومعاهم الجلدية والباطنة."
   }
 }

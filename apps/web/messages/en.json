@@ -272,5 +272,16 @@
     "note": "Every body is different: your plan and timeline are set by your specialist after the assessment.",
     "bannerTitle": "Ready to start your journey?",
     "metaDescription": "{name} at Oxygen — {summary}"
+  },
+  "aboutPage": {
+    "title": "About Oxygen",
+    "story": "Our story",
+    "mission": "Our mission",
+    "values": "What we believe in",
+    "photos": "Inside Oxygen",
+    "imageAlt": "A physiotherapist guiding a patient at Oxygen",
+    "bannerTitle": "Come see the difference in person.",
+    "bannerCta": "Book a visit",
+    "metaDescription": "Oxygen is an Egyptian clinic group for clinical nutrition and physical therapy, with dermatology and internal medicine."
   }
 }

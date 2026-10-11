@@ -217,6 +217,29 @@ export const homeContentSchema = z.object({
   }),
 });
 
+// صفحة "عن Oxygen" (GET /public/content/about) — بتتغير من الداشبورد. الأرقام من content/home
+export const aboutContentSchema = z.object({
+  intro_ar: z.string(),
+  intro_en: z.string(),
+  // null = الصورة الافتراضية اللي في المشروع
+  hero_image_url: z.string().nullable(),
+  story_ar: z.array(z.string()),
+  story_en: z.array(z.string()),
+  mission_ar: z.string(),
+  mission_en: z.string(),
+  values: z.array(
+    z.object({
+      id: z.string(),
+      title_ar: z.string(),
+      title_en: z.string(),
+      body_ar: z.string(),
+      body_en: z.string(),
+    }),
+  ),
+  // صور الأماكن الحقيقية (16 · 2.6). فاضية = القسم مش بيظهر
+  photos: z.array(z.object({ url: z.string(), alt_ar: z.string(), alt_en: z.string() })),
+});
+
 export type PublicSpecialty = z.infer<typeof publicSpecialtySchema>;
 export type PublicDoctor = z.infer<typeof publicDoctorSchema>;
 export type PublicDoctorDetail = z.infer<typeof publicDoctorDetailSchema>;
@@ -229,4 +252,5 @@ export type PublicFaq = z.infer<typeof faqSchema>;
 export type PublicService = z.infer<typeof publicServiceSchema>;
 export type PublicServiceDetail = z.infer<typeof publicServiceDetailSchema>;
 export type HomeContent = z.infer<typeof homeContentSchema>;
+export type AboutContent = z.infer<typeof aboutContentSchema>;
 export type ListResponse<T> = { data: T[] };

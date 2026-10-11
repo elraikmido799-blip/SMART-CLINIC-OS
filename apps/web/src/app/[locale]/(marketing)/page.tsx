@@ -12,7 +12,7 @@ import { Hero } from './_components/hero';
 import { JourneySection } from '@/components/shared/journey-section';
 import { ProgramsSection } from '@/components/shared/programs-section';
 import { SpecialtiesSection } from './_components/specialties-section';
-import { TrustBar } from './_components/trust-bar';
+import { TrustBar } from '@/components/shared/trust-bar';
 
 /**
  * الصفحة الرئيسية W-01 (A1 · A2 · A3).
