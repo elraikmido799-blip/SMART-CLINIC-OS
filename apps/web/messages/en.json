@@ -79,6 +79,8 @@
     "viewAll": "View all doctors"
   },
   "doctorCard": {
+    "profile": "View profile",
+    "profileOf": "View the profile of {name}",
     "experience": "{years, plural, one {# year} other {# years}} of experience",
     "book": "Book",
     "bookWith": "Book with {name}",

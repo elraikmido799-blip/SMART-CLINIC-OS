@@ -141,7 +141,7 @@ export default async function DoctorsPage({ searchParams }: PageProps<'/[locale]
             >
               {filtered.map((doctor) => (
                 <RevealItem key={doctor.id}>
-                  <DoctorCard doctor={doctor} branches={branchList} layout="stacked" />
+                  <DoctorCard doctor={doctor} branches={branchList} />
                 </RevealItem>
               ))}
             </RevealGroup>

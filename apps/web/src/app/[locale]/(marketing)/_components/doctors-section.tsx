@@ -41,7 +41,7 @@ export async function DoctorsSection({ doctors, branches }: DoctorsSectionProps)
           ) : doctors.data.length === 0 ? (
             <SectionState state="empty" />
           ) : (
-            <RevealGroup className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {doctors.data.slice(0, HOME_DOCTORS_LIMIT).map((doctor) => (
                 <RevealItem key={doctor.id}>
                   <DoctorCard doctor={doctor} branches={branchList} />

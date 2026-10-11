@@ -30,7 +30,7 @@ export function DoctorsGridSection({ title, doctors, branches, match }: DoctorsG
           {!doctors.ok ? (
             <SectionState state={doctors.error} />
           ) : (
-            <RevealGroup className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {list.map((doctor) => (
                 <RevealItem key={doctor.id}>
                   <DoctorCard doctor={doctor} branches={branches.ok ? branches.data : []} />
