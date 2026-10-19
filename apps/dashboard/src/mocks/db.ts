@@ -5,6 +5,7 @@ import type { DermPlan } from '@/features/derm-plans/types';
 import type { PatientPhoto } from '@/features/photos/types';
 import type { NutritionPlan } from '@/features/nutrition-plans/types';
 import type { Exercise } from '@/features/exercises/types';
+import type { Campaign, Lead } from '@/features/crm/types';
 import type { Enrollment } from '@/features/programs/enrollment-types';
 import type { Program } from '@/features/programs/types';
 import type { StoredEncounter } from './encounters';
@@ -48,6 +49,8 @@ export type MockDb = {
   form_templates: StoredFormTemplate[];
   programs: Program[];
   enrollments: Enrollment[];
+  leads: Lead[];
+  campaigns: Campaign[];
   // الأيام اللي مواعيدها اتولدت: "branch-id|2026-10-19"
   generated_days: string[];
 };
@@ -78,6 +81,8 @@ const empty = (): MockDb => ({
   form_templates: [],
   programs: [],
   enrollments: [],
+  leads: [],
+  campaigns: [],
   generated_days: [],
 });
 

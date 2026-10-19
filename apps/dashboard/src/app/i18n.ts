@@ -11,6 +11,7 @@ import arDoctorDay from '@/locales/ar/doctorDay.json';
 import arEncounters from '@/locales/ar/encounters.json';
 import arCarePlans from '@/locales/ar/carePlans.json';
 import arNutritionPlans from '@/locales/ar/nutritionPlans.json';
+import arCrm from '@/locales/ar/crm.json';
 import arPrograms from '@/locales/ar/programs.json';
 import arFormBuilder from '@/locales/ar/formBuilder.json';
 import arMeasurements from '@/locales/ar/measurements.json';
@@ -29,6 +30,7 @@ import enDoctorDay from '@/locales/en/doctorDay.json';
 import enEncounters from '@/locales/en/encounters.json';
 import enCarePlans from '@/locales/en/carePlans.json';
 import enNutritionPlans from '@/locales/en/nutritionPlans.json';
+import enCrm from '@/locales/en/crm.json';
 import enPrograms from '@/locales/en/programs.json';
 import enFormBuilder from '@/locales/en/formBuilder.json';
 import enMeasurements from '@/locales/en/measurements.json';
@@ -54,6 +56,7 @@ export const resources = {
     encounters: arEncounters,
     carePlans: arCarePlans,
     nutritionPlans: arNutritionPlans,
+    crm: arCrm,
     programs: arPrograms,
     formBuilder: arFormBuilder,
     measurements: arMeasurements,
@@ -74,6 +77,7 @@ export const resources = {
     encounters: enEncounters,
     carePlans: enCarePlans,
     nutritionPlans: enNutritionPlans,
+    crm: enCrm,
     programs: enPrograms,
     formBuilder: enFormBuilder,
     measurements: enMeasurements,

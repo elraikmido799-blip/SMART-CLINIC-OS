@@ -28,6 +28,9 @@ type Props<T extends { id: string }> = {
   dragLabel: (item: T) => string;
   // null = القراءة بس (من غير سحب)
   onMove: ((item: T, toColumnId: string) => void) | null;
+  // أعمدة بتتحدث تلقائي من الأحداث (زي مراحل الـCRM الأوتوماتيك): الكارت منها مبيتسحبش وعمود منها مبيستقبلش
+  canDrag?: (item: T) => boolean;
+  canDrop?: (item: T, toColumnId: string) => boolean;
   emptyText: string;
   ariaLabel: string;
 };
@@ -152,6 +155,8 @@ export function KanbanBoard<T extends { id: string }>({
   renderCard,
   dragLabel,
   onMove,
+  canDrag,
+  canDrop,
   emptyText,
   ariaLabel,
 }: Props<T>) {
@@ -161,7 +166,8 @@ export function KanbanBoard<T extends { id: string }>({
     if (!onMove || !event.over) return;
     const item = items.find((entry) => entry.id === event.active.id);
     const target = String(event.over.id);
-    if (item && columnOf(item) !== target) onMove(item, target);
+    if (item && columnOf(item) !== target && (canDrop?.(item, target) ?? true))
+      onMove(item, target);
   };
 
   return (
@@ -182,7 +188,7 @@ export function KanbanBoard<T extends { id: string }>({
                     key={item.id}
                     id={item.id}
                     handleLabel={dragLabel(item)}
-                    draggable={onMove !== null}
+                    draggable={onMove !== null && (canDrag?.(item) ?? true)}
                   >
                     {renderCard(item)}
                   </Card>

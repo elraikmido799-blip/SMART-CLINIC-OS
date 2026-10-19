@@ -1,0 +1,103 @@
+{
+  "myLeads": "My leads",
+  "description": "Every lead from first contact to treatment",
+  "cancel": "Cancel",
+  "stages": {
+    "lead": "Lead",
+    "contacted": "Contacted",
+    "qualified": "Qualified",
+    "booked": "Booked",
+    "visited": "Visited",
+    "assessment": "Assessment",
+    "program": "Program",
+    "paid": "Paid",
+    "treatment": "Treatment",
+    "follow_up": "Follow-up",
+    "renewal": "Renewal",
+    "referral": "Referral"
+  },
+  "sources": {
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "website": "Website",
+    "whatsapp": "WhatsApp",
+    "phone": "Phone call",
+    "referral": "Referral",
+    "walk_in": "Walk-in",
+    "other": "Other"
+  },
+  "periods": {
+    "all": "All time",
+    "today": "Today",
+    "week": "Last 7 days",
+    "month": "Last 30 days"
+  },
+  "filters": {
+    "source": "Source",
+    "campaign": "Campaign",
+    "agent": "Agent",
+    "allAgents": "All agents",
+    "period": "Period",
+    "search": "Search by name or phone"
+  },
+  "kpi": {
+    "newThisWeek": "New this week",
+    "sla": "Contacted within SLA",
+    "booked": "Booked"
+  },
+  "board": {
+    "region": "Leads pipeline",
+    "emptyColumn": "No leads",
+    "manual": "Manual",
+    "auto": "Automatic"
+  },
+  "card": {
+    "open": "Open {{name}}",
+    "unassigned": "Unassigned",
+    "drag": "Drag {{name}} to another stage",
+    "moveTo": "Move {{name}} to a stage",
+    "moveToShort": "Move to…"
+  },
+  "sla": {
+    "minutes": "{{count}} min",
+    "hours": "{{count}} h",
+    "waiting": "Waiting {{time}}"
+  },
+  "empty": {
+    "title": "No leads",
+    "body": "Nothing matches these filters."
+  },
+  "new": {
+    "button": "New lead",
+    "title": "New lead",
+    "name": "Name",
+    "nameRequired": "Enter the name",
+    "phone": "Mobile",
+    "phoneHelp": "01X followed by 8 digits",
+    "phoneRequired": "Enter the mobile number",
+    "phoneInvalid": "Not a valid Egyptian mobile (01X + 8 digits)",
+    "source": "Source",
+    "campaign": "Campaign",
+    "noCampaign": "No campaign",
+    "interest": "Interested in",
+    "noInterest": "Not specified",
+    "notes": "Notes (optional)",
+    "ok": "Add lead",
+    "done": "Lead added"
+  },
+  "drawer": {
+    "details": "Lead details",
+    "branch": "Branch",
+    "source": "Source",
+    "campaign": "Campaign",
+    "agent": "Agent",
+    "created": "Created",
+    "notes": "Notes"
+  },
+  "errors": {
+    "DUPLICATE_PHONE": "This mobile already belongs to a lead or a patient. Search for it first.",
+    "STAGE_AUTOMATIC": "This stage updates by itself from booking, check-in and payment events.",
+    "generic": "Something went wrong. Please try again."
+  }
+}

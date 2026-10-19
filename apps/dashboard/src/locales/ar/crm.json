@@ -1,0 +1,103 @@
+{
+  "myLeads": "عملائي المحتملين",
+  "description": "كل عميل محتمل من أول تواصل لحد العلاج",
+  "cancel": "إلغاء",
+  "stages": {
+    "lead": "عميل جديد",
+    "contacted": "اتكلّمنا معاه",
+    "qualified": "مؤهّل",
+    "booked": "حجز",
+    "visited": "زار",
+    "assessment": "تقييم",
+    "program": "برنامج",
+    "paid": "دفع",
+    "treatment": "علاج",
+    "follow_up": "متابعة",
+    "renewal": "تجديد",
+    "referral": "رشّح حد"
+  },
+  "sources": {
+    "facebook": "فيسبوك",
+    "instagram": "إنستجرام",
+    "tiktok": "تيك توك",
+    "website": "الموقع",
+    "whatsapp": "واتساب",
+    "phone": "مكالمة",
+    "referral": "ترشيح",
+    "walk_in": "جه بنفسه",
+    "other": "تاني"
+  },
+  "periods": {
+    "all": "كل الوقت",
+    "today": "النهارده",
+    "week": "آخر 7 أيام",
+    "month": "آخر 30 يوم"
+  },
+  "filters": {
+    "source": "المصدر",
+    "campaign": "الحملة",
+    "agent": "المسؤول",
+    "allAgents": "كل المسؤولين",
+    "period": "الفترة",
+    "search": "دوّر بالاسم أو الموبايل"
+  },
+  "kpi": {
+    "newThisWeek": "جداد الأسبوع ده",
+    "sla": "اتكلّموا في أول 15 دقيقة",
+    "booked": "حجزوا"
+  },
+  "board": {
+    "region": "لوحة العملاء المحتملين",
+    "emptyColumn": "مفيش عملاء",
+    "manual": "يدوي",
+    "auto": "تلقائي"
+  },
+  "card": {
+    "open": "افتح {{name}}",
+    "unassigned": "من غير مسؤول",
+    "drag": "اسحب {{name}} لمرحلة تانية",
+    "moveTo": "انقل {{name}} لمرحلة",
+    "moveToShort": "انقل إلى…"
+  },
+  "sla": {
+    "minutes": "{{count}} د",
+    "hours": "{{count}} س",
+    "waiting": "مستني {{time}}"
+  },
+  "empty": {
+    "title": "مفيش عملاء",
+    "body": "مفيش حاجة مطابقة للفلاتر دي."
+  },
+  "new": {
+    "button": "عميل جديد",
+    "title": "عميل محتمل جديد",
+    "name": "الاسم",
+    "nameRequired": "اكتب الاسم",
+    "phone": "الموبايل",
+    "phoneHelp": "01X وبعدها 8 أرقام",
+    "phoneRequired": "اكتب رقم الموبايل",
+    "phoneInvalid": "مش موبايل مصري صح (01X + 8 أرقام)",
+    "source": "المصدر",
+    "campaign": "الحملة",
+    "noCampaign": "من غير حملة",
+    "interest": "مهتم بـ",
+    "noInterest": "مش محدد",
+    "notes": "ملاحظات (اختياري)",
+    "ok": "ضيف العميل",
+    "done": "العميل اتضاف"
+  },
+  "drawer": {
+    "details": "بيانات العميل",
+    "branch": "الفرع",
+    "source": "المصدر",
+    "campaign": "الحملة",
+    "agent": "المسؤول",
+    "created": "اتسجّل",
+    "notes": "ملاحظات"
+  },
+  "errors": {
+    "DUPLICATE_PHONE": "الموبايل ده عند عميل أو مريض تاني. دوّر عليه الأول.",
+    "STAGE_AUTOMATIC": "المرحلة دي بتتحدث لوحدها من أحداث الحجز والحضور والدفع.",
+    "generic": "حصلت مشكلة. جرّب تاني."
+  }
+}

@@ -245,6 +245,7 @@ apps/dashboard/
 │   │   ├── measurements/        القياسات: types (labFlag) · measurements.api · components/ (measurements-tab · medications-panel · sparkline)
 │   │   ├── form-builder/        بنّاء الفورمات: types · form-builder.api · builder-state (ترتيب + تحقق) · components/ (forms-page · builder-page · field-editor)
 │   │   ├── programs/            البرامج: types · enrollment-types · programs.api · enrollments.api · stage-timing · components/ (programs-manage-page · program-builder-page · programs-board-page · programs-tab)
+│   │   ├── crm/                 الـCRM: types (المراحل والمصادر) · crm.api · sla · phone (إخفاء الموبايل) · components/ (crm-page · lead-card · new-lead-modal · lead-drawer)
 │   │   ├── exercises/           مكتبة التمارين: types · exercises.api · components/exercises-page
 │   │   ├── billing/             التحصيل والتقفيل (3.6 · 3.7): types · totals (الحساب) · billing.api · closing.api · components/ (pos-page · invoice-view · closing-page)
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)
@@ -254,7 +255,7 @@ apps/dashboard/
 │   │   ├── kanban/              kanban-board: لوحة أعمدة بسحب من مقبض + بديل "انقل إلى" (مشترك: البرامج 5.2 · الـCRM 6.1)
 │   │   └── page-header · tags (StatusTag · SpecialtyTag) · specialty-icon · danger-button · stat-card · money · person-avatar · coming-soon
 │   ├── locales/
-│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing · programs · doctorDay · encounters · carePlans · nutritionPlans · dermPlans · photos · measurements · formBuilder · programs · exercises
+│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing · programs · doctorDay · encounters · carePlans · nutritionPlans · dermPlans · photos · measurements · formBuilder · programs · crm · exercises
 │   ├── lib/
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── api-error.ts         كود الخطأ من رد الـAPI
@@ -262,6 +263,7 @@ apps/dashboard/
 │   │   ├── use-autosave.ts      حفظ تلقائي بعد ما المستخدم يبطّل تعديل (خطط التغذية والجلدية)
 │   │   ├── image.ts             تصغير الصورة في المتصفح قبل الرفع (صور المريض)
 │   │   ├── list.ts              move: نقل عنصر في قايمة (الترتيب بأزرار فوق/تحت)
+│   │   ├── use-now.ts           الوقت دلوقتي بيتحدّث كل دقيقة (عدّاد الـSLA)
 │   │   └── clinic-time.ts       الوقت بتوقيت مصر (النهارده · الدقيقة دلوقتي · ISO بفرق التوقيت · addDays · أول الأسبوع السبت)
 │   ├── mocks/                   الداتا الوهمية (بتتمسح كلها لما الـAPI يجهز)
 │   │   ├── db.ts                داتابيز وهمية في localStorage (oxygen-staff-mock-db)
