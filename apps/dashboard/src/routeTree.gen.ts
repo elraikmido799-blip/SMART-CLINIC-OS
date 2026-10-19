@@ -15,13 +15,14 @@ import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppBillingRouteImport } from './routes/_app/billing'
 import { Route as AppCalendarRouteImport } from './routes/_app/calendar'
 import { Route as AppCatalogRouteImport } from './routes/_app/catalog'
-import { Route as AppClinicalRouteImport } from './routes/_app/clinical'
 import { Route as AppContentRouteImport } from './routes/_app/content'
 import { Route as AppCrmRouteImport } from './routes/_app/crm'
 import { Route as AppDashboardsRouteImport } from './routes/_app/dashboards'
 import { Route as AppProgramsRouteImport } from './routes/_app/programs'
 import { Route as AppReportsRouteImport } from './routes/_app/reports'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
+import { Route as AppClinicalIndexRouteImport } from './routes/_app/clinical.index'
+import { Route as AppClinicalExercisesRouteImport } from './routes/_app/clinical.exercises'
 import { Route as AppEncountersEncounterIdRouteImport } from './routes/_app/encounters.$encounterId'
 import { Route as AppFrontDeskIndexRouteImport } from './routes/_app/front-desk.index'
 import { Route as AppFrontDeskClosingRouteImport } from './routes/_app/front-desk.closing'
@@ -58,11 +59,6 @@ const AppCatalogRoute = AppCatalogRouteImport.update({
   path: '/catalog',
   getParentRoute: () => AppRoute,
 } as any)
-const AppClinicalRoute = AppClinicalRouteImport.update({
-  id: '/clinical',
-  path: '/clinical',
-  getParentRoute: () => AppRoute,
-} as any)
 const AppContentRoute = AppContentRouteImport.update({
   id: '/content',
   path: '/content',
@@ -91,6 +87,16 @@ const AppReportsRoute = AppReportsRouteImport.update({
 const AppSettingsRoute = AppSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppClinicalIndexRoute = AppClinicalIndexRouteImport.update({
+  id: '/clinical/',
+  path: '/clinical/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppClinicalExercisesRoute = AppClinicalExercisesRouteImport.update({
+  id: '/clinical/exercises',
+  path: '/clinical/exercises',
   getParentRoute: () => AppRoute,
 } as any)
 const AppEncountersEncounterIdRoute =
@@ -131,17 +137,18 @@ export interface FileRoutesByFullPath {
   '/billing': typeof AppBillingRoute
   '/calendar': typeof AppCalendarRoute
   '/catalog': typeof AppCatalogRoute
-  '/clinical': typeof AppClinicalRoute
   '/content': typeof AppContentRoute
   '/crm': typeof AppCrmRoute
   '/dashboards': typeof AppDashboardsRoute
   '/programs': typeof AppProgramsRoute
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
+  '/clinical/exercises': typeof AppClinicalExercisesRoute
   '/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/clinical/': typeof AppClinicalIndexRoute
   '/front-desk/': typeof AppFrontDeskIndexRoute
   '/patients/': typeof AppPatientsIndexRoute
 }
@@ -150,7 +157,6 @@ export interface FileRoutesByTo {
   '/billing': typeof AppBillingRoute
   '/calendar': typeof AppCalendarRoute
   '/catalog': typeof AppCatalogRoute
-  '/clinical': typeof AppClinicalRoute
   '/content': typeof AppContentRoute
   '/crm': typeof AppCrmRoute
   '/dashboards': typeof AppDashboardsRoute
@@ -158,10 +164,12 @@ export interface FileRoutesByTo {
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
   '/': typeof AppIndexRoute
+  '/clinical/exercises': typeof AppClinicalExercisesRoute
   '/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/clinical': typeof AppClinicalIndexRoute
   '/front-desk': typeof AppFrontDeskIndexRoute
   '/patients': typeof AppPatientsIndexRoute
 }
@@ -172,7 +180,6 @@ export interface FileRoutesById {
   '/_app/billing': typeof AppBillingRoute
   '/_app/calendar': typeof AppCalendarRoute
   '/_app/catalog': typeof AppCatalogRoute
-  '/_app/clinical': typeof AppClinicalRoute
   '/_app/content': typeof AppContentRoute
   '/_app/crm': typeof AppCrmRoute
   '/_app/dashboards': typeof AppDashboardsRoute
@@ -180,10 +187,12 @@ export interface FileRoutesById {
   '/_app/reports': typeof AppReportsRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/': typeof AppIndexRoute
+  '/_app/clinical/exercises': typeof AppClinicalExercisesRoute
   '/_app/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/_app/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/_app/front-desk/pos': typeof AppFrontDeskPosRoute
   '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/_app/clinical/': typeof AppClinicalIndexRoute
   '/_app/front-desk/': typeof AppFrontDeskIndexRoute
   '/_app/patients/': typeof AppPatientsIndexRoute
 }
@@ -195,17 +204,18 @@ export interface FileRouteTypes {
     | '/billing'
     | '/calendar'
     | '/catalog'
-    | '/clinical'
     | '/content'
     | '/crm'
     | '/dashboards'
     | '/programs'
     | '/reports'
     | '/settings'
+    | '/clinical/exercises'
     | '/encounters/$encounterId'
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
+    | '/clinical/'
     | '/front-desk/'
     | '/patients/'
   fileRoutesByTo: FileRoutesByTo
@@ -214,7 +224,6 @@ export interface FileRouteTypes {
     | '/billing'
     | '/calendar'
     | '/catalog'
-    | '/clinical'
     | '/content'
     | '/crm'
     | '/dashboards'
@@ -222,10 +231,12 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/'
+    | '/clinical/exercises'
     | '/encounters/$encounterId'
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
+    | '/clinical'
     | '/front-desk'
     | '/patients'
   id:
@@ -235,7 +246,6 @@ export interface FileRouteTypes {
     | '/_app/billing'
     | '/_app/calendar'
     | '/_app/catalog'
-    | '/_app/clinical'
     | '/_app/content'
     | '/_app/crm'
     | '/_app/dashboards'
@@ -243,10 +253,12 @@ export interface FileRouteTypes {
     | '/_app/reports'
     | '/_app/settings'
     | '/_app/'
+    | '/_app/clinical/exercises'
     | '/_app/encounters/$encounterId'
     | '/_app/front-desk/closing'
     | '/_app/front-desk/pos'
     | '/_app/patients/$patientId'
+    | '/_app/clinical/'
     | '/_app/front-desk/'
     | '/_app/patients/'
   fileRoutesById: FileRoutesById
@@ -300,13 +312,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCatalogRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/clinical': {
-      id: '/_app/clinical'
-      path: '/clinical'
-      fullPath: '/clinical'
-      preLoaderRoute: typeof AppClinicalRouteImport
-      parentRoute: typeof AppRoute
-    }
     '/_app/content': {
       id: '/_app/content'
       path: '/content'
@@ -347,6 +352,20 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/clinical/': {
+      id: '/_app/clinical/'
+      path: '/clinical'
+      fullPath: '/clinical/'
+      preLoaderRoute: typeof AppClinicalIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/clinical/exercises': {
+      id: '/_app/clinical/exercises'
+      path: '/clinical/exercises'
+      fullPath: '/clinical/exercises'
+      preLoaderRoute: typeof AppClinicalExercisesRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/encounters/$encounterId': {
@@ -398,7 +417,6 @@ interface AppRouteChildren {
   AppBillingRoute: typeof AppBillingRoute
   AppCalendarRoute: typeof AppCalendarRoute
   AppCatalogRoute: typeof AppCatalogRoute
-  AppClinicalRoute: typeof AppClinicalRoute
   AppContentRoute: typeof AppContentRoute
   AppCrmRoute: typeof AppCrmRoute
   AppDashboardsRoute: typeof AppDashboardsRoute
@@ -406,10 +424,12 @@ interface AppRouteChildren {
   AppReportsRoute: typeof AppReportsRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppClinicalExercisesRoute: typeof AppClinicalExercisesRoute
   AppEncountersEncounterIdRoute: typeof AppEncountersEncounterIdRoute
   AppFrontDeskClosingRoute: typeof AppFrontDeskClosingRoute
   AppFrontDeskPosRoute: typeof AppFrontDeskPosRoute
   AppPatientsPatientIdRoute: typeof AppPatientsPatientIdRoute
+  AppClinicalIndexRoute: typeof AppClinicalIndexRoute
   AppFrontDeskIndexRoute: typeof AppFrontDeskIndexRoute
   AppPatientsIndexRoute: typeof AppPatientsIndexRoute
 }
@@ -418,7 +438,6 @@ const AppRouteChildren: AppRouteChildren = {
   AppBillingRoute: AppBillingRoute,
   AppCalendarRoute: AppCalendarRoute,
   AppCatalogRoute: AppCatalogRoute,
-  AppClinicalRoute: AppClinicalRoute,
   AppContentRoute: AppContentRoute,
   AppCrmRoute: AppCrmRoute,
   AppDashboardsRoute: AppDashboardsRoute,
@@ -426,10 +445,12 @@ const AppRouteChildren: AppRouteChildren = {
   AppReportsRoute: AppReportsRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
+  AppClinicalExercisesRoute: AppClinicalExercisesRoute,
   AppEncountersEncounterIdRoute: AppEncountersEncounterIdRoute,
   AppFrontDeskClosingRoute: AppFrontDeskClosingRoute,
   AppFrontDeskPosRoute: AppFrontDeskPosRoute,
   AppPatientsPatientIdRoute: AppPatientsPatientIdRoute,
+  AppClinicalIndexRoute: AppClinicalIndexRoute,
   AppFrontDeskIndexRoute: AppFrontDeskIndexRoute,
   AppPatientsIndexRoute: AppPatientsIndexRoute,
 }

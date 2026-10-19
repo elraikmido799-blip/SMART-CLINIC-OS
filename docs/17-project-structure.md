@@ -239,7 +239,7 @@ apps/dashboard/
 │   │   ├── doctor-day/              يوم الدكتور (الرئيسية بتاعة الدكتور والأخصائي): doctor-day.api (مستني منك) · components/ (doctor-day-page · next-patient-card · pending-card)
 │   │   ├── encounters/          الكشف: types (Template + الكشف) · encounters.api · use-start-encounter · errors · components/ (encounter-page · form-renderer = Template ← antd Form · patient-sidebar · encounters-tab)
 │   │   ├── care-plans/          خطة العلاج الطبيعي: types · care-plans.api · components/plan-panel (أهداف · جلسات · تمارين من المكتبة، حفظ تلقائي)
-│   │   ├── exercises/           مكتبة التمارين: types · exercises.api
+│   │   ├── exercises/           مكتبة التمارين: types · exercises.api · components/exercises-page
 │   │   ├── billing/             التحصيل والتقفيل (3.6 · 3.7): types · totals (الحساب) · billing.api · closing.api · components/ (pos-page · invoice-view · closing-page)
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)
 │   ├── components/              Components مشتركة بين الـfeatures

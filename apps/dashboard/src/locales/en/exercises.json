@@ -1,4 +1,46 @@
 {
+  "title": "Exercise library",
+  "description": "Exercises the practitioners add to home programs",
+  "new": "New exercise",
+  "editTitle": "Edit exercise",
+  "search": "Search exercises",
+  "region": "Body region",
+  "showInactive": "Show inactive",
+  "none": "No exercises match",
+  "active": "Active",
+  "inactive": "Inactive",
+  "edit": "Edit",
+  "cancel": "Cancel",
+  "save": "Save",
+  "saved": "Exercise saved",
+  "columns": {
+    "name": "Exercise",
+    "region": "Region",
+    "instructions": "Instructions",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "form": {
+    "nameAr": "Name in Arabic",
+    "nameEn": "Name in English",
+    "nameRequired": "Enter the name",
+    "instructionsAr": "Instructions in Arabic",
+    "instructionsEn": "Instructions in English",
+    "media": "Video or image link (optional)",
+    "mediaHelp": "A link to the video or image the patient will see",
+    "mediaInvalid": "Enter a valid link",
+    "active": "Available in plans"
+  },
+  "errors": {
+    "INVALID_NAME": "Enter the name in both languages.",
+    "generic": "Couldn't save. Please try again."
+  },
+  "hub": {
+    "description": "Tools for practitioners",
+    "exercises": "Add and edit the exercises used in home programs.",
+    "builder": "Form builder",
+    "builderSoon": "Coming in a later step."
+  },
   "regions": {
     "knee": "Knee",
     "back": "Back",
