@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Alert, App, Button, DatePicker, Flex, Form, Input, Modal, Select, Typography } from 'antd';
 import dayjs, { type Dayjs } from 'dayjs';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +11,7 @@ import {
 } from '@oxygen/shared';
 import { useLocale } from '@/app/use-locale';
 import { RegisterPatientDrawer } from '@/features/patients/components/register-patient-drawer';
+import { useDebounced } from '@/lib/use-debounced';
 import { clinicIso, clinicMinutes, clinicNowMinutes, clinicToday } from '@/lib/clinic-time';
 import {
   useCreateAppointmentMutation,
@@ -48,16 +49,6 @@ type Props = {
   practitioners: Practitioner[];
   onClose: () => void;
 };
-
-// البحث بيستنى المستخدم يوقف كتابة ربع ثانية
-function useDebounced(value: string, ms = 250) {
-  const [debounced, setDebounced] = useState(value);
-  useEffect(() => {
-    const timer = setTimeout(() => setDebounced(value), ms);
-    return () => clearTimeout(timer);
-  }, [value, ms]);
-  return debounced;
-}
 
 /**
  * حجز جديد أو تأجيل ميعاد (3.2): المريض (بحث) · الدكتور · الخدمة (حسب تخصص الدكتور) · اليوم · الساعة.

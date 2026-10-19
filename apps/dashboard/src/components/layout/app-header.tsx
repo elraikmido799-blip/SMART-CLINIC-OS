@@ -1,15 +1,16 @@
-import { Badge, Button, Divider, Flex, Input, Layout, Popover } from 'antd';
+import { Badge, Button, Divider, Flex, Layout, Popover } from 'antd';
 import { Bell, Menu, Search } from 'lucide-react';
 import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { tokens } from '@oxygen/config';
 import { EmptyState } from '@/components/states/states';
 import { BranchSelect } from './branch-select';
+import { PatientSearch } from './patient-search';
 import { UserMenu } from './user-menu';
 
 /**
  * الـTop bar (زي D-02-reception.png): الفرع · البحث عن مريض · الإشعارات · الحساب.
- * البحث بيتبني في 20 · 3.5، والإشعارات شكل بس لحد ما الـAPI يجهز.
+ * البحث (3.5) بيفتح ملف المريض، وعلى الموبايل زرار بيودّي لصفحة المرضى. الإشعارات شكل بس لحد ما الـAPI يجهز.
  */
 export function AppHeader({ isMobile, onOpenMenu }: { isMobile: boolean; onOpenMenu: () => void }) {
   const { t } = useTranslation();
@@ -39,16 +40,7 @@ export function AppHeader({ isMobile, onOpenMenu }: { isMobile: boolean; onOpenM
         />
       )}
       <BranchSelect width={isMobile ? 150 : 220} />
-      {!isMobile && (
-        <Input
-          type="search"
-          aria-label={t('header.search')}
-          placeholder={t('header.search')}
-          prefix={<Search size={16} color={tokens.color.mutedText} aria-hidden />}
-          onPressEnter={goToPatients}
-          style={{ maxWidth: 480, flex: 1 }}
-        />
-      )}
+      {!isMobile && <PatientSearch />}
       <Flex align="center" gap={4} style={{ marginInlineStart: 'auto' }}>
         {isMobile && (
           <Button

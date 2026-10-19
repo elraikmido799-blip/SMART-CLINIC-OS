@@ -89,10 +89,13 @@ export function EmptyState({
   title,
   description,
   action,
+  level,
 }: {
   title?: string;
   description?: ReactNode;
   action?: ReactNode;
+  // 1 لما الحالة هي الصفحة كلها (زي "المريض مش موجود")
+  level?: 1 | 2;
 }) {
   const { t } = useTranslation();
   return (
@@ -101,6 +104,7 @@ export function EmptyState({
       title={title ?? t('states.emptyTitle')}
       description={description}
       action={action}
+      level={level}
     />
   );
 }

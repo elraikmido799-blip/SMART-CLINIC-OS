@@ -20,10 +20,11 @@ import { Route as AppContentRouteImport } from './routes/_app/content'
 import { Route as AppCrmRouteImport } from './routes/_app/crm'
 import { Route as AppDashboardsRouteImport } from './routes/_app/dashboards'
 import { Route as AppFrontDeskRouteImport } from './routes/_app/front-desk'
-import { Route as AppPatientsRouteImport } from './routes/_app/patients'
 import { Route as AppProgramsRouteImport } from './routes/_app/programs'
 import { Route as AppReportsRouteImport } from './routes/_app/reports'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
+import { Route as AppPatientsIndexRouteImport } from './routes/_app/patients.index'
+import { Route as AppPatientsPatientIdRouteImport } from './routes/_app/patients.$patientId'
 
 const AppRoute = AppRouteImport.update({
   id: '/_app',
@@ -79,11 +80,6 @@ const AppFrontDeskRoute = AppFrontDeskRouteImport.update({
   path: '/front-desk',
   getParentRoute: () => AppRoute,
 } as any)
-const AppPatientsRoute = AppPatientsRouteImport.update({
-  id: '/patients',
-  path: '/patients',
-  getParentRoute: () => AppRoute,
-} as any)
 const AppProgramsRoute = AppProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
@@ -99,6 +95,16 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
+const AppPatientsIndexRoute = AppPatientsIndexRouteImport.update({
+  id: '/patients/',
+  path: '/patients/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPatientsPatientIdRoute = AppPatientsPatientIdRouteImport.update({
+  id: '/patients/$patientId',
+  path: '/patients/$patientId',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
@@ -111,10 +117,11 @@ export interface FileRoutesByFullPath {
   '/crm': typeof AppCrmRoute
   '/dashboards': typeof AppDashboardsRoute
   '/front-desk': typeof AppFrontDeskRoute
-  '/patients': typeof AppPatientsRoute
   '/programs': typeof AppProgramsRoute
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
+  '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/patients/': typeof AppPatientsIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -126,11 +133,12 @@ export interface FileRoutesByTo {
   '/crm': typeof AppCrmRoute
   '/dashboards': typeof AppDashboardsRoute
   '/front-desk': typeof AppFrontDeskRoute
-  '/patients': typeof AppPatientsRoute
   '/programs': typeof AppProgramsRoute
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
   '/': typeof AppIndexRoute
+  '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/patients': typeof AppPatientsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -144,11 +152,12 @@ export interface FileRoutesById {
   '/_app/crm': typeof AppCrmRoute
   '/_app/dashboards': typeof AppDashboardsRoute
   '/_app/front-desk': typeof AppFrontDeskRoute
-  '/_app/patients': typeof AppPatientsRoute
   '/_app/programs': typeof AppProgramsRoute
   '/_app/reports': typeof AppReportsRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/': typeof AppIndexRoute
+  '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/_app/patients/': typeof AppPatientsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -163,10 +172,11 @@ export interface FileRouteTypes {
     | '/crm'
     | '/dashboards'
     | '/front-desk'
-    | '/patients'
     | '/programs'
     | '/reports'
     | '/settings'
+    | '/patients/$patientId'
+    | '/patients/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -178,11 +188,12 @@ export interface FileRouteTypes {
     | '/crm'
     | '/dashboards'
     | '/front-desk'
-    | '/patients'
     | '/programs'
     | '/reports'
     | '/settings'
     | '/'
+    | '/patients/$patientId'
+    | '/patients'
   id:
     | '__root__'
     | '/_app'
@@ -195,11 +206,12 @@ export interface FileRouteTypes {
     | '/_app/crm'
     | '/_app/dashboards'
     | '/_app/front-desk'
-    | '/_app/patients'
     | '/_app/programs'
     | '/_app/reports'
     | '/_app/settings'
     | '/_app/'
+    | '/_app/patients/$patientId'
+    | '/_app/patients/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -286,13 +298,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppFrontDeskRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/patients': {
-      id: '/_app/patients'
-      path: '/patients'
-      fullPath: '/patients'
-      preLoaderRoute: typeof AppPatientsRouteImport
-      parentRoute: typeof AppRoute
-    }
     '/_app/programs': {
       id: '/_app/programs'
       path: '/programs'
@@ -314,6 +319,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/patients/': {
+      id: '/_app/patients/'
+      path: '/patients'
+      fullPath: '/patients/'
+      preLoaderRoute: typeof AppPatientsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/patients/$patientId': {
+      id: '/_app/patients/$patientId'
+      path: '/patients/$patientId'
+      fullPath: '/patients/$patientId'
+      preLoaderRoute: typeof AppPatientsPatientIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -326,11 +345,12 @@ interface AppRouteChildren {
   AppCrmRoute: typeof AppCrmRoute
   AppDashboardsRoute: typeof AppDashboardsRoute
   AppFrontDeskRoute: typeof AppFrontDeskRoute
-  AppPatientsRoute: typeof AppPatientsRoute
   AppProgramsRoute: typeof AppProgramsRoute
   AppReportsRoute: typeof AppReportsRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppPatientsPatientIdRoute: typeof AppPatientsPatientIdRoute
+  AppPatientsIndexRoute: typeof AppPatientsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -342,11 +362,12 @@ const AppRouteChildren: AppRouteChildren = {
   AppCrmRoute: AppCrmRoute,
   AppDashboardsRoute: AppDashboardsRoute,
   AppFrontDeskRoute: AppFrontDeskRoute,
-  AppPatientsRoute: AppPatientsRoute,
   AppProgramsRoute: AppProgramsRoute,
   AppReportsRoute: AppReportsRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
+  AppPatientsPatientIdRoute: AppPatientsPatientIdRoute,
+  AppPatientsIndexRoute: AppPatientsIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

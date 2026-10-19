@@ -40,5 +40,32 @@
     "tiktok": "TikTok",
     "google": "Google",
     "referral": "Referral"
+  },
+  "search": {
+    "label": "Search patients",
+    "recent": "Recently opened",
+    "none": "No patient matches",
+    "hint": "Type at least 2 characters",
+    "shortcut": "Press / to search from anywhere"
+  },
+  "list": {
+    "title": "Patients",
+    "description": "Search by name, phone or file number",
+    "name": "Patient",
+    "file": "File no.",
+    "phone": "Mobile",
+    "balance": "Owes",
+    "empty": "Type at least 2 characters to search",
+    "noResults": "No patient matches",
+    "newPatient": "New patient"
+  },
+  "file": {
+    "age": "{{age}} years",
+    "female": "Female",
+    "male": "Male",
+    "book": "Book",
+    "notFoundTitle": "This patient doesn't exist",
+    "notFoundBody": "The file may have moved or the link is wrong. Find them from search.",
+    "comingSoon": "The full patient file (tabs, encounters, measurements) is step 4.1"
   }
 }

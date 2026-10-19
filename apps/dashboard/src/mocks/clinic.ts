@@ -712,6 +712,18 @@ export const clinicHandlers: MockHandlers = {
     };
   },
 
+  getPatient: ({ url }) => {
+    writeDb(ensurePatients);
+    const patient = readDb().patients.find((item) => item.id === idFrom(url, 1));
+    if (!patient) throw new MockHttpError(404, 'NOT_FOUND');
+    return {
+      ...toPatient(patient),
+      gender: patient.gender,
+      birth_date: patient.birth_date || null,
+      branch_id: patient.branch_id,
+    };
+  },
+
   registerPatient: ({ body }) => {
     const input = body as RegisterPatientBody;
     const branchId = assertBranch(input.branch_id);

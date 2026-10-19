@@ -47,8 +47,8 @@ export const appointmentsApi = baseApi.injectEndpoints({
       transformResponse: unwrap<Service>,
     }),
     // البحث بالاسم أو الموبايل أو رقم الملف (الحجز · بحث الـTop bar في 3.5)
-    searchPatients: build.query<PatientSummary[], { q: string }>({
-      query: (params) => ({ url: '/staff/patients', params: { ...params, limit: 8 } }),
+    searchPatients: build.query<PatientSummary[], { q: string; limit?: number }>({
+      query: ({ q, limit = 8 }) => ({ url: '/staff/patients', params: { q, limit } }),
       rawResponseSchema: list(patientSummarySchema),
       transformResponse: unwrap<PatientSummary>,
       providesTags: ['Patients'],
