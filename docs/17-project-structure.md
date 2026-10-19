@@ -24,7 +24,7 @@ SMART CLINIC OS/
 │   │   └── original/        ← مراجع Oxygen زي ما وصلت
 │   ├── mocks/               ← صور للتطوير بس: doctor-sample.png (الدكتورة)، مش بتتحط في الموقع الحقيقي
 │   ├── website/             ← صور شاشات الموقع المقبولة: A0-design-system-v2.png ✅ (المرجع) · A0-photo-hero.png · A0-particle-ring.png · A0-dots-wordmark.png · A0-dot-wave.png · A1-specialty-icons.png · A2-branches-map.png · A2-app-phone.png
-│   └── dashboard/ ⏳        ← صور شاشات الداشبورد
+│   └── dashboard/           ← صور شاشات الداشبورد المقبولة (جلسة B في 14): D-01-login.png ✅ · D-02-reception.png ✅ · D-10-doctor-day.png ✅ · D-09-patient-360.png ✅ · D-11-encounter.png ✅ · D-20-crm.png ✅ · D-28-executive.png ✅ · D-02-reception-ar.png ✅
 ├── docs/                    ← التوثيق (الملفات دي)
 ├── node_modules/            ← المكتبات المتسطبة (واحد للكل، ومش بيدخل Git)
 └── ملفات الـRoot             ← §7

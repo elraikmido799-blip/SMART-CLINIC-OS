@@ -75,6 +75,7 @@
 | [L-61](#l-61) | الـSEO: sitemap · robots · JSON-LD · صورة المشاركة · metadataBase | 7.1 | 2026-10-11 | ✅ |
 | [L-62](#l-62) | الأداء: Lighthouse موبايل 57–68 ← 69–79 (الخطوط · الترجمات · الـMocks · الصور · الحجز) | 7.2 | 2026-10-11 | ✅ (الهدف 90 لسه) |
 | [L-63](#l-63) | الـAccessibility: Lighthouse 100 + axe على 34 صفحة (منها البوابة) من غير مشاكل | 7.3 · 7.4 | 2026-10-11 | ✅ |
+| [L-64](#l-64) | صور الداشبورد (جلسة B): البرومبتات على الهوية الجديدة + 8 صور اتقبلت (B0 → B7) | 0.1 (جلسة B) | 2026-10-19 | ✅ |
 
 ---
 
@@ -1414,6 +1415,18 @@
   - `/ar/nope` عدّى axe.
   - `loading.tsx` مش محتاجينه: الصفحات التعريفية Static، والبوابة والحجز والدفع ليهم Skeleton جوه.
 - **الملفات:** `components/layout/whatsapp-button.tsx` · `(marketing)/{specialties,doctors,learn}/page.tsx` · `doctors/[slug]/page.tsx` · `services/[slug]/_components/service-booking-card.tsx` · `book/_components/booking-summary.tsx` · `portal/_components/{appointments,plans,profile,status-badge}*.tsx` · `messages/*.json` (`listTitle`).
+
+### L-64 · صور الداشبورد (جلسة B)
+
+- **اتعمل:** جلسة B في [14](14-design-prompts.md) اتكتبت من جديد:
+  - **بلوك ستايل واحد** بيتحط أول كل برومبت (شات جديد لكل برومبت)، بألوان `tokens.ts` الحالية بدل الألوان القديمة (#0E8C7F وغيرها)، ومعاه مرفقين: اللوجو و`A0-design-system-v2.png`.
+  - الداشبورد نسخة أهدى من الموقع: من غير الدهبي ومن غير حلقة النقط حوالين الصور.
+  - **شاشة جديدة B2 «يوم الدكتور»** (`D-10`): شاشات الدكتور مكانها الداشبورد مش الموقع.
+  - الفروع بقت الحقيقية (اتشالت Maadi)، والترقيم بقى B0 → B7.
+- **الملفات:** `docs/14-design-prompts.md` · `design/dashboard/*.png` (8 صور) · DEC-41 في `docs/19-decisions.md`.
+- **ترتيب نضيف:** في DEC-40 كان فيه آخر جزئين متكررين، واتشال التكرار.
+- **اتأكدنا إزاي:** كل الألوان في البلوك نفس `packages/config/src/tokens.ts`.
+- **B0 ✅ اتقبلت** (`design/dashboard/D-01-login.png`، الملاحظات في [سجل المراجعة](14-design-prompts.md#review)). B1 ✅ (`D-02-reception.png`) · B2 ✅ (`D-10-doctor-day.png`). بعد B1 البلوك اتزود فيه سطرين: الـTags فاتحة، ومفيش حاجة تحت الـSidebar. B3 ✅ (`D-09-patient-360.png`)، وبعدها البلوك اتزود فيه: مفيش كلام تحت اللوجو، ومفيش أيقونة قلب. B4 ✅ (`D-11-encounter.png`). B5 ✅ (`D-20-crm.png`). B6 ✅ (`D-28-executive.png`) · B7 ✅ (`D-02-reception-ar.png`، مرجع للعكس بس). **الجلسة خلصت**، والقرار [DEC-41](19-decisions.md#dec-41).
 
 ---
 

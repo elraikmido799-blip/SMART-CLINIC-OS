@@ -11,7 +11,7 @@
 | الجلسة | لإيه | إمتى |
 |---|---|---|
 | **A** | الموقع + بوابة المريض (شكل shadcn + Tailwind) | دلوقتي |
-| **B** | داشبورد الموظفين (شكل antd) | دلوقتي |
+| **B** | داشبورد الموظفين (شكل antd) | دلوقتي — شات جديد لكل برومبت |
 | **C** | صور الناس والعيادة اللي هتتحط جوه الموقع | بعد ما تختار الشكل — [16 المرحلة 2](16-website-plan.md) |
 | **D** | تطبيق الموبايل | في الآخر (بعد الويب) |
 
@@ -391,86 +391,109 @@ The first attached image is an approved English screen. Recreate EXACTLY THIS SA
 
 ---
 
-## B — الداشبورد (محادثة جديدة)
+## B — الداشبورد (شات جديد لكل برومبت)
 
-> ⏳ برومبتات B وD لسه بالألوان القديمة، وهتتعدل على [الهوية](#الهوية-نفس-packagesconfigsrctokensts) لما نوصل لجلسة B.
+> ✅ **اتحدّثت على الهوية الجديدة** (2026-10-19 · [L-64](18-dev-log.md#l-64)).
+> - **كل برومبت في شات جديد**، ومعاه مرفقين: [`design/brand/logo-color.png`](../design/brand/logo-color.png) و[`design/website/A0-design-system-v2.png`](../design/website/A0-design-system-v2.png). في B1 ارفع كمان صورة B0 اللي اتقبلت، ومن B2 وطالع ارفع `D-02-reception.png` (فيها الـSidebar والـTop bar) عشان الستايل يفضل ثابت.
+> - ✅ **الجلسة خلصت (2026-10-19):** B0 → B7 اتقبلوا، والملاحظات في [سجل المراجعة](#review). القرار في [DEC-41](19-decisions.md#dec-41).
+> - كل برومبت = **بلوك الستايل** اللي تحت + **بلوك الشاشة** بتاعه، الاتنين ورا بعض في نفس الرسالة.
+> - الداشبورد نسخة **أهدى** من الموقع: نفس الألوان، بس من غير حلقة النقط حوالين الصور ومن غير الدهبي (الدهبي لزرار الحجز في الموقع بس). النقط بتظهر في اللوجو والـLoading والحالات الفاضية بس.
 
-### B0 · الستايل + شاشة الدخول · `D-01`
+**بلوك الستايل (أول كل برومبت B):**
 
 ```text
-You are a senior product designer. We are designing the STAFF DASHBOARD of "Oxygen Smart Clinic OS" for Oxygen Clinics (a multi-branch clinic group in Egypt: Nutrition, Physiotherapy, Dermatology, Internal Medicine). Reception, doctors, the CRM team, branch managers and the CEO use it all day.
+NEW CHAT — STYLE (follow exactly). You are a senior product designer. Design a screen of the STAFF DASHBOARD of "Oxygen" — an Egyptian clinic group (clinical nutrition, physiotherapy, dermatology, internal medicine) with branches in Sheikh Zayed, Tanta, Tala, Heliopolis and New Cairo. Reception, doctors, the CRM team, accountants, branch managers and the CEO use it all day.
 
-Originality: an original design — do not copy any existing product, template or Dribbble shot.
+ATTACHED: image 1 is the official Oxygen logo — use it exactly as-is, never redraw it or invent another logo or tagline. Image 2 is the approved Oxygen brand board — match its colors, type and calm premium feeling, but as a quieter, denser work tool. If a third image is attached, it is the approved dashboard style: keep it identical (same sidebar, top bar, cards and spacing).
 
-It is built with Ant Design (antd) components and layout patterns, themed with the Oxygen tokens:
-- Primary teal #0E8C7F · text #0B2E2B · secondary text #5E7A76 · layout background #F7FAF9 · cards #FFFFFF · borders #DCE8E5 · soft mint #E6F4F1
+BUILT WITH Ant Design (antd) components and layout patterns (Layout with Sider, Table, Tag, Card, Tabs, Drawer, Form, Statistic), themed with the Oxygen tokens:
+- Primary Deep Teal #0A7672 (buttons, links, active menu item; white text on it)
+- Text Deep Navy #0E2440 · secondary text Slate #4A5D73
+- Page background Sand #FAF7F0 · cards White #FFFFFF · soft tinted surfaces and selected rows Mist #E3F6F2 · dividers Hairline #E6E1D6 · input borders #8291A0
+- Brand gradient Aqua #2EC4A6 → Ocean #1769B0 ONLY for the login brand panel and tiny accents, never behind small text
 - Status: success #16A34A · warning #F59E0B · danger #E5484D · info #3B82F6
-- Specialty colors: Nutrition #65A30D · Physiotherapy #3B82F6 · Dermatology #E66A8D · Internal Medicine #7C5CFC
-- Corner radius 12px, Inter font, outlined icons
-Feeling: calm, fast and clear for long working hours — data-rich but never cluttered.
+- Specialty accents (thin left bar on appointment blocks and small tags only): Nutrition #4F7A28 · Physiotherapy #1769B0 · Dermatology #B8466A · Internal Medicine #5B4BC4
+- Corner radius 12–16px, hairline borders, very soft shadows, Inter font, outlined line icons, Western digits
+- No gold buttons, no particle rings around photos; the logo's dots appear only in the logo, loading and empty states
+- Status tags are SOFT: a light tint background with dark text in the same hue, never white text on a saturated color
 
-Common layout for every screen after login: left sidebar (Home, Calendar, Front Desk, Patients, Clinical, Programs, CRM, Billing, Dashboards, Reports, Settings); top bar with a branch selector "Oxygen New Cairo", a global search "Search patient by name, phone or file no.", a notifications bell and the user avatar with role.
+COMMON LAYOUT after login: left sidebar (white, the color logo at the top with no text or tagline under it, active item Deep Teal text on Mist) with: Home, Calendar, Front Desk, Patients, Clinical, Programs, CRM, Billing, Dashboards, Reports, Settings — nothing else below the menu; top bar with a branch selector "Oxygen New Cairo", a global search "Search patient by name, phone or file no.", a notifications bell and the user avatar with name and role.
 
-For every image: desktop web app, landscape 3:2, flat high-fidelity UI, no device frame, crisp legible correctly spelled English text, realistic data.
+UX RULES: calm, fast and clear for long working hours — data-rich but never cluttered; clear hierarchy, one primary action per area, labels above inputs, visible focus rings, 8px spacing grid, comfortable 40px table rows, color is never the only signal (every status tag has text), layouts that mirror cleanly for Arabic RTL.
 
-Now create image 1 — LOGIN: a split screen. Left: a calm teal brand panel with the "OXYGEN" wordmark, soft bubbles and the line "Staff portal". Right: the sign-in card (email, password, "Sign in" button) and next to it the second step "Two-factor verification" with a 6-digit code input.
+AVOID: copying any existing product, template or Dribbble shot; glassmorphism; neon; heavy shadows; 3D; gradients on cards; medical crosses; hearts (also no heart icon for heart rate — use a pulse line icon); star ratings; stock-photo people (use initials avatars).
+
+OUTPUT: ONE image, desktop web app 1440px wide, landscape 3:2, flat high-fidelity UI, no device frame, crisp correctly spelled English text, realistic Egyptian names and data, no lorem ipsum.
 ```
 
-### B1 · الريسبشن (الكالندر وشاشة اليوم) · `D-02` `D-03`
+### B0 · شاشة الدخول · `D-01` → `design/dashboard/D-01-login.png`
 
 ```text
-Same dashboard style and layout. Design the RECEPTION screen.
-Header strip: "Today: 48 appointments · 31 checked-in · 2 no-shows · EGP 18,400 collected".
-Main: a calendar day view with one column per practitioner (Dr. Omar — Physio, Dr. Mona — Nutrition, Dr. Laila — Dermatology, Dr. Karim — Internal Medicine), rows from 9:00 AM to 9:00 PM, appointment blocks tinted by specialty with status tags (Confirmed, Checked-in, In progress, Completed, No-show) and a red current-time line.
-Right panel "Arriving now": 3 patient cards with "Check-in" buttons, one showing "Balance due EGP 300 — Collect"; quick actions "New patient", "New booking", "Collect payment".
+SCREEN — LOGIN (no sidebar on this screen). A split screen. Left 45%: the brand panel with the Aqua→Ocean gradient, the white version of the Oxygen logo, the line "Staff portal" and a few soft particles drifting. Right 55% on Sand: a white sign-in card with "Welcome back", email and password fields (labels above), a "Remember this device" checkbox, a "Forgot password?" link and a full-width Deep Teal "Sign in" button. Next to it, smaller and slightly faded as the next step, a second card "Two-factor verification" with a 6-digit code input, "Resend code in 0:42" and a "Verify" button.
 ```
 
-### B2 · ملف المريض (Patient 360) · `D-09`
+### B1 · الريسبشن (الكالندر وشاشة اليوم) · `D-02` `D-03` → `D-02-reception.png`
 
 ```text
-Same dashboard style and layout. Design the PATIENT 360 screen.
-Header card: photo placeholder, "Sara Ahmed · 34 y · File OXY-000123 · +20 10 •••• 4821 · Oxygen New Cairo", tag "Secret Seven — Stage 3", alert chips "Allergy: Penicillin" (red), "7 sessions left" (teal), "Balance EGP 0"; actions "Start encounter", "Book", "Collect payment".
+SCREEN — RECEPTION (Front Desk selected in the sidebar). Header strip of 4 compact statistics: "Today: 48 appointments · 31 checked-in · 2 no-shows · EGP 18,400 collected".
+Main: a calendar day view with one column per practitioner (Dr. Omar Hassan — Physiotherapy, Dr. Mona Adel — Nutrition, Dr. Laila Samir — Dermatology, Dr. Karim Fathy — Internal Medicine), rows from 9:00 AM to 9:00 PM, white appointment blocks with a thin specialty-color left bar, patient name, service and a status tag (Confirmed, Checked-in, In progress, Completed, No-show), and a thin red current-time line.
+Right panel "Arriving now": 3 patient cards with a Deep Teal "Check-in" button, one showing a warning tag "Balance due EGP 300" with a "Collect" link; under it quick actions "New patient", "New booking", "Collect payment".
+```
+
+### B2 · يوم الدكتور (My day) · `D-10` → `D-10-doctor-day.png`
+
+```text
+SCREEN — DOCTOR'S DAY (Home selected; user avatar "Dr. Omar Hassan · Physiotherapist"). Greeting "Good morning, Dr. Omar" with "12 patients today · next in 8 min".
+Left 60%: today's queue as a vertical timeline — time, patient name, age, visit type tag (New assessment, Follow-up, Session 6 of 10), status tag (Waiting, Checked-in, Completed); the current patient highlighted on Mist with a Deep Teal "Start encounter" button.
+Right 40%: a "Next patient" summary card (diagnosis "Post-op ACL — right knee", last session note excerpt, a small pain trend chart 7 → 5 → 4), then a "Pending" list: 2 unsigned notes, 1 report to review, 3 patient messages.
+```
+
+### B3 · ملف المريض (Patient 360) · `D-09` → `D-09-patient-360.png`
+
+```text
+SCREEN — PATIENT 360 (Patients selected). Header card: initials avatar, "Sara Ahmed · 34 y · File OXY-000123 · +20 10 •••• 4821 · Oxygen New Cairo", tag "Secret Seven — Stage 3", alert tags "Allergy: Penicillin" (danger), "7 sessions left" (teal), "Balance EGP 0"; actions "Start encounter" (primary), "Book", "Collect payment".
 Tabs: Overview · Timeline · Encounters · Measurements · Plans · Documents & Photos · Programs · Billing · CRM · Consents · Access log — Overview selected.
-Overview grid: a 12-week weight trend chart, latest vitals (BP 118/76, HR 72, BMI 29.1), active plans (Nutrition plan, Physio treatment plan + home exercises), upcoming appointments, recent documents, and a journey milestones row (Lead → Booked → Visited → Assessment → Program → Paid → Treatment) with dates and check marks.
+Overview grid: a 12-week weight trend line chart (Deep Teal line), latest vitals (BP 118/76, HR 72, BMI 29.1), active plans (Nutrition plan, Physio plan + home exercises), upcoming appointments, recent documents, and a journey milestones row (Lead → Booked → Visited → Assessment → Program → Paid → Treatment) as small dots that fill in, with dates.
 ```
 
-### B3 · شاشة الكشف (Physio) · `D-11` `D-13`
+### B4 · شاشة الكشف (Physio) · `D-11` `D-13` → `D-11-encounter.png`
 
 ```text
-Same dashboard style and layout. Design the CLINICAL ENCOUNTER screen for a physiotherapist.
-Left column — patient summary: name, age, diagnosis "Post-op ACL reconstruction — right knee", referral, number of previous sessions.
-Center — form "Physiotherapy — Initial Assessment": pain (0–10 slider at 6 and a body map with the right knee marked), range of motion table (Knee flexion 95°, Extension −5°, normal values in grey), strength (manual muscle testing grades), functional assessment (checkboxes and scores), clinical notes.
-Right panel — "Plan": treatment goals, sessions-per-week stepper, and a "Home Exercise Program" builder with 3 exercises (thumbnails, sets/reps fields) and "Add from library".
-Footer bar: toggle "Share with patient" ON, buttons "Save draft" and "Sign & Close" (teal).
+SCREEN — CLINICAL ENCOUNTER for a physiotherapist (Clinical selected). Left column — patient summary: name, age, diagnosis "Post-op ACL reconstruction — right knee", referral, "Session 6 of 10".
+Center — form "Physiotherapy — Initial Assessment": pain slider 0–10 at 6 and a simple front/back body outline with the right knee marked, a range-of-motion table (Knee flexion 95°, Extension −5°, normal values in grey), strength (manual muscle testing grades 0–5), functional assessment (checkboxes and scores), a clinical notes textarea.
+Right panel — "Plan": treatment goals, a sessions-per-week stepper, and a "Home Exercise Program" builder with 3 exercises (small line-drawing thumbnails, sets/reps fields) and "Add from library".
+Sticky footer: switch "Share with patient" ON, buttons "Save draft" (default) and "Sign & close" (primary).
 ```
 
-### B4 · الـCRM · `D-20` `D-21`
+### B5 · الـCRM · `D-20` `D-21` → `D-20-crm.png`
 
 ```text
-Same dashboard style and layout. Design the CRM PIPELINE screen.
-Top: title "Leads pipeline", filters (Branch, Source, Campaign, Agent, Date), button "+ New lead", KPI chips "126 new this week · 62% contacted within SLA · 18% booked".
-Kanban board with horizontally scrolling columns: Lead (24), Contacted (18), Qualified (11), Booked (9), Visited (7), Assessment (5), Program (4), Paid (4).
-Lead cards: name, masked phone, source icon (Facebook, Instagram, TikTok, Website, WhatsApp, Walk-in), campaign tag "Summer Weight Loss", interest "Nutrition", assigned agent avatar, SLA timer chip ("12 min" green, "2 h" red).
-A right drawer is open for one lead: activity timeline (Call — no answer, WhatsApp template sent, Call — interested) and buttons "Log call", "Send WhatsApp", "Book appointment", "Mark lost".
+SCREEN — CRM PIPELINE (CRM selected). Top: title "Leads pipeline", filters (Branch, Source, Campaign, Agent, Date), primary button "+ New lead", statistics "126 new this week · 62% contacted within SLA · 18% booked".
+Kanban board with horizontally scrolling columns on Sand: Lead (24), Contacted (18), Qualified (11), Booked (9), Visited (7), Assessment (5), Program (4), Paid (4).
+White lead cards: name, masked phone, small source icon with label (Facebook, Instagram, TikTok, Website, WhatsApp, Walk-in), campaign tag "Summer Weight Loss", interest tag "Nutrition", agent initials avatar, SLA tag ("12 min" success, "2 h" danger).
+A right Drawer is open for one lead: activity timeline (Call — no answer, WhatsApp template sent, Call — interested) and buttons "Log call", "Send WhatsApp", "Book appointment" (primary), "Mark lost" (danger text).
 ```
 
-### B5 · داشبورد الـCEO · `D-28`
+### B6 · داشبورد الـCEO · `D-28` → `D-28-executive.png`
 
 ```text
-Same dashboard style and layout. Design the CEO EXECUTIVE DASHBOARD — data-rich but calm and readable.
-Top: title "Executive Dashboard", date range "Today", branch filter "All branches", toggle "Compare branches".
-Row 1 — 7 KPI cards with small trend arrows: Patients 142, New patients 23, New leads 61, Appointments 168, No-shows 9 (5.4%), Revenue EGP 186,500, Packages sold 17.
-Row 2 — revenue trend (line chart, last 30 days, cash vs earned) and branch comparison (horizontal bars for New Cairo, Sheikh Zayed, Maadi: revenue, patients, conversion).
+SCREEN — CEO EXECUTIVE DASHBOARD (Dashboards selected) — data-rich but calm. Top: title "Executive Dashboard", segmented date range (Today / 7 days / 30 days), branch filter "All branches", switch "Compare branches".
+Row 1 — 7 white statistic cards with small trend arrows: Patients 142, New patients 23, New leads 61, Appointments 168, No-shows 9 (5.4%), Revenue EGP 186,500, Packages sold 17.
+Row 2 — revenue trend (line chart, last 30 days, cash vs earned, Deep Teal and Ocean lines) and branch comparison (horizontal bars for New Cairo, Sheikh Zayed, Heliopolis, Tanta, Tala: revenue, patients, conversion).
 Row 3 — CRM funnel (Leads → Booked → Visited → Paid with percentages) and leads by source (donut: Facebook, Instagram, TikTok, Website, WhatsApp, Referral, Walk-in).
-Use the specialty colors only as accents and keep plenty of white space.
+Specialty colors only as small accents; plenty of white space.
 ```
 
-### B6 · نسخة عربي (RTL)
+### B7 · نسخة عربي (RTL) → `D-02-reception-ar.png`
 
-استخدم برومبت **A8** نفسه، وحط النصوص دي مكان `[PASTE ARABIC TEXTS HERE]` (شاشة الريسبشن):
+استخدم برومبت **A8** نفسه في شات جديد، وارفع `D-02-reception.png` واللوجو، وحط النصوص دي مكان `[PASTE ARABIC TEXTS HERE]`، وزوّد في آخره السطر اللي تحتها (بعد B1 · B5: الـTags والكالندر):
 
 ```text
 "الرئيسية" · "الكالندر" · "الاستقبال" · "المرضى" · "العيادة" · "البرامج" · "CRM" · "الحسابات" · "الداشبوردات" · "التقارير" · "الإعدادات" · "فرع القاهرة الجديدة" · "ابحث عن مريض بالاسم أو الموبايل أو رقم الملف" · "النهارده: 48 موعد · 31 وصلوا · 2 مجوش · 18,400 ج.م اتحصّلت" · "مؤكد" · "وصل" · "مع الطبيب" · "خلص" · "مجاش" · "واصلين دلوقتي" · "تسجيل وصول" · "تحصيل" · "مريض جديد" · "حجز جديد"
+```
+
+```text
+For this calendar screen: the sidebar moves to the right edge, the time column moves to the right side of the calendar, the practitioner columns read from right to left, and the "Arriving now" panel moves to the left. Write people's names in Arabic. Keep status tags soft (light tint background, dark text), keep the logo with no text under it, and do not add anything below the sidebar menu.
 ```
 
 ---
@@ -528,7 +551,7 @@ design/
 ├── website/     A0-design-system-v2.png · W-01-home-top.png · W-01-home-bottom.png · W-01-home-mobile.png
 │                W-03-specialty.png · W-03-specialty-ar.png · A4-physio-home.png · W-05-doctors.png · W-07-booking.png · PP-01-portal.png
 │                hero-{nutrition,derm,internal}.png · icons-{physio,nutrition,internal}.png · cover-*.png · doctor-default.png (L-48)
-└── dashboard/   D-01-login.png · D-02-reception.png · D-09-patient-360.png · D-11-encounter.png
+└── dashboard/   D-01-login.png · D-02-reception.png · D-10-doctor-day.png · D-09-patient-360.png · D-11-encounter.png
                  D-20-crm.png · D-28-executive.png · D-02-reception-ar.png
 ```
 
@@ -538,6 +561,14 @@ design/
 
 | الصورة | الملف | الحالة | ملاحظات بتتطبق في الكود |
 |---|---|---|---|
+| B7 · الريسبشن عربي (RTL) | `design/dashboard/D-02-reception-ar.png` | ✅ اتقبلت 2026-10-19 (مرجع للعكس بس) | <ul><li>✅ الـSidebar يمين · عمود الوقت يمين والدكاترة من اليمين للشمال · "واصلين دلوقتي" شمال · خط الوقت والأسهم معكوسين · IBM Plex Sans Arabic والأرقام إنجليزي</li><li>**النصوص العربي في الصورة مش مرجع:** النصوص الصح هتبقى في ملفات ترجمة الداشبورد</li><li>**العنصر المختار في الـSidebar** "الرئيسية" بدل "الاستقبال". في الكود حسب الصفحة</li><li>**كارت الفرع تحت الـSidebar** رجع تاني (رغم البرومبت). في الكود بيتشال زي B1</li><li>**شريط الأرقام اتلخبط** ("31 وصلوا" مرتين، والفلوس راحت فوق "واصلين دلوقتي"). في الكود نفس الـ4 أرقام بتوع B1</li><li>**الـTags رجعت كلام أبيض على لون:** في الكود فاتحة (زي B1)</li><li>**الأوقات والتاريخ** مكتوبين غلط في أماكن. في الكود `Intl.DateTimeFormat` عربي بأرقام إنجليزي</li></ul> |
+| B6 · داشبورد الـCEO | `design/dashboard/D-28-executive.png` | ✅ اتقبلت 2026-10-19 | <ul><li>✅ "All branches" فوق · 7 كروت أرقام وجنب كل سهم نسبته · منحنى الإيراد بـLegend · مقارنة الفروع بـSegmented · الـFunnel · مصادر الـLeads بنسبها وجدول جنبها</li><li>**No-shows:** السهم نازل وجنبه "+2%". في الكود السهم بيمشي مع الرقم (طالع)، واللون حسب كويس ولا وحش (زيادة الـNo-shows حمرا)</li><li>**الـFunnel متدرّج** (أكوا → أزرق → بنفسجي → كحلي) وعليه كلام أبيض، وده ضد البلوك، والأبيض على الأكوا ضعيف. في الكود بارات أفقي Deep Teal بتقصر، والرقم مكتوب بالكحلي</li><li>**ألوان الفروع** (خط ملون جنب كل فرع) شبه ألوان التخصصات، والفرع ملوش لون. في الكود محايدة</li><li>**ألوان الـDonut** (7 ألوان، منها ألوان التخصصات): باليتة الرسومات ومكتبتها هيتقرروا في خطة الداشبورد بفحص Contrast</li><li>**"vs. same day last week"** صغير (حوالي 11px). في الكود 12px على الأقل</li></ul> |
+| B5 · الـCRM | `design/dashboard/D-20-crm.png` | ✅ اتقبلت 2026-10-19 | <ul><li>✅ فلاتر بـLabels فوقها · شريط الأرقام على Mist · Kanban بأعمدة وعدد · كروت فيها الموبايل متخبي والمصدر بأيقونة واسم · Drawer فيه Primary واحد (Book appointment) · الـTags فاتحة</li><li>**الكلام الصغير في الكروت** (اسم الموظف والـTags) حوالي 10px في الصورة. في الكود الـTags 12px والباقي 14px</li><li>**SLA في كل الأعمدة:** الـSLA معناه وقت أول تواصل، ففي الكود بيظهر في عمود Lead بس</li><li>**"Mark lost":** الكلام الأحمر على أبيض ضعيف. في الكود الكلام كحلي والحدود والأيقونة حمرا ([DEC-36](19-decisions.md#dec-36))</li><li>**الـDrawer مفتوح على "Salma Ahmed"** ومش موجودة في البورد. في الكود الكارت المفتوح بيتعلّم عليه على Mist</li><li>**السحب بين الأعمدة** antd معندوش. مكتبة السحب هتتقرر في خطة الداشبورد</li><li>عمود Paid ورا الـScroll، والأسامي وهمية</li></ul> |
+| B4 · شاشة الكشف (Physio) | `design/dashboard/D-11-encounter.png` | ✅ اتقبلت 2026-10-19 | <ul><li>✅ اللوجو من غير كلام تحته (السطر اللي اتزود اشتغل) · 3 أعمدة: المريض · الفورم · الخطة · Footer ثابت فيه Primary واحد (Sign & close) · Slider الألم · جداول ROM والقوة · برنامج التمارين البيتية</li><li>**العنوان "Initial Assessment" مع "Session 6 of 10"** متناقضين (الغلط من البرومبت). في الكود العنوان حسب نوع الزيارة: تقييم أول أو جلسة متابعة</li><li>**علامة الركبة في خريطة الجسم** صغيرة وباهتة. في الكود أوضح ومعاها اسم المكان مكتوب</li><li>**القيم في الجداول نص ثابت:** في الكود `InputNumber` للـROM و`Select` (0–5) للقوة</li><li>**الـFunctional assessment:** الصف اللي مش متعلم عليه فيه Score. في الكود الـScore مقفول لحد ما يتعلم عليه</li><li>**الـClinical notes فيها Toolbar** (Bold وLists): antd معندوش Rich text، ففي الكود `TextArea` بـ`showCount` من غير Toolbar</li><li>**صور التمارين:** محتوى من مكتبة التمارين (بتترفع من الداشبورد)، مش صور تصميم</li><li>**السن 28** هنا و34 في B3: داتا وهمية، والـMocks في الكود متسقة</li></ul> |
+| B3 · ملف المريض (Patient 360) | `design/dashboard/D-09-patient-360.png` | ✅ اتقبلت 2026-10-19 | <ul><li>✅ كارت الهيدر بالـTags (البرنامج رمادي، الحساسية أحمر فاتح) · Primary واحد فوق · التابات · منحنى الوزن · العلامات الحيوية · الخطط · المواعيد بخط لون التخصص · المستندات · مراحل الرحلة</li><li>**اللوجو:** ChatGPT زود تحته "Physical Therapy and Nutrition". في الكود `logo-color.png` زي ما هو</li><li>**أيقونة القلب** في Heart Rate: في الكود Lucide `Activity`</li><li>**زرار "View Plan"** في كارت Next Step بقى Primary تاني. في الكود Default</li><li>**"Start encounter" ظاهر للريسبشن:** في الكود الأزرار حسب الدور ([06](06-roles-permissions.md))</li><li>**دكاترة المواعيد متلخبطين** (Dr. Karim بقى Physio، وDr. Ahmed Ramadan اسم مريض): داتا وهمية، والـMocks في الكود متسقة</li></ul> |
+| B2 · يوم الدكتور | `design/dashboard/D-10-doctor-day.png` | ✅ اتقبلت 2026-10-19 | <ul><li>✅ الـTags بقت فاتحة وكلامها غامق (السطر اللي اتزود في البلوك اشتغل) · الـSidebar نضيف · الطابور جدول بنقط Timeline · المريض الحالي على Mist وعليه الـPrimary الوحيد · كارت المريض الجاي والـPending</li><li>**Tags نوع الزيارة** (New assessment · Follow-up · Session) ملونة أخضر وأزرق وبنفسجي، ودي شبه ألوان التخصصات. في الكود رمادي/Mist، واللون للحالة بس</li><li>**رقم الموبايل** في الطابور وكارت المريض: في الكود رقم الملف بدله، والموبايل للريسبشن بس (مستني الصلاحيات من 06)</li><li>**Visit #1247:** في الكود رقم الملف `OXY-…`</li><li>الأسامي والأوقات والتاريخ وهميين</li></ul> |
+| B1 · الريسبشن | `design/dashboard/D-02-reception.png` | ✅ اتقبلت 2026-10-19 | <ul><li>✅ الـSidebar والـTop bar هما المرجع لكل شاشات الداشبورد · كالندر بعمود لكل دكتور وخط ملون بلون التخصص · خط الوقت الأحمر · "Arriving now" والـQuick actions · من غير دهبي</li><li>**الـTags (Confirmed · Checked-in · No-show):** في الصورة كلام أبيض على أخضر/أزرق/أحمر، والـcontrast أقل من 4.5. في الكود antd `Tag` بخلفية فاتحة وكلام غامق من نفس اللون</li><li>**كارت اللوجو والفروع اللي تحت الـSidebar** بيتشال: اللوجو موجود فوق، والفرع بيتغير من الـTop bar</li><li>**3 زراير Check-in Primary ورا بعض:** في الكود Primary للكارت اللي عليه الدور بس، والباقي Default</li><li>**لينك "Collect"** أزرق في الصورة. في الكود لينك Deep Teal زي باقي اللينكات</li><li>الأسامي والمواعيد والتاريخ وهميين</li></ul> |
+| B0 · دخول الداشبورد | `design/dashboard/D-01-login.png` | ✅ اتقبلت 2026-10-19 | <ul><li>✅ اللوجو الأبيض مظبوط على التدرّج · الرملي والكروت البيضا · زرار Deep Teal · الـLabels فوق الـInputs · من غير دهبي · خطوة الـ2FA جنبها كخطوة جاية</li><li>**الشاشتين في الكود خطوتين مش جنب بعض:** كارت الدخول الأول، وبعده كارت الكود مكانه (antd `Steps` مش لازم)</li><li>**زرار Verify الباهت** = حالة disabled لحد ما الـ6 أرقام يتكتبوا. في الكود الـcontrast بتاع الكلام بيتراجع</li><li>**"One workspace for every branch."** جملة من عند ChatGPT، تتحط في الترجمة لو عجبتك</li><li>**النقط اللي في البانل:** SVG بالكود، وتقف مع `prefers-reduced-motion`</li><li>الإيميل في الصورة وهمي</li></ul> |
 | A8 · صفحة التخصص عربي (RTL) | `design/website/W-03-specialty-ar.png` | ✅ اتقبلت 2026-10-11 (المحاولة التانية) | <ul><li>✅ نفس صفحة A4 معكوسة: اللوجو يمين، "احجز الآن" والدخول شمال، الصورة شمال في حلقة النقط، الأسهم لليسار، الدهبي على "احجز تقييم" بس · IBM Plex Sans Arabic · الأرقام إنجليزي</li><li>**النصوص العربي في الصورة مش مرجع:** النصوص الصح في `messages/ar.json`</li><li>**أيقونة "آلام الضهر والرقبة"** طالعة راس بمخ زي التأهيل العصبي. في الكود أيقونة العمود الفقري من A4</li><li>**الموبايل في كارت فيزيو هوم** في الكود هو `A4-physio-home.png` نفسه (مش معكوس، عشان الكلام اللي جواه)</li><li>"مدينة نصر" و"التجمع الخامس" فروع وهمية لحد ما Oxygen يأكدوا</li></ul> |
 | A7 · بوابة المريض | `design/website/PP-01-portal.png` | ✅ اتقبلت 2026-10-11 | <ul><li>✅ Sidebar أبيض و"Overview" على Mist · كارت الموعد الجاي (Reschedule وDirections) · Secret Seven بالخطوات المنقطة · الباكدج بشريط التقدم · رسم الوزن 92 → 84 وخط الهدف 80 متقطع · آخر الملفات · كلام كبير ومريح</li><li>**أيقونة Health Passport** فيها قلب (ممنوع في الهوية). في الكود أيقونة باسبور/كارت</li><li>**أيقونة Invoices** فيها $. في الكود أيقونة إيصال</li><li>**الرسم البياني:** أول رقم تحت مكتوب "Week" مكان 1. في الكود الأرقام 1 → 12، وعنوان المحور "الأسبوع" لوحده</li><li>**أيقونات الملفات** ألوانها (أخضر/أزرق/وردي) شبه ألوان التخصصات. في الكود بلون واحد هادي (Mist + Teal)</li></ul> |
 | A6 · الحجز | `design/website/W-07-booking.png` | ✅ اتقبلت 2026-10-11 | <ul><li>✅ خطوات الحجز المنقطة (1–2 خلصوا، 3 شغالة) · اختيار الدكتور · شريط الأيام · المواعيد صباحًا/بعد الظهر/بالليل وفيها مواعيد مقفولة · ملخص الحجز · Back وContinue الدهبي · سطر الأمان</li><li>**التبديل "Any available doctor / Choose a doctor":** في الصورة "Any" مختار ومع ذلك فيه دكتور متعلّم. في الكود: "Any" بيخفي كروت الأطباء، و"Choose" هو اللي بيظهرها</li><li>**الأطباء** في الكود بيتفلتروا بالفرع اللي اتختار (الصورة فيها دكاترة من فروع تانية)</li><li>**أيقونة الـ$** جنب السعر مش هتتحط (العملة جنيه). هنستخدم أيقونة إيصال</li><li>**المواعيد المقفولة** في الكود عليها خط ومش بتتداس، ومش معتمدين على اللون الباهت بس</li><li>**سطر الأمان** صغير في الصورة. في الكود 14px</li></ul> |
