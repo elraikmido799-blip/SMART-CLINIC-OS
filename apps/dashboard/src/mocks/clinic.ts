@@ -822,6 +822,18 @@ export const clinicHandlers: MockHandlers = {
       item.checked_in_at = new Date().toISOString();
     }),
 
+  startVisit: ({ url }) =>
+    updateAppointment(idFrom(url, 2), (item) => {
+      if (item.status !== 'checked_in') throw new MockHttpError(409, 'INVALID_STATUS');
+      item.status = 'in_progress';
+    }),
+
+  completeVisit: ({ url }) =>
+    updateAppointment(idFrom(url, 2), (item) => {
+      if (item.status !== 'in_progress') throw new MockHttpError(409, 'INVALID_STATUS');
+      item.status = 'completed';
+    }),
+
   createTimeBlock: ({ body }) => {
     requireWrite();
     const input = body as CreateTimeBlockBody;

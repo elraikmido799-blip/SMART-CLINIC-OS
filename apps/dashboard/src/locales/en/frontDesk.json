@@ -22,5 +22,36 @@
   "pickBranch": {
     "title": "Choose a branch",
     "body": "The day view shows one branch. Pick a branch from the top bar."
+  },
+  "queue": {
+    "title": "Front Desk",
+    "label": "Today's queue",
+    "columns": {
+      "confirmed": "Expected",
+      "checked_in": "Waiting",
+      "in_progress": "With practitioner",
+      "completed": "Done",
+      "no_show": "No-show"
+    },
+    "empty": "No one",
+    "waiting": "Waiting {{minutes}} min",
+    "position": "#{{n}} for {{name}}",
+    "checkIn": "Check in",
+    "start": "Send in",
+    "complete": "Done",
+    "noShow": "No-show",
+    "followUp": "Book follow-up",
+    "rebook": "Rebook",
+    "walkIn": "Walk-in patient",
+    "search": "Search today's queue by name, phone or file",
+    "allPractitioners": "All practitioners",
+    "started": "{{name}} is with the practitioner",
+    "completed": "{{name}} is done",
+    "noShowDone": "{{name}} marked no-show",
+    "views": {
+      "calendar": "Calendar",
+      "queue": "Queue",
+      "label": "View"
+    }
   }
 }

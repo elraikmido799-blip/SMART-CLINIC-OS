@@ -22,5 +22,36 @@
   "pickBranch": {
     "title": "اختار فرع",
     "body": "شاشة اليوم بتعرض فرع واحد. اختار الفرع من فوق."
+  },
+  "queue": {
+    "title": "الاستقبال",
+    "label": "طابور النهارده",
+    "columns": {
+      "confirmed": "متوقع",
+      "checked_in": "وصل ومستني",
+      "in_progress": "مع الدكتور",
+      "completed": "خلص",
+      "no_show": "مجاش"
+    },
+    "empty": "مفيش حد",
+    "waiting": "مستني {{minutes}} د",
+    "position": "رقم {{n}} عند {{name}}",
+    "checkIn": "تسجيل وصول",
+    "start": "دخل للدكتور",
+    "complete": "خلص",
+    "noShow": "مجاش",
+    "followUp": "حجز متابعة",
+    "rebook": "حجز تاني",
+    "walkIn": "مريض من غير ميعاد",
+    "search": "دوّر في طابور النهارده بالاسم أو الموبايل أو الملف",
+    "allPractitioners": "كل الدكاترة",
+    "started": "{{name}} دخل للدكتور",
+    "completed": "{{name}} خلص",
+    "noShowDone": "{{name}} اتسجل مجاش",
+    "views": {
+      "calendar": "الكالندر",
+      "queue": "الطابور",
+      "label": "العرض"
+    }
   }
 }

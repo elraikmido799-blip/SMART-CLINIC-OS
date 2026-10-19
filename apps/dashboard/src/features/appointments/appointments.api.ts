@@ -94,6 +94,18 @@ export const appointmentsApi = baseApi.injectEndpoints({
       responseSchema: appointmentSchema,
       invalidatesTags: [...CHANGES],
     }),
+    // وصل ← مع الدكتور (الريسبشن بيدخّله، أو الدكتور يبدأ الكشف في 4.3)
+    startVisit: build.mutation<Appointment, { id: string }>({
+      query: ({ id }) => ({ url: `/staff/appointments/${id}/start`, method: 'POST' }),
+      responseSchema: appointmentSchema,
+      invalidatesTags: [...CHANGES],
+    }),
+    // مع الدكتور ← خلص
+    completeVisit: build.mutation<Appointment, { id: string }>({
+      query: ({ id }) => ({ url: `/staff/appointments/${id}/complete`, method: 'POST' }),
+      responseSchema: appointmentSchema,
+      invalidatesTags: [...CHANGES],
+    }),
     createTimeBlock: build.mutation<TimeBlock, CreateTimeBlockBody>({
       query: (body) => ({ url: '/staff/time-blocks', method: 'POST', body }),
       responseSchema: timeBlockSchema,
@@ -118,6 +130,8 @@ export const {
   useCancelAppointmentMutation,
   useMarkNoShowMutation,
   useCheckInMutation,
+  useStartVisitMutation,
+  useCompleteVisitMutation,
   useCreateTimeBlockMutation,
   useDeleteTimeBlockMutation,
 } = appointmentsApi;

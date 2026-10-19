@@ -236,7 +236,7 @@ apps/dashboard/
 │   │   ├── appointments/        المواعيد والدكاترة والأوض والوقت المقفول: types · appointments.api · status (لون كل حالة) · grid (مقاسات الكالندر) · errors · use-check-in · use-clinic-clock · components/ (time-grid · appointment-block · appointment-drawer · appointment-panel · booking-modal · cancel-modal)
 │   │   ├── calendar/            الكالندر (3.2): search.ts (الحالة في الـURL) · components/ (calendar-page · block-time-modal)
 │   │   ├── patients/            المرضى: types (المصادر) · patients.api (تسجيل) · components/register-patient-drawer
-│   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · components/ (today-board · today-stats · arriving-now · quick-actions)
+│   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page)
 │   ├── components/              Components مشتركة بين الـfeatures
 │   │   ├── layout/              app-layout · app-header · nav-menu · nav-items (الأقسام وصلاحياتها) · branch-select · user-menu
 │   │   ├── states/              Loading (النقط) · Empty · Error · Forbidden · NotFound

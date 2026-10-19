@@ -7,6 +7,7 @@ import { PageHeader } from '@/components/page-header';
 import { EmptyState } from '@/components/states/states';
 import type { Role } from '@/features/auth/permissions';
 import { useMe } from '@/features/auth/use-me';
+import { QueuePage } from '@/features/front-desk/components/queue-page';
 import { TodayBoard } from '@/features/front-desk/components/today-board';
 
 /**
@@ -40,6 +41,7 @@ function HomePage() {
   const locale = useLocale();
 
   if (me.role === 'reception') return <TodayBoard />;
+  if (me.role === 'assistant') return <QueuePage />;
 
   return (
     <>

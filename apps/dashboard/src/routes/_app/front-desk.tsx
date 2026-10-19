@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { ComingSoon } from '@/components/coming-soon';
+import { QueuePage } from '@/features/front-desk/components/queue-page';
 
-// مكان مؤقت لحد ما الشاشة تتبني (docs/20 · 3.4)
+// الاستقبال: الطابور (D-05 · docs/20 · 3.4). التحصيل (3.6) وتقفيل الخزنة (3.7) هيتضافوا هنا
 export const Route = createFileRoute('/_app/front-desk')({
   staticData: { nav: 'frontDesk' },
-  component: () => <ComingSoon nav="frontDesk" step="3.4" />,
+  component: QueuePage,
 });

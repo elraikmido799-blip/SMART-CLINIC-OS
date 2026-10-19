@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, Col, Flex, Row } from 'antd';
+import { Card, Col, Flex, Row, Segmented } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { formatDate, formatWeekday, localized } from '@oxygen/shared';
 import { useLocale } from '@/app/use-locale';
@@ -10,6 +10,7 @@ import {
   useGetPractitionersQuery,
 } from '@/features/appointments/appointments.api';
 import { AppointmentPanel } from '@/features/appointments/components/appointment-panel';
+import { BookingModal, type BookingMode } from '@/features/appointments/components/booking-modal';
 import { TimeGrid } from '@/features/appointments/components/time-grid';
 import type { Appointment } from '@/features/appointments/types';
 import { useClinicClock } from '@/features/appointments/use-clinic-clock';
@@ -18,6 +19,7 @@ import { ALL_BRANCHES } from '@/store/ui-slice';
 import { arrivingSoon } from '../arriving';
 import { useGetFrontDeskSummaryQuery } from '../front-desk.api';
 import { ArrivingNow } from './arriving-now';
+import { QueueBoard } from './queue-board';
 import { QuickActions } from './quick-actions';
 import { TodayStats } from './today-stats';
 
@@ -36,6 +38,9 @@ export function TodayBoard() {
   const { branchId } = useBranchScope();
   const { today, minutes } = useClinicClock();
   const [selected, setSelected] = useState<Appointment | null>(null);
+  const [booking, setBooking] = useState<BookingMode | null>(null);
+  // الكالندر (عمود لكل دكتور) أو الطابور (عمود لكل حالة — 05 §3)
+  const [view, setView] = useState<'calendar' | 'queue'>('calendar');
 
   const scoped = branchId !== ALL_BRANCHES;
   const range = { branch_id: branchId, from: today, to: today };
@@ -51,6 +56,19 @@ export function TodayBoard() {
     <PageHeader
       title={t('today.title')}
       description={`${formatWeekday(weekday, locale)} · ${formatDate(today, locale)}`}
+      extra={
+        scoped ? (
+          <Segmented
+            aria-label={t('queue.views.label')}
+            value={view}
+            onChange={setView}
+            options={[
+              { value: 'calendar', label: t('queue.views.calendar') },
+              { value: 'queue', label: t('queue.views.queue') },
+            ]}
+          />
+        ) : undefined
+      }
     />
   );
 
@@ -77,7 +95,11 @@ export function TodayBoard() {
       <TodayStats summary={summary.data} />
       <Row gutter={[24, 24]}>
         <Col xs={24} xl={18}>
-          <Card styles={{ body: { padding: 0, overflow: 'hidden', borderRadius: 16 } }}>
+          <Card
+            styles={{
+              body: { padding: view === 'queue' ? 16 : 0, overflow: 'hidden', borderRadius: 16 },
+            }}
+          >
             {isLoading ? (
               <LoadingState />
             ) : isError ? (
@@ -89,6 +111,21 @@ export function TodayBoard() {
               />
             ) : team.length === 0 ? (
               <EmptyState title={tAppointments('grid.noPractitioners')} />
+            ) : view === 'queue' ? (
+              <QueueBoard
+                appointments={list}
+                practitioners={team}
+                nowMinutes={minutes}
+                onSelect={setSelected}
+                onRebook={(item) =>
+                  setBooking({
+                    kind: 'new',
+                    date: today,
+                    practitionerId: item.practitioner_id,
+                    patient: item.patient,
+                  })
+                }
+              />
             ) : (
               <TimeGrid
                 columns={team.map((practitioner) => ({
@@ -119,6 +156,12 @@ export function TodayBoard() {
         practitioners={team}
         branchId={branchId}
         onClose={() => setSelected(null)}
+      />
+      <BookingModal
+        mode={booking}
+        branchId={branchId}
+        practitioners={team}
+        onClose={() => setBooking(null)}
       />
     </>
   );
