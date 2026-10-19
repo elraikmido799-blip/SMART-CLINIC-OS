@@ -1,0 +1,49 @@
+{
+  "greeting": "Good day, {{name}}",
+  "count": "{{count}} patients today",
+  "nextIn": "next in {{minutes}} min",
+  "startEncounter": "Start encounter",
+  "openFile": "Open patient file",
+  "view": "View",
+  "pickBranch": {
+    "title": "Choose a branch",
+    "body": "Your day shows one branch. Pick a branch from the top bar."
+  },
+  "queue": {
+    "title": "Today's queue",
+    "filter": "Filter the queue",
+    "filters": {
+      "all": "All",
+      "waiting": "Waiting",
+      "with_me": "With me",
+      "done": "Done"
+    },
+    "empty": "No patients here",
+    "time": "Time",
+    "patient": "Patient",
+    "service": "Service",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "next": {
+    "title": "Next patient",
+    "none": "No one is waiting",
+    "inMinutes": "In {{minutes}} min",
+    "now": "Now",
+    "service": "Service",
+    "program": "{{name}} · stage {{stage}}",
+    "allergy": "Allergy: {{name}}"
+  },
+  "pending": {
+    "title": "Waiting on you",
+    "unsignedNotes": "Unsigned notes",
+    "unsignedNotesHint_one": "{{count}} note needs your signature",
+    "unsignedNotesHint_other": "{{count}} notes need your signature",
+    "reports": "Reports to review",
+    "reportsHint_one": "{{count}} report needs your review",
+    "reportsHint_other": "{{count}} reports need your review",
+    "messages": "Patient messages",
+    "messagesHint_one": "{{count}} unread message",
+    "messagesHint_other": "{{count}} unread messages"
+  }
+}

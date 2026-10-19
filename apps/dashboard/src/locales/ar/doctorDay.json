@@ -1,0 +1,61 @@
+{
+  "greeting": "أهلًا، {{name}}",
+  "count": "{{count}} مريض النهارده",
+  "nextIn": "الجاي بعد {{minutes}} دقيقة",
+  "startEncounter": "ابدأ كشف",
+  "openFile": "افتح ملف المريض",
+  "view": "عرض",
+  "pickBranch": {
+    "title": "اختار فرع",
+    "body": "يومك بيظهر فرع واحد. اختار الفرع من الشريط اللي فوق."
+  },
+  "queue": {
+    "title": "طابور النهارده",
+    "filter": "فلتر الطابور",
+    "filters": {
+      "all": "الكل",
+      "waiting": "مستني",
+      "with_me": "معايا",
+      "done": "خلصوا"
+    },
+    "empty": "مفيش مرضى هنا",
+    "time": "الوقت",
+    "patient": "المريض",
+    "service": "الخدمة",
+    "status": "الحالة",
+    "actions": "إجراءات"
+  },
+  "next": {
+    "title": "المريض الجاي",
+    "none": "مفيش حد مستني",
+    "inMinutes": "بعد {{minutes}} دقيقة",
+    "now": "دلوقتي",
+    "service": "الخدمة",
+    "program": "{{name}} · المرحلة {{stage}}",
+    "allergy": "حساسية: {{name}}"
+  },
+  "pending": {
+    "title": "مستني منك",
+    "unsignedNotes": "ملاحظات مش متوقّعة",
+    "unsignedNotesHint_zero": "مفيش ملاحظات",
+    "unsignedNotesHint_one": "ملاحظة محتاجة توقيعك",
+    "unsignedNotesHint_two": "ملاحظتين محتاجين توقيعك",
+    "unsignedNotesHint_few": "{{count}} ملاحظات محتاجة توقيعك",
+    "unsignedNotesHint_many": "{{count}} ملاحظة محتاجة توقيعك",
+    "unsignedNotesHint_other": "{{count}} ملاحظة محتاجة توقيعك",
+    "reports": "تقارير للمراجعة",
+    "reportsHint_zero": "مفيش تقارير",
+    "reportsHint_one": "تقرير محتاج مراجعتك",
+    "reportsHint_two": "تقريرين محتاجين مراجعتك",
+    "reportsHint_few": "{{count}} تقارير محتاجة مراجعتك",
+    "reportsHint_many": "{{count}} تقرير محتاج مراجعتك",
+    "reportsHint_other": "{{count}} تقرير محتاج مراجعتك",
+    "messages": "رسايل المرضى",
+    "messagesHint_zero": "مفيش رسايل",
+    "messagesHint_one": "رسالة مش مقروءة",
+    "messagesHint_two": "رسالتين مش مقروءين",
+    "messagesHint_few": "{{count}} رسايل مش مقروءة",
+    "messagesHint_many": "{{count}} رسالة مش مقروءة",
+    "messagesHint_other": "{{count}} رسالة مش مقروءة"
+  }
+}

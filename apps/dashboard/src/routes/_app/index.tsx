@@ -7,6 +7,7 @@ import { PageHeader } from '@/components/page-header';
 import { EmptyState } from '@/components/states/states';
 import type { Role } from '@/features/auth/permissions';
 import { useMe } from '@/features/auth/use-me';
+import { DoctorDayPage } from '@/features/doctor-day/components/doctor-day-page';
 import { QueuePage } from '@/features/front-desk/components/queue-page';
 import { TodayBoard } from '@/features/front-desk/components/today-board';
 
@@ -15,11 +16,8 @@ import { TodayBoard } from '@/features/front-desk/components/today-board';
  * والقايمة معلّمة على "الرئيسية". لحد ما كل شاشة تتبني، بيظهر رقم خطوتها.
  */
 // الشاشات اللي اتبنت بتظهر هنا مكان رقم الخطوة
-const HOME_STEP: Record<Role, string> = {
+const HOME_STEP: Partial<Record<Role, string>> = {
   reception: '3.1',
-  doctor: '4.2',
-  nutritionist: '4.2',
-  physiotherapist: '4.2',
   assistant: '3.4',
   crm_agent: '6.1',
   marketing: '6.4',
@@ -29,6 +27,8 @@ const HOME_STEP: Record<Role, string> = {
   ceo: '8.1',
   admin: '9.3',
 };
+
+const DOCTOR_ROLES = new Set<Role>(['doctor', 'nutritionist', 'physiotherapist']);
 
 export const Route = createFileRoute('/_app/')({
   staticData: { nav: 'home' },
@@ -42,6 +42,7 @@ function HomePage() {
 
   if (me.role === 'reception') return <TodayBoard />;
   if (me.role === 'assistant') return <QueuePage />;
+  if (DOCTOR_ROLES.has(me.role)) return <DoctorDayPage />;
 
   return (
     <>
@@ -52,7 +53,7 @@ function HomePage() {
       <Card>
         <EmptyState
           title={t('states.comingSoonTitle')}
-          description={t('states.comingSoonBody', { step: HOME_STEP[me.role] })}
+          description={t('states.comingSoonBody', { step: HOME_STEP[me.role] ?? '' })}
         />
       </Card>
     </>
