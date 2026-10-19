@@ -68,3 +68,39 @@ export const invoiceSchema = z.object({
 });
 
 export type Invoice = z.infer<typeof invoiceSchema>;
+
+// تقفيل الخزنة (3.7): مبلغ لكل طريقة دفع (بالقروش)
+export const methodAmountsSchema = z.object({
+  cash: z.number(),
+  card: z.number(),
+  wallet: z.number(),
+  instapay: z.number(),
+});
+export type MethodAmounts = z.infer<typeof methodAmountsSchema>;
+
+export const cashClosingSchema = z.object({
+  branch_id: z.string(),
+  date: z.string(),
+  invoices_count: z.number(),
+  // اللي اتحصّل في السيستم
+  expected: methodAmountsSchema,
+  // null = اليوم لسه متقفلش
+  closing: z
+    .object({
+      counted: methodAmountsSchema,
+      difference: z.number(),
+      reason: z.string().nullable(),
+      closed_by_name_ar: z.string(),
+      closed_by_name_en: z.string(),
+      closed_at: z.string(),
+    })
+    .nullable(),
+});
+export type CashClosing = z.infer<typeof cashClosingSchema>;
+
+export type CloseCashBody = {
+  branch_id: string;
+  date: string;
+  counted: MethodAmounts;
+  reason: string | null;
+};

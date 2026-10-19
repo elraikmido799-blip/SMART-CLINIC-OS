@@ -25,7 +25,7 @@ export const billingApi = baseApi.injectEndpoints({
     createInvoice: build.mutation<Invoice, CreateInvoiceBody>({
       query: (body) => ({ url: '/staff/invoices', method: 'POST', body }),
       responseSchema: invoiceSchema,
-      invalidatesTags: ['Appointments', 'FrontDeskSummary', 'Patients'],
+      invalidatesTags: ['Appointments', 'FrontDeskSummary', 'Patients', 'CashClosing'],
     }),
   }),
 });

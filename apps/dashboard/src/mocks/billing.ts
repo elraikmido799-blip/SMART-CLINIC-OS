@@ -1,6 +1,13 @@
 import { MockHttpError, type MockHandlers } from '@oxygen/shared';
 import { invoiceTotals, discountPercentOf } from '@/features/billing/totals';
-import type { CreateInvoiceBody, Invoice, Sellable } from '@/features/billing/types';
+import type {
+  CashClosing,
+  CloseCashBody,
+  CreateInvoiceBody,
+  Invoice,
+  MethodAmounts,
+  Sellable,
+} from '@/features/billing/types';
 import { clinicToday } from '@/lib/clinic-time';
 import { currentStaff, toMe } from './auth';
 import { SERVICES } from './clinic';
@@ -62,7 +69,73 @@ const checkCode = (code: string) => {
   return { code: code.trim().toUpperCase(), percent };
 };
 
+const sumByMethod = (branchId: string, date: string): MethodAmounts => {
+  const total: MethodAmounts = { cash: 0, card: 0, wallet: 0, instapay: 0 };
+  for (const payment of readDb().payments) {
+    if (payment.branch_id === branchId && payment.date === date)
+      total[payment.method] += payment.amount;
+  }
+  return total;
+};
+
+const closingOf = (branchId: string, date: string): CashClosing => {
+  const staff = currentStaff();
+  if (!staff.all_branches && !staff.branch_ids.includes(branchId)) {
+    throw new MockHttpError(403, 'FORBIDDEN_BRANCH');
+  }
+  const db = readDb();
+  return (
+    db.cash_closings.find((item) => item.branch_id === branchId && item.date === date) ?? {
+      branch_id: branchId,
+      date,
+      invoices_count: db.invoices.filter(
+        (item) => item.branch_id === branchId && item.created_at.startsWith(date),
+      ).length,
+      expected: sumByMethod(branchId, date),
+      closing: null,
+    }
+  );
+};
+
 export const billingHandlers: MockHandlers = {
+  getCashClosing: (args) => {
+    const { branch_id, date } = (args.params ?? {}) as { branch_id?: string; date?: string };
+    if (!branch_id || !date) throw new MockHttpError(400, 'DATE_REQUIRED');
+    return closingOf(branch_id, date);
+  },
+
+  closeCash: ({ body }) => {
+    const input = body as CloseCashBody;
+    const staff = currentStaff();
+    if (!toMe(staff).permissions.includes('billing.collect'))
+      throw new MockHttpError(403, 'FORBIDDEN');
+    const current = closingOf(input.branch_id, input.date);
+    if (current.closing) throw new MockHttpError(409, 'ALREADY_CLOSED');
+    const counted = input.counted;
+    if (Object.values(counted).some((value) => value < 0)) {
+      throw new MockHttpError(422, 'INVALID_AMOUNT');
+    }
+    const sum = (amounts: MethodAmounts) => Object.values(amounts).reduce((a, b) => a + b, 0);
+    const difference = sum(counted) - sum(current.expected);
+    const reason = input.reason?.trim() || null;
+    if (difference !== 0 && !reason) throw new MockHttpError(422, 'REASON_REQUIRED');
+    const closed: CashClosing = {
+      ...current,
+      closing: {
+        counted,
+        difference,
+        reason,
+        closed_by_name_ar: staff.name_ar,
+        closed_by_name_en: staff.name_en,
+        closed_at: new Date().toISOString(),
+      },
+    };
+    writeDb((draft) => {
+      draft.cash_closings.push(closed);
+    });
+    return closed;
+  },
+
   getSellables: () => ({ data: SELLABLES }),
 
   checkDiscountCode: ({ body }) => checkCode((body as { code: string }).code),

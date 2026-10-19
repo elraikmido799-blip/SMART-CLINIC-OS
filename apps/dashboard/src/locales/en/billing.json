@@ -70,6 +70,34 @@
     "INVALID_AMOUNT": "The paid amount must be between zero and the amount due.",
     "EMPTY": "The invoice is empty. Add a service or package.",
     "FORBIDDEN": "You don't have permission for this.",
-    "generic": "Something went wrong. Please try again."
+    "generic": "Something went wrong. Please try again.",
+    "REASON_REQUIRED": "Please write the reason for the difference.",
+    "ALREADY_CLOSED": "This day is already closed."
+  },
+  "closing": {
+    "title": "Cash closing",
+    "description": "Compare what the system recorded with what is in the drawer",
+    "pickBranch": "Pick a branch first",
+    "pickBranchBody": "Closing is done for one branch. Choose it from the top bar.",
+    "today": "{{date}} · {{count}} invoices today",
+    "fillExpected": "Matches the system",
+    "expected": "In the system",
+    "counted": "Counted",
+    "difference": "Difference",
+    "total": "Total",
+    "matches": "Matches",
+    "reason": "Reason for the difference",
+    "reasonPlaceholder": "Write the reason (required)",
+    "submit": "Close the cash",
+    "cancel": "No",
+    "confirmTitle": "Close the cash?",
+    "confirmBody": "You can't change the numbers after closing.",
+    "done": "Cash closed",
+    "closedTag": "Day closed",
+    "print": "Print closing",
+    "printTitle": "Cash closing",
+    "closedBy": "Closed by",
+    "closedAt": "Closed at",
+    "invoices": "Invoices"
   }
 }
