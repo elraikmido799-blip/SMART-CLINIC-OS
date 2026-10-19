@@ -2,35 +2,122 @@ import { z } from 'zod';
 import { baseApi } from '@/store/base-api';
 import {
   appointmentSchema,
+  patientSummarySchema,
   practitionerSchema,
+  roomSchema,
+  serviceSchema,
+  timeBlockSchema,
   type Appointment,
-  type DayQuery,
+  type CancelReason,
+  type CreateAppointmentBody,
+  type CreateTimeBlockBody,
+  type PatientSummary,
   type Practitioner,
+  type RangeQuery,
+  type RescheduleBody,
+  type Room,
+  type Service,
+  type TimeBlock,
 } from './types';
 
-/** المواعيد والدكاترة (شاشة اليوم 3.1 والكالندر 3.2 والطابور 3.4) */
+const list = <T>(schema: z.ZodType<T>) => z.object({ data: z.array(schema) });
+const unwrap = <T>(response: { data: T[] }) => response.data;
+
+// أي تغيير في المواعيد بيحدّث الكالندر وشاشة اليوم وأرقامها
+const CHANGES = ['Appointments', 'FrontDeskSummary'] as const;
+
+/** المواعيد والدكاترة والأوض (شاشة اليوم 3.1 · الكالندر 3.2 · الطابور 3.4) */
 export const appointmentsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    // الدكاترة اللي شغالين في الفرع في اليوم ده
-    getPractitioners: build.query<Practitioner[], DayQuery>({
+    // الدكاترة اللي شغالين في الفرع في الفترة دي
+    getPractitioners: build.query<Practitioner[], RangeQuery>({
       query: (params) => ({ url: '/staff/practitioners', params }),
-      rawResponseSchema: z.object({ data: z.array(practitionerSchema) }),
-      transformResponse: (response: { data: Practitioner[] }) => response.data,
+      rawResponseSchema: list(practitionerSchema),
+      transformResponse: unwrap<Practitioner>,
       providesTags: ['Practitioners'],
     }),
-    getAppointments: build.query<Appointment[], DayQuery>({
+    getRooms: build.query<Room[], { branch_id: string }>({
+      query: (params) => ({ url: '/staff/rooms', params }),
+      rawResponseSchema: list(roomSchema),
+      transformResponse: unwrap<Room>,
+    }),
+    getServices: build.query<Service[], void>({
+      query: () => '/staff/services',
+      rawResponseSchema: list(serviceSchema),
+      transformResponse: unwrap<Service>,
+    }),
+    // البحث بالاسم أو الموبايل أو رقم الملف (الحجز · بحث الـTop bar في 3.5)
+    searchPatients: build.query<PatientSummary[], { q: string }>({
+      query: (params) => ({ url: '/staff/patients', params: { ...params, limit: 8 } }),
+      rawResponseSchema: list(patientSummarySchema),
+      transformResponse: unwrap<PatientSummary>,
+      providesTags: ['Patients'],
+    }),
+    getAppointments: build.query<Appointment[], RangeQuery>({
       query: (params) => ({ url: '/staff/appointments', params }),
-      rawResponseSchema: z.object({ data: z.array(appointmentSchema) }),
-      transformResponse: (response: { data: Appointment[] }) => response.data,
+      rawResponseSchema: list(appointmentSchema),
+      transformResponse: unwrap<Appointment>,
       providesTags: ['Appointments'],
+    }),
+    getTimeBlocks: build.query<TimeBlock[], RangeQuery>({
+      query: (params) => ({ url: '/staff/time-blocks', params }),
+      rawResponseSchema: list(timeBlockSchema),
+      transformResponse: unwrap<TimeBlock>,
+      providesTags: ['TimeBlocks'],
+    }),
+    createAppointment: build.mutation<Appointment, CreateAppointmentBody>({
+      query: (body) => ({ url: '/staff/appointments', method: 'POST', body }),
+      responseSchema: appointmentSchema,
+      invalidatesTags: [...CHANGES],
+    }),
+    rescheduleAppointment: build.mutation<Appointment, RescheduleBody>({
+      query: ({ id, ...body }) => ({ url: `/staff/appointments/${id}`, method: 'PATCH', body }),
+      responseSchema: appointmentSchema,
+      invalidatesTags: [...CHANGES],
+    }),
+    cancelAppointment: build.mutation<Appointment, { id: string; reason: CancelReason }>({
+      query: ({ id, reason }) => ({
+        url: `/staff/appointments/${id}/cancel`,
+        method: 'POST',
+        body: { reason },
+      }),
+      responseSchema: appointmentSchema,
+      invalidatesTags: [...CHANGES],
+    }),
+    markNoShow: build.mutation<Appointment, { id: string }>({
+      query: ({ id }) => ({ url: `/staff/appointments/${id}/no-show`, method: 'POST' }),
+      responseSchema: appointmentSchema,
+      invalidatesTags: [...CHANGES],
     }),
     checkIn: build.mutation<Appointment, { id: string }>({
       query: ({ id }) => ({ url: `/staff/appointments/${id}/check-in`, method: 'POST' }),
       responseSchema: appointmentSchema,
-      invalidatesTags: ['Appointments', 'FrontDeskSummary'],
+      invalidatesTags: [...CHANGES],
+    }),
+    createTimeBlock: build.mutation<TimeBlock, CreateTimeBlockBody>({
+      query: (body) => ({ url: '/staff/time-blocks', method: 'POST', body }),
+      responseSchema: timeBlockSchema,
+      invalidatesTags: ['TimeBlocks'],
+    }),
+    deleteTimeBlock: build.mutation<null, { id: string }>({
+      query: ({ id }) => ({ url: `/staff/time-blocks/${id}`, method: 'DELETE' }),
+      invalidatesTags: ['TimeBlocks'],
     }),
   }),
 });
 
-export const { useGetPractitionersQuery, useGetAppointmentsQuery, useCheckInMutation } =
-  appointmentsApi;
+export const {
+  useGetPractitionersQuery,
+  useGetRoomsQuery,
+  useGetServicesQuery,
+  useSearchPatientsQuery,
+  useGetAppointmentsQuery,
+  useGetTimeBlocksQuery,
+  useCreateAppointmentMutation,
+  useRescheduleAppointmentMutation,
+  useCancelAppointmentMutation,
+  useMarkNoShowMutation,
+  useCheckInMutation,
+  useCreateTimeBlockMutation,
+  useDeleteTimeBlockMutation,
+} = appointmentsApi;

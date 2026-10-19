@@ -11,7 +11,15 @@ export const baseApi = createApi({
     mocking: env.apiMocking,
     mockHandlers: () => import('@/mocks/handlers').then((module) => module.mockHandlers),
   }),
-  tagTypes: ['Me', 'Branches', 'Practitioners', 'Appointments', 'FrontDeskSummary', 'Patients'],
+  tagTypes: [
+    'Me',
+    'Branches',
+    'Practitioners',
+    'Appointments',
+    'FrontDeskSummary',
+    'Patients',
+    'TimeBlocks',
+  ],
   // الرد جه بشكل غير الـresponseSchema (zod) = خطأ عادي في الشاشة بدل ما الصفحة تقع (DEC-30)
   catchSchemaFailure: (error) => ({
     status: 'CUSTOM_ERROR' as const,

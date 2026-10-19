@@ -3,11 +3,13 @@ import { initReactI18next } from 'react-i18next';
 import { DEFAULT_LOCALE, isLocale } from '@oxygen/shared';
 import arAppointments from '@/locales/ar/appointments.json';
 import arAuth from '@/locales/ar/auth.json';
+import arCalendar from '@/locales/ar/calendar.json';
 import arCommon from '@/locales/ar/common.json';
 import arFrontDesk from '@/locales/ar/frontDesk.json';
 import arNav from '@/locales/ar/nav.json';
 import enAppointments from '@/locales/en/appointments.json';
 import enAuth from '@/locales/en/auth.json';
+import enCalendar from '@/locales/en/calendar.json';
 import enCommon from '@/locales/en/common.json';
 import enFrontDesk from '@/locales/en/frontDesk.json';
 import enNav from '@/locales/en/nav.json';
@@ -24,6 +26,7 @@ export const resources = {
     auth: arAuth,
     appointments: arAppointments,
     frontDesk: arFrontDesk,
+    calendar: arCalendar,
   },
   en: {
     common: enCommon,
@@ -31,6 +34,7 @@ export const resources = {
     auth: enAuth,
     appointments: enAppointments,
     frontDesk: enFrontDesk,
+    calendar: enCalendar,
   },
 } as const;
 

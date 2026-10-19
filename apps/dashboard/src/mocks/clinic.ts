@@ -1,10 +1,20 @@
 import { MockHttpError, type MockHandlers } from '@oxygen/shared';
 import type { FetchArgs } from '@reduxjs/toolkit/query';
 import type { Specialty } from '@oxygen/config';
-import type { Appointment, AppointmentStatus, Practitioner } from '@/features/appointments/types';
+import type {
+  Appointment,
+  AppointmentStatus,
+  CreateAppointmentBody,
+  CreateTimeBlockBody,
+  PatientSummary,
+  Practitioner,
+  Room,
+  TimeBlock,
+  TimeBlockReason,
+} from '@/features/appointments/types';
 import type { FrontDeskSummary } from '@/features/front-desk/front-desk.api';
-import { clinicIso, clinicNowMinutes, clinicToday } from '@/lib/clinic-time';
-import { currentStaff } from './auth';
+import { clinicIso, clinicMinutes, clinicNowMinutes, clinicToday } from '@/lib/clinic-time';
+import { currentStaff, toMe } from './auth';
 import { readDb, writeDb, type MockDb } from './db';
 
 /**
@@ -331,11 +341,33 @@ function seedPatients(): StoredPatient[] {
   });
 }
 
-// ---------- المواعيد والمدفوعات ----------
+// ---------- الأوض (4 في كل فرع لحد ما إعدادات الفروع تتبني في 9.4) ----------
+export const ROOMS: Room[] = BRANCH_IDS.flatMap((branchId) =>
+  [1, 2, 3, 4].map((number) => ({
+    id: `${branchId.replace('branch-', 'room-')}-${number}`,
+    branch_id: branchId,
+    name_ar: `أوضة ${number}`,
+    name_en: `Room ${number}`,
+  })),
+);
+
+// كل دكتور في أوضة ثابتة في يومه (حسب ترتيبه في الفرع)
+function roomFor(practitionerId: string, branchId: string, date: string): string {
+  const team = PRACTITIONERS.filter((item) => worksAt(item, branchId, date));
+  const rooms = ROOMS.filter((room) => room.branch_id === branchId);
+  const index = Math.max(
+    0,
+    team.findIndex((item) => item.id === practitionerId),
+  );
+  return rooms[index % rooms.length].id;
+}
+
+// ---------- المواعيد والمدفوعات والوقت المقفول ----------
 export type StoredAppointment = {
   id: string;
   branch_id: string;
   practitioner_id: string;
+  room_id?: string;
   patient_id: string;
   service_id: string;
   date: string;
@@ -344,6 +376,7 @@ export type StoredAppointment = {
   end: number;
   status: AppointmentStatus;
   checked_in_at: string | null;
+  notes?: string | null;
 };
 
 export type StoredPayment = {
@@ -356,8 +389,18 @@ export type StoredPayment = {
   method: 'cash' | 'card' | 'wallet';
 };
 
-const OPEN = 9 * 60;
-const CLOSE = 21 * 60;
+export type StoredTimeBlock = {
+  id: string;
+  branch_id: string;
+  practitioner_id: string;
+  date: string;
+  start: number;
+  end: number;
+  reason: TimeBlockReason;
+};
+
+export const OPEN = 9 * 60;
+export const CLOSE = 21 * 60;
 
 function statusFor(
   date: string,
@@ -388,13 +431,29 @@ function ensureDay(branchId: string, date: string) {
     const random = seeded(key);
     const branchPatients = db.patients.filter((patient) => patient.branch_id === branchId);
     const pool = branchPatients.length > 10 ? branchPatients : db.patients;
+    const team = PRACTITIONERS.filter((item) => worksAt(item, branchId, date));
 
-    for (const practitioner of PRACTITIONERS.filter((item) => worksAt(item, branchId, date))) {
+    for (const practitioner of team) {
       const services = SERVICES.filter((service) => service.specialty === practitioner.specialty);
+      // استراحة نص ساعة لكل دكتور (بتبان في الكالندر كوقت مقفول)
+      const breakStart = 14 * 60 + Math.floor(random() * 3) * 30;
+      db.time_blocks.push({
+        id: `blk-${practitioner.id}-${date}`,
+        branch_id: branchId,
+        practitioner_id: practitioner.id,
+        date,
+        start: breakStart,
+        end: breakStart + 30,
+        reason: 'break',
+      });
       let cursor = OPEN + Math.floor(random() * 3) * 15;
       while (cursor < CLOSE) {
         const service = pick(random, services);
         if (cursor + service.duration_min > CLOSE) break;
+        if (cursor < breakStart + 30 && cursor + service.duration_min > breakStart) {
+          cursor = breakStart + 30;
+          continue;
+        }
         if (random() < 0.74) {
           const start = cursor;
           const end = cursor + service.duration_min;
@@ -407,6 +466,7 @@ function ensureDay(branchId: string, date: string) {
             id,
             branch_id: branchId,
             practitioner_id: practitioner.id,
+            room_id: roomFor(practitioner.id, branchId, date),
             patient_id: patient.id,
             service_id: service.id,
             date,
@@ -414,6 +474,7 @@ function ensureDay(branchId: string, date: string) {
             end,
             status,
             checked_in_at: arrived ? clinicIso(date, start - 5 - Math.floor(random() * 10)) : null,
+            notes: null,
           });
           if (status === 'completed') {
             db.payments.push({
@@ -436,6 +497,15 @@ function ensureDay(branchId: string, date: string) {
   });
 }
 
+const toPatient = (patient: StoredPatient): PatientSummary => ({
+  id: patient.id,
+  name_ar: patient.name_ar,
+  name_en: patient.name_en,
+  file_no: patient.file_no,
+  phone: patient.phone,
+  balance_due: patient.balance_due,
+});
+
 function toAppointment(db: MockDb, item: StoredAppointment): Appointment {
   const patient = db.patients.find((entry) => entry.id === item.patient_id)!;
   const service = SERVICES.find((entry) => entry.id === item.service_id)!;
@@ -443,14 +513,8 @@ function toAppointment(db: MockDb, item: StoredAppointment): Appointment {
     id: item.id,
     branch_id: item.branch_id,
     practitioner_id: item.practitioner_id,
-    patient: {
-      id: patient.id,
-      name_ar: patient.name_ar,
-      name_en: patient.name_en,
-      file_no: patient.file_no,
-      phone: patient.phone,
-      balance_due: patient.balance_due,
-    },
+    room_id: item.room_id ?? roomFor(item.practitioner_id, item.branch_id, item.date),
+    patient: toPatient(patient),
     service: {
       id: service.id,
       name_ar: service.name_ar,
@@ -461,64 +525,310 @@ function toAppointment(db: MockDb, item: StoredAppointment): Appointment {
     ends_at: clinicIso(item.date, item.end),
     status: item.status,
     checked_in_at: item.checked_in_at,
+    notes: item.notes ?? null,
   };
 }
 
-// ---------- الطلبات ----------
-type DayParams = { branch_id?: string; date?: string };
+const toTimeBlock = (item: StoredTimeBlock): TimeBlock => ({
+  id: item.id,
+  branch_id: item.branch_id,
+  practitioner_id: item.practitioner_id,
+  starts_at: clinicIso(item.date, item.start),
+  ends_at: clinicIso(item.date, item.end),
+  reason: item.reason,
+});
 
-// الفرع لازم يكون من فروع الموظف
-function dayParams(args: FetchArgs): { branchId: string; date: string } {
-  const { branch_id, date } = (args.params ?? {}) as DayParams;
-  if (!branch_id || !date) throw new MockHttpError(400, 'BRANCH_AND_DATE_REQUIRED');
-  const staff = currentStaff();
-  if (!staff.all_branches && !staff.branch_ids.includes(branch_id)) {
-    throw new MockHttpError(403, 'FORBIDDEN_BRANCH');
+// ---------- الطلبات ----------
+type RangeParams = { branch_id?: string; from?: string; to?: string; date?: string };
+
+// الأيام من from لحد to (أسبوع على الأكتر)
+function daysBetween(from: string, to: string): string[] {
+  const days: string[] = [];
+  for (let time = Date.parse(`${from}T12:00:00Z`); days.length < 7; time += 86_400_000) {
+    const day = new Date(time).toISOString().slice(0, 10);
+    if (day > to) break;
+    days.push(day);
   }
-  return { branchId: branch_id, date };
+  return days;
 }
 
-const dayAppointments = (db: MockDb, branchId: string, date: string) =>
-  db.appointments
-    .filter((item) => item.branch_id === branchId && item.date === date)
-    .sort((a, b) => a.start - b.start);
+// الفرع لازم يكون من فروع الموظف
+function assertBranch(branchId: string | undefined): string {
+  if (!branchId) throw new MockHttpError(400, 'BRANCH_REQUIRED');
+  const staff = currentStaff();
+  if (!staff.all_branches && !staff.branch_ids.includes(branchId)) {
+    throw new MockHttpError(403, 'FORBIDDEN_BRANCH');
+  }
+  return branchId;
+}
+
+function rangeParams(args: FetchArgs) {
+  const { branch_id, from, to, date } = (args.params ?? {}) as RangeParams;
+  const start = from ?? date;
+  if (!start) throw new MockHttpError(400, 'DATE_REQUIRED');
+  return { branchId: assertBranch(branch_id), days: daysBetween(start, to ?? start) };
+}
+
+// الدكتور (من غير صلاحية تعديل المواعيد) بيشوف مواعيده هو بس — 06: "المواعيد 👁 own"
+function ownOnly(): string | null {
+  const staff = currentStaff();
+  const me = toMe(staff);
+  return staff.specialty && !me.permissions.includes('appointments.write') ? staff.id : null;
+}
+
+function requireWrite() {
+  if (!toMe(currentStaff()).permissions.includes('appointments.write')) {
+    throw new MockHttpError(403, 'FORBIDDEN');
+  }
+}
+
+const idFrom = (url: string, fromEnd: number) => url.split('/').at(-fromEnd) ?? '';
+
+// الميعاد مش لازم يتداخل مع ميعاد تاني لنفس الدكتور أو وقت مقفول
+function assertFree(
+  db: MockDb,
+  slot: { practitioner_id: string; date: string; start: number; end: number },
+  ignoreId?: string,
+) {
+  const overlaps = (start: number, end: number) => start < slot.end && end > slot.start;
+  const busy =
+    db.appointments.some(
+      (item) =>
+        item.id !== ignoreId &&
+        item.practitioner_id === slot.practitioner_id &&
+        item.date === slot.date &&
+        item.status !== 'cancelled' &&
+        overlaps(item.start, item.end),
+    ) ||
+    db.time_blocks.some(
+      (block) =>
+        block.practitioner_id === slot.practitioner_id &&
+        block.date === slot.date &&
+        overlaps(block.start, block.end),
+    );
+  if (busy) throw new MockHttpError(409, 'SLOT_TAKEN');
+  if (slot.start < OPEN || slot.end > CLOSE) throw new MockHttpError(422, 'OUTSIDE_HOURS');
+}
+
+// "2026-10-19T14:30:00+03:00" ← { date, minutes } بتوقيت مصر
+const parseSlot = (iso: string) => ({ date: iso.slice(0, 10), minutes: clinicMinutes(iso) });
+
+function updateAppointment(
+  id: string,
+  change: (item: StoredAppointment, db: MockDb) => void,
+): Appointment {
+  writeDb((db) => {
+    const item = db.appointments.find((entry) => entry.id === id);
+    if (!item) throw new MockHttpError(404, 'NOT_FOUND');
+    change(item, db);
+  });
+  const db = readDb();
+  return toAppointment(
+    db,
+    db.appointments.find((entry) => entry.id === id)!,
+  );
+}
 
 export const clinicHandlers: MockHandlers = {
   getPractitioners: (args) => {
-    const { branchId, date } = dayParams(args);
+    const { branchId, days } = rangeParams(args);
+    const own = ownOnly();
     return {
-      data: PRACTITIONERS.filter((item) => worksAt(item, branchId, date)).map(toPractitioner),
+      data: PRACTITIONERS.filter(
+        (item) => days.some((day) => worksAt(item, branchId, day)) && (!own || item.id === own),
+      ).map(toPractitioner),
     };
   },
 
-  getAppointments: (args) => {
-    const { branchId, date } = dayParams(args);
-    ensureDay(branchId, date);
-    const db = readDb();
-    return { data: dayAppointments(db, branchId, date).map((item) => toAppointment(db, item)) };
+  getRooms: (args) => {
+    const branchId = assertBranch((args.params as RangeParams | undefined)?.branch_id);
+    return { data: ROOMS.filter((room) => room.branch_id === branchId) };
   },
 
-  checkIn: ({ url }) => {
-    const id = url.split('/').at(-2);
+  getServices: () => ({
+    data: SERVICES.map(({ id, name_ar, name_en, specialty, duration_min, price }) => ({
+      id,
+      name_ar,
+      name_en,
+      specialty,
+      duration_min,
+      price,
+    })),
+  }),
+
+  searchPatients: (args) => {
+    const { q = '', limit = 8 } = (args.params ?? {}) as { q?: string; limit?: number };
+    const query = q.trim().toLowerCase();
+    if (query.length < 2) return { data: [] };
+    writeDb(ensurePatients);
+    const digits = query.replace(/\D/g, '');
+    const data = readDb()
+      .patients.filter(
+        (patient) =>
+          patient.name_ar.includes(query) ||
+          patient.name_en.toLowerCase().includes(query) ||
+          patient.file_no.toLowerCase().includes(query) ||
+          (digits.length >= 3 && patient.phone.includes(digits)),
+      )
+      .slice(0, Number(limit))
+      .map(toPatient);
+    return { data };
+  },
+
+  getAppointments: (args) => {
+    const { branchId, days } = rangeParams(args);
+    days.forEach((day) => ensureDay(branchId, day));
+    const db = readDb();
+    const own = ownOnly();
+    const data = db.appointments
+      .filter(
+        (item) =>
+          item.branch_id === branchId &&
+          days.includes(item.date) &&
+          (!own || item.practitioner_id === own),
+      )
+      .sort((a, b) => a.date.localeCompare(b.date) || a.start - b.start)
+      .map((item) => toAppointment(db, item));
+    return { data };
+  },
+
+  getTimeBlocks: (args) => {
+    const { branchId, days } = rangeParams(args);
+    days.forEach((day) => ensureDay(branchId, day));
+    const own = ownOnly();
+    return {
+      data: readDb()
+        .time_blocks.filter(
+          (block) =>
+            block.branch_id === branchId &&
+            days.includes(block.date) &&
+            (!own || block.practitioner_id === own),
+        )
+        .map(toTimeBlock),
+    };
+  },
+
+  createAppointment: ({ body }) => {
+    requireWrite();
+    const input = body as CreateAppointmentBody;
+    const branchId = assertBranch(input.branch_id);
+    const service = SERVICES.find((item) => item.id === input.service_id);
+    if (!service) throw new MockHttpError(422, 'INVALID_SERVICE');
+    const { date, minutes } = parseSlot(input.starts_at);
+    if (date < clinicToday() || (date === clinicToday() && minutes < clinicNowMinutes())) {
+      throw new MockHttpError(422, 'PAST_TIME');
+    }
+    const id = `apt-new-${Date.now()}`;
     writeDb((db) => {
-      const item = db.appointments.find((entry) => entry.id === id);
-      if (!item) throw new MockHttpError(404, 'NOT_FOUND');
-      if (item.status !== 'confirmed') throw new MockHttpError(409, 'INVALID_STATUS');
-      item.status = 'checked_in';
-      item.checked_in_at = new Date().toISOString();
+      ensurePatients(db);
+      const slot = {
+        practitioner_id: input.practitioner_id,
+        date,
+        start: minutes,
+        end: minutes + service.duration_min,
+      };
+      assertFree(db, slot);
+      db.appointments.push({
+        id,
+        branch_id: branchId,
+        practitioner_id: input.practitioner_id,
+        room_id: roomFor(input.practitioner_id, branchId, date),
+        patient_id: input.patient_id,
+        service_id: service.id,
+        date,
+        start: slot.start,
+        end: slot.end,
+        status: 'confirmed',
+        checked_in_at: null,
+        notes: input.notes?.trim() || null,
+      });
     });
     const db = readDb();
     return toAppointment(
       db,
-      db.appointments.find((entry) => entry.id === id)!,
+      db.appointments.find((item) => item.id === id)!,
     );
   },
 
+  rescheduleAppointment: ({ url, body }) => {
+    requireWrite();
+    const { starts_at, practitioner_id } = body as { starts_at: string; practitioner_id: string };
+    const { date, minutes } = parseSlot(starts_at);
+    return updateAppointment(idFrom(url, 1), (item, db) => {
+      if (item.status !== 'confirmed') throw new MockHttpError(409, 'INVALID_STATUS');
+      if (date < clinicToday() || (date === clinicToday() && minutes < clinicNowMinutes())) {
+        throw new MockHttpError(422, 'PAST_TIME');
+      }
+      const duration = item.end - item.start;
+      const slot = { practitioner_id, date, start: minutes, end: minutes + duration };
+      assertFree(db, slot, item.id);
+      Object.assign(item, slot, { room_id: roomFor(practitioner_id, item.branch_id, date) });
+    });
+  },
+
+  cancelAppointment: ({ url }) => {
+    requireWrite();
+    return updateAppointment(idFrom(url, 2), (item) => {
+      if (item.status !== 'confirmed' && item.status !== 'checked_in') {
+        throw new MockHttpError(409, 'INVALID_STATUS');
+      }
+      item.status = 'cancelled';
+    });
+  },
+
+  markNoShow: ({ url }) =>
+    updateAppointment(idFrom(url, 2), (item) => {
+      if (item.status !== 'confirmed') throw new MockHttpError(409, 'INVALID_STATUS');
+      item.status = 'no_show';
+    }),
+
+  checkIn: ({ url }) =>
+    updateAppointment(idFrom(url, 2), (item) => {
+      if (item.status !== 'confirmed') throw new MockHttpError(409, 'INVALID_STATUS');
+      item.status = 'checked_in';
+      item.checked_in_at = new Date().toISOString();
+    }),
+
+  createTimeBlock: ({ body }) => {
+    requireWrite();
+    const input = body as CreateTimeBlockBody;
+    const branchId = assertBranch(input.branch_id);
+    const start = parseSlot(input.starts_at);
+    const end = clinicMinutes(input.ends_at);
+    if (end <= start.minutes) throw new MockHttpError(422, 'INVALID_RANGE');
+    const block: StoredTimeBlock = {
+      id: `blk-new-${Date.now()}`,
+      branch_id: branchId,
+      practitioner_id: input.practitioner_id,
+      date: start.date,
+      start: start.minutes,
+      end,
+      reason: input.reason,
+    };
+    writeDb((db) => {
+      assertFree(db, block);
+      db.time_blocks.push(block);
+    });
+    return toTimeBlock(block);
+  },
+
+  deleteTimeBlock: ({ url }) => {
+    requireWrite();
+    const id = idFrom(url, 1);
+    writeDb((db) => {
+      db.time_blocks = db.time_blocks.filter((block) => block.id !== id);
+    });
+    return null;
+  },
+
   getFrontDeskSummary: (args): FrontDeskSummary => {
-    const { branchId, date } = dayParams(args);
+    const { branchId, days } = rangeParams(args);
+    const [date] = days;
     ensureDay(branchId, date);
     const db = readDb();
-    const list = dayAppointments(db, branchId, date).filter((item) => item.status !== 'cancelled');
+    const list = db.appointments.filter(
+      (item) => item.branch_id === branchId && item.date === date && item.status !== 'cancelled',
+    );
     return {
       appointments: list.length,
       checked_in: list.filter((item) =>

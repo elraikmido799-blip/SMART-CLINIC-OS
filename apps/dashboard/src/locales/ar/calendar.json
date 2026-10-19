@@ -1,0 +1,97 @@
+{
+  "title": "الكالندر",
+  "toolbar": {
+    "previous": "اللي قبل",
+    "next": "اللي بعد",
+    "today": "النهارده",
+    "date": "التاريخ",
+    "view": "العرض",
+    "day": "يوم",
+    "week": "أسبوع",
+    "group": "الأعمدة",
+    "byPractitioner": "بالدكتور",
+    "byRoom": "بالأوضة",
+    "specialty": "التخصص",
+    "allSpecialties": "كل التخصصات",
+    "practitioner": "الدكتور",
+    "allPractitioners": "كل الدكاترة",
+    "blockTime": "قفل وقت",
+    "newBooking": "حجز جديد",
+    "dragHint": "اسحب الميعاد لوقت أو دكتور تاني عشان تأجّله، أو دوس على مكان فاضي عشان تحجز."
+  },
+  "booking": {
+    "newTitle": "حجز جديد",
+    "rescheduleTitle": "تأجيل الميعاد",
+    "patient": "المريض",
+    "patientPlaceholder": "اكتب الاسم أو الموبايل أو رقم الملف",
+    "patientHint": "اكتب حرفين على الأقل",
+    "patientNone": "مفيش مريض بالبيانات دي",
+    "practitioner": "الدكتور",
+    "service": "الخدمة",
+    "date": "اليوم",
+    "time": "الساعة",
+    "notes": "ملاحظات (اختياري)",
+    "required": "اختار {{field}}",
+    "submitNew": "احجز",
+    "submitReschedule": "أجّل",
+    "created": "اتحجز الميعاد",
+    "rescheduled": "اتأجل الميعاد",
+    "duration": "{{minutes}} دقيقة · {{price}}"
+  },
+  "move": {
+    "title": "تأجيل الميعاد؟",
+    "body": "{{patient}} ← {{day}} الساعة {{time}} مع {{practitioner}}",
+    "confirm": "أجّل"
+  },
+  "cancel": {
+    "title": "إلغاء الميعاد",
+    "reason": "السبب",
+    "confirm": "إلغاء الميعاد",
+    "keep": "رجوع",
+    "done": "اتلغى الميعاد",
+    "reasons": {
+      "patient_request": "المريض طلب",
+      "practitioner_unavailable": "الدكتور مش موجود",
+      "duplicate": "ميعاد متكرر",
+      "other": "سبب تاني"
+    }
+  },
+  "noShow": {
+    "title": "المريض مجاش؟",
+    "body": "الميعاد هيتسجل \"مجاش\".",
+    "confirm": "سجّل مجاش",
+    "done": "اتسجل مجاش"
+  },
+  "block": {
+    "title": "قفل وقت",
+    "from": "من",
+    "to": "لحد",
+    "reason": "السبب",
+    "submit": "اقفل الوقت",
+    "done": "الوقت اتقفل",
+    "unblockTitle": "فتح الوقت ده؟",
+    "unblockBody": "{{reason}} · {{time}}",
+    "unblock": "افتح الوقت",
+    "unblocked": "الوقت اتفتح",
+    "reasons": {
+      "break": "استراحة",
+      "meeting": "اجتماع",
+      "leave": "إجازة",
+      "other": "مقفول"
+    }
+  },
+  "actions": {
+    "reschedule": "تأجيل",
+    "cancel": "إلغاء",
+    "noShow": "مجاش"
+  },
+  "errors": {
+    "SLOT_TAKEN": "الوقت ده محجوز أو مقفول للدكتور. اختار وقت تاني.",
+    "PAST_TIME": "الوقت ده فات. اختار وقت جاي.",
+    "OUTSIDE_HOURS": "الميعاد لازم يبقى بين 9 الصبح و9 بالليل.",
+    "INVALID_STATUS": "حالة الميعاد اتغيرت. البيانات اتحدّثت، جرّب تاني.",
+    "INVALID_RANGE": "وقت النهاية لازم يبقى بعد البداية.",
+    "FORBIDDEN": "مش من صلاحياتك تعدّل المواعيد.",
+    "generic": "حصلت مشكلة. جرّب تاني."
+  }
+}

@@ -7,18 +7,27 @@ import { StatusTag } from '@/components/tags';
 import { STATUS_TONE } from '../status';
 import type { Appointment } from '../types';
 
+export type BlockDrag = {
+  ref: (node: HTMLElement | null) => void;
+  props: object;
+  dragging: boolean;
+  offset: string | undefined;
+};
+
 type Props = {
   appointment: Appointment;
   top: number;
   height: number;
   onSelect: (appointment: Appointment) => void;
+  // من TimeGrid لو الميعاد ينفع يتسحب (تأجيل)
+  drag?: BlockDrag;
 };
 
 /**
  * كارت الميعاد في الكالندر (D-02): خط رفيع بلون التخصص.
  * السطر الأول: المريض + الحالة · التاني: الوقت · الخدمة (المواعيد القصيرة السطر الأول بس).
  */
-export function AppointmentBlock({ appointment, top, height, onSelect }: Props) {
+export function AppointmentBlock({ appointment, top, height, onSelect, drag }: Props) {
   const { t } = useTranslation('appointments');
   const locale = useLocale();
   const patient = localized(appointment.patient, 'name', locale);
@@ -32,6 +41,8 @@ export function AppointmentBlock({ appointment, top, height, onSelect }: Props) 
 
   return (
     <button
+      ref={drag?.ref}
+      {...drag?.props}
       type="button"
       onClick={() => onSelect(appointment)}
       aria-label={`${patient} · ${service} · ${start} – ${end} · ${status}`}
@@ -54,7 +65,14 @@ export function AppointmentBlock({ appointment, top, height, onSelect }: Props) 
         border: `1px solid ${tokens.color.border}`,
         borderInlineStart: `3px solid ${tokens.specialty[appointment.service.specialty]}`,
         borderRadius: 8,
-        boxShadow: faded ? 'none' : '0 1px 2px rgba(14, 36, 64, 0.05)',
+        boxShadow: drag?.dragging
+          ? '0 8px 24px rgba(14, 36, 64, 0.18)'
+          : faded
+            ? 'none'
+            : '0 1px 2px rgba(14, 36, 64, 0.05)',
+        transform: drag?.offset,
+        zIndex: drag?.dragging ? 5 : undefined,
+        touchAction: drag ? 'none' : undefined,
       }}
     >
       <span style={{ display: 'flex', alignItems: 'center', gap: 6, width: '100%' }}>

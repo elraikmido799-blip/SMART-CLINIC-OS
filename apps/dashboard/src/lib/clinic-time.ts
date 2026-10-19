@@ -47,3 +47,17 @@ export function clinicIso(date: string, minutes: number): string {
   const mm = String(minutes % 60).padStart(2, '0');
   return `${date}T${hh}:${mm}:00${clinicOffset(date)}`;
 }
+
+/** "2026-10-19" + 3 ← "2026-10-22" */
+export function addDays(date: string, days: number): string {
+  return new Date(Date.parse(`${date}T12:00:00Z`) + days * 86_400_000).toISOString().slice(0, 10);
+}
+
+/** أول الأسبوع (السبت — الأسبوع في مصر بيبدأ السبت) */
+export function weekStart(date: string): string {
+  const day = new Date(`${date}T12:00:00Z`).getUTCDay(); // 0 = الحد … 6 = السبت
+  return addDays(date, -((day + 1) % 7));
+}
+
+/** تاريخ الميعاد بتوقيت مصر من الـISO ("2026-10-19T14:30:00+03:00" ← "2026-10-19") */
+export const clinicDateOf = (iso: string) => iso.slice(0, 10);

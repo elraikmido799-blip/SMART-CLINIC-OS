@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import type { DayQuery } from '@/features/appointments/types';
 import { baseApi } from '@/store/base-api';
 
 // شريط أرقام اليوم (D-02): المواعيد · وصلوا · مجوش · اتحصّل
@@ -12,6 +11,8 @@ export const frontDeskSummarySchema = z.object({
 });
 
 export type FrontDeskSummary = z.infer<typeof frontDeskSummarySchema>;
+
+export type DayQuery = { branch_id: string; date: string };
 
 export const frontDeskApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

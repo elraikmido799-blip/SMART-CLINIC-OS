@@ -1,0 +1,97 @@
+{
+  "title": "Calendar",
+  "toolbar": {
+    "previous": "Previous",
+    "next": "Next",
+    "today": "Today",
+    "date": "Date",
+    "view": "View",
+    "day": "Day",
+    "week": "Week",
+    "group": "Columns",
+    "byPractitioner": "By practitioner",
+    "byRoom": "By room",
+    "specialty": "Specialty",
+    "allSpecialties": "All specialties",
+    "practitioner": "Practitioner",
+    "allPractitioners": "All practitioners",
+    "blockTime": "Block time",
+    "newBooking": "New booking",
+    "dragHint": "Drag an appointment to another time or practitioner to reschedule, or click an empty slot to book."
+  },
+  "booking": {
+    "newTitle": "New booking",
+    "rescheduleTitle": "Reschedule appointment",
+    "patient": "Patient",
+    "patientPlaceholder": "Type a name, phone or file no.",
+    "patientHint": "Type at least 2 characters",
+    "patientNone": "No patient matches",
+    "practitioner": "Practitioner",
+    "service": "Service",
+    "date": "Day",
+    "time": "Time",
+    "notes": "Notes (optional)",
+    "required": "Choose {{field}}",
+    "submitNew": "Book",
+    "submitReschedule": "Reschedule",
+    "created": "Appointment booked",
+    "rescheduled": "Appointment rescheduled",
+    "duration": "{{minutes}} min · {{price}}"
+  },
+  "move": {
+    "title": "Reschedule this appointment?",
+    "body": "{{patient}} → {{day}} at {{time}} with {{practitioner}}",
+    "confirm": "Reschedule"
+  },
+  "cancel": {
+    "title": "Cancel appointment",
+    "reason": "Reason",
+    "confirm": "Cancel appointment",
+    "keep": "Back",
+    "done": "Appointment cancelled",
+    "reasons": {
+      "patient_request": "Patient asked",
+      "practitioner_unavailable": "Practitioner unavailable",
+      "duplicate": "Duplicate booking",
+      "other": "Other reason"
+    }
+  },
+  "noShow": {
+    "title": "Patient didn't come?",
+    "body": "The appointment will be marked \"No-show\".",
+    "confirm": "Mark no-show",
+    "done": "Marked as no-show"
+  },
+  "block": {
+    "title": "Block time",
+    "from": "From",
+    "to": "To",
+    "reason": "Reason",
+    "submit": "Block time",
+    "done": "Time blocked",
+    "unblockTitle": "Unblock this time?",
+    "unblockBody": "{{reason}} · {{time}}",
+    "unblock": "Unblock",
+    "unblocked": "Time unblocked",
+    "reasons": {
+      "break": "Break",
+      "meeting": "Meeting",
+      "leave": "Leave",
+      "other": "Blocked"
+    }
+  },
+  "actions": {
+    "reschedule": "Reschedule",
+    "cancel": "Cancel",
+    "noShow": "No-show"
+  },
+  "errors": {
+    "SLOT_TAKEN": "That time is booked or blocked for the practitioner. Pick another time.",
+    "PAST_TIME": "That time has passed. Pick an upcoming time.",
+    "OUTSIDE_HOURS": "Appointments must be between 9 AM and 9 PM.",
+    "INVALID_STATUS": "The appointment changed. The data was refreshed — try again.",
+    "INVALID_RANGE": "The end time must be after the start.",
+    "FORBIDDEN": "You don't have permission to change appointments.",
+    "generic": "Something went wrong. Please try again."
+  }
+}

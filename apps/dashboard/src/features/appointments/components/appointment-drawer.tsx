@@ -2,9 +2,11 @@ import { Button, Descriptions, Drawer, Flex, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { formatMoney, formatSlot, localized } from '@oxygen/shared';
 import { useLocale } from '@/app/use-locale';
+import { DangerButton } from '@/components/danger-button';
 import { PersonAvatar } from '@/components/person-avatar';
 import { SpecialtyTag, StatusTag } from '@/components/tags';
 import { useCan } from '@/features/auth/use-me';
+import { clinicMinutes, clinicNowMinutes, clinicToday } from '@/lib/clinic-time';
 import { STATUS_TONE } from '../status';
 import type { Appointment, Practitioner } from '../types';
 import { useCheckIn } from '../use-check-in';
@@ -13,13 +15,28 @@ type Props = {
   appointment: Appointment | null;
   practitioner: Practitioner | undefined;
   onClose: () => void;
+  onReschedule: (appointment: Appointment) => void;
+  onCancel: (appointment: Appointment) => void;
+  onNoShow: (appointment: Appointment) => void;
 };
 
-/** تفاصيل الميعاد لما تدوس عليه في الكالندر، ومنها تسجيل الوصول */
-export function AppointmentDrawer({ appointment, practitioner, onClose }: Props) {
+/**
+ * تفاصيل الميعاد لما تدوس عليه في الكالندر، ومنها: تسجيل وصول · تأجيل · مجاش · إلغاء.
+ * التأجيل من هنا هو طريق الكيبورد (السحب بالماوس بس — DEC-46).
+ */
+export function AppointmentDrawer({
+  appointment,
+  practitioner,
+  onClose,
+  onReschedule,
+  onCancel,
+  onNoShow,
+}: Props) {
   const { t, i18n } = useTranslation('appointments');
+  const { t: tCalendar } = useTranslation('calendar');
   const locale = useLocale();
   const canCheckIn = useCan('checkin.write');
+  const canWrite = useCan('appointments.write');
   const { checkIn, pendingId } = useCheckIn();
 
   const content =
@@ -28,6 +45,13 @@ export function AppointmentDrawer({ appointment, practitioner, onClose }: Props)
       const name = localized(appointment.patient, 'name', locale);
       const start = formatSlot(appointment.starts_at, locale);
       const end = formatSlot(appointment.ends_at, locale).time;
+      const day = appointment.starts_at.slice(0, 10);
+      const today = clinicToday();
+      const started =
+        day < today ||
+        (day === today && clinicMinutes(appointment.starts_at) <= clinicNowMinutes());
+      const confirmed = appointment.status === 'confirmed';
+
       return (
         <Flex vertical gap={20}>
           <Flex align="center" gap={12}>
@@ -97,21 +121,45 @@ export function AppointmentDrawer({ appointment, practitioner, onClose }: Props)
                     },
                   ]
                 : []),
+              ...(appointment.notes
+                ? [{ key: 'notes', label: tCalendar('booking.notes'), children: appointment.notes }]
+                : []),
             ]}
           />
 
-          {canCheckIn && appointment.status === 'confirmed' && (
-            <Button
-              type="primary"
-              size="large"
-              block
-              loading={pendingId === appointment.id}
-              onClick={async () => {
-                if (await checkIn(appointment)) onClose();
-              }}
-            >
-              {t('details.checkIn')}
-            </Button>
+          {confirmed && (
+            <Flex vertical gap={8}>
+              {canCheckIn && day === today && (
+                <Button
+                  type="primary"
+                  size="large"
+                  block
+                  loading={pendingId === appointment.id}
+                  onClick={async () => {
+                    if (await checkIn(appointment)) onClose();
+                  }}
+                >
+                  {t('details.checkIn')}
+                </Button>
+              )}
+              <Flex gap={8} wrap>
+                {canWrite && !started && (
+                  <Button style={{ flex: 1 }} onClick={() => onReschedule(appointment)}>
+                    {tCalendar('actions.reschedule')}
+                  </Button>
+                )}
+                {(canCheckIn || canWrite) && started && (
+                  <Button style={{ flex: 1 }} onClick={() => onNoShow(appointment)}>
+                    {tCalendar('actions.noShow')}
+                  </Button>
+                )}
+                {canWrite && (
+                  <DangerButton style={{ flex: 1 }} onClick={() => onCancel(appointment)}>
+                    {tCalendar('actions.cancel')}
+                  </DangerButton>
+                )}
+              </Flex>
+            </Flex>
           )}
         </Flex>
       );

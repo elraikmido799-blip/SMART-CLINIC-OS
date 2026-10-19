@@ -1,8 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { ComingSoon } from '@/components/coming-soon';
+import { CalendarPage } from '@/features/calendar/components/calendar-page';
+import { validateCalendarSearch } from '@/features/calendar/search';
 
-// مكان مؤقت لحد ما الشاشة تتبني (docs/20 · 3.2)
+// الكالندر (D-03 · docs/20 · 3.2)
 export const Route = createFileRoute('/_app/calendar')({
   staticData: { nav: 'calendar' },
-  component: () => <ComingSoon nav="calendar" step="3.2" />,
+  validateSearch: validateCalendarSearch,
+  component: CalendarPage,
 });

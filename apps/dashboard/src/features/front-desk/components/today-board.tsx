@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Card, Col, Flex, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { formatDate, formatWeekday } from '@oxygen/shared';
+import { formatDate, formatWeekday, localized } from '@oxygen/shared';
 import { useLocale } from '@/app/use-locale';
 import { PageHeader } from '@/components/page-header';
 import { EmptyState, ErrorState, LoadingState } from '@/components/states/states';
@@ -9,8 +9,8 @@ import {
   useGetAppointmentsQuery,
   useGetPractitionersQuery,
 } from '@/features/appointments/appointments.api';
-import { AppointmentDrawer } from '@/features/appointments/components/appointment-drawer';
-import { DayGrid } from '@/features/appointments/components/day-grid';
+import { AppointmentPanel } from '@/features/appointments/components/appointment-panel';
+import { TimeGrid } from '@/features/appointments/components/time-grid';
 import type { Appointment } from '@/features/appointments/types';
 import { useClinicClock } from '@/features/appointments/use-clinic-clock';
 import { useBranchScope } from '@/features/branches/use-branch-scope';
@@ -31,16 +31,20 @@ const POLL = { pollingInterval: 60_000, skipPollingIfUnfocused: true };
 export function TodayBoard() {
   const { t } = useTranslation('frontDesk');
   const { t: tAppointments } = useTranslation('appointments');
+  const { t: tCommon } = useTranslation();
   const locale = useLocale();
   const { branchId } = useBranchScope();
   const { today, minutes } = useClinicClock();
   const [selected, setSelected] = useState<Appointment | null>(null);
 
   const scoped = branchId !== ALL_BRANCHES;
-  const query = { branch_id: branchId, date: today };
-  const practitioners = useGetPractitionersQuery(query, { skip: !scoped });
-  const appointments = useGetAppointmentsQuery(query, { skip: !scoped, ...POLL });
-  const summary = useGetFrontDeskSummaryQuery(query, { skip: !scoped, ...POLL });
+  const range = { branch_id: branchId, from: today, to: today };
+  const practitioners = useGetPractitionersQuery(range, { skip: !scoped });
+  const appointments = useGetAppointmentsQuery(range, { skip: !scoped, ...POLL });
+  const summary = useGetFrontDeskSummaryQuery(
+    { branch_id: branchId, date: today },
+    { skip: !scoped, ...POLL },
+  );
 
   const weekday = new Date(`${today}T12:00:00Z`).getUTCDay();
   const header = (
@@ -86,9 +90,16 @@ export function TodayBoard() {
             ) : team.length === 0 ? (
               <EmptyState title={tAppointments('grid.noPractitioners')} />
             ) : (
-              <DayGrid
-                practitioners={team}
+              <TimeGrid
+                columns={team.map((practitioner) => ({
+                  id: practitioner.id,
+                  title: localized(practitioner, 'name', locale),
+                  subtitle: tCommon(`specialties.${practitioner.specialty}`),
+                  specialty: practitioner.specialty,
+                  isToday: true,
+                }))}
                 appointments={list}
+                columnOf={(item) => item.practitioner_id}
                 nowMinutes={minutes}
                 onSelect={setSelected}
                 maxHeight="calc(100dvh - 300px)"
@@ -103,9 +114,10 @@ export function TodayBoard() {
           </Flex>
         </Col>
       </Row>
-      <AppointmentDrawer
+      <AppointmentPanel
         appointment={selected}
-        practitioner={team.find((item) => item.id === selected?.practitioner_id)}
+        practitioners={team}
+        branchId={branchId}
         onClose={() => setSelected(null)}
       />
     </>

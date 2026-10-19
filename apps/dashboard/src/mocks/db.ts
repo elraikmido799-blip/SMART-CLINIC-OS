@@ -1,4 +1,4 @@
-import type { StoredAppointment, StoredPatient, StoredPayment } from './clinic';
+import type { StoredAppointment, StoredPatient, StoredPayment, StoredTimeBlock } from './clinic';
 
 /**
  * "داتابيز" وهمية في المتصفح (localStorage) للـMocks اللي ليها حالة، زي الموقع (DEC-38 · DEC-42).
@@ -22,6 +22,7 @@ export type MockDb = {
   patients: StoredPatient[];
   appointments: StoredAppointment[];
   payments: StoredPayment[];
+  time_blocks: StoredTimeBlock[];
   // الأيام اللي مواعيدها اتولدت: "branch-id|2026-10-19"
   generated_days: string[];
 };
@@ -37,6 +38,7 @@ const empty = (): MockDb => ({
   patients: [],
   appointments: [],
   payments: [],
+  time_blocks: [],
   generated_days: [],
 });
 
