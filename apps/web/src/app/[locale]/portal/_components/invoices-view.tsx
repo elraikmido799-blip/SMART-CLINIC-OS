@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { Printer, ReceiptText } from 'lucide-react';
-import { formatDate, formatMoney, isLocale, localized } from '@oxygen/shared';
+import { formatDate, formatEgyptianMobile, formatMoney, isLocale, localized } from '@oxygen/shared';
 import { useGetMeQuery } from '@/api/auth.api';
 import { brandButton } from '@/components/shared/brand';
 import { EmptyState } from '@/components/shared/empty-state';
@@ -26,7 +26,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Link } from '@/i18n/navigation';
-import { formatEgyptianMobile } from '@/lib/phone';
 import type { Invoice } from '@/types/portal';
 import { useGetMyInvoicesQuery } from '../_api/account.api';
 import { PageHeader } from './page-header';

@@ -9,6 +9,7 @@ export {
   formatWeekday,
 } from './format';
 export { localized } from './localized';
+export { normalizeEgyptianMobile, formatEgyptianMobile } from './phone';
 export {
   createBaseQuery,
   MockHttpError,

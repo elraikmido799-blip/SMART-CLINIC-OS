@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Alert, App, DatePicker, Form, Input, Modal, Select, Typography } from 'antd';
+import { Alert, App, Button, DatePicker, Flex, Form, Input, Modal, Select, Typography } from 'antd';
 import dayjs, { type Dayjs } from 'dayjs';
 import { useTranslation } from 'react-i18next';
-import { formatMoney, formatTime, localized } from '@oxygen/shared';
+import {
+  formatEgyptianMobile,
+  formatMoney,
+  formatTime,
+  localized,
+  normalizeEgyptianMobile,
+} from '@oxygen/shared';
 import { useLocale } from '@/app/use-locale';
+import { RegisterPatientDrawer } from '@/features/patients/components/register-patient-drawer';
 import { clinicIso, clinicMinutes, clinicNowMinutes, clinicToday } from '@/lib/clinic-time';
 import {
   useCreateAppointmentMutation,
@@ -13,10 +20,17 @@ import {
 } from '../appointments.api';
 import { calendarErrorKey, type CalendarErrorKey } from '../errors';
 import { DAY_END, SLOT_MIN, SLOTS, toHHmm } from '../grid';
-import type { Appointment, Practitioner } from '../types';
+import type { Appointment, PatientSummary, Practitioner } from '../types';
 
 export type BookingMode =
-  | { kind: 'new'; practitionerId?: string; date: string; minutes?: number }
+  // patient: مريض متختار من الأول (بعد التسجيل، أو "احجز له")
+  | {
+      kind: 'new';
+      practitionerId?: string;
+      date: string;
+      minutes?: number;
+      patient?: PatientSummary;
+    }
   | { kind: 'reschedule'; appointment: Appointment };
 
 type Values = {
@@ -57,8 +71,15 @@ export function BookingModal({ mode, branchId, practitioners, onClose }: Props) 
   const [form] = Form.useForm<Values>();
   const [query, setQuery] = useState('');
   const [errorKey, setErrorKey] = useState<CalendarErrorKey | null>(null);
+  // مرضى مش جايين من البحث (المتختار من الأول، أو اللي اتسجل دلوقتي)
+  const [extraPatients, setExtraPatients] = useState<PatientSummary[]>([]);
+  const [registering, setRegistering] = useState(false);
   const search = useDebounced(query.trim());
-  const patients = useSearchPatientsQuery({ q: search }, { skip: search.length < 2 });
+  // المرضى بيتسجلوا طول الوقت: البحث بيتجاب جديد كل مرة الفورم يفتح (P-32)
+  const patients = useSearchPatientsQuery(
+    { q: search },
+    { skip: search.length < 2, refetchOnMountOrArgChange: true },
+  );
   const { data: services = [] } = useGetServicesQuery();
   const [create, createState] = useCreateAppointmentMutation();
   const [reschedule, rescheduleState] = useRescheduleAppointmentMutation();
@@ -80,6 +101,7 @@ export function BookingModal({ mode, branchId, practitioners, onClose }: Props) 
     ? undefined
     : mode.kind === 'new'
       ? {
+          patient_id: mode.patient?.id,
           practitioner_id: mode.practitionerId,
           date: dayjs(mode.date),
           minutes: mode.minutes,
@@ -139,8 +161,11 @@ export function BookingModal({ mode, branchId, practitioners, onClose }: Props) 
       confirmLoading={createState.isLoading || rescheduleState.isLoading}
       destroyOnHidden
       afterClose={() => {
+        // الـform instance برة الـModal وبيحتفظ بالقيم: المرة الجاية تبدأ من initialValues (P-33)
+        form.resetFields();
         setQuery('');
         setErrorKey(null);
+        setExtraPatients([]);
       }}
     >
       <Form<Values>
@@ -176,14 +201,34 @@ export function BookingModal({ mode, branchId, practitioners, onClose }: Props) 
               placeholder={t('booking.patientPlaceholder')}
               loading={patients.isFetching}
               notFoundContent={
-                <Typography.Text type="secondary">
-                  {search.length < 2 ? t('booking.patientHint') : t('booking.patientNone')}
-                </Typography.Text>
+                search.length < 2 ? (
+                  <Typography.Text type="secondary">{t('booking.patientHint')}</Typography.Text>
+                ) : (
+                  <Flex vertical align="start" gap={4}>
+                    <Typography.Text type="secondary">{t('booking.patientNone')}</Typography.Text>
+                    <Button
+                      type="link"
+                      style={{ paddingInline: 0 }}
+                      onClick={() => setRegistering(true)}
+                    >
+                      {t('booking.registerNew')}
+                    </Button>
+                  </Flex>
+                )
               }
-              options={(search.length < 2 ? [] : (patients.data ?? [])).map((patient) => ({
-                value: patient.id,
-                label: `${localized(patient, 'name', locale)} · ${patient.file_no} · ${patient.phone}`,
-              }))}
+              options={[
+                ...(mode?.kind === 'new' && mode.patient ? [mode.patient] : []),
+                ...extraPatients,
+                ...(search.length < 2 ? [] : (patients.data ?? [])),
+              ]
+                .filter(
+                  (patient, index, list) =>
+                    list.findIndex((item) => item.id === patient.id) === index,
+                )
+                .map((patient) => ({
+                  value: patient.id,
+                  label: `${localized(patient, 'name', locale)} · ${patient.file_no} · ${formatEgyptianMobile(patient.phone)}`,
+                }))}
             />
           )}
         </Form.Item>
@@ -258,6 +303,21 @@ export function BookingModal({ mode, branchId, practitioners, onClose }: Props) 
 
         {errorKey && <Alert type="error" showIcon role="alert" title={t(errorKey)} />}
       </Form>
+      <RegisterPatientDrawer
+        open={registering}
+        // اللي اتكتب في البحث: رقم ← الموبايل، غير كده ← الاسم
+        prefill={normalizeEgyptianMobile(query) ? { phone: query } : { name: query }}
+        onClose={() => setRegistering(false)}
+        onRegistered={(patient) => {
+          setExtraPatients((list) => [...list, patient]);
+          form.setFieldValue('patient_id', patient.id);
+          setRegistering(false);
+        }}
+        onBook={(patient) => {
+          setExtraPatients((list) => [...list, patient]);
+          form.setFieldValue('patient_id', patient.id);
+        }}
+      />
     </Modal>
   );
 }

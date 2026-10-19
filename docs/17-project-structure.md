@@ -235,13 +235,14 @@ apps/dashboard/
 │   │   ├── branches/            الفروع + use-branch-scope.ts (الفرع المختار)
 │   │   ├── appointments/        المواعيد والدكاترة والأوض والوقت المقفول: types · appointments.api · status (لون كل حالة) · grid (مقاسات الكالندر) · errors · use-check-in · use-clinic-clock · components/ (time-grid · appointment-block · appointment-drawer · appointment-panel · booking-modal · cancel-modal)
 │   │   ├── calendar/            الكالندر (3.2): search.ts (الحالة في الـURL) · components/ (calendar-page · block-time-modal)
+│   │   ├── patients/            المرضى: types (المصادر) · patients.api (تسجيل) · components/register-patient-drawer
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · components/ (today-board · today-stats · arriving-now · quick-actions)
 │   ├── components/              Components مشتركة بين الـfeatures
 │   │   ├── layout/              app-layout · app-header · nav-menu · nav-items (الأقسام وصلاحياتها) · branch-select · user-menu
 │   │   ├── states/              Loading (النقط) · Empty · Error · Forbidden · NotFound
 │   │   └── page-header · tags (StatusTag · SpecialtyTag) · specialty-icon · danger-button · stat-card · money · person-avatar · coming-soon
 │   ├── locales/
-│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar
+│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients
 │   ├── lib/
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── api-error.ts         كود الخطأ من رد الـAPI
@@ -280,6 +281,7 @@ apps/dashboard/
 | `@oxygen/shared` | `src/locales.ts` | `LOCALES` · `DEFAULT_LOCALE` (عربي) · `isLocale` · `directionOf` |
 | | `src/format.ts` | `formatMoney(125000, 'EGP', 'ar')`: الفلوس جاية بالقروش |
 | | `src/localized.ts` | `localized(doctor, 'name', locale)`: بيختار `name_ar` أو `name_en` |
+| | `src/phone.ts` | `normalizeEgyptianMobile` (أي شكل ← `+201XXXXXXXXX` أو null) · `formatEgyptianMobile` (للعرض) — اتنقلت من الموقع ([DEC-47](19-decisions.md#dec-47)) |
 | | `src/api/base-query.ts` | `createBaseQuery` (API حقيقي أو Mocks) + `MockHttpError` ([DEC-05](19-decisions.md#dec-05)) |
 
 - الاستيراد: `import { tokens } from '@oxygen/config'` · `import { formatMoney } from '@oxygen/shared'`.

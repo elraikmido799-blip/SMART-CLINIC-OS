@@ -17,7 +17,7 @@ import {
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
-import { formatEgyptianMobile } from '@/lib/phone';
+import { formatEgyptianMobile } from '@oxygen/shared';
 import { cn } from '@/lib/utils';
 import { whatsappUrl } from '@/lib/whatsapp';
 import { isActive, MOBILE_PRIMARY, PORTAL_NAV } from './portal-nav';

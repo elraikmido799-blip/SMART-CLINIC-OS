@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { CircleUserRound, Loader2 } from 'lucide-react';
 import { useLogoutMutation } from '@/api/auth.api';
 import { PhoneOtpForm } from '@/components/shared/phone-otp-form';
-import { formatEgyptianMobile } from '@/lib/phone';
+import { formatEgyptianMobile } from '@oxygen/shared';
 import type { Me } from '@/types/auth';
 import { StepNav } from './step-nav';
 import type { BookingState } from './use-booking-state';

@@ -26,6 +26,7 @@
     "patientPlaceholder": "اكتب الاسم أو الموبايل أو رقم الملف",
     "patientHint": "اكتب حرفين على الأقل",
     "patientNone": "مفيش مريض بالبيانات دي",
+    "registerNew": "سجّل مريض جديد",
     "practitioner": "الدكتور",
     "service": "الخدمة",
     "date": "اليوم",

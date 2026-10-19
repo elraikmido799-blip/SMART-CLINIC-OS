@@ -1,4 +1,4 @@
-import { MockHttpError, type MockHandlers } from '@oxygen/shared';
+import { MockHttpError, normalizeEgyptianMobile, type MockHandlers } from '@oxygen/shared';
 import type { FetchArgs } from '@reduxjs/toolkit/query';
 import type { Specialty } from '@oxygen/config';
 import type {
@@ -13,6 +13,7 @@ import type {
   TimeBlockReason,
 } from '@/features/appointments/types';
 import type { FrontDeskSummary } from '@/features/front-desk/front-desk.api';
+import type { RegisterPatientBody } from '@/features/patients/types';
 import { clinicIso, clinicMinutes, clinicNowMinutes, clinicToday } from '@/lib/clinic-time';
 import { currentStaff, toMe } from './auth';
 import { readDb, writeDb, type MockDb } from './db';
@@ -331,7 +332,7 @@ function seedPatients(): StoredPatient[] {
       name_ar: `${firstAr} ${lastAr}`,
       name_en: `${firstEn} ${lastEn}`,
       file_no: `OXY-${String(100 + index).padStart(6, '0')}`,
-      phone: `01${pick(random, ['0', '1', '2', '5'])}${String(Math.floor(random() * 1e8)).padStart(8, '0')}`,
+      phone: `+201${pick(random, ['0', '1', '2', '5'])}${String(Math.floor(random() * 1e8)).padStart(8, '0')}`,
       gender: female ? 'female' : 'male',
       birth_date: `${year}-${month}-15`,
       // المرضى متوزعين على الفروع (أكتر في التجمع)
@@ -661,7 +662,10 @@ export const clinicHandlers: MockHandlers = {
     const query = q.trim().toLowerCase();
     if (query.length < 2) return { data: [] };
     writeDb(ensurePatients);
-    const digits = query.replace(/\D/g, '');
+    // الرقم بأي شكل (010… · +2010… · ٠١٠…) ← من غير الصفر والـ20 اللي في الأول
+    const digits = (normalizeEgyptianMobile(query) ?? query)
+      .replace(/\D/g, '')
+      .replace(/^(20|0)/, '');
     const data = readDb()
       .patients.filter(
         (patient) =>
@@ -706,6 +710,35 @@ export const clinicHandlers: MockHandlers = {
         )
         .map(toTimeBlock),
     };
+  },
+
+  registerPatient: ({ body }) => {
+    const input = body as RegisterPatientBody;
+    const branchId = assertBranch(input.branch_id);
+    const phone = normalizeEgyptianMobile(input.phone);
+    if (!phone || input.name_ar.trim().length < 3) throw new MockHttpError(422, 'INVALID');
+    let created: StoredPatient | null = null;
+    writeDb((db) => {
+      ensurePatients(db);
+      if (db.patients.some((patient) => patient.phone === phone)) {
+        throw new MockHttpError(409, 'DUPLICATE_PHONE');
+      }
+      const index = db.patients.length;
+      created = {
+        id: `pat-${index + 1}`,
+        name_ar: input.name_ar.trim(),
+        // لحد ما الاسم الإنجليزي يتكتب، العربي بيظهر في الإنجليزي كمان
+        name_en: input.name_en?.trim() || input.name_ar.trim(),
+        file_no: `OXY-${String(100 + index).padStart(6, '0')}`,
+        phone,
+        gender: input.gender,
+        birth_date: input.birth_date ?? '',
+        branch_id: branchId,
+        balance_due: 0,
+      };
+      db.patients.push(created);
+    });
+    return toPatient(created!);
   },
 
   createAppointment: ({ body }) => {

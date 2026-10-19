@@ -1,0 +1,44 @@
+{
+  "register": {
+    "title": "New patient",
+    "nameAr": "Name in Arabic",
+    "nameEn": "Name in English (optional)",
+    "phone": "Mobile",
+    "phoneHelp": "01X followed by 8 digits",
+    "gender": "Gender",
+    "female": "Female",
+    "male": "Male",
+    "birthDate": "Date of birth (optional)",
+    "branch": "Branch",
+    "source": "Source",
+    "notes": "Notes (optional)",
+    "submit": "Register patient",
+    "nameRequired": "Enter the patient's name",
+    "nameShort": "Enter first and family name",
+    "phoneRequired": "Enter the mobile number",
+    "phoneInvalid": "Not a valid Egyptian mobile (01X + 8 digits)",
+    "genderRequired": "Choose a gender",
+    "sourceRequired": "Choose where the patient came from",
+    "duplicate": "This mobile belongs to {{name}} · file {{file}}",
+    "useExisting": "Book for them",
+    "done": "{{name}} registered · file {{file}}",
+    "bookNow": "Book an appointment",
+    "close": "Close",
+    "successTitle": "Patient registered",
+    "errors": {
+      "DUPLICATE_PHONE": "This mobile is already registered to another patient. Search by the number.",
+      "generic": "We couldn't register the patient. Please try again."
+    }
+  },
+  "sources": {
+    "walk_in": "Walk-in",
+    "phone": "Phone call",
+    "website": "Website",
+    "whatsapp": "WhatsApp",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "google": "Google",
+    "referral": "Referral"
+  }
+}

@@ -1,6 +1,6 @@
 import { Button, Descriptions, Drawer, Flex, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { formatMoney, formatSlot, localized } from '@oxygen/shared';
+import { formatEgyptianMobile, formatMoney, formatSlot, localized } from '@oxygen/shared';
 import { useLocale } from '@/app/use-locale';
 import { DangerButton } from '@/components/danger-button';
 import { PersonAvatar } from '@/components/person-avatar';
@@ -108,7 +108,7 @@ export function AppointmentDrawer({
               {
                 key: 'phone',
                 label: t('details.phone'),
-                children: <span dir="ltr">{appointment.patient.phone}</span>,
+                children: <span dir="ltr">{formatEgyptianMobile(appointment.patient.phone)}</span>,
               },
               ...(appointment.checked_in_at
                 ? [

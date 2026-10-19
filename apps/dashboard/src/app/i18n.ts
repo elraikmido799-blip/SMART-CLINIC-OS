@@ -7,12 +7,14 @@ import arCalendar from '@/locales/ar/calendar.json';
 import arCommon from '@/locales/ar/common.json';
 import arFrontDesk from '@/locales/ar/frontDesk.json';
 import arNav from '@/locales/ar/nav.json';
+import arPatients from '@/locales/ar/patients.json';
 import enAppointments from '@/locales/en/appointments.json';
 import enAuth from '@/locales/en/auth.json';
 import enCalendar from '@/locales/en/calendar.json';
 import enCommon from '@/locales/en/common.json';
 import enFrontDesk from '@/locales/en/frontDesk.json';
 import enNav from '@/locales/en/nav.json';
+import enPatients from '@/locales/en/patients.json';
 
 /**
  * ملف ترجمة لكل جزء (namespace) بدل ملف واحد كبير (20 · 1.7).
@@ -27,6 +29,7 @@ export const resources = {
     appointments: arAppointments,
     frontDesk: arFrontDesk,
     calendar: arCalendar,
+    patients: arPatients,
   },
   en: {
     common: enCommon,
@@ -35,6 +38,7 @@ export const resources = {
     appointments: enAppointments,
     frontDesk: enFrontDesk,
     calendar: enCalendar,
+    patients: enPatients,
   },
 } as const;
 

@@ -26,6 +26,7 @@
     "patientPlaceholder": "Type a name, phone or file no.",
     "patientHint": "Type at least 2 characters",
     "patientNone": "No patient matches",
+    "registerNew": "Register a new patient",
     "practitioner": "Practitioner",
     "service": "Service",
     "date": "Day",

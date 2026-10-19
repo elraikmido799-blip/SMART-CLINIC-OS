@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
 import { Link } from '@/i18n/navigation';
 import { env } from '@/lib/env';
-import { formatEgyptianMobile, normalizeEgyptianMobile } from '@/lib/phone';
+import { formatEgyptianMobile, normalizeEgyptianMobile } from '@oxygen/shared';
 import { isOffline, toSubmitError, type SubmitError } from '@/lib/submit-error';
 import type { Me } from '@/types/auth';
 

@@ -2,14 +2,13 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { LOCALES } from '@oxygen/shared';
+import { formatEgyptianMobile, LOCALES } from '@oxygen/shared';
 import { CircleUserRound, Loader2 } from 'lucide-react';
 import { useGetMeQuery, useLogoutMutation } from '@/api/auth.api';
 import { brandButton } from '@/components/shared/brand';
 import { PhoneOtpForm } from '@/components/shared/phone-otp-form';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Link, useRouter } from '@/i18n/navigation';
-import { formatEgyptianMobile } from '@/lib/phone';
 
 // ?next= لازم يبقى صفحة جوه الموقع (مش لينك بره) — غير كده بيروح البوابة.
 // اللغة بتتشال من أوله لو موجودة (/ar/faqs ← /faqs)، لأن الـRouter بيحطها لوحده (P-22)

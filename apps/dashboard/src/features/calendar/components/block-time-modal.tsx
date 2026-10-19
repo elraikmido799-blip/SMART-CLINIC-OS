@@ -77,7 +77,11 @@ export function BlockTimeModal({ open, branchId, practitioners, onClose }: Props
       onCancel={onClose}
       confirmLoading={isLoading}
       destroyOnHidden
-      afterClose={() => setErrorKey(null)}
+      afterClose={() => {
+        // المرة الجاية تبدأ من initialValues (P-33)
+        form.resetFields();
+        setErrorKey(null);
+      }}
     >
       <Form<Values>
         form={form}

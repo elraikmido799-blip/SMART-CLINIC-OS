@@ -110,7 +110,7 @@ export function TodayBoard() {
         <Col xs={24} xl={6}>
           <Flex vertical gap={24}>
             <ArrivingNow appointments={arrivingSoon(list, minutes)} practitioners={team} />
-            <QuickActions />
+            <QuickActions branchId={branchId} practitioners={team} />
           </Flex>
         </Col>
       </Row>

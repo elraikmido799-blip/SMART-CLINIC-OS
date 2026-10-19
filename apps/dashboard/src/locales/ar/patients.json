@@ -1,0 +1,44 @@
+{
+  "register": {
+    "title": "مريض جديد",
+    "nameAr": "الاسم بالعربي",
+    "nameEn": "الاسم بالإنجليزي (اختياري)",
+    "phone": "الموبايل",
+    "phoneHelp": "01X وبعده 8 أرقام",
+    "gender": "النوع",
+    "female": "أنثى",
+    "male": "ذكر",
+    "birthDate": "تاريخ الميلاد (اختياري)",
+    "branch": "الفرع",
+    "source": "جه منين",
+    "notes": "ملاحظات (اختياري)",
+    "submit": "سجّل المريض",
+    "nameRequired": "اكتب اسم المريض",
+    "nameShort": "اكتب الاسم الأول واسم العيلة",
+    "phoneRequired": "اكتب رقم الموبايل",
+    "phoneInvalid": "الرقم مش مصري صح (01X وبعده 8 أرقام)",
+    "genderRequired": "اختار النوع",
+    "sourceRequired": "اختار المريض جه منين",
+    "duplicate": "الموبايل ده متسجل لـ{{name}} · ملف {{file}}",
+    "useExisting": "احجز له هو",
+    "done": "اتسجل {{name}} · ملف {{file}}",
+    "bookNow": "احجز له ميعاد",
+    "close": "قفل",
+    "successTitle": "المريض اتسجل",
+    "errors": {
+      "DUPLICATE_PHONE": "الموبايل ده متسجل لمريض تاني. دوّر عليه بالرقم.",
+      "generic": "مقدرناش نسجّل المريض. جرّب تاني."
+    }
+  },
+  "sources": {
+    "walk_in": "جه العيادة",
+    "phone": "مكالمة",
+    "website": "الموقع",
+    "whatsapp": "واتساب",
+    "facebook": "فيسبوك",
+    "instagram": "إنستجرام",
+    "tiktok": "تيك توك",
+    "google": "جوجل",
+    "referral": "ترشيح من حد"
+  }
+}

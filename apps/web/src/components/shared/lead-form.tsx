@@ -12,7 +12,7 @@ import { FieldMessage, SubmitErrorMessage } from '@/components/shared/field-mess
 import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { normalizeEgyptianMobile } from '@/lib/phone';
+import { normalizeEgyptianMobile } from '@oxygen/shared';
 import { isOffline, toSubmitError, type SubmitError } from '@/lib/submit-error';
 import { cn } from '@/lib/utils';
 

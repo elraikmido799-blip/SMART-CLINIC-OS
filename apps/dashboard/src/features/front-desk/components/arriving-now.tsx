@@ -1,7 +1,7 @@
 import { Badge, Button, Card, Flex, Typography } from 'antd';
 import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { formatMoney, formatSlot, localized } from '@oxygen/shared';
+import { formatEgyptianMobile, formatMoney, formatSlot, localized } from '@oxygen/shared';
 import { tokens } from '@oxygen/config';
 import { useLocale } from '@/app/use-locale';
 import { PersonAvatar } from '@/components/person-avatar';
@@ -64,7 +64,7 @@ export function ArrivingNow({ appointments, practitioners }: Props) {
                       {name}
                     </Typography.Text>
                     <Typography.Text type="secondary" style={{ fontSize: 13 }} dir="ltr">
-                      {item.patient.phone}
+                      {formatEgyptianMobile(item.patient.phone)}
                     </Typography.Text>
                     <Typography.Text style={{ fontSize: 13 }}>
                       {localized(item.service, 'name', locale)}

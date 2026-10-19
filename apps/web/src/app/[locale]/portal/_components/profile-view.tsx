@@ -24,7 +24,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Switch } from '@/components/ui/switch';
 import { Link, useRouter } from '@/i18n/navigation';
 import { todayInCairo } from '@/lib/dates';
-import { formatEgyptianMobile } from '@/lib/phone';
+import { formatEgyptianMobile } from '@oxygen/shared';
 import { cn } from '@/lib/utils';
 import type { Consents, Profile } from '@/types/portal';
 import {
