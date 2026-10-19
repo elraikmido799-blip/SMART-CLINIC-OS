@@ -7,11 +7,13 @@ import { PageHeader } from '@/components/page-header';
 import { EmptyState } from '@/components/states/states';
 import type { Role } from '@/features/auth/permissions';
 import { useMe } from '@/features/auth/use-me';
+import { TodayBoard } from '@/features/front-desk/components/today-board';
 
 /**
  * الرئيسية = أول شاشة الدور (05 §3 · docs/20 · 2.2)، في نفس الـURL `/` من غير تحويل،
  * والقايمة معلّمة على "الرئيسية". لحد ما كل شاشة تتبني، بيظهر رقم خطوتها.
  */
+// الشاشات اللي اتبنت بتظهر هنا مكان رقم الخطوة
 const HOME_STEP: Record<Role, string> = {
   reception: '3.1',
   doctor: '4.2',
@@ -36,6 +38,8 @@ function HomePage() {
   const { t } = useTranslation();
   const me = useMe();
   const locale = useLocale();
+
+  if (me.role === 'reception') return <TodayBoard />;
 
   return (
     <>

@@ -1,0 +1,26 @@
+{
+  "today": {
+    "title": "النهارده",
+    "statsLabel": "أرقام النهارده",
+    "appointments": "موعد",
+    "checkedIn": "وصلوا",
+    "noShows": "مجوش",
+    "collected": "اتحصّلت"
+  },
+  "arriving": {
+    "title": "واصلين دلوقتي",
+    "empty": "مفيش حد جاي في الساعة الجاية",
+    "with": "{{time}} · {{name}}",
+    "collect": "تحصيل"
+  },
+  "quick": {
+    "title": "إجراءات سريعة",
+    "newPatient": "مريض جديد",
+    "newBooking": "حجز جديد",
+    "collect": "تحصيل"
+  },
+  "pickBranch": {
+    "title": "اختار فرع",
+    "body": "شاشة اليوم بتعرض فرع واحد. اختار الفرع من فوق."
+  }
+}

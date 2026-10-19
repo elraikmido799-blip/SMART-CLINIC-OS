@@ -1,0 +1,26 @@
+{
+  "today": {
+    "title": "Today",
+    "statsLabel": "Today's numbers",
+    "appointments": "appointments",
+    "checkedIn": "checked-in",
+    "noShows": "no-shows",
+    "collected": "collected"
+  },
+  "arriving": {
+    "title": "Arriving now",
+    "empty": "No one is due in the next hour",
+    "with": "{{time}} · {{name}}",
+    "collect": "Collect"
+  },
+  "quick": {
+    "title": "Quick actions",
+    "newPatient": "New patient",
+    "newBooking": "New booking",
+    "collect": "Collect payment"
+  },
+  "pickBranch": {
+    "title": "Choose a branch",
+    "body": "The day view shows one branch. Pick a branch from the top bar."
+  }
+}

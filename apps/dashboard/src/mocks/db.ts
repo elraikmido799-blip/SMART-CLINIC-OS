@@ -1,3 +1,5 @@
+import type { StoredAppointment, StoredPatient, StoredPayment } from './clinic';
+
 /**
  * "داتابيز" وهمية في المتصفح (localStorage) للـMocks اللي ليها حالة، زي الموقع (DEC-38 · DEC-42).
  * عشان التجربة تبقى كاملة: تدخل ← تسجّل وصول ← تحصّل، والداتا تفضل بعد الـRefresh.
@@ -16,6 +18,12 @@ export type MockDb = {
   // "افتكر الجهاز ده": المرة الجاية من غير كود
   trusted_staff_ids: string[];
   scenario: MockScenario;
+  // داتا العيادة (mocks/clinic.ts): المرضى بيتولدوا مرة واحدة، ومواعيد كل يوم أول ما الفرع يتفتح عليه
+  patients: StoredPatient[];
+  appointments: StoredAppointment[];
+  payments: StoredPayment[];
+  // الأيام اللي مواعيدها اتولدت: "branch-id|2026-10-19"
+  generated_days: string[];
 };
 
 const KEY = 'oxygen-staff-mock-db';
@@ -26,6 +34,10 @@ const empty = (): MockDb => ({
   challenge: null,
   trusted_staff_ids: [],
   scenario: 'ok',
+  patients: [],
+  appointments: [],
+  payments: [],
+  generated_days: [],
 });
 
 // لو المتصفح مانع التخزين (Private): بنكمل من الذاكرة
@@ -36,7 +48,8 @@ export function readDb(): MockDb {
     const raw = localStorage.getItem(KEY);
     if (!raw) return structuredClone(memory);
     const parsed = JSON.parse(raw) as MockDb;
-    return parsed.version === 1 ? parsed : empty();
+    // الحقول الجديدة بتاخد قيمتها الأولانية لو الداتا المتخزنة أقدم منها
+    return parsed.version === 1 ? { ...empty(), ...parsed } : empty();
   } catch {
     return structuredClone(memory);
   }

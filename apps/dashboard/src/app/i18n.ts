@@ -1,11 +1,15 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { DEFAULT_LOCALE, isLocale } from '@oxygen/shared';
+import arAppointments from '@/locales/ar/appointments.json';
 import arAuth from '@/locales/ar/auth.json';
 import arCommon from '@/locales/ar/common.json';
+import arFrontDesk from '@/locales/ar/frontDesk.json';
 import arNav from '@/locales/ar/nav.json';
+import enAppointments from '@/locales/en/appointments.json';
 import enAuth from '@/locales/en/auth.json';
 import enCommon from '@/locales/en/common.json';
+import enFrontDesk from '@/locales/en/frontDesk.json';
 import enNav from '@/locales/en/nav.json';
 
 /**
@@ -14,8 +18,20 @@ import enNav from '@/locales/en/nav.json';
  * الأنواع في i18next.d.ts، فأي مفتاح غلط بيطلع Error في tsc.
  */
 export const resources = {
-  ar: { common: arCommon, nav: arNav, auth: arAuth },
-  en: { common: enCommon, nav: enNav, auth: enAuth },
+  ar: {
+    common: arCommon,
+    nav: arNav,
+    auth: arAuth,
+    appointments: arAppointments,
+    frontDesk: arFrontDesk,
+  },
+  en: {
+    common: enCommon,
+    nav: enNav,
+    auth: enAuth,
+    appointments: enAppointments,
+    frontDesk: enFrontDesk,
+  },
 } as const;
 
 const LOCALE_KEY = 'oxygen-staff-locale';
@@ -31,7 +47,7 @@ function storedLocale() {
 
 void i18n.use(initReactI18next).init({
   resources,
-  ns: ['common', 'nav', 'auth'],
+  ns: Object.keys(resources.ar),
   defaultNS: 'common',
   lng: storedLocale(),
   fallbackLng: DEFAULT_LOCALE,

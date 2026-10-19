@@ -1,0 +1,33 @@
+{
+  "status": {
+    "confirmed": "مؤكد",
+    "checked_in": "وصل",
+    "in_progress": "مع الدكتور",
+    "completed": "خلص",
+    "no_show": "مجاش",
+    "cancelled": "اتلغى"
+  },
+  "grid": {
+    "time": "الوقت",
+    "now": "دلوقتي",
+    "column": "مواعيد {{name}}",
+    "noPractitioners": "مفيش دكاترة شغالين في الفرع ده النهارده"
+  },
+  "details": {
+    "title": "تفاصيل الميعاد",
+    "fileNo": "رقم الملف",
+    "phone": "الموبايل",
+    "service": "الخدمة",
+    "practitioner": "الدكتور",
+    "time": "الميعاد",
+    "status": "الحالة",
+    "checkedInAt": "وصل الساعة {{time}}",
+    "balanceDue": "عليه {{amount}}",
+    "checkIn": "تسجيل وصول",
+    "checkedIn": "اتسجل وصول {{name}}"
+  },
+  "errors": {
+    "INVALID_STATUS": "حالة الميعاد ده اتغيرت. البيانات اتحدّثت، جرّب تاني.",
+    "generic": "مقدرناش نسجّل الوصول. جرّب تاني."
+  }
+}

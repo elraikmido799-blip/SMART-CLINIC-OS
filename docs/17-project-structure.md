@@ -232,20 +232,24 @@ apps/dashboard/
 │   ├── routeTree.gen.ts         بيتولد لوحده من فولدر routes (متعدّلوش)
 │   ├── features/                كل جزء في فولدر: الـapi والـtypes والـcomponents بتاعته
 │   │   ├── auth/                الدخول والصلاحيات: permissions.ts · types.ts · auth.api.ts · use-me.ts · components/
-│   │   └── branches/            الفروع + use-branch-scope.ts (الفرع المختار)
+│   │   ├── branches/            الفروع + use-branch-scope.ts (الفرع المختار)
+│   │   ├── appointments/        المواعيد والدكاترة: types · appointments.api · status (لون كل حالة) · use-check-in · use-clinic-clock · components/ (day-grid · appointment-block · appointment-drawer)
+│   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · components/ (today-board · today-stats · arriving-now · quick-actions)
 │   ├── components/              Components مشتركة بين الـfeatures
 │   │   ├── layout/              app-layout · app-header · nav-menu · nav-items (الأقسام وصلاحياتها) · branch-select · user-menu
 │   │   ├── states/              Loading (النقط) · Empty · Error · Forbidden · NotFound
-│   │   └── page-header · tags (StatusTag · SpecialtyTag) · stat-card · money · person-avatar · coming-soon
+│   │   └── page-header · tags (StatusTag · SpecialtyTag) · specialty-icon · stat-card · money · person-avatar · coming-soon
 │   ├── locales/
-│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth
+│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk
 │   ├── lib/
 │   │   ├── env.ts               كل متغيرات الـenv
-│   │   └── api-error.ts         كود الخطأ من رد الـAPI
+│   │   ├── api-error.ts         كود الخطأ من رد الـAPI
+│   │   └── clinic-time.ts       الوقت بتوقيت مصر (النهارده · الدقيقة دلوقتي · ISO بفرق التوقيت)
 │   ├── mocks/                   الداتا الوهمية (بتتمسح كلها لما الـAPI يجهز)
 │   │   ├── db.ts                داتابيز وهمية في localStorage (oxygen-staff-mock-db)
 │   │   ├── seed.ts              الفروع · حساب لكل دور · الأدوار وصلاحياتها
 │   │   ├── auth.ts              الدخول والتحقق
+│   │   ├── clinic.ts            الخدمات · الدكاترة في كل فرع · المرضى · توليد مواعيد كل يوم + تسجيل الوصول + أرقام اليوم
 │   │   ├── handlers.ts          كل الـMocks + حالة الـAPI (عادي · فاضي · خطأ · بطيء)
 │   │   └── mock-tools.tsx       أدوات التجربة: مبدّل الدور + حالة الـAPI + مسح الداتا
 │   ├── store/

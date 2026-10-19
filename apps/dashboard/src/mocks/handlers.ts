@@ -1,6 +1,7 @@
 import { MockHttpError, type MockHandler, type MockHandlers } from '@oxygen/shared';
 import type { FetchArgs } from '@reduxjs/toolkit/query';
 import { authHandlers, currentStaff } from './auth';
+import { clinicHandlers } from './clinic';
 import { readDb } from './db';
 import { BRANCHES } from './seed';
 
@@ -11,6 +12,7 @@ import { BRANCHES } from './seed';
  */
 const handlers: MockHandlers = {
   ...authHandlers,
+  ...clinicHandlers,
   getBranches: () => {
     const staff = currentStaff();
     const data = staff.all_branches

@@ -1,0 +1,33 @@
+{
+  "status": {
+    "confirmed": "Confirmed",
+    "checked_in": "Checked-in",
+    "in_progress": "In progress",
+    "completed": "Completed",
+    "no_show": "No-show",
+    "cancelled": "Cancelled"
+  },
+  "grid": {
+    "time": "Time",
+    "now": "Now",
+    "column": "{{name}}'s appointments",
+    "noPractitioners": "No practitioners are working at this branch today"
+  },
+  "details": {
+    "title": "Appointment details",
+    "fileNo": "File no.",
+    "phone": "Phone",
+    "service": "Service",
+    "practitioner": "Practitioner",
+    "time": "Time",
+    "status": "Status",
+    "checkedInAt": "Checked in at {{time}}",
+    "balanceDue": "Owes {{amount}}",
+    "checkIn": "Check in",
+    "checkedIn": "{{name}} checked in"
+  },
+  "errors": {
+    "INVALID_STATUS": "This appointment changed. The data was refreshed — please try again.",
+    "generic": "We couldn't check the patient in. Please try again."
+  }
+}
