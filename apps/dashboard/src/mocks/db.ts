@@ -6,6 +6,7 @@ import type { PatientPhoto } from '@/features/photos/types';
 import type { NutritionPlan } from '@/features/nutrition-plans/types';
 import type { Exercise } from '@/features/exercises/types';
 import type { StoredEncounter } from './encounters';
+import type { StoredFormTemplate } from './form-templates';
 import type { StoredAppointment, StoredPatient, StoredPayment, StoredTimeBlock } from './clinic';
 
 /**
@@ -42,6 +43,7 @@ export type MockDb = {
   vitals: (Vital & { patient_id: string })[];
   labs: (Lab & { patient_id: string })[];
   medications: Medications[];
+  form_templates: StoredFormTemplate[];
   // الأيام اللي مواعيدها اتولدت: "branch-id|2026-10-19"
   generated_days: string[];
 };
@@ -69,6 +71,7 @@ const empty = (): MockDb => ({
   vitals: [],
   labs: [],
   medications: [],
+  form_templates: [],
   generated_days: [],
 });
 

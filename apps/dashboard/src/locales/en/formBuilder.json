@@ -1,0 +1,102 @@
+{
+  "title": "Form builder",
+  "description": "Build the encounter forms each specialty uses",
+  "back": "Back to forms",
+  "cancel": "Cancel",
+  "saveDraft": "Save draft",
+  "saved": "Draft saved",
+  "version": "Version {{version}}",
+  "state": {
+    "published": "Published",
+    "pending": "Pending changes",
+    "unsaved": "Unsaved changes"
+  },
+  "errors": {
+    "invalid": "The form isn't complete. Fix the warnings above.",
+    "generic": "Something went wrong. Please try again."
+  },
+  "forbidden": {
+    "title": "You can't open the form builder",
+    "body": "Ask an admin for access."
+  },
+  "notFound": {
+    "title": "This form doesn't exist",
+    "body": "The link may be wrong. Open it from the forms list."
+  },
+  "list": {
+    "empty": "No forms yet",
+    "form": "Form",
+    "version": "Version",
+    "status": "Status",
+    "updated": "Last change",
+    "actions": "Actions",
+    "open": "Open"
+  },
+  "types": {
+    "scale": "Scale",
+    "number": "Number",
+    "text": "Short text",
+    "textarea": "Long text",
+    "select": "Single choice",
+    "multiselect": "Multiple choice",
+    "grid": "Table"
+  },
+  "structure": {
+    "title": "Form structure",
+    "titleAr": "Form title (Arabic)",
+    "titleEn": "Form title (English)",
+    "sectionAr": "Section {{n}} title (Arabic)",
+    "sectionEn": "Section {{n}} title (English)",
+    "sectionUp": "Move section {{n}} up",
+    "sectionDown": "Move section {{n}} down",
+    "sectionRemove": "Remove section {{n}}",
+    "addSection": "Add section",
+    "addField": "Add field",
+    "unnamed": "(no name)",
+    "fieldUp": "Move {{name}} up",
+    "fieldDown": "Move {{name}} down",
+    "fieldRemove": "Remove {{name}}"
+  },
+  "editor": {
+    "title": "Field settings",
+    "none": "Pick a field to edit it",
+    "type": "Type: {{type}}",
+    "labelAr": "Label (Arabic)",
+    "labelEn": "Label (English)",
+    "hintAr": "Hint (Arabic, optional)",
+    "hintEn": "Hint (English, optional)",
+    "required": "Required to sign",
+    "min": "From",
+    "max": "To",
+    "unit": "Unit",
+    "maxLength": "Maximum length",
+    "options": "Choices",
+    "optionAr": "Choice {{n}} (Arabic)",
+    "optionEn": "Choice {{n}} (English)",
+    "addOption": "Add choice",
+    "removeOption": "Remove choice {{n}}",
+    "gridNote": "Table rows and columns are not editable here. You can rename, reorder and remove it."
+  },
+  "preview": {
+    "title": "Preview",
+    "hint": "This is how the doctor will see the form."
+  },
+  "issues": {
+    "title": "Fix these before publishing",
+    "noSections": "Add at least one section.",
+    "sectionTitle": "Every section needs a title in both languages.",
+    "emptySection": "Every section needs at least one field.",
+    "fieldLabel": "Every field needs a label in both languages.",
+    "noOptions": "Choice fields need at least one choice.",
+    "optionLabel": "Every choice needs a label in both languages.",
+    "range": "The range start must be less than its end."
+  },
+  "publish": {
+    "button": "Publish",
+    "blocked": "Fix the warnings before publishing",
+    "confirmTitle": "Publish version {{version}}?",
+    "confirmBody": "New encounters will use this version. Encounters already started keep their version.",
+    "ok": "Publish",
+    "done": "Version {{version}} published"
+  }
+}

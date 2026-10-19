@@ -39,7 +39,7 @@
     "description": "Tools for practitioners",
     "exercises": "Add and edit the exercises used in home programs.",
     "builder": "Form builder",
-    "builderSoon": "Coming in a later step."
+    "builderBody": "Build and publish the encounter forms."
   },
   "regions": {
     "knee": "Knee",

@@ -11,6 +11,7 @@ import { addDays, clinicDateOf, clinicToday } from '@/lib/clinic-time';
 import { currentStaff } from './auth';
 import { ensurePatients, pick, PRACTITIONERS, seeded, SERVICES } from './clinic';
 import { readDb, writeDb, type MockDb } from './db';
+import { ensureFormTemplates, publishedTemplateOf } from './form-templates';
 import { TEMPLATES } from './templates';
 
 /**
@@ -26,6 +27,8 @@ export type StoredEncounter = {
   status: 'draft' | 'signed';
   data: EncounterData;
   patient_visible: boolean;
+  // النسخة المنشورة وقت بدء الكشف (التعديل بعد كده مش بيأثر عليه)
+  template?: FormTemplate;
   created_at: string;
   updated_at: string;
   signed_at: string | null;
@@ -104,7 +107,7 @@ function toEncounter(db: MockDb, stored: StoredEncounter): Encounter {
       name_ar: practitioner?.name_ar ?? '',
       name_en: practitioner?.name_en ?? '',
     },
-    template: TEMPLATES[stored.specialty],
+    template: stored.template ?? TEMPLATES[stored.specialty],
     data: stored.data,
     patient_visible: stored.patient_visible,
     updated_at: stored.updated_at,
@@ -133,7 +136,7 @@ function toEncounter(db: MockDb, stored: StoredEncounter): Encounter {
 
 const summaryOf = (stored: StoredEncounter): EncounterSummary => {
   const practitioner = PRACTITIONERS.find((item) => item.id === stored.practitioner_id);
-  const template = TEMPLATES[stored.specialty];
+  const template = stored.template ?? TEMPLATES[stored.specialty];
   return {
     id: stored.id,
     date: clinicDateOf(stored.signed_at ?? stored.created_at),
@@ -167,7 +170,9 @@ export const encounterHandlers: MockHandlers = {
       }
       if (appointment.status !== 'checked_in') throw new MockHttpError(409, 'INVALID_STATUS');
       appointment.status = 'in_progress';
+      ensureFormTemplates(db);
       const service = SERVICES.find((item) => item.id === appointment.service_id);
+      const specialty = service?.specialty ?? staff.specialty ?? 'physio';
       const now = new Date().toISOString();
       id = `enc-${Date.now()}`;
       db.encounters.push({
@@ -175,7 +180,8 @@ export const encounterHandlers: MockHandlers = {
         appointment_id,
         patient_id: appointment.patient_id,
         practitioner_id: appointment.practitioner_id || staff.id,
-        specialty: service?.specialty ?? staff.specialty ?? 'physio',
+        specialty,
+        template: structuredClone(publishedTemplateOf(db, specialty)),
         status: 'draft',
         data: {},
         patient_visible: false,
@@ -216,7 +222,7 @@ export const encounterHandlers: MockHandlers = {
     writeDb((db) => {
       const stored = find(db, id);
       if (stored.status === 'signed') throw new MockHttpError(409, 'ALREADY_SIGNED');
-      const missing = requiredKeys(TEMPLATES[stored.specialty]).filter(
+      const missing = requiredKeys(stored.template ?? TEMPLATES[stored.specialty]).filter(
         (key) => !isFilled(input.data[key]),
       );
       if (missing.length) throw new MockHttpError(422, 'REQUIRED_FIELDS');

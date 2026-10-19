@@ -6,6 +6,7 @@ import { clinicHandlers } from './clinic';
 import { doctorDayHandlers } from './doctor-day';
 import { encounterHandlers } from './encounters';
 import { exerciseHandlers } from './exercises';
+import { formTemplateHandlers } from './form-templates';
 import { measurementHandlers } from './measurements';
 import { nutritionPlanHandlers } from './nutrition-plans';
 import { photoHandlers } from './photos';
@@ -26,6 +27,7 @@ const handlers: MockHandlers = {
   ...doctorDayHandlers,
   ...encounterHandlers,
   ...exerciseHandlers,
+  ...formTemplateHandlers,
   ...nutritionPlanHandlers,
   ...measurementHandlers,
   ...photoHandlers,
