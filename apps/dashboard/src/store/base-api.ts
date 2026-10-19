@@ -24,6 +24,8 @@ export const baseApi = createApi({
     'Exercises',
     'CarePlans',
     'NutritionPlans',
+    'DermPlans',
+    'Photos',
   ],
   // الرد جه بشكل غير الـresponseSchema (zod) = خطأ عادي في الشاشة بدل ما الصفحة تقع (DEC-30)
   catchSchemaFailure: (error) => ({

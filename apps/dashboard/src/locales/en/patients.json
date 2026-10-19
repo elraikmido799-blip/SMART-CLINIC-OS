@@ -125,6 +125,13 @@
   },
   "plans": {
     "physio": "Physiotherapy plan",
-    "nutrition": "Nutrition plan"
+    "nutrition": "Nutrition plan",
+    "derm": "Dermatology plan"
+  },
+  "documents": {
+    "title": "Documents",
+    "name": "File",
+    "category": "Type",
+    "date": "Date"
   }
 }

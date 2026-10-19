@@ -1,0 +1,23 @@
+{
+  "title": "Dermatology plan",
+  "readOnly": "The plan is read-only here.",
+  "procedures": {
+    "title": "Procedures",
+    "add": "Add procedure",
+    "empty": "No procedures yet",
+    "namePlaceholder": "Procedure (laser, peeling…)",
+    "name": "Procedure {{n}} name",
+    "remove": "Remove procedure {{n}}",
+    "done": "Done sessions",
+    "total": "Planned sessions"
+  },
+  "notes": {
+    "title": "Notes"
+  },
+  "status": {
+    "saving": "Saving…",
+    "saved": "Plan saved at {{time}}",
+    "dirty": "Unsaved changes",
+    "error": "Couldn't save. Your changes are still here."
+  }
+}

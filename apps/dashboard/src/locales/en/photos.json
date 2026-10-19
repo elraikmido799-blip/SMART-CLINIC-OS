@@ -1,0 +1,39 @@
+{
+  "title": "Photos",
+  "empty": "No photos yet",
+  "emptyHint": "Add the first photo to start tracking progress.",
+  "pickTwo": "Tick two photos to compare them side by side.",
+  "alt": "{{angle}} photo taken on {{date}}",
+  "uploaded": "Photo added",
+  "errors": {
+    "upload": "Couldn't add the photo. Please try again."
+  },
+  "angles": {
+    "front": "Front",
+    "left": "Left side",
+    "right": "Right side",
+    "close_up": "Close-up"
+  },
+  "upload": {
+    "button": "Add photo",
+    "title": "Add a photo",
+    "ok": "Add",
+    "cancel": "Cancel",
+    "file": "Photo",
+    "fileHelp": "JPG or PNG. It is resized before upload.",
+    "fileRequired": "Choose a photo",
+    "takenOn": "Date taken",
+    "dateRequired": "Choose the date",
+    "angle": "Angle",
+    "note": "Note (optional)"
+  },
+  "compare": {
+    "title": "Before / after",
+    "select": "Compare",
+    "before": "Before",
+    "after": "After",
+    "between_one": "{{count}} day between the photos",
+    "between_other": "{{count}} days between the photos",
+    "angleWarning": "The photos have different angles. Compare the same angle for a fair result."
+  }
+}

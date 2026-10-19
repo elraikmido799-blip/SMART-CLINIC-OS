@@ -19,9 +19,11 @@ import { useGetPatientOverviewQuery, useGetPatientQuery } from '../patients.api'
 import { ageOf } from '../age';
 import { rememberPatient } from '../recent';
 import { PATIENT_TABS, type PatientTab } from '../tabs';
+import { DermPanel } from '@/features/derm-plans/components/derm-panel';
 import { NutritionPanel } from '@/features/nutrition-plans/components/nutrition-panel';
 import { PlanPanel } from '@/features/care-plans/components/plan-panel';
 import { EncountersTab } from '@/features/encounters/components/encounters-tab';
+import { DocumentsTab } from './documents-tab';
 import { OverviewTab } from './overview-tab';
 
 /**
@@ -185,10 +187,13 @@ export function PatientPage() {
           children:
             item.key === 'encounters' ? (
               <EncountersTab patientId={patientId} />
+            ) : item.key === 'documents' ? (
+              <DocumentsTab patientId={patientId} />
             ) : item.key === 'plans' ? (
               <Flex vertical gap={16}>
                 <PlanPanel patientId={patientId} readOnly title={t('plans.physio')} />
                 <NutritionPanel patientId={patientId} readOnly title={t('plans.nutrition')} />
+                <DermPanel patientId={patientId} readOnly title={t('plans.derm')} />
               </Flex>
             ) : item.key === 'overview' ? (
               <OverviewTab
