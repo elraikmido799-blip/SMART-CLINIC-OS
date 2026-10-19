@@ -92,9 +92,9 @@ export function NextPatientCard({ appointment, nowMinutes, canStart, starting, o
         {localized(appointment.service, 'name', locale)}
       </Typography.Paragraph>
       <Flex gap={8} wrap style={{ marginTop: 20 }}>
-        {canStart && waiting && (
+        {canStart && (waiting || appointment.status === 'in_progress') && (
           <Button type="primary" loading={starting} onClick={() => onStart(appointment)}>
-            {t('startEncounter')}
+            {waiting ? t('startEncounter') : t('continueEncounter')}
           </Button>
         )}
         <Button

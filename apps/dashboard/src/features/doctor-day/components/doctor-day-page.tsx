@@ -13,7 +13,7 @@ import type { Appointment, AppointmentStatus } from '@/features/appointments/typ
 import { useClinicClock } from '@/features/appointments/use-clinic-clock';
 import { useCan, useMe } from '@/features/auth/use-me';
 import { useBranchScope } from '@/features/branches/use-branch-scope';
-import { useVisitActions } from '@/features/front-desk/use-visit-actions';
+import { useStartEncounter } from '@/features/encounters/use-start-encounter';
 import { clinicMinutes } from '@/lib/clinic-time';
 import { ALL_BRANCHES } from '@/store/ui-slice';
 import { NextPatientCard } from './next-patient-card';
@@ -41,7 +41,7 @@ export function DoctorDayPage() {
   const { branchId } = useBranchScope();
   const { today, minutes } = useClinicClock();
   const canStart = useCan('medical.write', 'physio.write', 'nutrition.write', 'derm_im.write');
-  const { start, pendingId } = useVisitActions();
+  const { startEncounter, pendingId } = useStartEncounter();
   const [filter, setFilter] = useState<Filter>('all');
 
   const scoped = branchId !== ALL_BRANCHES;
@@ -146,16 +146,19 @@ export function DoctorDayPage() {
                       title: t('queue.actions'),
                       render: (_, item) => (
                         <>
-                          {canStart && item.status === 'checked_in' && (
-                            <Button
-                              size="small"
-                              loading={pendingId === item.id}
-                              onClick={() => void start(item)}
-                              style={{ marginInlineEnd: 8 }}
-                            >
-                              {t('startEncounter')}
-                            </Button>
-                          )}
+                          {canStart &&
+                            (item.status === 'checked_in' || item.status === 'in_progress') && (
+                              <Button
+                                size="small"
+                                loading={pendingId === item.id}
+                                onClick={() => void startEncounter(item)}
+                                style={{ marginInlineEnd: 8 }}
+                              >
+                                {item.status === 'in_progress'
+                                  ? t('continueEncounter')
+                                  : t('startEncounter')}
+                              </Button>
+                            )}
                           <Button
                             size="small"
                             onClick={() =>
@@ -183,7 +186,7 @@ export function DoctorDayPage() {
                   nowMinutes={minutes}
                   canStart={canStart}
                   starting={pendingId === next?.id}
-                  onStart={(item) => void start(item)}
+                  onStart={(item) => void startEncounter(item)}
                 />
               </Col>
               <Col span={24}>

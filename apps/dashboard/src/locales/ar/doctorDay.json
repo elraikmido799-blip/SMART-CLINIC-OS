@@ -57,5 +57,6 @@
     "messagesHint_few": "{{count}} رسايل مش مقروءة",
     "messagesHint_many": "{{count}} رسالة مش مقروءة",
     "messagesHint_other": "{{count}} رسالة مش مقروءة"
-  }
+  },
+  "continueEncounter": "كمّل الكشف"
 }

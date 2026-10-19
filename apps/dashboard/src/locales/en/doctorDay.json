@@ -45,5 +45,6 @@
     "messages": "Patient messages",
     "messagesHint_one": "{{count}} unread message",
     "messagesHint_other": "{{count}} unread messages"
-  }
+  },
+  "continueEncounter": "Continue encounter"
 }

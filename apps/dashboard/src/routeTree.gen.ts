@@ -22,6 +22,7 @@ import { Route as AppDashboardsRouteImport } from './routes/_app/dashboards'
 import { Route as AppProgramsRouteImport } from './routes/_app/programs'
 import { Route as AppReportsRouteImport } from './routes/_app/reports'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
+import { Route as AppEncountersEncounterIdRouteImport } from './routes/_app/encounters.$encounterId'
 import { Route as AppFrontDeskIndexRouteImport } from './routes/_app/front-desk.index'
 import { Route as AppFrontDeskClosingRouteImport } from './routes/_app/front-desk.closing'
 import { Route as AppFrontDeskPosRouteImport } from './routes/_app/front-desk.pos'
@@ -92,6 +93,12 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
+const AppEncountersEncounterIdRoute =
+  AppEncountersEncounterIdRouteImport.update({
+    id: '/encounters/$encounterId',
+    path: '/encounters/$encounterId',
+    getParentRoute: () => AppRoute,
+  } as any)
 const AppFrontDeskIndexRoute = AppFrontDeskIndexRouteImport.update({
   id: '/front-desk/',
   path: '/front-desk/',
@@ -131,6 +138,7 @@ export interface FileRoutesByFullPath {
   '/programs': typeof AppProgramsRoute
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
+  '/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
@@ -150,6 +158,7 @@ export interface FileRoutesByTo {
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
   '/': typeof AppIndexRoute
+  '/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
@@ -171,6 +180,7 @@ export interface FileRoutesById {
   '/_app/reports': typeof AppReportsRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/': typeof AppIndexRoute
+  '/_app/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/_app/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/_app/front-desk/pos': typeof AppFrontDeskPosRoute
   '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
@@ -192,6 +202,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/reports'
     | '/settings'
+    | '/encounters/$encounterId'
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
@@ -211,6 +222,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/'
+    | '/encounters/$encounterId'
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
@@ -231,6 +243,7 @@ export interface FileRouteTypes {
     | '/_app/reports'
     | '/_app/settings'
     | '/_app/'
+    | '/_app/encounters/$encounterId'
     | '/_app/front-desk/closing'
     | '/_app/front-desk/pos'
     | '/_app/patients/$patientId'
@@ -336,6 +349,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/encounters/$encounterId': {
+      id: '/_app/encounters/$encounterId'
+      path: '/encounters/$encounterId'
+      fullPath: '/encounters/$encounterId'
+      preLoaderRoute: typeof AppEncountersEncounterIdRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/front-desk/': {
       id: '/_app/front-desk/'
       path: '/front-desk'
@@ -386,6 +406,7 @@ interface AppRouteChildren {
   AppReportsRoute: typeof AppReportsRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppEncountersEncounterIdRoute: typeof AppEncountersEncounterIdRoute
   AppFrontDeskClosingRoute: typeof AppFrontDeskClosingRoute
   AppFrontDeskPosRoute: typeof AppFrontDeskPosRoute
   AppPatientsPatientIdRoute: typeof AppPatientsPatientIdRoute
@@ -405,6 +426,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppReportsRoute: AppReportsRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
+  AppEncountersEncounterIdRoute: AppEncountersEncounterIdRoute,
   AppFrontDeskClosingRoute: AppFrontDeskClosingRoute,
   AppFrontDeskPosRoute: AppFrontDeskPosRoute,
   AppPatientsPatientIdRoute: AppPatientsPatientIdRoute,

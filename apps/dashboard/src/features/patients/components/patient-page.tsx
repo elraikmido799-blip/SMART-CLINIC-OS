@@ -16,16 +16,11 @@ import { useBranchScope } from '@/features/branches/use-branch-scope';
 import { clinicToday } from '@/lib/clinic-time';
 import { ALL_BRANCHES } from '@/store/ui-slice';
 import { useGetPatientOverviewQuery, useGetPatientQuery } from '../patients.api';
+import { ageOf } from '../age';
 import { rememberPatient } from '../recent';
 import { PATIENT_TABS, type PatientTab } from '../tabs';
+import { EncountersTab } from '@/features/encounters/components/encounters-tab';
 import { OverviewTab } from './overview-tab';
-
-// العمر بالسنين من تاريخ الميلاد
-function ageOf(birthDate: string, today: string) {
-  const [by, bm, bd] = birthDate.split('-').map(Number);
-  const [ty, tm, td] = today.split('-').map(Number);
-  return ty - by - (tm < bm || (tm === bm && td < bd) ? 1 : 0);
-}
 
 /**
  * ملف المريض 360 (D-09 · docs/20 · 4.1): الهيدر (الاسم · الملف · السن · الموبايل · الفرع) + التنبيهات
@@ -186,7 +181,9 @@ export function PatientPage() {
           key: item.key,
           label: t(`tabs.${item.key}`),
           children:
-            item.step === null ? (
+            item.key === 'encounters' ? (
+              <EncountersTab patientId={patientId} />
+            ) : item.key === 'overview' ? (
               <OverviewTab
                 overview={overview.data}
                 isLoading={overview.isLoading}
@@ -197,7 +194,9 @@ export function PatientPage() {
               <Card>
                 <EmptyState
                   title={tCommon('states.comingSoonTitle')}
-                  description={tCommon('states.comingSoonBody', { step: item.step })}
+                  description={
+                    item.step ? tCommon('states.comingSoonBody', { step: item.step }) : undefined
+                  }
                 />
               </Card>
             ),

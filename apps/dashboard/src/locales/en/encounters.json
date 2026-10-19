@@ -1,0 +1,71 @@
+{
+  "title": "Clinical encounter",
+  "backToPatient": "Back to patient file",
+  "startEncounter": "Start encounter",
+  "continueEncounter": "Continue encounter",
+  "patient": {
+    "file": "File no.",
+    "diagnosis": "Diagnosis",
+    "session": "Session",
+    "sessionOf": "Session {{number}} of {{total}}",
+    "recentNotes": "Recent notes",
+    "noNotes": "No notes yet",
+    "sessionN": "Session {{number}}",
+    "visit": "Previous visit"
+  },
+  "form": {
+    "required": "Enter {{field}}"
+  },
+  "plan": {
+    "title": "Plan",
+    "body": "Treatment goals, sessions per week and the home exercise program come in step 4.4."
+  },
+  "footer": {
+    "share": "Share with patient",
+    "saveDraft": "Save draft",
+    "sign": "Sign & close",
+    "saving": "Saving…",
+    "saved": "Draft saved at {{time}}",
+    "dirty": "Unsaved changes",
+    "error": "Couldn't save. Your changes are still here.",
+    "signedBanner": "Signed by {{name}} on {{date}} at {{time}}. The encounter is locked."
+  },
+  "sign": {
+    "confirmTitle": "Sign and close this encounter?",
+    "confirmBody": "After signing the encounter is locked and the visit is marked done. Later changes need an amendment.",
+    "ok": "Sign & close",
+    "cancel": "Keep editing"
+  },
+  "messages": {
+    "signed": "Encounter signed",
+    "requiredMissing": "Fill the required fields first"
+  },
+  "errors": {
+    "ALREADY_SIGNED": "This encounter is already signed and locked.",
+    "REQUIRED_FIELDS": "Some required fields are empty.",
+    "FORBIDDEN": "You can't edit encounters.",
+    "INVALID_STATUS": "This visit changed. Refresh and try again.",
+    "generic": "Something went wrong. Please try again."
+  },
+  "notFound": {
+    "title": "This encounter doesn't exist",
+    "body": "The link may be wrong. Open it from the patient file or your day."
+  },
+  "forbidden": {
+    "title": "You can't open encounters",
+    "body": "Your role doesn't include medical records."
+  },
+  "tab": {
+    "empty": "No encounters yet",
+    "date": "Date",
+    "form": "Form",
+    "practitioner": "By",
+    "status": "Status",
+    "actions": "Actions",
+    "open": "Open",
+    "statuses": {
+      "draft": "Draft",
+      "signed": "Signed"
+    }
+  }
+}
