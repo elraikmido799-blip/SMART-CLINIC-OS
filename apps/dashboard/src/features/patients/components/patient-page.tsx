@@ -24,6 +24,7 @@ import { NutritionPanel } from '@/features/nutrition-plans/components/nutrition-
 import { PlanPanel } from '@/features/care-plans/components/plan-panel';
 import { EncountersTab } from '@/features/encounters/components/encounters-tab';
 import { MeasurementsTab } from '@/features/measurements/components/measurements-tab';
+import { ProgramsTab } from '@/features/programs/components/programs-tab';
 import { DocumentsTab } from './documents-tab';
 import { OverviewTab } from './overview-tab';
 
@@ -188,6 +189,8 @@ export function PatientPage() {
           children:
             item.key === 'encounters' ? (
               <EncountersTab patientId={patientId} />
+            ) : item.key === 'programs' ? (
+              <ProgramsTab patientId={patientId} branchId={patient.branch_id} />
             ) : item.key === 'measurements' ? (
               <MeasurementsTab patientId={patientId} />
             ) : item.key === 'documents' ? (

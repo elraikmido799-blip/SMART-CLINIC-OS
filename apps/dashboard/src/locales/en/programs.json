@@ -4,10 +4,6 @@
     "active": "Active",
     "archived": "Archived"
   },
-  "soon": {
-    "title": "Patients by stage",
-    "body": "The program board comes in step 5.2."
-  },
   "manage": {
     "title": "Programs",
     "description": "Build the journeys patients move through, like Secret Seven",
@@ -62,10 +58,57 @@
   },
   "errors": {
     "CODE_TAKEN": "This code is already used by another program.",
-    "generic": "Couldn't save. Please try again."
+    "generic": "Couldn't save. Please try again.",
+    "ALREADY_ENROLLED": "This patient is already enrolled in this program."
   },
   "notFound": {
     "title": "This program doesn't exist",
     "body": "The link may be wrong. Open it from the programs list."
+  },
+  "cancel": "Cancel",
+  "board": {
+    "description": "Where each patient is in the program",
+    "program": "Program",
+    "search": "Search by name or file no.",
+    "lateOnly": "Late only ({{count}})",
+    "total": "{{count}} patients enrolled",
+    "region": "{{program}} board",
+    "expected": "Expected {{count}} days",
+    "emptyColumn": "No patients here",
+    "daysIn": "{{count}} days in this stage",
+    "late": "Late {{count}} days",
+    "drag": "Drag {{name}} to another stage",
+    "moveTo": "Move {{name}} to a stage",
+    "moveToShort": "Move to…",
+    "noPrograms": "No active program",
+    "noProgramsBody": "Activate a program from the program builder first."
+  },
+  "enroll": {
+    "button": "Enroll a patient",
+    "title": "Enroll in {{program}}",
+    "patient": "Patient",
+    "hint": "The patient starts at the first stage.",
+    "typeMore": "Type at least 2 characters",
+    "none": "No patient matches",
+    "ok": "Enroll",
+    "done": "Patient enrolled"
+  },
+  "move": {
+    "title": "Move to another stage",
+    "body": "Move {{name}} to {{stage}}?",
+    "note": "Note (optional)",
+    "ok": "Move",
+    "done": "Stage updated"
+  },
+  "tab": {
+    "empty": "Not enrolled in any program",
+    "enroll": "Enroll in a program",
+    "enrollTitle": "Enroll in a program",
+    "noPrograms": "No other active program",
+    "currentStage": "Current stage",
+    "owner": "Responsible: {{name}}",
+    "history": "Stage history",
+    "enrolled": "Enrolled · {{stage}}",
+    "moved": "{{from}} → {{to}}"
   }
 }

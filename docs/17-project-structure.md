@@ -244,16 +244,17 @@ apps/dashboard/
 │   │   ├── photos/              صور المريض: types · photos.api · components/photos-section (معرض · رفع · مقارنة قبل/بعد)
 │   │   ├── measurements/        القياسات: types (labFlag) · measurements.api · components/ (measurements-tab · medications-panel · sparkline)
 │   │   ├── form-builder/        بنّاء الفورمات: types · form-builder.api · builder-state (ترتيب + تحقق) · components/ (forms-page · builder-page · field-editor)
-│   │   ├── programs/            البرامج: types · enrollment-types · programs.api · components/ (programs-manage-page · program-builder-page)
+│   │   ├── programs/            البرامج: types · enrollment-types · programs.api · enrollments.api · stage-timing · components/ (programs-manage-page · program-builder-page · programs-board-page · programs-tab)
 │   │   ├── exercises/           مكتبة التمارين: types · exercises.api · components/exercises-page
 │   │   ├── billing/             التحصيل والتقفيل (3.6 · 3.7): types · totals (الحساب) · billing.api · closing.api · components/ (pos-page · invoice-view · closing-page)
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)
 │   ├── components/              Components مشتركة بين الـfeatures
 │   │   ├── layout/              app-layout · app-header · nav-menu · nav-items (الأقسام وصلاحياتها) · branch-select · patient-search · user-menu
 │   │   ├── states/              Loading (النقط) · Empty · Error · Forbidden · NotFound
+│   │   ├── kanban/              kanban-board: لوحة أعمدة بسحب من مقبض + بديل "انقل إلى" (مشترك: البرامج 5.2 · الـCRM 6.1)
 │   │   └── page-header · tags (StatusTag · SpecialtyTag) · specialty-icon · danger-button · stat-card · money · person-avatar · coming-soon
 │   ├── locales/
-│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing · doctorDay · encounters · carePlans · nutritionPlans · dermPlans · photos · measurements · formBuilder · programs · exercises
+│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing · programs · doctorDay · encounters · carePlans · nutritionPlans · dermPlans · photos · measurements · formBuilder · programs · exercises
 │   ├── lib/
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── api-error.ts         كود الخطأ من رد الـAPI

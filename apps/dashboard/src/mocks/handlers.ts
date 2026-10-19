@@ -5,6 +5,7 @@ import { billingHandlers } from './billing';
 import { clinicHandlers } from './clinic';
 import { doctorDayHandlers } from './doctor-day';
 import { encounterHandlers } from './encounters';
+import { enrollmentHandlers } from './enrollments';
 import { exerciseHandlers } from './exercises';
 import { formTemplateHandlers } from './form-templates';
 import { measurementHandlers } from './measurements';
@@ -33,6 +34,7 @@ const handlers: MockHandlers = {
   ...measurementHandlers,
   ...photoHandlers,
   ...programHandlers,
+  ...enrollmentHandlers,
   getBranches: () => {
     const staff = currentStaff();
     const data = staff.all_branches

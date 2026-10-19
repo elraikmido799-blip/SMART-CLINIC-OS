@@ -12,7 +12,7 @@ export const PATIENT_TABS = [
   { key: 'measurements', permission: 'medical.read', step: null },
   { key: 'plans', permission: 'medical.read', step: null },
   { key: 'documents', permission: 'patients.read', step: null },
-  { key: 'programs', permission: 'programs.read', step: '5.2' },
+  { key: 'programs', permission: 'programs.read', step: null },
   { key: 'billing', permission: 'billing.read', step: '7.3' },
   { key: 'crm', permission: 'leads.read', step: '6.2' },
   { key: 'consents', permission: 'patients.read', step: null },

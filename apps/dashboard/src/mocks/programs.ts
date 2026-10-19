@@ -2,6 +2,7 @@ import { MockHttpError, type MockHandlers } from '@oxygen/shared';
 import type { Program, ProgramBody, ProgramSummary } from '@/features/programs/types';
 import { currentStaff, toMe } from './auth';
 import { readDb, writeDb, type MockDb } from './db';
+import { ensureEnrollments } from './enrollments';
 
 /**
  * البرامج الوهمية (5.1): Secret Seven بمراحله السبعة (مثال docs/07 §7 لحد ما Oxygen تأكد التفاصيل).
@@ -138,6 +139,7 @@ export const programHandlers: MockHandlers = {
   getPrograms: () => {
     if (!can('programs.read') && !can('builders.manage')) throw new MockHttpError(403, 'FORBIDDEN');
     writeDb(ensurePrograms);
+    writeDb(ensureEnrollments);
     const db = readDb();
     return { data: db.programs.map((item) => summaryOf(db, item)) };
   },
