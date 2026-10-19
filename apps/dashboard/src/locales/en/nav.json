@@ -1,0 +1,16 @@
+{
+  "label": "Main menu",
+  "home": "Home",
+  "calendar": "Calendar",
+  "frontDesk": "Front Desk",
+  "patients": "Patients",
+  "clinical": "Clinical",
+  "programs": "Programs",
+  "crm": "CRM",
+  "catalog": "Catalog",
+  "billing": "Billing",
+  "dashboards": "Dashboards",
+  "reports": "Reports",
+  "content": "Content",
+  "settings": "Settings"
+}

@@ -1,0 +1,66 @@
+{
+  "app": {
+    "name": "Oxygen Staff",
+    "logoAlt": "Oxygen"
+  },
+  "actions": {
+    "retry": "Try again",
+    "back": "Back",
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "goHome": "Back to home"
+  },
+  "states": {
+    "loading": "Loading…",
+    "emptyTitle": "Nothing here yet",
+    "errorTitle": "Something went wrong",
+    "errorBody": "We couldn't load the data. Please try again in a moment.",
+    "networkBody": "You're offline. Check your connection and try again.",
+    "forbiddenTitle": "This page isn't part of your access",
+    "forbiddenBody": "If you need it for your work, ask your branch manager.",
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "The link may be wrong or the page has moved.",
+    "comingSoonTitle": "This screen is still being built",
+    "comingSoonBody": "It's step {{step}} of the dashboard plan."
+  },
+  "roles": {
+    "reception": "Reception",
+    "doctor": "Doctor",
+    "nutritionist": "Nutritionist",
+    "physiotherapist": "Physiotherapist",
+    "assistant": "Assistant",
+    "crm_agent": "CRM Agent",
+    "marketing": "Marketing",
+    "finance": "Finance",
+    "branch_manager": "Branch Manager",
+    "operations_manager": "Operations Manager",
+    "ceo": "CEO",
+    "admin": "System Admin"
+  },
+  "specialties": {
+    "nutrition": "Nutrition",
+    "physio": "Physiotherapy",
+    "derm": "Dermatology",
+    "internal": "Internal Medicine"
+  },
+  "branches": {
+    "label": "Branch",
+    "all": "All branches"
+  },
+  "header": {
+    "search": "Search patient by name, phone or file no.",
+    "notifications": "Notifications",
+    "noNotifications": "No new notifications",
+    "openMenu": "Open menu",
+    "account": "Your account",
+    "switchLanguage": "العربية",
+    "logout": "Sign out"
+  },
+  "session": {
+    "expired": "Your session ended. Sign in again to return to the same page."
+  },
+  "home": {
+    "greeting": "Hello, {{name}}"
+  }
+}

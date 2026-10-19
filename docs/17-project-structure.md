@@ -211,37 +211,58 @@ apps/web/
 ```text
 apps/dashboard/
 ├── public/
-│   ├── favicon.svg              ⏳ يتغيّر بلوجو Oxygen
-│   └── logo.png                 اللوجو الملون (من design/brand)
+│   ├── favicon.png              رمز O2 (64px، من أيقونة الموقع)
+│   ├── logo.png                 اللوجو الملون (264px — P-26)
+│   ├── logo-symbol.png          الرمز بس (للـSider المقفول على التابلت)
+│   └── logo-white.png           الأبيض (بانل الدخول)
 ├── src/
 │   ├── app/                     تشغيل الأبلكيشن
 │   │   ├── providers.tsx        RTL + لغة antd (ar_EG) + Redux + لغة التواريخ
-│   │   ├── theme.ts             ألوان Oxygen في antd (من packages/config)
-│   │   └── i18n.ts              اللغات (i18next)
+│   │   ├── theme.ts             ثيم antd من tokens.ts بقواعد DEC-41
+│   │   ├── tones.ts             ألوان الـTags الفاتحة (خلفية فاتحة + كلام غامق، اتفحصت ≥ 4.9)
+│   │   ├── router.ts            الـRouter + الـcontext (الـstore) + staticData.nav
+│   │   ├── i18n.ts · i18next.d.ts  اللغات (namespace لكل جزء) + أنواع المفاتيح
+│   │   ├── use-locale.ts        اللغة الحالية كـLocale
+│   │   └── global.css           الستايل العام القليل (flip-rtl · focus · reduced-motion)
 │   ├── routes/                  الصفحات (TanStack Router): كل ملف = صفحة
-│   │   ├── __root.tsx           الـLayout العام (⏳ Sidebar + Top bar)
-│   │   └── index.tsx            الصفحة الرئيسية (مؤقتة)
+│   │   ├── __root.tsx           الأساس + صفحة 404
+│   │   ├── login.tsx            الدخول (D-01)
+│   │   ├── _app.tsx             الـGuard + الـLayout لكل الصفحات اللي محتاجة دخول (من غير URL)
+│   │   └── _app/                index.tsx (الرئيسية حسب الدور) + صفحة لكل قسم في القايمة
 │   ├── routeTree.gen.ts         بيتولد لوحده من فولدر routes (متعدّلوش)
-│   ├── features/ ⏳             كل جزء في فولدر (calendar · patients · crm …) — خطة الداشبورد
-│   ├── components/ ⏳           Components مشتركة بين الـfeatures
+│   ├── features/                كل جزء في فولدر: الـapi والـtypes والـcomponents بتاعته
+│   │   ├── auth/                الدخول والصلاحيات: permissions.ts · types.ts · auth.api.ts · use-me.ts · components/
+│   │   └── branches/            الفروع + use-branch-scope.ts (الفرع المختار)
+│   ├── components/              Components مشتركة بين الـfeatures
+│   │   ├── layout/              app-layout · app-header · nav-menu · nav-items (الأقسام وصلاحياتها) · branch-select · user-menu
+│   │   ├── states/              Loading (النقط) · Empty · Error · Forbidden · NotFound
+│   │   └── page-header · tags (StatusTag · SpecialtyTag) · stat-card · money · person-avatar · coming-soon
 │   ├── locales/
-│   │   └── ar.json · en.json    النصوص
+│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth
 │   ├── lib/
-│   │   └── env.ts               كل متغيرات الـenv
-│   ├── mocks/
-│   │   └── handlers.ts          الداتا الوهمية
+│   │   ├── env.ts               كل متغيرات الـenv
+│   │   └── api-error.ts         كود الخطأ من رد الـAPI
+│   ├── mocks/                   الداتا الوهمية (بتتمسح كلها لما الـAPI يجهز)
+│   │   ├── db.ts                داتابيز وهمية في localStorage (oxygen-staff-mock-db)
+│   │   ├── seed.ts              الفروع · حساب لكل دور · الأدوار وصلاحياتها
+│   │   ├── auth.ts              الدخول والتحقق
+│   │   ├── handlers.ts          كل الـMocks + حالة الـAPI (عادي · فاضي · خطأ · بطيء)
+│   │   └── mock-tools.tsx       أدوات التجربة: مبدّل الدور + حالة الـAPI + مسح الداتا
 │   ├── store/
-│   │   ├── base-api.ts          RTK Query
-│   │   └── store.ts             الـRedux store
-│   ├── main.tsx                 نقطة البداية: الخطوط + antd reset + اللغات + الـRouter
+│   │   ├── base-api.ts          RTK Query (+ الـMocks بـimport() متأخر)
+│   │   ├── ui-slice.ts          الفرع المختار
+│   │   └── store.ts             الـRedux store + useAppDispatch · useAppSelector
+│   ├── main.tsx                 نقطة البداية: الخطوط + antd reset + global.css + اللغات + الـRouter
 │   └── vite-env.d.ts            أنواع متغيرات الـenv
 ├── .env.local · .env.example    §3
 ├── index.html                   الصفحة الوحيدة (lang="ar" dir="rtl")
-├── vite.config.ts               Vite + Router plugin + @ = src + Port 5173
+├── vite.config.ts               Vite + Router plugin (autoCodeSplitting) + @ = src + Port 5173
 ├── eslint.config.js             قواعد ESLint (+ استثناء routes — DEC-18)
 ├── tsconfig.json · tsconfig.app.json · tsconfig.node.json
 └── package.json
 ```
+
+**الدخول في وضع الـMocks:** أي إيميل من `mocks/seed.ts` (زي `reception@oxygen.demo` أو `ceo@oxygen.demo`) · الباسورد `oxygen123` · الكود `123456` · `locked@oxygen.demo` بيجرّب "الحساب مقفول". وزرار أدوات التجربة (تحت على الجنب) بيدخلك بأي دور ([DEC-44](19-decisions.md#dec-44)).
 
 ---
 
@@ -300,7 +321,10 @@ apps/dashboard/
 | **مكتبة لأبلكيشن واحد** | `pnpm --filter web add <name>` (أو `dashboard`) | — |
 | **مكتبة للاتنين** | نسختها في `catalog` (`pnpm-workspace.yaml`)، وفي كل `package.json` تتكتب `"catalog:"` | — |
 | **حاجة مشتركة بين الموقع والداشبورد** | `packages/shared/src/` + export في `index.ts` | منطق بس، من غير شكل |
-| **صفحة في الداشبورد** | `apps/dashboard/src/routes/<اسم>.tsx` | الـplugin بيضيفها لـ`routeTree.gen.ts` لوحده |
+| **صفحة في الداشبورد** | `apps/dashboard/src/routes/_app/<اسم>.tsx` (ورا الدخول) | الـplugin بيضيفها لـ`routeTree.gen.ts` لوحده · `staticData: { nav: '<القسم>' }` عشان القايمة والصلاحية |
+| **جزء جديد في الداشبورد** | `apps/dashboard/src/features/<اسم>/` (`<اسم>.api.ts` · `types.ts` · `components/`) | الـEndpoints بـ`baseApi.injectEndpoints` + Mock بنفس الاسم في `mocks/` |
+| **نص في الداشبورد** | `apps/dashboard/src/locales/ar/<namespace>.json` و`en/` (الاتنين) | namespace جديد = سطر في `app/i18n.ts` · المفاتيح بتتفحص في tsc |
+| **قسم في قايمة الداشبورد** | `components/layout/nav-items.ts` (+ صلاحياته) | — |
 
 ---
 

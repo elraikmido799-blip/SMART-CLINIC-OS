@@ -9,50 +9,351 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/_app'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AppIndexRouteImport } from './routes/_app/index'
+import { Route as AppBillingRouteImport } from './routes/_app/billing'
+import { Route as AppCalendarRouteImport } from './routes/_app/calendar'
+import { Route as AppCatalogRouteImport } from './routes/_app/catalog'
+import { Route as AppClinicalRouteImport } from './routes/_app/clinical'
+import { Route as AppContentRouteImport } from './routes/_app/content'
+import { Route as AppCrmRouteImport } from './routes/_app/crm'
+import { Route as AppDashboardsRouteImport } from './routes/_app/dashboards'
+import { Route as AppFrontDeskRouteImport } from './routes/_app/front-desk'
+import { Route as AppPatientsRouteImport } from './routes/_app/patients'
+import { Route as AppProgramsRouteImport } from './routes/_app/programs'
+import { Route as AppReportsRouteImport } from './routes/_app/reports'
+import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 
-const IndexRoute = IndexRouteImport.update({
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBillingRoute = AppBillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCalendarRoute = AppCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCatalogRoute = AppCatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppClinicalRoute = AppClinicalRouteImport.update({
+  id: '/clinical',
+  path: '/clinical',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppContentRoute = AppContentRouteImport.update({
+  id: '/content',
+  path: '/content',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCrmRoute = AppCrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardsRoute = AppDashboardsRouteImport.update({
+  id: '/dashboards',
+  path: '/dashboards',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFrontDeskRoute = AppFrontDeskRouteImport.update({
+  id: '/front-desk',
+  path: '/front-desk',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPatientsRoute = AppPatientsRouteImport.update({
+  id: '/patients',
+  path: '/patients',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProgramsRoute = AppProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof AppIndexRoute
+  '/login': typeof LoginRoute
+  '/billing': typeof AppBillingRoute
+  '/calendar': typeof AppCalendarRoute
+  '/catalog': typeof AppCatalogRoute
+  '/clinical': typeof AppClinicalRoute
+  '/content': typeof AppContentRoute
+  '/crm': typeof AppCrmRoute
+  '/dashboards': typeof AppDashboardsRoute
+  '/front-desk': typeof AppFrontDeskRoute
+  '/patients': typeof AppPatientsRoute
+  '/programs': typeof AppProgramsRoute
+  '/reports': typeof AppReportsRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/billing': typeof AppBillingRoute
+  '/calendar': typeof AppCalendarRoute
+  '/catalog': typeof AppCatalogRoute
+  '/clinical': typeof AppClinicalRoute
+  '/content': typeof AppContentRoute
+  '/crm': typeof AppCrmRoute
+  '/dashboards': typeof AppDashboardsRoute
+  '/front-desk': typeof AppFrontDeskRoute
+  '/patients': typeof AppPatientsRoute
+  '/programs': typeof AppProgramsRoute
+  '/reports': typeof AppReportsRoute
+  '/settings': typeof AppSettingsRoute
+  '/': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/_app/billing': typeof AppBillingRoute
+  '/_app/calendar': typeof AppCalendarRoute
+  '/_app/catalog': typeof AppCatalogRoute
+  '/_app/clinical': typeof AppClinicalRoute
+  '/_app/content': typeof AppContentRoute
+  '/_app/crm': typeof AppCrmRoute
+  '/_app/dashboards': typeof AppDashboardsRoute
+  '/_app/front-desk': typeof AppFrontDeskRoute
+  '/_app/patients': typeof AppPatientsRoute
+  '/_app/programs': typeof AppProgramsRoute
+  '/_app/reports': typeof AppReportsRoute
+  '/_app/settings': typeof AppSettingsRoute
+  '/_app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/billing'
+    | '/calendar'
+    | '/catalog'
+    | '/clinical'
+    | '/content'
+    | '/crm'
+    | '/dashboards'
+    | '/front-desk'
+    | '/patients'
+    | '/programs'
+    | '/reports'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/login'
+    | '/billing'
+    | '/calendar'
+    | '/catalog'
+    | '/clinical'
+    | '/content'
+    | '/crm'
+    | '/dashboards'
+    | '/front-desk'
+    | '/patients'
+    | '/programs'
+    | '/reports'
+    | '/settings'
+    | '/'
+  id:
+    | '__root__'
+    | '/_app'
+    | '/login'
+    | '/_app/billing'
+    | '/_app/calendar'
+    | '/_app/catalog'
+    | '/_app/clinical'
+    | '/_app/content'
+    | '/_app/crm'
+    | '/_app/dashboards'
+    | '/_app/front-desk'
+    | '/_app/patients'
+    | '/_app/programs'
+    | '/_app/reports'
+    | '/_app/settings'
+    | '/_app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app/': {
+      id: '/_app/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/billing': {
+      id: '/_app/billing'
+      path: '/billing'
+      fullPath: '/billing'
+      preLoaderRoute: typeof AppBillingRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/calendar': {
+      id: '/_app/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof AppCalendarRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/catalog': {
+      id: '/_app/catalog'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof AppCatalogRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/clinical': {
+      id: '/_app/clinical'
+      path: '/clinical'
+      fullPath: '/clinical'
+      preLoaderRoute: typeof AppClinicalRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/content': {
+      id: '/_app/content'
+      path: '/content'
+      fullPath: '/content'
+      preLoaderRoute: typeof AppContentRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/crm': {
+      id: '/_app/crm'
+      path: '/crm'
+      fullPath: '/crm'
+      preLoaderRoute: typeof AppCrmRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboards': {
+      id: '/_app/dashboards'
+      path: '/dashboards'
+      fullPath: '/dashboards'
+      preLoaderRoute: typeof AppDashboardsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/front-desk': {
+      id: '/_app/front-desk'
+      path: '/front-desk'
+      fullPath: '/front-desk'
+      preLoaderRoute: typeof AppFrontDeskRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/patients': {
+      id: '/_app/patients'
+      path: '/patients'
+      fullPath: '/patients'
+      preLoaderRoute: typeof AppPatientsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/programs': {
+      id: '/_app/programs'
+      path: '/programs'
+      fullPath: '/programs'
+      preLoaderRoute: typeof AppProgramsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/reports': {
+      id: '/_app/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
     }
   }
 }
 
+interface AppRouteChildren {
+  AppBillingRoute: typeof AppBillingRoute
+  AppCalendarRoute: typeof AppCalendarRoute
+  AppCatalogRoute: typeof AppCatalogRoute
+  AppClinicalRoute: typeof AppClinicalRoute
+  AppContentRoute: typeof AppContentRoute
+  AppCrmRoute: typeof AppCrmRoute
+  AppDashboardsRoute: typeof AppDashboardsRoute
+  AppFrontDeskRoute: typeof AppFrontDeskRoute
+  AppPatientsRoute: typeof AppPatientsRoute
+  AppProgramsRoute: typeof AppProgramsRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppBillingRoute: AppBillingRoute,
+  AppCalendarRoute: AppCalendarRoute,
+  AppCatalogRoute: AppCatalogRoute,
+  AppClinicalRoute: AppClinicalRoute,
+  AppContentRoute: AppContentRoute,
+  AppCrmRoute: AppCrmRoute,
+  AppDashboardsRoute: AppDashboardsRoute,
+  AppFrontDeskRoute: AppFrontDeskRoute,
+  AppPatientsRoute: AppPatientsRoute,
+  AppProgramsRoute: AppProgramsRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

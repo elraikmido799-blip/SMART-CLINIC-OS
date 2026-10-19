@@ -1,6 +1,9 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
+import type { RouterContext } from '@/app/router';
+import { NotFoundState } from '@/components/states/states';
 
-// الـLayout العام (Sidebar + Top bar) هيتحط هنا لما نبدأ خطة الداشبورد
-export const Route = createRootRoute({
-  component: () => <Outlet />,
+// الأساس: صفحة الدخول بره، وكل الباقي جوه _app (الـGuard + الـLayout)
+export const Route = createRootRouteWithContext<RouterContext>()({
+  component: Outlet,
+  notFoundComponent: NotFoundState,
 });

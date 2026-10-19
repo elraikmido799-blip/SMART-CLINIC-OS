@@ -1,0 +1,66 @@
+{
+  "app": {
+    "name": "Oxygen للموظفين",
+    "logoAlt": "Oxygen"
+  },
+  "actions": {
+    "retry": "جرّب تاني",
+    "back": "رجوع",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "close": "قفل",
+    "goHome": "ارجع للرئيسية"
+  },
+  "states": {
+    "loading": "بنحمّل…",
+    "emptyTitle": "مفيش حاجة هنا لسه",
+    "errorTitle": "حصلت مشكلة",
+    "errorBody": "مقدرناش نجيب البيانات. جرّب تاني بعد شوية.",
+    "networkBody": "مفيش اتصال بالإنترنت. اتأكد من النت وجرّب تاني.",
+    "forbiddenTitle": "الصفحة دي مش ضمن صلاحياتك",
+    "forbiddenBody": "لو محتاجها في شغلك، كلّم مدير الفرع.",
+    "notFoundTitle": "الصفحة دي مش موجودة",
+    "notFoundBody": "ممكن اللينك يكون غلط أو الصفحة اتنقلت.",
+    "comingSoonTitle": "الشاشة دي لسه بتتبني",
+    "comingSoonBody": "مكانها في الخطوة {{step}} من خطة الداشبورد."
+  },
+  "roles": {
+    "reception": "الاستقبال",
+    "doctor": "طبيب",
+    "nutritionist": "أخصائي تغذية",
+    "physiotherapist": "أخصائي علاج طبيعي",
+    "assistant": "مساعد",
+    "crm_agent": "خدمة العملاء (CRM)",
+    "marketing": "التسويق",
+    "finance": "الحسابات",
+    "branch_manager": "مدير فرع",
+    "operations_manager": "مدير العمليات",
+    "ceo": "المدير التنفيذي",
+    "admin": "مدير النظام"
+  },
+  "specialties": {
+    "nutrition": "التغذية",
+    "physio": "العلاج الطبيعي",
+    "derm": "الجلدية",
+    "internal": "الباطنة"
+  },
+  "branches": {
+    "label": "الفرع",
+    "all": "كل الفروع"
+  },
+  "header": {
+    "search": "ابحث عن مريض بالاسم أو الموبايل أو رقم الملف",
+    "notifications": "الإشعارات",
+    "noNotifications": "مفيش إشعارات جديدة",
+    "openMenu": "افتح القايمة",
+    "account": "حسابك",
+    "switchLanguage": "English",
+    "logout": "خروج"
+  },
+  "session": {
+    "expired": "الجلسة خلصت. ادخل تاني وهترجع لنفس الصفحة."
+  },
+  "home": {
+    "greeting": "أهلًا، {{name}}"
+  }
+}

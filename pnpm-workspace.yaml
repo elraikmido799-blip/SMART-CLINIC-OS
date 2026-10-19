@@ -14,6 +14,8 @@ catalog:
   '@reduxjs/toolkit': ^2.13.0
   react-redux: ^9.3.0
   dayjs: ^1.11.23
+  zod: ^4.6.5
+  lucide-react: ^1.52.0
 
 # الـPackages دي بتنزل بنسخ جاهزة (Prebuilt) للويندوز، فمش محتاجين نشغّل الـBuild scripts بتاعتها
 allowBuilds:

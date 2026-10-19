@@ -1,0 +1,35 @@
+/* الستايل العام القليل اللي antd مش بيغطيه. الألوان من الثيم (theme.ts) جوه الـComponents */
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #faf7f0; /* tokens.color.background — قبل ما antd يحمّل */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* الأيقونات اللي ليها اتجاه (أسهم وشيفرون) بتتقلب في العربي */
+[dir='rtl'] .flip-rtl {
+  transform: scaleX(-1);
+}
+
+/* الكيبورد: الـFocus باين على أي حاجة بتتداس */
+:focus-visible {
+  outline: 3px solid rgba(10, 118, 114, 0.45);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

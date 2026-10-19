@@ -1,0 +1,46 @@
+/* النقط بتتجمع وتعمل حلقة الـO (لغة اللوجو — DEC-41: النقط في التحميل والحالات الفاضية بس) */
+
+.ring {
+  position: relative;
+  width: 56px;
+  height: 56px;
+}
+
+.dot {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px;
+  border-radius: 50%;
+  opacity: 0.2;
+  transform: rotate(var(--angle)) translate(30px) scale(0.6);
+  animation: gather 1.4s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes gather {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: rotate(var(--angle)) translate(30px) scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(var(--angle)) translate(22px) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+    opacity: 0.9;
+    transform: rotate(var(--angle)) translate(22px);
+  }
+}
+
+/* الحالة الفاضية: نقط متفرقة ثابتة */
+.scatter {
+  display: block;
+}
