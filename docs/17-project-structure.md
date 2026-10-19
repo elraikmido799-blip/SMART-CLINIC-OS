@@ -238,6 +238,8 @@ apps/dashboard/
 │   │   ├── patients/            المرضى: types (المصادر) · patients.api (الملف · التسجيل) · overview.ts (شكل الـ360) · tabs.ts (11 تاب بصلاحياتها) · recent.ts (آخر 5 اتفتحوا) · components/ (register-patient-drawer · patients-page · patient-page · overview-tab · weight-chart)
 │   │   ├── doctor-day/              يوم الدكتور (الرئيسية بتاعة الدكتور والأخصائي): doctor-day.api (مستني منك) · components/ (doctor-day-page · next-patient-card · pending-card)
 │   │   ├── encounters/          الكشف: types (Template + الكشف) · encounters.api · use-start-encounter · errors · components/ (encounter-page · form-renderer = Template ← antd Form · patient-sidebar · encounters-tab)
+│   │   ├── care-plans/          خطة العلاج الطبيعي: types · care-plans.api · components/plan-panel (أهداف · جلسات · تمارين من المكتبة، حفظ تلقائي)
+│   │   ├── exercises/           مكتبة التمارين: types · exercises.api
 │   │   ├── billing/             التحصيل والتقفيل (3.6 · 3.7): types · totals (الحساب) · billing.api · closing.api · components/ (pos-page · invoice-view · closing-page)
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)
 │   ├── components/              Components مشتركة بين الـfeatures
@@ -245,7 +247,7 @@ apps/dashboard/
 │   │   ├── states/              Loading (النقط) · Empty · Error · Forbidden · NotFound
 │   │   └── page-header · tags (StatusTag · SpecialtyTag) · specialty-icon · danger-button · stat-card · money · person-avatar · coming-soon
 │   ├── locales/
-│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing · doctorDay · encounters
+│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing · doctorDay · encounters · carePlans · exercises
 │   ├── lib/
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── api-error.ts         كود الخطأ من رد الـAPI

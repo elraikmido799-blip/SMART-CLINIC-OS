@@ -1,0 +1,43 @@
+{
+  "title": "Plan",
+  "readOnly": "The plan is read-only here.",
+  "goals": {
+    "title": "Treatment goals",
+    "none": "No goals yet",
+    "placeholder": "Add a goal",
+    "add": "Add",
+    "remove": "Remove goal: {{text}}"
+  },
+  "sessions": {
+    "title": "Sessions",
+    "perWeek": "Sessions per week",
+    "total": "Total sessions"
+  },
+  "exercises": {
+    "title": "Home exercise program",
+    "empty": "No exercises yet",
+    "add": "Add from library",
+    "sets": "Sets",
+    "reps": "Reps",
+    "remove": "Remove exercise: {{name}}",
+    "inactive": "(no longer in the library)"
+  },
+  "library": {
+    "title": "Exercise library",
+    "search": "Search exercises",
+    "region": "Body region",
+    "none": "No exercises match",
+    "add": "Add",
+    "added": "Added"
+  },
+  "status": {
+    "saving": "Saving…",
+    "saved": "Plan saved at {{time}}",
+    "dirty": "Unsaved changes",
+    "error": "Couldn't save. Your changes are still here."
+  },
+  "tab": {
+    "empty": "No plan yet",
+    "hint": "Edit the plan from the encounter screen."
+  }
+}

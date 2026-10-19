@@ -1,4 +1,6 @@
 import type { CashClosing, Invoice } from '@/features/billing/types';
+import type { CarePlan } from '@/features/care-plans/types';
+import type { Exercise } from '@/features/exercises/types';
 import type { StoredEncounter } from './encounters';
 import type { StoredAppointment, StoredPatient, StoredPayment, StoredTimeBlock } from './clinic';
 
@@ -28,6 +30,8 @@ export type MockDb = {
   invoices: Invoice[];
   cash_closings: CashClosing[];
   encounters: StoredEncounter[];
+  exercises: Exercise[];
+  care_plans: CarePlan[];
   // الأيام اللي مواعيدها اتولدت: "branch-id|2026-10-19"
   generated_days: string[];
 };
@@ -47,6 +51,8 @@ const empty = (): MockDb => ({
   invoices: [],
   cash_closings: [],
   encounters: [],
+  exercises: [],
+  care_plans: [],
   generated_days: [],
 });
 

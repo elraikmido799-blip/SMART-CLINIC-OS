@@ -1,0 +1,11 @@
+{
+  "regions": {
+    "knee": "Knee",
+    "back": "Back",
+    "neck": "Neck",
+    "shoulder": "Shoulder",
+    "hip": "Hip",
+    "ankle": "Ankle",
+    "core": "Core"
+  }
+}

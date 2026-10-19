@@ -18,6 +18,7 @@ import {
 import { encounterErrorKey } from '../errors';
 import type { Encounter, EncounterData } from '../types';
 import { FormRenderer } from './form-renderer';
+import { PlanPanel } from '@/features/care-plans/components/plan-panel';
 import { PatientSidebar } from './patient-sidebar';
 
 // المسودة بتتحفظ بعد ما الدكتور يبطّل كتابة بالمدة دي
@@ -38,6 +39,7 @@ function EncounterEditor({ encounter }: { encounter: Encounter }) {
   const [savedAt, setSavedAt] = useState(encounter.updated_at);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const signed = encounter.status === 'signed';
+  const canEditPlan = useCan('physio.write', 'medical.write');
   const rtl = directionOf(locale) === 'rtl';
   const Back = rtl ? ArrowRight : ArrowLeft;
 
@@ -158,12 +160,16 @@ function EncounterEditor({ encounter }: { encounter: Encounter }) {
           </Card>
         </Col>
         <Col xs={24} xl={6}>
-          <Card title={t('plan.title')}>
-            <Flex vertical align="center" gap={8} style={{ textAlign: 'center', padding: 16 }}>
-              <ClipboardList size={28} color={tokens.color.mutedText} aria-hidden />
-              <Typography.Text type="secondary">{t('plan.body')}</Typography.Text>
-            </Flex>
-          </Card>
+          {encounter.specialty === 'physio' ? (
+            <PlanPanel patientId={encounter.patient.id} readOnly={signed || !canEditPlan} />
+          ) : (
+            <Card title={t('plan.title')}>
+              <Flex vertical align="center" gap={8} style={{ textAlign: 'center', padding: 16 }}>
+                <ClipboardList size={28} color={tokens.color.mutedText} aria-hidden />
+                <Typography.Text type="secondary">{t('plan.body')}</Typography.Text>
+              </Flex>
+            </Card>
+          )}
         </Col>
       </Row>
       <div
