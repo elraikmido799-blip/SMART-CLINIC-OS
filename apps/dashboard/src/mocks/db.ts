@@ -1,3 +1,4 @@
+import type { Invoice } from '@/features/billing/types';
 import type { StoredAppointment, StoredPatient, StoredPayment, StoredTimeBlock } from './clinic';
 
 /**
@@ -23,6 +24,7 @@ export type MockDb = {
   appointments: StoredAppointment[];
   payments: StoredPayment[];
   time_blocks: StoredTimeBlock[];
+  invoices: Invoice[];
   // الأيام اللي مواعيدها اتولدت: "branch-id|2026-10-19"
   generated_days: string[];
 };
@@ -39,6 +41,7 @@ const empty = (): MockDb => ({
   appointments: [],
   payments: [],
   time_blocks: [],
+  invoices: [],
   generated_days: [],
 });
 

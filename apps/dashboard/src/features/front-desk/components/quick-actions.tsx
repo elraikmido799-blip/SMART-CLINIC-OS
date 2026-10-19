@@ -12,7 +12,7 @@ import { clinicToday } from '@/lib/clinic-time';
 type Props = { branchId: string; practitioners: Practitioner[] };
 
 /**
- * الإجراءات السريعة (D-02): مريض جديد (3.3) · حجز جديد (3.2) · تحصيل (لحد 3.6 بيودّي للاستقبال).
+ * الإجراءات السريعة (D-02): مريض جديد (3.3) · حجز جديد (3.2) · تحصيل (3.6).
  * بعد تسجيل مريض: "احجز له ميعاد" بيفتح الحجز والمريض متختار.
  */
 export function QuickActions({ branchId, practitioners }: Props) {
@@ -49,8 +49,7 @@ export function QuickActions({ branchId, practitioners }: Props) {
         <Button
           size="large"
           icon={<CreditCard size={18} aria-hidden />}
-          // التحصيل بيتبني في 20 · 3.6
-          onClick={() => navigate({ to: '/front-desk' })}
+          onClick={() => navigate({ to: '/front-desk/pos' })}
           style={{ justifyContent: 'flex-start' }}
         >
           {t('quick.collect')}

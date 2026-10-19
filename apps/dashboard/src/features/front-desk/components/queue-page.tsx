@@ -19,6 +19,7 @@ import { useClinicClock } from '@/features/appointments/use-clinic-clock';
 import { useCan } from '@/features/auth/use-me';
 import { useBranchScope } from '@/features/branches/use-branch-scope';
 import { ALL_BRANCHES } from '@/store/ui-slice';
+import { FrontDeskTabs } from './front-desk-tabs';
 import { QueueBoard } from './queue-board';
 
 const POLL = { pollingInterval: 30_000, skipPollingIfUnfocused: true };
@@ -84,6 +85,7 @@ export function QueuePage() {
           ) : undefined
         }
       />
+      <FrontDeskTabs />
       {!scoped ? (
         <Card>
           <EmptyState title={t('pickBranch.title')} description={t('pickBranch.body')} />

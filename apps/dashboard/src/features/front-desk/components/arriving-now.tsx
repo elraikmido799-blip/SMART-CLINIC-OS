@@ -85,11 +85,12 @@ export function ArrivingNow({ appointments, practitioners }: Props) {
                       })}
                     </StatusTag>
                     {canCollect && (
-                      // التحصيل بيتبني في 20 · 3.6
                       <Button
                         type="link"
                         size="small"
-                        onClick={() => navigate({ to: '/front-desk' })}
+                        onClick={() =>
+                          navigate({ to: '/front-desk/pos', search: { patient: item.patient.id } })
+                        }
                       >
                         {t('arriving.collect')}
                       </Button>

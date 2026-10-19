@@ -24,6 +24,22 @@ body {
   outline-offset: 2px;
 }
 
+/* الطباعة (الفاتورة): الصفحة كلها بتستخبى ما عدا .print-area */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    inset: 0;
+    padding: 24px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

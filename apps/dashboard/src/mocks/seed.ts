@@ -336,5 +336,15 @@ export const STAFF: MockStaff[] = [
   },
 ];
 
+// حد الخصم اليدوي لكل دور (06 · خصم يدوي): X وY هنا 10% و20% لحد ما Oxygen يحددوهم
+export const MAX_DISCOUNT: Partial<Record<Role, number>> = {
+  reception: 10,
+  crm_agent: 10,
+  branch_manager: 20,
+  operations_manager: 20,
+  finance: 100,
+  ceo: 100,
+};
+
 // الإيميل ده بيرجّع "الحساب مقفول" عشان نجرّب الحالة دي
 export const LOCKED_EMAIL = 'locked@oxygen.demo';

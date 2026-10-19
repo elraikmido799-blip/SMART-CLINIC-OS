@@ -13,6 +13,7 @@ import type {
   TimeBlockReason,
 } from '@/features/appointments/types';
 import type { FrontDeskSummary } from '@/features/front-desk/front-desk.api';
+import type { PaymentMethod } from '@/features/billing/types';
 import type { RegisterPatientBody } from '@/features/patients/types';
 import { clinicIso, clinicMinutes, clinicNowMinutes, clinicToday } from '@/lib/clinic-time';
 import { currentStaff, toMe } from './auth';
@@ -378,6 +379,7 @@ export type StoredAppointment = {
   status: AppointmentStatus;
   checked_in_at: string | null;
   notes?: string | null;
+  invoice_id?: string | null;
 };
 
 export type StoredPayment = {
@@ -387,7 +389,8 @@ export type StoredPayment = {
   patient_id: string;
   appointment_id: string | null;
   amount: number;
-  method: 'cash' | 'card' | 'wallet';
+  method: PaymentMethod;
+  invoice_id?: string;
 };
 
 export type StoredTimeBlock = {
@@ -476,6 +479,8 @@ function ensureDay(branchId: string, date: string) {
             status,
             checked_in_at: arrived ? clinicIso(date, start - 5 - Math.floor(random() * 10)) : null,
             notes: null,
+            // اللي خلص في الداتا المتولدة اتحصّل خلاص
+            invoice_id: status === 'completed' ? `inv-gen-${id}` : null,
           });
           if (status === 'completed') {
             db.payments.push({
@@ -527,6 +532,7 @@ function toAppointment(db: MockDb, item: StoredAppointment): Appointment {
     status: item.status,
     checked_in_at: item.checked_in_at,
     notes: item.notes ?? null,
+    invoice_id: item.invoice_id ?? null,
   };
 }
 

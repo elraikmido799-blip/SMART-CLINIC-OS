@@ -71,6 +71,8 @@ export const appointmentSchema = z.object({
   status: z.enum(APPOINTMENT_STATUSES),
   checked_in_at: z.string().nullable(),
   notes: z.string().nullable(),
+  // الفاتورة اللي اتحصّل بيها الميعاد (null = لسه)
+  invoice_id: z.string().nullable(),
 });
 
 export type Appointment = z.infer<typeof appointmentSchema>;

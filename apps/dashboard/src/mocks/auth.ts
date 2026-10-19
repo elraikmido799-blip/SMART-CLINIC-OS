@@ -5,6 +5,7 @@ import {
   LOCKED_EMAIL,
   MOCK_2FA_CODE,
   MOCK_PASSWORD,
+  MAX_DISCOUNT,
   ROLE_TEMPLATES,
   STAFF,
   type MockStaff,
@@ -15,6 +16,7 @@ const RESEND_AFTER_SECONDS = 45;
 export const toMe = (staff: MockStaff): StaffMe => ({
   ...staff,
   permissions: ROLE_TEMPLATES[staff.role],
+  max_discount_percent: MAX_DISCOUNT[staff.role] ?? 0,
 });
 
 export function currentStaff(): MockStaff {

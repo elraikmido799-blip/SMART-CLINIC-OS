@@ -228,7 +228,7 @@ apps/dashboard/
 │   │   ├── __root.tsx           الأساس + صفحة 404
 │   │   ├── login.tsx            الدخول (D-01)
 │   │   ├── _app.tsx             الـGuard + الـLayout لكل الصفحات اللي محتاجة دخول (من غير URL)
-│   │   └── _app/                index.tsx (الرئيسية حسب الدور) + صفحة لكل قسم · patients.index.tsx (البحث) · patients.$patientId.tsx (ملف المريض)
+│   │   └── _app/                index.tsx (الرئيسية حسب الدور) + صفحة لكل قسم · patients.index.tsx (البحث) · patients.$patientId.tsx (ملف المريض) · front-desk.{index,pos,closing}.tsx (الطابور · التحصيل · التقفيل)
 │   ├── routeTree.gen.ts         بيتولد لوحده من فولدر routes (متعدّلوش)
 │   ├── features/                كل جزء في فولدر: الـapi والـtypes والـcomponents بتاعته
 │   │   ├── auth/                الدخول والصلاحيات: permissions.ts · types.ts · auth.api.ts · use-me.ts · components/
@@ -236,13 +236,14 @@ apps/dashboard/
 │   │   ├── appointments/        المواعيد والدكاترة والأوض والوقت المقفول: types · appointments.api · status (لون كل حالة) · grid (مقاسات الكالندر) · errors · use-check-in · use-clinic-clock · components/ (time-grid · appointment-block · appointment-drawer · appointment-panel · booking-modal · cancel-modal)
 │   │   ├── calendar/            الكالندر (3.2): search.ts (الحالة في الـURL) · components/ (calendar-page · block-time-modal)
 │   │   ├── patients/            المرضى: types (المصادر) · patients.api (الملف · التسجيل) · recent.ts (آخر 5 اتفتحوا) · components/ (register-patient-drawer · patients-page · patient-page)
-│   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page)
+│   │   ├── billing/             التحصيل (3.6): types · totals (الحساب) · billing.api · components/ (pos-page · invoice-view)
+│   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)
 │   ├── components/              Components مشتركة بين الـfeatures
 │   │   ├── layout/              app-layout · app-header · nav-menu · nav-items (الأقسام وصلاحياتها) · branch-select · patient-search · user-menu
 │   │   ├── states/              Loading (النقط) · Empty · Error · Forbidden · NotFound
 │   │   └── page-header · tags (StatusTag · SpecialtyTag) · specialty-icon · danger-button · stat-card · money · person-avatar · coming-soon
 │   ├── locales/
-│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients
+│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing
 │   ├── lib/
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── api-error.ts         كود الخطأ من رد الـAPI

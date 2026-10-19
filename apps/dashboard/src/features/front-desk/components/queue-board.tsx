@@ -1,4 +1,5 @@
 import { Badge, Button, Flex, Typography } from 'antd';
+import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { formatMoney, formatSlot, localized } from '@oxygen/shared';
 import { tokens } from '@oxygen/config';
@@ -38,6 +39,8 @@ export function QueueBoard({ appointments, practitioners, nowMinutes, onSelect, 
   const locale = useLocale();
   const canCheckIn = useCan('checkin.write');
   const canBook = useCan('appointments.write');
+  const canCollect = useCan('billing.collect');
+  const navigate = useNavigate();
   const { checkIn, start, complete, noShow, pendingId } = useVisitActions();
 
   const byStatus = (status: QueueStatus) =>
@@ -89,11 +92,33 @@ export function QueueBoard({ appointments, practitioners, nowMinutes, onSelect, 
           </Button>
         ) : null;
       case 'completed':
-        return canBook ? (
-          <Button size="small" onClick={() => onRebook(item)}>
-            {t('queue.followUp')}
-          </Button>
-        ) : null;
+        return (
+          <>
+            {/* الميعاد لسه متحصّلش: الفاتورة جاهزة بالمريض والخدمة (3.6) */}
+            {canCollect && !item.invoice_id && (
+              <Button
+                size="small"
+                onClick={() =>
+                  navigate({
+                    to: '/front-desk/pos',
+                    search: {
+                      patient: item.patient.id,
+                      appointment: item.id,
+                      service: item.service.id,
+                    },
+                  })
+                }
+              >
+                {t('quick.collect')}
+              </Button>
+            )}
+            {canBook && (
+              <Button size="small" onClick={() => onRebook(item)}>
+                {t('queue.followUp')}
+              </Button>
+            )}
+          </>
+        );
       case 'no_show':
         return canBook ? (
           <Button size="small" onClick={() => onRebook(item)}>

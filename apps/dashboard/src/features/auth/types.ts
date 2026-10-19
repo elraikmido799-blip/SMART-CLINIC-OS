@@ -15,6 +15,8 @@ export const staffMeSchema = z.object({
   all_branches: z.boolean(),
   // الدكاترة والأخصائيين بس
   specialty: z.custom<Specialty>(isSpecialty).nullable(),
+  // أقصى خصم يدوي بالنسبة المئوية (06: "خصم يدوي ⚠️ لحد X%") — 0 = مفيش خصم
+  max_discount_percent: z.number(),
 });
 
 export type StaffMe = z.infer<typeof staffMeSchema>;
