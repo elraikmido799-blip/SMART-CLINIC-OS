@@ -18,7 +18,6 @@ import { Route as AppCatalogRouteImport } from './routes/_app/catalog'
 import { Route as AppContentRouteImport } from './routes/_app/content'
 import { Route as AppCrmRouteImport } from './routes/_app/crm'
 import { Route as AppDashboardsRouteImport } from './routes/_app/dashboards'
-import { Route as AppProgramsRouteImport } from './routes/_app/programs'
 import { Route as AppReportsRouteImport } from './routes/_app/reports'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 import { Route as AppClinicalIndexRouteImport } from './routes/_app/clinical.index'
@@ -29,8 +28,11 @@ import { Route as AppFrontDeskClosingRouteImport } from './routes/_app/front-des
 import { Route as AppFrontDeskPosRouteImport } from './routes/_app/front-desk.pos'
 import { Route as AppPatientsIndexRouteImport } from './routes/_app/patients.index'
 import { Route as AppPatientsPatientIdRouteImport } from './routes/_app/patients.$patientId'
+import { Route as AppProgramsIndexRouteImport } from './routes/_app/programs.index'
 import { Route as AppClinicalFormsIndexRouteImport } from './routes/_app/clinical.forms.index'
 import { Route as AppClinicalFormsCodeRouteImport } from './routes/_app/clinical.forms.$code'
+import { Route as AppProgramsBuilderIndexRouteImport } from './routes/_app/programs.builder.index'
+import { Route as AppProgramsBuilderIdRouteImport } from './routes/_app/programs.builder.$id'
 
 const AppRoute = AppRouteImport.update({
   id: '/_app',
@@ -74,11 +76,6 @@ const AppCrmRoute = AppCrmRouteImport.update({
 const AppDashboardsRoute = AppDashboardsRouteImport.update({
   id: '/dashboards',
   path: '/dashboards',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppProgramsRoute = AppProgramsRouteImport.update({
-  id: '/programs',
-  path: '/programs',
   getParentRoute: () => AppRoute,
 } as any)
 const AppReportsRoute = AppReportsRouteImport.update({
@@ -132,6 +129,11 @@ const AppPatientsPatientIdRoute = AppPatientsPatientIdRouteImport.update({
   path: '/patients/$patientId',
   getParentRoute: () => AppRoute,
 } as any)
+const AppProgramsIndexRoute = AppProgramsIndexRouteImport.update({
+  id: '/programs/',
+  path: '/programs/',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppClinicalFormsIndexRoute = AppClinicalFormsIndexRouteImport.update({
   id: '/clinical/forms/',
   path: '/clinical/forms/',
@@ -140,6 +142,16 @@ const AppClinicalFormsIndexRoute = AppClinicalFormsIndexRouteImport.update({
 const AppClinicalFormsCodeRoute = AppClinicalFormsCodeRouteImport.update({
   id: '/clinical/forms/$code',
   path: '/clinical/forms/$code',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProgramsBuilderIndexRoute = AppProgramsBuilderIndexRouteImport.update({
+  id: '/programs/builder/',
+  path: '/programs/builder/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProgramsBuilderIdRoute = AppProgramsBuilderIdRouteImport.update({
+  id: '/programs/builder/$id',
+  path: '/programs/builder/$id',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -152,7 +164,6 @@ export interface FileRoutesByFullPath {
   '/content': typeof AppContentRoute
   '/crm': typeof AppCrmRoute
   '/dashboards': typeof AppDashboardsRoute
-  '/programs': typeof AppProgramsRoute
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
   '/clinical/exercises': typeof AppClinicalExercisesRoute
@@ -163,8 +174,11 @@ export interface FileRoutesByFullPath {
   '/clinical/': typeof AppClinicalIndexRoute
   '/front-desk/': typeof AppFrontDeskIndexRoute
   '/patients/': typeof AppPatientsIndexRoute
+  '/programs/': typeof AppProgramsIndexRoute
   '/clinical/forms/$code': typeof AppClinicalFormsCodeRoute
+  '/programs/builder/$id': typeof AppProgramsBuilderIdRoute
   '/clinical/forms/': typeof AppClinicalFormsIndexRoute
+  '/programs/builder/': typeof AppProgramsBuilderIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -174,7 +188,6 @@ export interface FileRoutesByTo {
   '/content': typeof AppContentRoute
   '/crm': typeof AppCrmRoute
   '/dashboards': typeof AppDashboardsRoute
-  '/programs': typeof AppProgramsRoute
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
   '/': typeof AppIndexRoute
@@ -186,8 +199,11 @@ export interface FileRoutesByTo {
   '/clinical': typeof AppClinicalIndexRoute
   '/front-desk': typeof AppFrontDeskIndexRoute
   '/patients': typeof AppPatientsIndexRoute
+  '/programs': typeof AppProgramsIndexRoute
   '/clinical/forms/$code': typeof AppClinicalFormsCodeRoute
+  '/programs/builder/$id': typeof AppProgramsBuilderIdRoute
   '/clinical/forms': typeof AppClinicalFormsIndexRoute
+  '/programs/builder': typeof AppProgramsBuilderIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -199,7 +215,6 @@ export interface FileRoutesById {
   '/_app/content': typeof AppContentRoute
   '/_app/crm': typeof AppCrmRoute
   '/_app/dashboards': typeof AppDashboardsRoute
-  '/_app/programs': typeof AppProgramsRoute
   '/_app/reports': typeof AppReportsRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/': typeof AppIndexRoute
@@ -211,8 +226,11 @@ export interface FileRoutesById {
   '/_app/clinical/': typeof AppClinicalIndexRoute
   '/_app/front-desk/': typeof AppFrontDeskIndexRoute
   '/_app/patients/': typeof AppPatientsIndexRoute
+  '/_app/programs/': typeof AppProgramsIndexRoute
   '/_app/clinical/forms/$code': typeof AppClinicalFormsCodeRoute
+  '/_app/programs/builder/$id': typeof AppProgramsBuilderIdRoute
   '/_app/clinical/forms/': typeof AppClinicalFormsIndexRoute
+  '/_app/programs/builder/': typeof AppProgramsBuilderIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -225,7 +243,6 @@ export interface FileRouteTypes {
     | '/content'
     | '/crm'
     | '/dashboards'
-    | '/programs'
     | '/reports'
     | '/settings'
     | '/clinical/exercises'
@@ -236,8 +253,11 @@ export interface FileRouteTypes {
     | '/clinical/'
     | '/front-desk/'
     | '/patients/'
+    | '/programs/'
     | '/clinical/forms/$code'
+    | '/programs/builder/$id'
     | '/clinical/forms/'
+    | '/programs/builder/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -247,7 +267,6 @@ export interface FileRouteTypes {
     | '/content'
     | '/crm'
     | '/dashboards'
-    | '/programs'
     | '/reports'
     | '/settings'
     | '/'
@@ -259,8 +278,11 @@ export interface FileRouteTypes {
     | '/clinical'
     | '/front-desk'
     | '/patients'
+    | '/programs'
     | '/clinical/forms/$code'
+    | '/programs/builder/$id'
     | '/clinical/forms'
+    | '/programs/builder'
   id:
     | '__root__'
     | '/_app'
@@ -271,7 +293,6 @@ export interface FileRouteTypes {
     | '/_app/content'
     | '/_app/crm'
     | '/_app/dashboards'
-    | '/_app/programs'
     | '/_app/reports'
     | '/_app/settings'
     | '/_app/'
@@ -283,8 +304,11 @@ export interface FileRouteTypes {
     | '/_app/clinical/'
     | '/_app/front-desk/'
     | '/_app/patients/'
+    | '/_app/programs/'
     | '/_app/clinical/forms/$code'
+    | '/_app/programs/builder/$id'
     | '/_app/clinical/forms/'
+    | '/_app/programs/builder/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -357,13 +381,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardsRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/programs': {
-      id: '/_app/programs'
-      path: '/programs'
-      fullPath: '/programs'
-      preLoaderRoute: typeof AppProgramsRouteImport
-      parentRoute: typeof AppRoute
-    }
     '/_app/reports': {
       id: '/_app/reports'
       path: '/reports'
@@ -434,6 +451,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppPatientsPatientIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/programs/': {
+      id: '/_app/programs/'
+      path: '/programs'
+      fullPath: '/programs/'
+      preLoaderRoute: typeof AppProgramsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/clinical/forms/': {
       id: '/_app/clinical/forms/'
       path: '/clinical/forms'
@@ -448,6 +472,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppClinicalFormsCodeRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/programs/builder/': {
+      id: '/_app/programs/builder/'
+      path: '/programs/builder'
+      fullPath: '/programs/builder/'
+      preLoaderRoute: typeof AppProgramsBuilderIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/programs/builder/$id': {
+      id: '/_app/programs/builder/$id'
+      path: '/programs/builder/$id'
+      fullPath: '/programs/builder/$id'
+      preLoaderRoute: typeof AppProgramsBuilderIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -458,7 +496,6 @@ interface AppRouteChildren {
   AppContentRoute: typeof AppContentRoute
   AppCrmRoute: typeof AppCrmRoute
   AppDashboardsRoute: typeof AppDashboardsRoute
-  AppProgramsRoute: typeof AppProgramsRoute
   AppReportsRoute: typeof AppReportsRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
@@ -470,8 +507,11 @@ interface AppRouteChildren {
   AppClinicalIndexRoute: typeof AppClinicalIndexRoute
   AppFrontDeskIndexRoute: typeof AppFrontDeskIndexRoute
   AppPatientsIndexRoute: typeof AppPatientsIndexRoute
+  AppProgramsIndexRoute: typeof AppProgramsIndexRoute
   AppClinicalFormsCodeRoute: typeof AppClinicalFormsCodeRoute
+  AppProgramsBuilderIdRoute: typeof AppProgramsBuilderIdRoute
   AppClinicalFormsIndexRoute: typeof AppClinicalFormsIndexRoute
+  AppProgramsBuilderIndexRoute: typeof AppProgramsBuilderIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -481,7 +521,6 @@ const AppRouteChildren: AppRouteChildren = {
   AppContentRoute: AppContentRoute,
   AppCrmRoute: AppCrmRoute,
   AppDashboardsRoute: AppDashboardsRoute,
-  AppProgramsRoute: AppProgramsRoute,
   AppReportsRoute: AppReportsRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
@@ -493,8 +532,11 @@ const AppRouteChildren: AppRouteChildren = {
   AppClinicalIndexRoute: AppClinicalIndexRoute,
   AppFrontDeskIndexRoute: AppFrontDeskIndexRoute,
   AppPatientsIndexRoute: AppPatientsIndexRoute,
+  AppProgramsIndexRoute: AppProgramsIndexRoute,
   AppClinicalFormsCodeRoute: AppClinicalFormsCodeRoute,
+  AppProgramsBuilderIdRoute: AppProgramsBuilderIdRoute,
   AppClinicalFormsIndexRoute: AppClinicalFormsIndexRoute,
+  AppProgramsBuilderIndexRoute: AppProgramsBuilderIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

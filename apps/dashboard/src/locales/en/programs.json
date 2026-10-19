@@ -1,0 +1,71 @@
+{
+  "statuses": {
+    "draft": "Draft",
+    "active": "Active",
+    "archived": "Archived"
+  },
+  "soon": {
+    "title": "Patients by stage",
+    "body": "The program board comes in step 5.2."
+  },
+  "manage": {
+    "title": "Programs",
+    "description": "Build the journeys patients move through, like Secret Seven",
+    "new": "New program",
+    "empty": "No programs yet",
+    "program": "Program",
+    "stages": "Stages",
+    "enrolled": "Enrolled",
+    "status": "Status",
+    "actions": "Actions",
+    "edit": "Edit",
+    "view": "View"
+  },
+  "builder": {
+    "newTitle": "New program",
+    "description": "Stages in order. Patients move through them one by one.",
+    "back": "Back to programs",
+    "save": "Save program",
+    "saved": "Program saved",
+    "details": "Program details",
+    "nameAr": "Name (Arabic)",
+    "nameEn": "Name (English)",
+    "code": "Code",
+    "codeHelp": "Lowercase letters, digits and _. Cannot be changed later.",
+    "status": "Status",
+    "journey": "The journey",
+    "noStages": "Add the first stage",
+    "unnamed": "(no name)",
+    "days": "{{count}} days",
+    "stagesTitle": "Stages",
+    "stageN": "Stage {{n}}",
+    "stageUp": "Move stage {{n}} up",
+    "stageDown": "Move stage {{n}} down",
+    "stageRemove": "Remove stage {{n}}",
+    "stageNameAr": "Stage name (Arabic)",
+    "stageNameEn": "Stage name (English)",
+    "expectedDays": "Expected days",
+    "expectedDaysHelp": "After this, the patient shows as late",
+    "goalAr": "Goal (Arabic)",
+    "goalEn": "Goal (English)",
+    "exitAr": "Ends when (Arabic)",
+    "exitEn": "Ends when (English)",
+    "addStage": "Add stage"
+  },
+  "issues": {
+    "title": "Fix these before saving",
+    "name": "The program needs a name in both languages.",
+    "code": "The code must start with a letter and use lowercase letters, digits or _ only.",
+    "noStages": "Add at least one stage.",
+    "stageName": "Every stage needs a name in both languages.",
+    "stageDays": "Expected days must be at least 1."
+  },
+  "errors": {
+    "CODE_TAKEN": "This code is already used by another program.",
+    "generic": "Couldn't save. Please try again."
+  },
+  "notFound": {
+    "title": "This program doesn't exist",
+    "body": "The link may be wrong. Open it from the programs list."
+  }
+}

@@ -10,6 +10,7 @@ import { formTemplateHandlers } from './form-templates';
 import { measurementHandlers } from './measurements';
 import { nutritionPlanHandlers } from './nutrition-plans';
 import { photoHandlers } from './photos';
+import { programHandlers } from './programs';
 import { overviewHandlers } from './patient-overview';
 import { readDb } from './db';
 import { BRANCHES } from './seed';
@@ -31,6 +32,7 @@ const handlers: MockHandlers = {
   ...nutritionPlanHandlers,
   ...measurementHandlers,
   ...photoHandlers,
+  ...programHandlers,
   getBranches: () => {
     const staff = currentStaff();
     const data = staff.all_branches
