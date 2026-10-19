@@ -1,0 +1,48 @@
+{
+  "title": "Nutrition plan",
+  "readOnly": "The plan is read-only here.",
+  "goal": {
+    "title": "Goal",
+    "type": "Goal type",
+    "targetWeight": "Target weight (kg)",
+    "kcal": "Daily calories",
+    "types": {
+      "lose": "Lose weight",
+      "gain": "Gain weight",
+      "maintain": "Maintain weight",
+      "clinical": "Clinical diet"
+    }
+  },
+  "followUp": {
+    "title": "Weight follow-up",
+    "current": "Current weight: {{value}} kg",
+    "remaining": "{{value}} kg from the target"
+  },
+  "meals": {
+    "title": "Meals",
+    "empty": "No items yet",
+    "addItem": "Add to {{slot}}",
+    "itemLabel": "Food item ({{slot}})",
+    "itemPlaceholder": "Food and portion",
+    "alternativeLabel": "Alternative ({{slot}})",
+    "alternativePlaceholder": "Alternative",
+    "remove": "Remove item",
+    "slots": {
+      "breakfast": "Breakfast",
+      "snack_am": "Morning snack",
+      "lunch": "Lunch",
+      "snack_pm": "Afternoon snack",
+      "dinner": "Dinner"
+    }
+  },
+  "notes": {
+    "title": "Notes",
+    "label": "Plan notes"
+  },
+  "status": {
+    "saving": "Saving…",
+    "saved": "Plan saved at {{time}}",
+    "dirty": "Unsaved changes",
+    "error": "Couldn't save. Your changes are still here."
+  }
+}

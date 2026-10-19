@@ -6,6 +6,7 @@ import { clinicHandlers } from './clinic';
 import { doctorDayHandlers } from './doctor-day';
 import { encounterHandlers } from './encounters';
 import { exerciseHandlers } from './exercises';
+import { nutritionPlanHandlers } from './nutrition-plans';
 import { overviewHandlers } from './patient-overview';
 import { readDb } from './db';
 import { BRANCHES } from './seed';
@@ -23,6 +24,7 @@ const handlers: MockHandlers = {
   ...doctorDayHandlers,
   ...encounterHandlers,
   ...exerciseHandlers,
+  ...nutritionPlanHandlers,
   getBranches: () => {
     const staff = currentStaff();
     const data = staff.all_branches

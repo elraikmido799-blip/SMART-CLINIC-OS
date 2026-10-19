@@ -381,12 +381,20 @@ function PlanEditor({ plan, readOnly }: { plan: CarePlan; readOnly: boolean }) {
  * خطة العلاج الطبيعي (D-13 · docs/20 · 4.4): الأهداف · الجلسات · التمارين البيتية من المكتبة.
  * بتتحفظ تلقائي. `readOnly` لو الكشف اتوقّع أو الموظف مش من اللي بيعدّلوا.
  */
-export function PlanPanel({ patientId, readOnly }: { patientId: string; readOnly: boolean }) {
+export function PlanPanel({
+  patientId,
+  readOnly,
+  title,
+}: {
+  patientId: string;
+  readOnly: boolean;
+  title?: string;
+}) {
   const { t } = useTranslation('carePlans');
   const { data, isLoading, isError, refetch } = useGetCarePlanQuery(patientId);
 
   return (
-    <Card title={t('title')}>
+    <Card title={title ?? t('title')}>
       {isLoading ? (
         <LoadingState />
       ) : isError || !data ? (

@@ -18,6 +18,7 @@ import {
 import { encounterErrorKey } from '../errors';
 import type { Encounter, EncounterData } from '../types';
 import { FormRenderer } from './form-renderer';
+import { NutritionPanel } from '@/features/nutrition-plans/components/nutrition-panel';
 import { PlanPanel } from '@/features/care-plans/components/plan-panel';
 import { PatientSidebar } from './patient-sidebar';
 
@@ -40,6 +41,7 @@ function EncounterEditor({ encounter }: { encounter: Encounter }) {
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const signed = encounter.status === 'signed';
   const canEditPlan = useCan('physio.write', 'medical.write');
+  const canEditNutrition = useCan('nutrition.write', 'medical.write');
   const rtl = directionOf(locale) === 'rtl';
   const Back = rtl ? ArrowRight : ArrowLeft;
 
@@ -162,6 +164,11 @@ function EncounterEditor({ encounter }: { encounter: Encounter }) {
         <Col xs={24} xl={6}>
           {encounter.specialty === 'physio' ? (
             <PlanPanel patientId={encounter.patient.id} readOnly={signed || !canEditPlan} />
+          ) : encounter.specialty === 'nutrition' ? (
+            <NutritionPanel
+              patientId={encounter.patient.id}
+              readOnly={signed || !canEditNutrition}
+            />
           ) : (
             <Card title={t('plan.title')}>
               <Flex vertical align="center" gap={8} style={{ textAlign: 'center', padding: 16 }}>

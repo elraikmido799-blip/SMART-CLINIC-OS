@@ -1,0 +1,48 @@
+{
+  "title": "خطة التغذية",
+  "readOnly": "الخطة للعرض بس هنا.",
+  "goal": {
+    "title": "الهدف",
+    "type": "نوع الهدف",
+    "targetWeight": "الوزن المستهدف (كجم)",
+    "kcal": "السعرات اليومية",
+    "types": {
+      "lose": "نزول وزن",
+      "gain": "زيادة وزن",
+      "maintain": "تثبيت الوزن",
+      "clinical": "نظام علاجي"
+    }
+  },
+  "followUp": {
+    "title": "متابعة الوزن",
+    "current": "الوزن الحالي: {{value}} كجم",
+    "remaining": "فاضل {{value}} كجم عن المستهدف"
+  },
+  "meals": {
+    "title": "الوجبات",
+    "empty": "لسه مفيش أصناف",
+    "addItem": "ضيف في {{slot}}",
+    "itemLabel": "صنف ({{slot}})",
+    "itemPlaceholder": "الصنف والكمية",
+    "alternativeLabel": "البديل ({{slot}})",
+    "alternativePlaceholder": "البديل",
+    "remove": "امسح الصنف",
+    "slots": {
+      "breakfast": "الفطار",
+      "snack_am": "سناك الصبح",
+      "lunch": "الغدا",
+      "snack_pm": "سناك العصر",
+      "dinner": "العشا"
+    }
+  },
+  "notes": {
+    "title": "ملاحظات",
+    "label": "ملاحظات الخطة"
+  },
+  "status": {
+    "saving": "بيتحفظ…",
+    "saved": "الخطة اتحفظت {{time}}",
+    "dirty": "في تعديلات مش محفوظة",
+    "error": "مقدرناش نحفظ. تعديلاتك لسه موجودة."
+  }
+}

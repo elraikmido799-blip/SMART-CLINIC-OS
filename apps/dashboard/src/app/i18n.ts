@@ -10,6 +10,7 @@ import arFrontDesk from '@/locales/ar/frontDesk.json';
 import arDoctorDay from '@/locales/ar/doctorDay.json';
 import arEncounters from '@/locales/ar/encounters.json';
 import arCarePlans from '@/locales/ar/carePlans.json';
+import arNutritionPlans from '@/locales/ar/nutritionPlans.json';
 import arExercises from '@/locales/ar/exercises.json';
 import arNav from '@/locales/ar/nav.json';
 import arPatients from '@/locales/ar/patients.json';
@@ -22,6 +23,7 @@ import enFrontDesk from '@/locales/en/frontDesk.json';
 import enDoctorDay from '@/locales/en/doctorDay.json';
 import enEncounters from '@/locales/en/encounters.json';
 import enCarePlans from '@/locales/en/carePlans.json';
+import enNutritionPlans from '@/locales/en/nutritionPlans.json';
 import enExercises from '@/locales/en/exercises.json';
 import enNav from '@/locales/en/nav.json';
 import enPatients from '@/locales/en/patients.json';
@@ -41,6 +43,7 @@ export const resources = {
     doctorDay: arDoctorDay,
     encounters: arEncounters,
     carePlans: arCarePlans,
+    nutritionPlans: arNutritionPlans,
     exercises: arExercises,
     calendar: arCalendar,
     patients: arPatients,
@@ -55,6 +58,7 @@ export const resources = {
     doctorDay: enDoctorDay,
     encounters: enEncounters,
     carePlans: enCarePlans,
+    nutritionPlans: enNutritionPlans,
     exercises: enExercises,
     calendar: enCalendar,
     patients: enPatients,

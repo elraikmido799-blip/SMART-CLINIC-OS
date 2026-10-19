@@ -180,12 +180,7 @@ function controlOf(field: TemplateField, locale: 'ar' | 'en'): ReactNode {
       return <ScaleInput min={field.min} max={field.max} label={labelOf(field, locale)} />;
     case 'number':
       return (
-        <InputNumber
-          min={field.min}
-          max={field.max}
-          addonAfter={field.unit}
-          style={{ width: 160 }}
-        />
+        <InputNumber min={field.min} max={field.max} suffix={field.unit} style={{ width: 160 }} />
       );
     case 'text':
       return <Input />;

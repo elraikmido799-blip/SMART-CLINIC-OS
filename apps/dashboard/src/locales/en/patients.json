@@ -122,5 +122,9 @@
       "treatment": "Treatment"
     },
     "nextStep": "Next step"
+  },
+  "plans": {
+    "physio": "Physiotherapy plan",
+    "nutrition": "Nutrition plan"
   }
 }
