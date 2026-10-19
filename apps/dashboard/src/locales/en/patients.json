@@ -66,6 +66,61 @@
     "book": "Book",
     "notFoundTitle": "This patient doesn't exist",
     "notFoundBody": "The file may have moved or the link is wrong. Find them from search.",
-    "comingSoon": "The full patient file (tabs, encounters, measurements) is step 4.1"
+    "collect": "Collect payment",
+    "alerts": "Patient alerts",
+    "program": "{{name}} · stage {{stage}}",
+    "allergy": "Allergy: {{name}}",
+    "sessionsLeft": "Sessions left: {{count}}"
+  },
+  "tabs": {
+    "overview": "Overview",
+    "timeline": "Timeline",
+    "encounters": "Encounters",
+    "measurements": "Measurements",
+    "plans": "Plans",
+    "documents": "Documents",
+    "programs": "Programs",
+    "billing": "Billing",
+    "crm": "CRM",
+    "consents": "Consents",
+    "access": "Access log"
+  },
+  "overview": {
+    "weight": "Weight · last 12 weeks",
+    "weightSummary": "Weight went from {{from}} kg to {{to}} kg over {{weeks}} weeks",
+    "kg": "{{value}} kg",
+    "noWeight": "No weight readings yet",
+    "vitals": "Latest vitals",
+    "bloodPressure": "Blood pressure",
+    "heartRate": "Heart rate",
+    "bmi": "BMI",
+    "measuredAt": "Measured {{date}}",
+    "noVitals": "No vitals recorded yet",
+    "plans": "Active plans",
+    "homeExercises": "Includes home exercises",
+    "noPlans": "No active plans",
+    "upcoming": "Upcoming appointments",
+    "noUpcoming": "No upcoming appointments",
+    "documents": "Latest documents",
+    "noDocuments": "No documents yet",
+    "categories": {
+      "lab": "Lab",
+      "plan": "Plan",
+      "report": "Report",
+      "clinical": "Clinical",
+      "consent": "Consent",
+      "id": "ID"
+    },
+    "journey": "Patient journey",
+    "steps": {
+      "lead": "Lead",
+      "booked": "Booked",
+      "visited": "Visited",
+      "assessment": "Assessment",
+      "program": "Program",
+      "paid": "Paid",
+      "treatment": "Treatment"
+    },
+    "nextStep": "Next step"
   }
 }

@@ -27,7 +27,7 @@ import { readDb, writeDb, type MockDb } from './db';
  */
 
 // ---------- أرقام عشوائية ثابتة (نفس اليوم = نفس الداتا) ----------
-function seeded(seedText: string) {
+export function seeded(seedText: string) {
   let seed = [...seedText].reduce((hash, char) => (hash * 31 + char.charCodeAt(0)) | 0, 7);
   return () => {
     seed = (seed + 0x6d2b79f5) | 0;
@@ -36,7 +36,7 @@ function seeded(seedText: string) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
-const pick = <T>(random: () => number, list: readonly T[]) =>
+export const pick = <T>(random: () => number, list: readonly T[]) =>
   list[Math.floor(random() * list.length)];
 
 // ---------- الخدمات ----------
@@ -421,7 +421,7 @@ function statusFor(
   return 'confirmed';
 }
 
-function ensurePatients(db: MockDb) {
+export function ensurePatients(db: MockDb) {
   if (db.patients.length === 0) db.patients = seedPatients();
 }
 

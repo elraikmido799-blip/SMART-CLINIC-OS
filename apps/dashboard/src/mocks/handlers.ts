@@ -3,6 +3,7 @@ import type { FetchArgs } from '@reduxjs/toolkit/query';
 import { authHandlers, currentStaff } from './auth';
 import { billingHandlers } from './billing';
 import { clinicHandlers } from './clinic';
+import { overviewHandlers } from './patient-overview';
 import { readDb } from './db';
 import { BRANCHES } from './seed';
 
@@ -15,6 +16,7 @@ const handlers: MockHandlers = {
   ...authHandlers,
   ...clinicHandlers,
   ...billingHandlers,
+  ...overviewHandlers,
   getBranches: () => {
     const staff = currentStaff();
     const data = staff.all_branches

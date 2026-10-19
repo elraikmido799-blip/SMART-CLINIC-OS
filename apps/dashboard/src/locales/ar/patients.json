@@ -66,6 +66,61 @@
     "book": "احجز",
     "notFoundTitle": "المريض ده مش موجود",
     "notFoundBody": "ممكن الملف يكون اتنقل أو اللينك غلط. دوّر عليه من البحث.",
-    "comingSoon": "ملف المريض كامل (التابات والكشوفات والقياسات) في الخطوة 4.1"
+    "collect": "تحصيل",
+    "alerts": "تنبيهات المريض",
+    "program": "{{name}} · المرحلة {{stage}}",
+    "allergy": "حساسية: {{name}}",
+    "sessionsLeft": "الجلسات الباقية: {{count}}"
+  },
+  "tabs": {
+    "overview": "نظرة عامة",
+    "timeline": "الخط الزمني",
+    "encounters": "الكشوفات",
+    "measurements": "القياسات",
+    "plans": "الخطط",
+    "documents": "الملفات",
+    "programs": "البرامج",
+    "billing": "الحسابات",
+    "crm": "CRM",
+    "consents": "الموافقات",
+    "access": "سجل الدخول للملف"
+  },
+  "overview": {
+    "weight": "الوزن · آخر 12 أسبوع",
+    "weightSummary": "الوزن اتغير من {{from}} كجم لـ{{to}} كجم في {{weeks}} أسبوع",
+    "kg": "{{value}} كجم",
+    "noWeight": "لسه مفيش قراءات وزن",
+    "vitals": "آخر علامات حيوية",
+    "bloodPressure": "الضغط",
+    "heartRate": "النبض",
+    "bmi": "مؤشر كتلة الجسم",
+    "measuredAt": "اتقاست {{date}}",
+    "noVitals": "لسه مفيش علامات حيوية",
+    "plans": "الخطط الشغالة",
+    "homeExercises": "فيها تمارين في البيت",
+    "noPlans": "مفيش خطط شغالة",
+    "upcoming": "المواعيد الجاية",
+    "noUpcoming": "مفيش مواعيد جاية",
+    "documents": "آخر الملفات",
+    "noDocuments": "لسه مفيش ملفات",
+    "categories": {
+      "lab": "تحاليل",
+      "plan": "خطة",
+      "report": "تقرير",
+      "clinical": "طبي",
+      "consent": "موافقة",
+      "id": "إثبات شخصية"
+    },
+    "journey": "رحلة المريض",
+    "steps": {
+      "lead": "عميل محتمل",
+      "booked": "حجز",
+      "visited": "زار",
+      "assessment": "تقييم",
+      "program": "برنامج",
+      "paid": "دفع",
+      "treatment": "علاج"
+    },
+    "nextStep": "الخطوة الجاية"
   }
 }

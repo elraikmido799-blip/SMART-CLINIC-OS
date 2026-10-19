@@ -235,7 +235,7 @@ apps/dashboard/
 │   │   ├── branches/            الفروع + use-branch-scope.ts (الفرع المختار)
 │   │   ├── appointments/        المواعيد والدكاترة والأوض والوقت المقفول: types · appointments.api · status (لون كل حالة) · grid (مقاسات الكالندر) · errors · use-check-in · use-clinic-clock · components/ (time-grid · appointment-block · appointment-drawer · appointment-panel · booking-modal · cancel-modal)
 │   │   ├── calendar/            الكالندر (3.2): search.ts (الحالة في الـURL) · components/ (calendar-page · block-time-modal)
-│   │   ├── patients/            المرضى: types (المصادر) · patients.api (الملف · التسجيل) · recent.ts (آخر 5 اتفتحوا) · components/ (register-patient-drawer · patients-page · patient-page)
+│   │   ├── patients/            المرضى: types (المصادر) · patients.api (الملف · التسجيل) · overview.ts (شكل الـ360) · tabs.ts (11 تاب بصلاحياتها) · recent.ts (آخر 5 اتفتحوا) · components/ (register-patient-drawer · patients-page · patient-page · overview-tab · weight-chart)
 │   │   ├── billing/             التحصيل والتقفيل (3.6 · 3.7): types · totals (الحساب) · billing.api · closing.api · components/ (pos-page · invoice-view · closing-page)
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)
 │   ├── components/              Components مشتركة بين الـfeatures
