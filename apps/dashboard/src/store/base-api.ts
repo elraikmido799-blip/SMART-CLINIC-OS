@@ -33,6 +33,7 @@ export const baseApi = createApi({
     'Enrollments',
     'Leads',
     'Campaigns',
+    'LeadActivities',
   ],
   // الرد جه بشكل غير الـresponseSchema (zod) = خطأ عادي في الشاشة بدل ما الصفحة تقع (DEC-30)
   catchSchemaFailure: (error) => ({

@@ -3,13 +3,21 @@ import { baseApi } from '@/store/base-api';
 import {
   agentSchema,
   campaignSchema,
+  leadActivitySchema,
   leadSchema,
+  whatsappTemplateSchema,
   type Agent,
   type Campaign,
+  type ConvertLeadBody,
   type CreateLeadBody,
   type Lead,
+  type LeadActivity,
   type LeadQuery,
+  type LogCallBody,
+  type MarkLostBody,
   type MoveLeadBody,
+  type SendWhatsappBody,
+  type WhatsappTemplate,
 } from './types';
 
 /**
@@ -41,6 +49,40 @@ export const crmApi = baseApi.injectEndpoints({
       responseSchema: leadSchema,
       invalidatesTags: ['Leads'],
     }),
+    getLeadActivities: build.query<LeadActivity[], string>({
+      query: (id) => `/staff/leads/${id}/activities`,
+      rawResponseSchema: z.object({ data: z.array(leadActivitySchema) }),
+      transformResponse: (response: { data: LeadActivity[] }) => response.data,
+      providesTags: (_result, _error, id) => [{ type: 'LeadActivities', id }],
+    }),
+    getWhatsappTemplates: build.query<WhatsappTemplate[], void>({
+      query: () => '/staff/whatsapp-templates',
+      rawResponseSchema: z.object({ data: z.array(whatsappTemplateSchema) }),
+      transformResponse: (response: { data: WhatsappTemplate[] }) => response.data,
+    }),
+    // مكالمة: أول تواصل بيسجّل الوقت (الـSLA) وبينقل الـLead لـ"اتكلّمنا معاه"
+    logLeadCall: build.mutation<Lead, LogCallBody>({
+      query: ({ id, ...body }) => ({ url: `/staff/leads/${id}/calls`, method: 'POST', body }),
+      responseSchema: leadSchema,
+      invalidatesTags: (_r, _e, { id }) => ['Leads', { type: 'LeadActivities', id }],
+    }),
+    // رسالة واتساب من قالب معتمد (الباك هو اللي بيبعت)
+    sendLeadWhatsapp: build.mutation<Lead, SendWhatsappBody>({
+      query: ({ id, ...body }) => ({ url: `/staff/leads/${id}/whatsapp`, method: 'POST', body }),
+      responseSchema: leadSchema,
+      invalidatesTags: (_r, _e, { id }) => ['Leads', { type: 'LeadActivities', id }],
+    }),
+    markLeadLost: build.mutation<Lead, MarkLostBody>({
+      query: ({ id, ...body }) => ({ url: `/staff/leads/${id}/lost`, method: 'POST', body }),
+      responseSchema: leadSchema,
+      invalidatesTags: (_r, _e, { id }) => ['Leads', { type: 'LeadActivities', id }],
+    }),
+    // بيعمل مريض من بيانات الـLead (409 DUPLICATE_PHONE لو الموبايل عند مريض) ويربطهم
+    convertLead: build.mutation<Lead, ConvertLeadBody>({
+      query: ({ id, ...body }) => ({ url: `/staff/leads/${id}/convert`, method: 'POST', body }),
+      responseSchema: leadSchema,
+      invalidatesTags: (_r, _e, { id }) => ['Leads', 'Patients', { type: 'LeadActivities', id }],
+    }),
     moveLeadStage: build.mutation<Lead, MoveLeadBody>({
       query: ({ id, stage }) => ({
         url: `/staff/leads/${id}/stage`,
@@ -59,4 +101,10 @@ export const {
   useGetCrmAgentsQuery,
   useCreateLeadMutation,
   useMoveLeadStageMutation,
+  useGetLeadActivitiesQuery,
+  useGetWhatsappTemplatesQuery,
+  useLogLeadCallMutation,
+  useSendLeadWhatsappMutation,
+  useMarkLeadLostMutation,
+  useConvertLeadMutation,
 } = crmApi;

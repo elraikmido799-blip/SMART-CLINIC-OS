@@ -62,7 +62,7 @@ export function CrmPage() {
   const [agent, setAgent] = useState<string>(me.role === 'crm_agent' ? me.id : 'all');
   const [days, setDays] = useState<number>(0);
   const [query, setQuery] = useState('');
-  const [selected, setSelected] = useState<Lead | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
 
   const campaigns = useGetCampaignsQuery();
@@ -236,13 +236,16 @@ export function CrmPage() {
               lead={lead}
               now={now}
               canMove={canWrite}
-              onOpen={setSelected}
+              onOpen={(item) => setSelectedId(item.id)}
               onMove={(item, stage) => void move(item, stage)}
             />
           )}
         />
       )}
-      <LeadDrawer lead={selected} onClose={() => setSelected(null)} />
+      <LeadDrawer
+        lead={all.find((item) => item.id === selectedId) ?? null}
+        onClose={() => setSelectedId(null)}
+      />
       {branchId !== 'all' && (
         <NewLeadModal branchId={branchId} open={creating} onClose={() => setCreating(false)} />
       )}

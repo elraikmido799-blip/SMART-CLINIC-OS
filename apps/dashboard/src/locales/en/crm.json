@@ -93,11 +93,77 @@
     "campaign": "Campaign",
     "agent": "Agent",
     "created": "Created",
-    "notes": "Notes"
+    "notes": "Notes",
+    "patientFile": "Patient file"
   },
   "errors": {
     "DUPLICATE_PHONE": "This mobile already belongs to a lead or a patient. Search for it first.",
     "STAGE_AUTOMATIC": "This stage updates by itself from booking, check-in and payment events.",
     "generic": "Something went wrong. Please try again."
+  },
+  "outcomes": {
+    "no_answer": "No answer",
+    "interested": "Interested",
+    "not_interested": "Not interested",
+    "callback": "Call back later",
+    "wrong_number": "Wrong number"
+  },
+  "lostReasons": {
+    "price": "Price",
+    "no_response": "No response",
+    "competitor": "Went to a competitor",
+    "not_interested": "Not interested",
+    "far": "Too far",
+    "other": "Other"
+  },
+  "actions": {
+    "logCall": "Log call",
+    "whatsapp": "Send WhatsApp",
+    "book": "Book appointment",
+    "convert": "Convert to patient",
+    "lost": "Mark lost"
+  },
+  "call": {
+    "title": "Log a call",
+    "outcome": "Outcome",
+    "notes": "Notes (optional)",
+    "ok": "Save call",
+    "done": "Call logged"
+  },
+  "whatsapp": {
+    "title": "Send WhatsApp",
+    "template": "Message template",
+    "hint": "Only approved templates can be sent.",
+    "ok": "Send",
+    "done": "Message sent"
+  },
+  "lost": {
+    "title": "Mark {{name}} as lost",
+    "reason": "Reason",
+    "reasonPlaceholder": "Choose a reason",
+    "notes": "Notes (optional)",
+    "ok": "Mark lost",
+    "done": "Lead marked lost"
+  },
+  "convert": {
+    "title": "Convert {{name}} to a patient",
+    "body": "This creates a patient file from the lead details. Then you can book an appointment.",
+    "gender": "Gender",
+    "female": "Female",
+    "male": "Male",
+    "ok": "Create patient file",
+    "done": "Patient file created. You can book now.",
+    "duplicate": "This mobile already belongs to a patient. Search for them from the top bar."
+  },
+  "timeline": {
+    "title": "Activity timeline",
+    "empty": "No activity yet",
+    "created": "Lead created",
+    "call": "Call · {{outcome}}",
+    "whatsapp": "WhatsApp template sent",
+    "note": "Note",
+    "stage": "Moved to {{stage}}",
+    "lost": "Marked lost · {{reason}}",
+    "converted": "Converted to a patient"
   }
 }

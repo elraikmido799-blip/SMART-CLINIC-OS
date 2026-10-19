@@ -6,6 +6,7 @@ import { clinicHandlers } from './clinic';
 import { doctorDayHandlers } from './doctor-day';
 import { encounterHandlers } from './encounters';
 import { crmHandlers } from './crm';
+import { crmActivityHandlers } from './crm-activity';
 import { enrollmentHandlers } from './enrollments';
 import { exerciseHandlers } from './exercises';
 import { formTemplateHandlers } from './form-templates';
@@ -37,6 +38,7 @@ const handlers: MockHandlers = {
   ...programHandlers,
   ...enrollmentHandlers,
   ...crmHandlers,
+  ...crmActivityHandlers,
   getBranches: () => {
     const staff = currentStaff();
     const data = staff.all_branches

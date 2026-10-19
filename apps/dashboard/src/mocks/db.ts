@@ -8,6 +8,7 @@ import type { Exercise } from '@/features/exercises/types';
 import type { Campaign, Lead } from '@/features/crm/types';
 import type { Enrollment } from '@/features/programs/enrollment-types';
 import type { Program } from '@/features/programs/types';
+import type { StoredActivity } from './crm-activity';
 import type { StoredEncounter } from './encounters';
 import type { StoredFormTemplate } from './form-templates';
 import type { StoredAppointment, StoredPatient, StoredPayment, StoredTimeBlock } from './clinic';
@@ -51,6 +52,7 @@ export type MockDb = {
   enrollments: Enrollment[];
   leads: Lead[];
   campaigns: Campaign[];
+  lead_activities: StoredActivity[];
   // الأيام اللي مواعيدها اتولدت: "branch-id|2026-10-19"
   generated_days: string[];
 };
@@ -83,6 +85,7 @@ const empty = (): MockDb => ({
   enrollments: [],
   leads: [],
   campaigns: [],
+  lead_activities: [],
   generated_days: [],
 });
 

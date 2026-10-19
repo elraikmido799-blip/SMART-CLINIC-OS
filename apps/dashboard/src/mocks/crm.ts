@@ -156,6 +156,8 @@ export function ensureLeads(db: MockDb) {
       assigned_to: { id: agent.id, name_ar: agent.name_ar, name_en: agent.name_en },
       stage,
       status: 'open' as const,
+      patient_id: null,
+      lost_reason: null,
       notes: '',
       created_at: new Date(created).toISOString(),
       first_contacted_at:
@@ -243,6 +245,8 @@ export const crmHandlers: MockHandlers = {
             : null,
         stage: 'lead',
         status: 'open',
+        patient_id: null,
+        lost_reason: null,
         notes: input.notes.trim(),
         created_at: now,
         first_contacted_at: null,

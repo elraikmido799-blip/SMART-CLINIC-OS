@@ -17,6 +17,7 @@ import type { PaymentMethod } from '@/features/billing/types';
 import type { RegisterPatientBody } from '@/features/patients/types';
 import { clinicIso, clinicMinutes, clinicNowMinutes, clinicToday } from '@/lib/clinic-time';
 import { currentStaff, toMe } from './auth';
+import { advanceLeadsOnBooking } from './crm-activity';
 import { readDb, writeDb, type MockDb } from './db';
 
 /**
@@ -793,6 +794,7 @@ export const clinicHandlers: MockHandlers = {
         checked_in_at: null,
         notes: input.notes?.trim() || null,
       });
+      advanceLeadsOnBooking(db, input.patient_id);
     });
     const db = readDb();
     return toAppointment(
