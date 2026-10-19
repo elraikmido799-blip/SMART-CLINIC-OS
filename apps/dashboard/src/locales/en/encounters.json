@@ -16,10 +16,6 @@
   "form": {
     "required": "Enter {{field}}"
   },
-  "plan": {
-    "title": "Plan",
-    "body": "This specialty's plan comes in a later step (internal medicine 4.8)."
-  },
   "footer": {
     "share": "Share with patient",
     "saveDraft": "Save draft",

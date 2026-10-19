@@ -6,6 +6,7 @@ import { clinicHandlers } from './clinic';
 import { doctorDayHandlers } from './doctor-day';
 import { encounterHandlers } from './encounters';
 import { exerciseHandlers } from './exercises';
+import { measurementHandlers } from './measurements';
 import { nutritionPlanHandlers } from './nutrition-plans';
 import { photoHandlers } from './photos';
 import { overviewHandlers } from './patient-overview';
@@ -26,6 +27,7 @@ const handlers: MockHandlers = {
   ...encounterHandlers,
   ...exerciseHandlers,
   ...nutritionPlanHandlers,
+  ...measurementHandlers,
   ...photoHandlers,
   getBranches: () => {
     const staff = currentStaff();

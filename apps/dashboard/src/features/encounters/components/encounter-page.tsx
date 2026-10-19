@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Alert, App, Button, Card, Col, Flex, Form, Row, Switch, Typography } from 'antd';
-import { ArrowLeft, ArrowRight, ClipboardList } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useNavigate, useParams } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { directionOf, formatDate, formatSlot, localized } from '@oxygen/shared';
@@ -18,6 +18,7 @@ import {
 import { encounterErrorKey } from '../errors';
 import type { Encounter, EncounterData } from '../types';
 import { FormRenderer } from './form-renderer';
+import { MedicationsPanel } from '@/features/measurements/components/medications-panel';
 import { DermPanel } from '@/features/derm-plans/components/derm-panel';
 import { NutritionPanel } from '@/features/nutrition-plans/components/nutrition-panel';
 import { PlanPanel } from '@/features/care-plans/components/plan-panel';
@@ -174,12 +175,7 @@ function EncounterEditor({ encounter }: { encounter: Encounter }) {
           ) : encounter.specialty === 'derm' ? (
             <DermPanel patientId={encounter.patient.id} readOnly={signed || !canEditDerm} />
           ) : (
-            <Card title={t('plan.title')}>
-              <Flex vertical align="center" gap={8} style={{ textAlign: 'center', padding: 16 }}>
-                <ClipboardList size={28} color={tokens.color.mutedText} aria-hidden />
-                <Typography.Text type="secondary">{t('plan.body')}</Typography.Text>
-              </Flex>
-            </Card>
+            <MedicationsPanel patientId={encounter.patient.id} readOnly={signed || !canEditDerm} />
           )}
         </Col>
       </Row>

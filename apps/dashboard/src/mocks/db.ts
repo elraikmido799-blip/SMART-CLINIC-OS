@@ -1,5 +1,6 @@
 import type { CashClosing, Invoice } from '@/features/billing/types';
 import type { CarePlan } from '@/features/care-plans/types';
+import type { Lab, Medications, Vital } from '@/features/measurements/types';
 import type { DermPlan } from '@/features/derm-plans/types';
 import type { PatientPhoto } from '@/features/photos/types';
 import type { NutritionPlan } from '@/features/nutrition-plans/types';
@@ -38,6 +39,9 @@ export type MockDb = {
   nutrition_plans: NutritionPlan[];
   derm_plans: DermPlan[];
   photos: PatientPhoto[];
+  vitals: (Vital & { patient_id: string })[];
+  labs: (Lab & { patient_id: string })[];
+  medications: Medications[];
   // الأيام اللي مواعيدها اتولدت: "branch-id|2026-10-19"
   generated_days: string[];
 };
@@ -62,6 +66,9 @@ const empty = (): MockDb => ({
   nutrition_plans: [],
   derm_plans: [],
   photos: [],
+  vitals: [],
+  labs: [],
+  medications: [],
   generated_days: [],
 });
 

@@ -11,6 +11,7 @@ import arDoctorDay from '@/locales/ar/doctorDay.json';
 import arEncounters from '@/locales/ar/encounters.json';
 import arCarePlans from '@/locales/ar/carePlans.json';
 import arNutritionPlans from '@/locales/ar/nutritionPlans.json';
+import arMeasurements from '@/locales/ar/measurements.json';
 import arDermPlans from '@/locales/ar/dermPlans.json';
 import arPhotos from '@/locales/ar/photos.json';
 import arExercises from '@/locales/ar/exercises.json';
@@ -26,6 +27,7 @@ import enDoctorDay from '@/locales/en/doctorDay.json';
 import enEncounters from '@/locales/en/encounters.json';
 import enCarePlans from '@/locales/en/carePlans.json';
 import enNutritionPlans from '@/locales/en/nutritionPlans.json';
+import enMeasurements from '@/locales/en/measurements.json';
 import enDermPlans from '@/locales/en/dermPlans.json';
 import enPhotos from '@/locales/en/photos.json';
 import enExercises from '@/locales/en/exercises.json';
@@ -48,6 +50,7 @@ export const resources = {
     encounters: arEncounters,
     carePlans: arCarePlans,
     nutritionPlans: arNutritionPlans,
+    measurements: arMeasurements,
     dermPlans: arDermPlans,
     photos: arPhotos,
     exercises: arExercises,
@@ -65,6 +68,7 @@ export const resources = {
     encounters: enEncounters,
     carePlans: enCarePlans,
     nutritionPlans: enNutritionPlans,
+    measurements: enMeasurements,
     dermPlans: enDermPlans,
     photos: enPhotos,
     exercises: enExercises,

@@ -242,6 +242,7 @@ apps/dashboard/
 │   │   ├── nutrition-plans/     خطة التغذية: types · nutrition-plans.api · components/nutrition-panel (هدف · وجبات وبدايل · متابعة وزن)
 │   │   ├── derm-plans/          خطة الجلدية: types · derm-plans.api · components/derm-panel (إجراءات وجلساتها)
 │   │   ├── photos/              صور المريض: types · photos.api · components/photos-section (معرض · رفع · مقارنة قبل/بعد)
+│   │   ├── measurements/        القياسات: types (labFlag) · measurements.api · components/ (measurements-tab · medications-panel · sparkline)
 │   │   ├── exercises/           مكتبة التمارين: types · exercises.api · components/exercises-page
 │   │   ├── billing/             التحصيل والتقفيل (3.6 · 3.7): types · totals (الحساب) · billing.api · closing.api · components/ (pos-page · invoice-view · closing-page)
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)
@@ -250,7 +251,7 @@ apps/dashboard/
 │   │   ├── states/              Loading (النقط) · Empty · Error · Forbidden · NotFound
 │   │   └── page-header · tags (StatusTag · SpecialtyTag) · specialty-icon · danger-button · stat-card · money · person-avatar · coming-soon
 │   ├── locales/
-│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing · doctorDay · encounters · carePlans · nutritionPlans · dermPlans · photos · exercises
+│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing · doctorDay · encounters · carePlans · nutritionPlans · dermPlans · photos · measurements · exercises
 │   ├── lib/
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── api-error.ts         كود الخطأ من رد الـAPI

@@ -1,0 +1,64 @@
+{
+  "date": "Date",
+  "save": "Save",
+  "cancel": "Cancel",
+  "required": "Required",
+  "range": "Between {{min}} and {{max}}",
+  "readOnly": "Read-only here.",
+  "errors": {
+    "invalid": "Couldn't save. Check the values and try again."
+  },
+  "vitals": {
+    "title": "Vitals",
+    "add": "Add vitals",
+    "addTitle": "Add vitals",
+    "added": "Vitals added",
+    "empty": "No vitals yet",
+    "systolic": "Systolic (mmHg)",
+    "diastolic": "Diastolic (mmHg)",
+    "heart_rate": "Heart rate (bpm)",
+    "weight_kg": "Weight (kg)",
+    "bloodPressure": "Blood pressure",
+    "bmi": "BMI"
+  },
+  "labs": {
+    "title": "Lab results",
+    "add": "Add result",
+    "addTitle": "Add a lab result",
+    "added": "Result added",
+    "empty": "No lab results yet",
+    "name": "Test",
+    "value": "Value",
+    "unit": "Unit",
+    "min": "Normal from",
+    "max": "Normal up to",
+    "result": "Result",
+    "range": "Normal range",
+    "status": "Status",
+    "flags": {
+      "low": "Low",
+      "high": "High",
+      "normal": "Normal",
+      "none": "No range"
+    }
+  },
+  "medications": {
+    "title": "Medications",
+    "empty": "No medications yet",
+    "add": "Add medication",
+    "name": "Medication {{n}} name",
+    "dose": "Medication {{n}} dose",
+    "frequency": "Medication {{n}} frequency",
+    "remove": "Remove medication {{n}}",
+    "namePlaceholder": "Medication",
+    "dosePlaceholder": "Dose",
+    "frequencyPlaceholder": "How often",
+    "active": "Active"
+  },
+  "status": {
+    "saving": "Saving…",
+    "saved": "Saved at {{time}}",
+    "dirty": "Unsaved changes",
+    "error": "Couldn't save. Your changes are still here."
+  }
+}
