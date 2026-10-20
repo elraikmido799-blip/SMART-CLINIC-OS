@@ -35,6 +35,7 @@ import { Route as AppPatientsPatientIdRouteImport } from './routes/_app/patients
 import { Route as AppProgramsIndexRouteImport } from './routes/_app/programs.index'
 import { Route as AppReportsIndexRouteImport } from './routes/_app/reports.index'
 import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings.index'
+import { Route as AppSettingsBranchesRouteImport } from './routes/_app/settings.branches'
 import { Route as AppSettingsStaffRouteImport } from './routes/_app/settings.staff'
 import { Route as AppSettingsTemplatesRouteImport } from './routes/_app/settings.templates'
 import { Route as AppClinicalFormsIndexRouteImport } from './routes/_app/clinical.forms.index'
@@ -172,6 +173,11 @@ const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
   path: '/settings/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsBranchesRoute = AppSettingsBranchesRouteImport.update({
+  id: '/settings/branches',
+  path: '/settings/branches',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppSettingsStaffRoute = AppSettingsStaffRouteImport.update({
   id: '/settings/staff',
   path: '/settings/staff',
@@ -218,6 +224,7 @@ export interface FileRoutesByFullPath {
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/settings/branches': typeof AppSettingsBranchesRoute
   '/settings/staff': typeof AppSettingsStaffRoute
   '/settings/templates': typeof AppSettingsTemplatesRoute
   '/billing/': typeof AppBillingIndexRoute
@@ -251,6 +258,7 @@ export interface FileRoutesByTo {
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/settings/branches': typeof AppSettingsBranchesRoute
   '/settings/staff': typeof AppSettingsStaffRoute
   '/settings/templates': typeof AppSettingsTemplatesRoute
   '/billing': typeof AppBillingIndexRoute
@@ -286,6 +294,7 @@ export interface FileRoutesById {
   '/_app/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/_app/front-desk/pos': typeof AppFrontDeskPosRoute
   '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/_app/settings/branches': typeof AppSettingsBranchesRoute
   '/_app/settings/staff': typeof AppSettingsStaffRoute
   '/_app/settings/templates': typeof AppSettingsTemplatesRoute
   '/_app/billing/': typeof AppBillingIndexRoute
@@ -321,6 +330,7 @@ export interface FileRouteTypes {
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
+    | '/settings/branches'
     | '/settings/staff'
     | '/settings/templates'
     | '/billing/'
@@ -354,6 +364,7 @@ export interface FileRouteTypes {
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
+    | '/settings/branches'
     | '/settings/staff'
     | '/settings/templates'
     | '/billing'
@@ -388,6 +399,7 @@ export interface FileRouteTypes {
     | '/_app/front-desk/closing'
     | '/_app/front-desk/pos'
     | '/_app/patients/$patientId'
+    | '/_app/settings/branches'
     | '/_app/settings/staff'
     | '/_app/settings/templates'
     | '/_app/billing/'
@@ -596,6 +608,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/settings/branches': {
+      id: '/_app/settings/branches'
+      path: '/settings/branches'
+      fullPath: '/settings/branches'
+      preLoaderRoute: typeof AppSettingsBranchesRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/settings/staff': {
       id: '/_app/settings/staff'
       path: '/settings/staff'
@@ -655,6 +674,7 @@ interface AppRouteChildren {
   AppFrontDeskClosingRoute: typeof AppFrontDeskClosingRoute
   AppFrontDeskPosRoute: typeof AppFrontDeskPosRoute
   AppPatientsPatientIdRoute: typeof AppPatientsPatientIdRoute
+  AppSettingsBranchesRoute: typeof AppSettingsBranchesRoute
   AppSettingsStaffRoute: typeof AppSettingsStaffRoute
   AppSettingsTemplatesRoute: typeof AppSettingsTemplatesRoute
   AppBillingIndexRoute: typeof AppBillingIndexRoute
@@ -688,6 +708,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppFrontDeskClosingRoute: AppFrontDeskClosingRoute,
   AppFrontDeskPosRoute: AppFrontDeskPosRoute,
   AppPatientsPatientIdRoute: AppPatientsPatientIdRoute,
+  AppSettingsBranchesRoute: AppSettingsBranchesRoute,
   AppSettingsStaffRoute: AppSettingsStaffRoute,
   AppSettingsTemplatesRoute: AppSettingsTemplatesRoute,
   AppBillingIndexRoute: AppBillingIndexRoute,

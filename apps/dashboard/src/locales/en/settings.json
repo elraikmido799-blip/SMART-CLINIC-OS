@@ -3,7 +3,8 @@
   "tabs": {
     "label": "Settings sections",
     "templates": "Notification templates",
-    "staff": "Staff and roles"
+    "staff": "Staff and roles",
+    "branches": "Branches"
   },
   "templates": {
     "description": "WhatsApp, SMS and email messages sent to patients",
@@ -129,5 +130,47 @@
       },
       "countLabel": "Permissions"
     }
+  },
+  "branches": {
+    "description": "Each branch details, working hours and rooms",
+    "columns": {
+      "branch": "Branch",
+      "rooms": "Rooms",
+      "days": "Working days",
+      "status": "Status"
+    },
+    "tabs": {
+      "info": "Details",
+      "hours": "Working hours",
+      "rooms": "Rooms"
+    },
+    "nameAr": "Arabic name",
+    "nameEn": "English name",
+    "addressAr": "Arabic address",
+    "addressEn": "English address",
+    "phone": "Phone",
+    "mapUrl": "Map link",
+    "urlInvalid": "Enter a valid link",
+    "active": "Branch is active",
+    "activeTag": "Active",
+    "inactiveTag": "Closed",
+    "required": "Required",
+    "days": {
+      "0": "Saturday",
+      "1": "Sunday",
+      "2": "Monday",
+      "3": "Tuesday",
+      "4": "Wednesday",
+      "5": "Thursday",
+      "6": "Friday"
+    },
+    "open": "Open",
+    "closed": "Closed",
+    "roomAr": "Room (Arabic)",
+    "roomEn": "Room (English)",
+    "addRoom": "New room",
+    "save": "Save",
+    "saved": "Branch settings saved",
+    "invalid": "Check the data: name is required, opening before closing, and every room needs a name."
   }
 }

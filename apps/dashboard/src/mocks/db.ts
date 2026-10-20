@@ -13,6 +13,7 @@ import type { ContentItem, SiteImage } from '@/features/content/types';
 import type { NotificationTemplate } from '@/features/settings/notification-types';
 import type { Permission, Role } from '@/features/auth/permissions';
 import type { StaffMember } from '@/features/settings/staff-types';
+import type { BranchSettings } from '@/features/settings/branch-types';
 import type { Task } from '@/features/tasks/types';
 import type { Enrollment } from '@/features/programs/enrollment-types';
 import type { Program } from '@/features/programs/types';
@@ -63,6 +64,7 @@ export type MockDb = {
   lead_activities: StoredActivity[];
   tasks: Task[];
   catalog: CatalogItem[];
+  branch_settings: BranchSettings[];
   staff_members: StaffMember[];
   role_permissions: Partial<Record<Role, Permission[]>>;
   notification_templates: NotificationTemplate[];
@@ -105,6 +107,7 @@ const empty = (): MockDb => ({
   lead_activities: [],
   tasks: [],
   catalog: [],
+  branch_settings: [],
   staff_members: [],
   role_permissions: {},
   notification_templates: [],

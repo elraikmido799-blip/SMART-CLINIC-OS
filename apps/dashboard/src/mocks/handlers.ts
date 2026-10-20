@@ -15,6 +15,7 @@ import { nutritionPlanHandlers } from './nutrition-plans';
 import { photoHandlers } from './photos';
 import { programHandlers } from './programs';
 import { overviewHandlers } from './patient-overview';
+import { branchSettingsHandlers } from './branch-settings';
 import { staffHandlers } from './staff';
 import { notificationTemplateHandlers } from './notification-templates';
 import { contentHandlers } from './content';
@@ -59,11 +60,18 @@ const handlers: MockHandlers = {
   ...contentHandlers,
   ...notificationTemplateHandlers,
   ...staffHandlers,
+  ...branchSettingsHandlers,
   getBranches: () => {
     const staff = currentStaff();
+    // الاسم من إعدادات الفروع (9.4) لو اتعدّل
+    const renamed = readDb().branch_settings;
+    const all = BRANCHES.map((branch) => {
+      const own = renamed.find((item) => item.id === branch.id);
+      return own ? { id: branch.id, name_ar: own.name_ar, name_en: own.name_en } : branch;
+    });
     const data = staff.all_branches
-      ? BRANCHES
-      : BRANCHES.filter((branch) => staff.branch_ids.includes(branch.id));
+      ? all
+      : all.filter((branch) => staff.branch_ids.includes(branch.id));
     return { data };
   },
 };
