@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, App, Form, Input, InputNumber, Modal, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { formatMoney, localized } from '@oxygen/shared';
@@ -26,6 +26,9 @@ export function RequestRefundModal({
   const { message } = App.useApp();
   const [form] = Form.useForm<{ amount: number; reason: string }>();
   const [request, { isLoading }] = useRequestRefundMutation();
+  useEffect(() => {
+    if (open) form.setFieldsValue({ amount: refundable / 100, reason: '' });
+  }, [open, refundable, form]);
   const money = (amount: number) => formatMoney(amount, 'EGP', locale);
 
   return (

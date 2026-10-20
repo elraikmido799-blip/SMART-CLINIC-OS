@@ -52,7 +52,8 @@
     "successTitle": "Invoice issued",
     "done": "Collected {{amount}} · invoice {{number}}",
     "print": "Print invoice",
-    "newInvoice": "New invoice"
+    "newInvoice": "New invoice",
+    "removeColumn": "Remove"
   },
   "invoice": {
     "title": "Invoice",

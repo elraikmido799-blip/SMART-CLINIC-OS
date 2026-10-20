@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Alert,
   App,
@@ -69,6 +69,10 @@ export function BranchDrawer({
   const [form] = Form.useForm<Values>();
   const [update, { isLoading }] = useUpdateBranchSettingsMutation();
   const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    if (branch) form.setFieldsValue(toValues(branch));
+  }, [branch, form]);
 
   const save = async (values: Values) => {
     if (!branch) return;

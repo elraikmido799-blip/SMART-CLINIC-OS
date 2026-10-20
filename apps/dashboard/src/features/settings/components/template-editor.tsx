@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Alert, App, Button, Drawer, Flex, Form, Input, Switch, Tag, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { tokens } from '@oxygen/config';
@@ -88,6 +88,10 @@ export function TemplateEditor({
     body_en: item.body_en,
     active: item.active,
   });
+
+  useEffect(() => {
+    if (template) form.setFieldsValue(toValues(template));
+  }, [template, form]);
 
   const save = async (values: Values) => {
     if (!template) return;

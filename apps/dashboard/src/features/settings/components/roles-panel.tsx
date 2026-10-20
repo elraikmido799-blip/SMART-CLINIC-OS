@@ -63,7 +63,7 @@ export function RolesPanel() {
         loading={roles.isLoading}
         dataSource={roles.data ?? []}
         pagination={false}
-        scroll={{ x: 420 }}
+        scroll={{ x: 'max-content' }}
         locale={{ emptyText: <EmptyState /> }}
         onRow={(entry) => ({ onClick: () => open(entry), style: { cursor: 'pointer' } })}
         columns={[

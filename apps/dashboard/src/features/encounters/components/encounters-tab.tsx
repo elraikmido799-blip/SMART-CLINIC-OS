@@ -26,7 +26,7 @@ export function EncountersTab({ patientId }: { patientId: string }) {
           rowKey="id"
           dataSource={data}
           pagination={false}
-          scroll={{ x: 560 }}
+          scroll={{ x: 'max-content' }}
           locale={{ emptyText: <EmptyState title={t('tab.empty')} /> }}
           columns={[
             {

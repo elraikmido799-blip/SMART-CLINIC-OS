@@ -39,7 +39,7 @@ export function AppHeader({ isMobile, onOpenMenu }: { isMobile: boolean; onOpenM
           onClick={onOpenMenu}
         />
       )}
-      <BranchSelect width={isMobile ? 150 : 220} />
+      <BranchSelect width={isMobile ? 120 : 220} />
       {!isMobile && <PatientSearch />}
       <Flex align="center" gap={4} style={{ marginInlineStart: 'auto' }}>
         {isMobile && (

@@ -65,7 +65,7 @@ export function StaffPage() {
         loading={staff.isLoading}
         dataSource={rows}
         pagination={{ pageSize: 15, hideOnSinglePage: true, showSizeChanger: false }}
-        scroll={{ x: 700 }}
+        scroll={{ x: 'max-content' }}
         locale={{ emptyText: <EmptyState title={t('staff.empty')} /> }}
         onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
         columns={[
@@ -94,10 +94,13 @@ export function StaffPage() {
           {
             key: 'branches',
             title: t('staff.columns.branches'),
-            render: (_, item) =>
-              item.all_branches
-                ? t('staff.allBranches')
-                : item.branch_ids.map(branchName).join('، '),
+            render: (_, item) => (
+              <Typography.Text ellipsis style={{ maxWidth: 220 }}>
+                {item.all_branches
+                  ? t('staff.allBranches')
+                  : item.branch_ids.map(branchName).join('، ')}
+              </Typography.Text>
+            ),
           },
           {
             key: 'status',

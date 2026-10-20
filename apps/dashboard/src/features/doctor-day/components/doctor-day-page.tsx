@@ -106,7 +106,7 @@ export function DoctorDayPage() {
                   rowKey="id"
                   dataSource={rows}
                   pagination={false}
-                  scroll={{ x: 640 }}
+                  scroll={{ x: 'max-content' }}
                   locale={{ emptyText: <EmptyState title={t('queue.empty')} /> }}
                   columns={[
                     {

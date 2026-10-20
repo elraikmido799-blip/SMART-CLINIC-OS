@@ -284,7 +284,7 @@ export function MeasurementsTab({ patientId }: { patientId: string }) {
               dataSource={[...vitals].reverse()}
               pagination={false}
               size="small"
-              scroll={{ x: 520 }}
+              scroll={{ x: 'max-content' }}
               columns={[
                 {
                   title: t('date'),
@@ -327,7 +327,7 @@ export function MeasurementsTab({ patientId }: { patientId: string }) {
             dataSource={data?.labs}
             pagination={false}
             size="small"
-            scroll={{ x: 560 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('labs.empty')} /> }}
             columns={[
               {

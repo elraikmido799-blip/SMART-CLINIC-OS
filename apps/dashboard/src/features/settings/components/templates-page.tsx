@@ -51,7 +51,7 @@ export function TemplatesPage() {
             loading={templates.isLoading}
             dataSource={rows}
             pagination={false}
-            scroll={{ x: 560 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('templates.empty')} /> }}
             onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
             columns={[

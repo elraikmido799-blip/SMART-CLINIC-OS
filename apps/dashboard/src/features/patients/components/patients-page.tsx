@@ -86,7 +86,7 @@ export function PatientsPage() {
               onClick: () => open(patient),
               style: { cursor: 'pointer' },
             })}
-            scroll={{ x: 640 }}
+            scroll={{ x: 'max-content' }}
             columns={[
               {
                 key: 'name',

@@ -1,6 +1,6 @@
 import { Alert, App, DatePicker, Form, Input, InputNumber, Modal, Radio, Switch } from 'antd';
 import dayjs, { type Dayjs } from 'dayjs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { apiErrorCode } from '@/lib/api-error';
 import { clinicToday } from '@/lib/clinic-time';
@@ -50,6 +50,10 @@ export function CodeModal({
   const [duplicate, setDuplicate] = useState(false);
   const [create, createState] = useCreateDiscountCodeMutation();
   const [update, updateState] = useUpdateDiscountCodeMutation();
+  useEffect(() => {
+    if (open) form.setFieldsValue(toValues(code));
+  }, [open, code, form]);
+
   const type = Form.useWatch('type', form) ?? code?.type ?? 'percent';
 
   const save = async (values: Values) => {
@@ -80,7 +84,9 @@ export function CodeModal({
       open={open}
       onCancel={onClose}
       destroyOnHidden
-      afterClose={() => setDuplicate(false)}
+      afterClose={() => {
+        setDuplicate(false);
+      }}
       title={t(code ? 'codes.edit' : 'codes.new')}
       okText={t('drawer.save')}
       cancelText={t('cancel')}

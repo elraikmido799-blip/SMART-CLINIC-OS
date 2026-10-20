@@ -87,7 +87,7 @@ export function ContentPage() {
               loading={content.isLoading}
               dataSource={rows}
               pagination={false}
-              scroll={{ x: 640 }}
+              scroll={{ x: 'max-content' }}
               locale={{ emptyText: <EmptyState title={t('empty')} /> }}
               onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
               columns={[

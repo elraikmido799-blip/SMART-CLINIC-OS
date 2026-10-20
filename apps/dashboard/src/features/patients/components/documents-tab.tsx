@@ -27,7 +27,7 @@ export function DocumentsTab({ patientId }: { patientId: string }) {
             rowKey="id"
             dataSource={data?.documents}
             pagination={false}
-            scroll={{ x: 480 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('overview.noDocuments')} /> }}
             columns={[
               {

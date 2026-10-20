@@ -37,7 +37,7 @@ export function SchedulesPage() {
             loading={schedules.isLoading}
             dataSource={schedules.data ?? []}
             pagination={false}
-            scroll={{ x: 560 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState /> }}
             onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
             columns={[

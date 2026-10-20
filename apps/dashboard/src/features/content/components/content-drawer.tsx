@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { App, Button, DatePicker, Drawer, Flex, Form, Input, InputNumber, Select } from 'antd';
 import dayjs, { type Dayjs } from 'dayjs';
 import { useTranslation } from 'react-i18next';
@@ -59,6 +60,10 @@ export function ContentDrawer({
   const [form] = Form.useForm<Values>();
   const [create, createState] = useCreateContentMutation();
   const [update, updateState] = useUpdateContentMutation();
+  useEffect(() => {
+    if (open) form.setFieldsValue(toValues(item));
+  }, [open, item, form]);
+
   const current = item?.kind ?? kind;
 
   const save = async (status: ContentStatus) => {

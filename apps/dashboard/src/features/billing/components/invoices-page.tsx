@@ -154,7 +154,7 @@ export function InvoicesPage() {
             loading={invoices.isFetching}
             dataSource={rows}
             pagination={{ pageSize: 15, hideOnSinglePage: true, showSizeChanger: false }}
-            scroll={{ x: 760 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('invoices.empty')} /> }}
             onRow={(invoice) => ({
               onClick: () => setSelected(invoice),

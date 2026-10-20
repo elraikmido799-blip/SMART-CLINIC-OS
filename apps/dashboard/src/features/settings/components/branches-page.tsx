@@ -37,7 +37,7 @@ export function BranchesPage() {
             loading={branches.isLoading}
             dataSource={branches.data ?? []}
             pagination={false}
-            scroll={{ x: 640 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState /> }}
             onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
             columns={[

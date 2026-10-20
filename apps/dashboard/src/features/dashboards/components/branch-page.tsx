@@ -125,7 +125,7 @@ function BranchBody({
               rowKey="id"
               dataSource={result.doctors}
               pagination={false}
-              scroll={{ x: 520 }}
+              scroll={{ x: 'max-content' }}
               columns={[
                 {
                   key: 'name',

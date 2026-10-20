@@ -140,7 +140,7 @@ export function ReportsPage() {
             loading={report.isFetching}
             dataSource={data?.rows ?? []}
             pagination={{ pageSize: 20, hideOnSinglePage: true, showSizeChanger: false }}
-            scroll={{ x: 560 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('empty')} /> }}
             columns={(data?.columns ?? []).map((column) => ({
               key: column.key,

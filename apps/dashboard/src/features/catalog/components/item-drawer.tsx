@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   App,
   Button,
@@ -69,6 +70,10 @@ export function ItemDrawer({
   const branches = useGetBranchesQuery();
   const [create, createState] = useCreateCatalogItemMutation();
   const [update, updateState] = useUpdateCatalogItemMutation();
+  useEffect(() => {
+    if (open) form.setFieldsValue(toValues(item, kind));
+  }, [open, item, kind, form]);
+
   const current = Form.useWatch('kind', form) ?? item?.kind ?? kind;
 
   const save = async (values: Values) => {

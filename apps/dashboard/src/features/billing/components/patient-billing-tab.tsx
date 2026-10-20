@@ -27,7 +27,7 @@ export function PatientBillingTab({ patientId }: { patientId: string }) {
           loading={invoices.isLoading}
           dataSource={invoices.data ?? []}
           pagination={false}
-          scroll={{ x: 520 }}
+          scroll={{ x: 'max-content' }}
           locale={{ emptyText: <EmptyState title={t('invoices.emptyPatient')} /> }}
           onRow={(invoice) => ({
             onClick: () => setSelected(invoice),

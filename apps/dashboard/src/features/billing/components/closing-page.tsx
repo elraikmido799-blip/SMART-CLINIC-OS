@@ -129,6 +129,7 @@ export function ClosingPage() {
               size="small"
               rowKey="method"
               pagination={false}
+              scroll={{ x: 'max-content' }}
               dataSource={rows}
               columns={[
                 { key: 'm', title: t('pos.method'), render: (_, row) => methodLabel(row.method) },
@@ -229,6 +230,7 @@ export function ClosingPage() {
           <Button onClick={fillExpected}>{t('closing.fillExpected')}</Button>
         </Flex>
         <Table
+          scroll={{ x: 'max-content' }}
           size="small"
           rowKey="method"
           pagination={false}

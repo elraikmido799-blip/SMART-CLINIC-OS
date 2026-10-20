@@ -60,7 +60,7 @@ export function CodesPage() {
             loading={codes.isLoading}
             dataSource={codes.data ?? []}
             pagination={false}
-            scroll={{ x: 760 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('codes.empty')} /> }}
             onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
             columns={[

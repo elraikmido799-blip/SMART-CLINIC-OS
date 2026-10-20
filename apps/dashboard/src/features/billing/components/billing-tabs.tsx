@@ -21,14 +21,15 @@ export function BillingTabs({ active }: { active: Section }) {
   if (visible.length < 2) return null;
 
   return (
-    <Segmented
-      aria-label={t('sections.label')}
-      value={active}
-      style={{ marginBottom: 16 }}
-      onChange={(value) =>
-        void navigate({ to: visible.find((item) => item.key === value)?.to ?? '/billing' })
-      }
-      options={visible.map((item) => ({ value: item.key, label: t(`sections.${item.key}`) }))}
-    />
+    <div style={{ overflowX: 'auto', marginBottom: 16, paddingBottom: 2 }}>
+      <Segmented
+        aria-label={t('sections.label')}
+        value={active}
+        onChange={(value) =>
+          void navigate({ to: visible.find((item) => item.key === value)?.to ?? '/billing' })
+        }
+        options={visible.map((item) => ({ value: item.key, label: t(`sections.${item.key}`) }))}
+      />
+    </div>
   );
 }

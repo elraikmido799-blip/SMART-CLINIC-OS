@@ -214,7 +214,10 @@ apps/dashboard/
 │   ├── favicon.png              رمز O2 (64px، من أيقونة الموقع)
 │   ├── logo.png                 اللوجو الملون (264px — P-26)
 │   ├── logo-symbol.png          الرمز بس (للـSider المقفول على التابلت)
-│   └── logo-white.png           الأبيض (بانل الدخول)
+│   ├── logo-white.png           الأبيض (بانل الدخول)
+│   ├── manifest.webmanifest     الـPWA: الاسم والألوان والأيقونات (10.1)
+│   ├── sw.js                    service worker: ملفات الـBuild بس، من غير API ولا داتا مرضى (DEC-75)
+│   └── icons/                   أيقونات الـPWA 192 و512 وmaskable (من رمز اللوجو الأصلي)
 ├── src/
 │   ├── app/                     تشغيل الأبلكيشن
 │   │   ├── providers.tsx        RTL + لغة antd (ar_EG) + Redux + لغة التواريخ

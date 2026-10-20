@@ -11,6 +11,7 @@ import './app/global.css';
 import './app/i18n';
 import { Providers } from './app/providers';
 import { router } from './app/router';
+import { registerServiceWorker } from './lib/register-sw';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,3 +20,5 @@ createRoot(document.getElementById('root')!).render(
     </Providers>
   </StrictMode>,
 );
+
+registerServiceWorker();

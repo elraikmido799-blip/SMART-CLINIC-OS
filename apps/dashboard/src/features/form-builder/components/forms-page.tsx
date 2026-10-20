@@ -32,7 +32,7 @@ export function FormsPage() {
             rowKey="code"
             dataSource={data}
             pagination={false}
-            scroll={{ x: 560 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('list.empty')} /> }}
             columns={[
               {

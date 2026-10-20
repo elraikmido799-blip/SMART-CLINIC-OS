@@ -85,7 +85,7 @@ export function CatalogPage() {
             loading={catalog.isLoading}
             dataSource={rows}
             pagination={false}
-            scroll={{ x: 720 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('empty')} /> }}
             onRow={(item) => ({
               onClick: () => canWrite && setEditing(item),

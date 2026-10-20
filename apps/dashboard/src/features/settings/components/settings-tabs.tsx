@@ -12,16 +12,17 @@ export function SettingsTabs({ active }: { active: SettingsSection }) {
   if (visible.length < 2) return null;
 
   return (
-    <Segmented
-      aria-label={t('tabs.label')}
-      value={active}
-      style={{ marginBottom: 16 }}
-      onChange={(value) => {
-        const target = visible.find((item) => item.key === value);
-        if (target) void navigate({ to: target.to });
-      }}
-      options={visible.map((item) => ({ value: item.key, label: t(`tabs.${item.key}`) }))}
-    />
+    <div style={{ overflowX: 'auto', marginBottom: 16, paddingBottom: 2 }}>
+      <Segmented
+        aria-label={t('tabs.label')}
+        value={active}
+        onChange={(value) => {
+          const target = visible.find((item) => item.key === value);
+          if (target) void navigate({ to: target.to });
+        }}
+        options={visible.map((item) => ({ value: item.key, label: t(`tabs.${item.key}`) }))}
+      />
+    </div>
   );
 }
 

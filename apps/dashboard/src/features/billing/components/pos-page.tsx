@@ -320,7 +320,7 @@ export function PosPage() {
                 pagination={false}
                 dataSource={lines}
                 locale={{ emptyText: <EmptyState title={t('pos.emptyItems')} /> }}
-                scroll={{ x: 560 }}
+                scroll={{ x: 'max-content' }}
                 columns={[
                   {
                     key: 'item',
@@ -372,6 +372,8 @@ export function PosPage() {
                   {
                     key: 'remove',
                     width: 56,
+                    // عنوان للقارئ بس (العمود فيه زرار حذف من غير نص)
+                    title: <span className="sr-only">{t('pos.removeColumn')}</span>,
                     render: (_, line) => (
                       <Button
                         type="text"

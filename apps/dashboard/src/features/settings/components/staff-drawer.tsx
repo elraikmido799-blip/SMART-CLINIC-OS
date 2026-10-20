@@ -1,5 +1,5 @@
 import { Alert, App, Button, Drawer, Flex, Form, Input, Select, Switch } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SPECIALTIES, type Specialty } from '@oxygen/config';
 import { localized } from '@oxygen/shared';
@@ -67,6 +67,10 @@ export function StaffDrawer({
   const branches = useGetBranchesQuery();
   const [create, createState] = useCreateStaffMemberMutation();
   const [update, updateState] = useUpdateStaffMemberMutation();
+  useEffect(() => {
+    if (open) form.setFieldsValue(toValues(member, me.all_branches ? [] : me.branch_ids));
+  }, [open, member, me, form]);
+
   const role = Form.useWatch('role', form) ?? member?.role ?? 'reception';
   const allBranches = Form.useWatch('all_branches', form) ?? member?.all_branches ?? false;
 

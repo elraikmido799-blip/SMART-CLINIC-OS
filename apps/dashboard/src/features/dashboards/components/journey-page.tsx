@@ -124,7 +124,7 @@ export function JourneyPage() {
               rowKey="stage"
               dataSource={rows}
               pagination={false}
-              scroll={{ x: 520 }}
+              scroll={{ x: 'max-content' }}
               columns={[
                 {
                   key: 'stage',

@@ -26,14 +26,15 @@ export function DashboardTabs({ active }: { active: Section }) {
   if (visible.length < 2) return null;
 
   return (
-    <Segmented
-      aria-label={t('tabs.label')}
-      value={active}
-      style={{ marginBottom: 16 }}
-      onChange={(value) =>
-        void navigate({ to: visible.find((item) => item.key === value)?.to ?? '/dashboards' })
-      }
-      options={visible.map((item) => ({ value: item.key, label: t(`tabs.${item.key}`) }))}
-    />
+    <div style={{ overflowX: 'auto', marginBottom: 16, paddingBottom: 2 }}>
+      <Segmented
+        aria-label={t('tabs.label')}
+        value={active}
+        onChange={(value) =>
+          void navigate({ to: visible.find((item) => item.key === value)?.to ?? '/dashboards' })
+        }
+        options={visible.map((item) => ({ value: item.key, label: t(`tabs.${item.key}`) }))}
+      />
+    </div>
   );
 }

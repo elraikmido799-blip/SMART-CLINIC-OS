@@ -38,7 +38,7 @@ export function AuditTable({ query }: { query: AuditQuery }) {
       loading={log.isFetching}
       dataSource={log.data ?? []}
       pagination={{ pageSize: 20, hideOnSinglePage: true, showSizeChanger: false }}
-      scroll={{ x: 680 }}
+      scroll={{ x: 'max-content' }}
       locale={{ emptyText: <EmptyState title={t('audit.empty')} /> }}
       columns={[
         {

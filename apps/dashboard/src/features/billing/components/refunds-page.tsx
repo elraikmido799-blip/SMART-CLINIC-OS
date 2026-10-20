@@ -61,7 +61,7 @@ export function RefundsPage() {
             loading={refunds.isLoading}
             dataSource={rows}
             pagination={false}
-            scroll={{ x: 820 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t(`refunds.empty.${status}`)} /> }}
             columns={[
               {

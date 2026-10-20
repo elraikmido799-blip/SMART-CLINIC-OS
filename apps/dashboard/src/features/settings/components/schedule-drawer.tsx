@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Alert,
   App,
@@ -64,6 +64,18 @@ export function ScheduleDrawer({
     { practitioner_id: schedule?.practitioner_id ?? '', from, to },
     { skip: !schedule || !range },
   );
+
+  useEffect(() => {
+    if (!schedule) return;
+    form.setFieldsValue({
+      weekly: schedule.weekly.map((entry) => ({
+        day: entry.day,
+        off: entry.off,
+        branch_id: entry.branch_id,
+        range: [dayjs(entry.start, FORMAT), dayjs(entry.end, FORMAT)],
+      })),
+    });
+  }, [schedule, form]);
 
   const saveWeekly = async (values: WeeklyValues) => {
     if (!schedule) return;

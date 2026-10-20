@@ -53,7 +53,7 @@ export function ProgramsManagePage() {
             rowKey="id"
             dataSource={data}
             pagination={false}
-            scroll={{ x: 520 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('manage.empty')} /> }}
             columns={[
               {

@@ -129,7 +129,7 @@ export function ExercisesPage() {
             rowKey="id"
             dataSource={data}
             pagination={false}
-            scroll={{ x: 640 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('none')} /> }}
             columns={[
               {

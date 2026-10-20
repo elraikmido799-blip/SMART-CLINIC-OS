@@ -83,7 +83,7 @@ export function CampaignsPage() {
             loading={campaigns.isLoading || leads.isLoading}
             dataSource={rows}
             pagination={false}
-            scroll={{ x: 760 }}
+            scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('campaigns.empty')} /> }}
             columns={[
               { key: 'name', title: t('campaigns.name'), dataIndex: 'name' },
