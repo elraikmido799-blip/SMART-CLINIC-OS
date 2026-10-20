@@ -8,6 +8,7 @@ import type { Exercise } from '@/features/exercises/types';
 import type { Campaign, Lead } from '@/features/crm/types';
 import type { CatalogItem } from '@/features/catalog/types';
 import type { DiscountCode } from '@/features/catalog/codes-types';
+import type { Refund } from '@/features/billing/refunds-types';
 import type { Task } from '@/features/tasks/types';
 import type { Enrollment } from '@/features/programs/enrollment-types';
 import type { Program } from '@/features/programs/types';
@@ -58,6 +59,7 @@ export type MockDb = {
   lead_activities: StoredActivity[];
   tasks: Task[];
   catalog: CatalogItem[];
+  refunds: Refund[];
   discount_codes: DiscountCode[];
   // الأيام اللي مواعيدها اتولدت: "branch-id|2026-10-19"
   generated_days: string[];
@@ -94,6 +96,7 @@ const empty = (): MockDb => ({
   lead_activities: [],
   tasks: [],
   catalog: [],
+  refunds: [],
   discount_codes: [],
   generated_days: [],
 });

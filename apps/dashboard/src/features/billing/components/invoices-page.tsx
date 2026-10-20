@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, Col, Drawer, Flex, Input, Row, Select, Table, Typography } from 'antd';
+import { Button, Card, Col, Drawer, Flex, Input, Row, Select, Table, Typography } from 'antd';
 import { Banknote, Receipt, Wallet } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { formatMoney, formatNumber, formatSlot, localized } from '@oxygen/shared';
@@ -11,7 +11,9 @@ import { EmptyState, ErrorState } from '@/components/states/states';
 import { StatusTag } from '@/components/tags';
 import { useBranchScope } from '@/features/branches/use-branch-scope';
 import { useDebounced } from '@/lib/use-debounced';
+import { useCan } from '@/features/auth/use-me';
 import { useGetInvoicesQuery } from '../invoices.api';
+import { useGetRefundsQuery } from '../refunds.api';
 import {
   PAYMENT_METHODS,
   invoiceStatusOf,
@@ -19,7 +21,9 @@ import {
   type InvoiceStatus,
   type PaymentMethod,
 } from '../types';
+import { BillingTabs } from './billing-tabs';
 import { InvoiceView } from './invoice-view';
+import { RequestRefundModal } from './refund-modals';
 
 const STATUS_TONE: Record<InvoiceStatus, Tone> = {
   paid: 'success',
@@ -50,6 +54,9 @@ export function InvoicesPage() {
   const [status, setStatus] = useState<InvoiceStatus>();
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState<Invoice | null>(null);
+  const [refunding, setRefunding] = useState(false);
+  const canRequestRefund = useCan('refunds.request');
+  const refunds = useGetRefundsQuery({ branch_id: 'all' }, { skip: !canRequestRefund });
   const search = useDebounced(query.trim());
   const invoices = useGetInvoicesQuery({
     branch_id: branchId,
@@ -66,6 +73,7 @@ export function InvoicesPage() {
 
   return (
     <>
+      <BillingTabs active="invoices" />
       <PageHeader title={tNav('billing')} description={t('invoices.description')} />
       <Card style={{ marginBottom: 16 }}>
         <Flex wrap gap={12} align="center">
@@ -216,7 +224,27 @@ export function InvoicesPage() {
         size={480}
         title={selected?.number}
       >
-        {selected && <InvoiceView invoice={selected} printable />}
+        {selected && (
+          <>
+            <InvoiceView invoice={selected} printable />
+            {canRequestRefund && (
+              <Button block style={{ marginTop: 16 }} onClick={() => setRefunding(true)}>
+                {t('refunds.request.button')}
+              </Button>
+            )}
+            <RequestRefundModal
+              invoice={selected}
+              refundable={
+                selected.paid -
+                (refunds.data ?? [])
+                  .filter((item) => item.invoice_id === selected.id && item.status !== 'rejected')
+                  .reduce((sum, item) => sum + item.amount, 0)
+              }
+              open={refunding}
+              onClose={() => setRefunding(false)}
+            />
+          </>
+        )}
       </Drawer>
     </>
   );

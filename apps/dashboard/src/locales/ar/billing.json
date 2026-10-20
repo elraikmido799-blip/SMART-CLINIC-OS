@@ -137,5 +137,59 @@
       "status": "الحالة"
     },
     "emptyPatient": "مفيش فواتير للمريض ده"
+  },
+  "sections": {
+    "label": "أقسام الحسابات",
+    "invoices": "الفواتير",
+    "refunds": "المرتجعات"
+  },
+  "refunds": {
+    "description": "طلبات المرتجعات والموافقة عليها",
+    "cancel": "إلغاء",
+    "currency": "ج.م",
+    "status": {
+      "pending": "مستنية",
+      "approved": "اتوافق عليها",
+      "rejected": "مرفوضة"
+    },
+    "empty": {
+      "pending": "مفيش طلبات مستنية",
+      "approved": "مفيش طلبات اتوافق عليها",
+      "rejected": "مفيش طلبات مرفوضة"
+    },
+    "columns": {
+      "invoice": "الفاتورة",
+      "patient": "المريض",
+      "amount": "المبلغ",
+      "reason": "السبب",
+      "requested": "اتطلب بواسطة",
+      "status": "الحالة"
+    },
+    "request": {
+      "button": "اطلب مرتجع",
+      "title": "مرتجع من الفاتورة {{number}}",
+      "available": "المتاح للاسترجاع: {{amount}}",
+      "amount": "المبلغ",
+      "reason": "السبب",
+      "reasonRequired": "اكتب السبب",
+      "ok": "ابعت الطلب",
+      "done": "الطلب اتبعت للمحاسب"
+    },
+    "decide": {
+      "approve": "وافق",
+      "reject": "ارفض",
+      "approveTitle": "الموافقة على المرتجع",
+      "rejectTitle": "رفض المرتجع",
+      "summary": "مرتجع {{amount}} للمريض {{patient}} من الفاتورة {{number}}",
+      "noteOptional": "ملاحظة (اختياري)",
+      "noteRequired": "سبب الرفض (إجباري)",
+      "approved": "اتوافق على المرتجع",
+      "rejected": "المرتجع اترفض"
+    },
+    "errors": {
+      "tooHigh": "المبلغ أكبر من المتاح للاسترجاع.",
+      "alreadyDecided": "حد تاني قرر في الطلب ده قبلك.",
+      "generic": "حصلت مشكلة. جرّب تاني."
+    }
   }
 }

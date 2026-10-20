@@ -137,5 +137,59 @@
       "status": "Status"
     },
     "emptyPatient": "No invoices for this patient"
+  },
+  "sections": {
+    "label": "Billing sections",
+    "invoices": "Invoices",
+    "refunds": "Refunds"
+  },
+  "refunds": {
+    "description": "Refund requests and their approval",
+    "cancel": "Cancel",
+    "currency": "EGP",
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "empty": {
+      "pending": "No pending requests",
+      "approved": "No approved requests",
+      "rejected": "No rejected requests"
+    },
+    "columns": {
+      "invoice": "Invoice",
+      "patient": "Patient",
+      "amount": "Amount",
+      "reason": "Reason",
+      "requested": "Requested by",
+      "status": "Status"
+    },
+    "request": {
+      "button": "Request a refund",
+      "title": "Refund from invoice {{number}}",
+      "available": "Available to refund: {{amount}}",
+      "amount": "Amount",
+      "reason": "Reason",
+      "reasonRequired": "Write the reason",
+      "ok": "Send request",
+      "done": "Request sent to finance"
+    },
+    "decide": {
+      "approve": "Approve",
+      "reject": "Reject",
+      "approveTitle": "Approve the refund",
+      "rejectTitle": "Reject the refund",
+      "summary": "Refund of {{amount}} to {{patient}} from invoice {{number}}",
+      "noteOptional": "Note (optional)",
+      "noteRequired": "Reason for rejecting (required)",
+      "approved": "Refund approved",
+      "rejected": "Refund rejected"
+    },
+    "errors": {
+      "tooHigh": "The amount is more than what is available to refund.",
+      "alreadyDecided": "Someone else already decided on this request.",
+      "generic": "Something went wrong. Try again."
+    }
   }
 }

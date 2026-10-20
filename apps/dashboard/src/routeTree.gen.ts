@@ -18,6 +18,7 @@ import { Route as AppDashboardsRouteImport } from './routes/_app/dashboards'
 import { Route as AppReportsRouteImport } from './routes/_app/reports'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 import { Route as AppBillingIndexRouteImport } from './routes/_app/billing.index'
+import { Route as AppBillingRefundsRouteImport } from './routes/_app/billing.refunds'
 import { Route as AppCatalogIndexRouteImport } from './routes/_app/catalog.index'
 import { Route as AppCatalogCodesRouteImport } from './routes/_app/catalog.codes'
 import { Route as AppClinicalIndexRouteImport } from './routes/_app/clinical.index'
@@ -79,6 +80,11 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
 const AppBillingIndexRoute = AppBillingIndexRouteImport.update({
   id: '/billing/',
   path: '/billing/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBillingRefundsRoute = AppBillingRefundsRouteImport.update({
+  id: '/billing/refunds',
+  path: '/billing/refunds',
   getParentRoute: () => AppRoute,
 } as any)
 const AppCatalogIndexRoute = AppCatalogIndexRouteImport.update({
@@ -181,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/dashboards': typeof AppDashboardsRoute
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
+  '/billing/refunds': typeof AppBillingRefundsRoute
   '/catalog/codes': typeof AppCatalogCodesRoute
   '/clinical/exercises': typeof AppClinicalExercisesRoute
   '/crm/campaigns': typeof AppCrmCampaignsRoute
@@ -209,6 +216,7 @@ export interface FileRoutesByTo {
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
   '/': typeof AppIndexRoute
+  '/billing/refunds': typeof AppBillingRefundsRoute
   '/catalog/codes': typeof AppCatalogCodesRoute
   '/clinical/exercises': typeof AppClinicalExercisesRoute
   '/crm/campaigns': typeof AppCrmCampaignsRoute
@@ -239,6 +247,7 @@ export interface FileRoutesById {
   '/_app/reports': typeof AppReportsRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/': typeof AppIndexRoute
+  '/_app/billing/refunds': typeof AppBillingRefundsRoute
   '/_app/catalog/codes': typeof AppCatalogCodesRoute
   '/_app/clinical/exercises': typeof AppClinicalExercisesRoute
   '/_app/crm/campaigns': typeof AppCrmCampaignsRoute
@@ -269,6 +278,7 @@ export interface FileRouteTypes {
     | '/dashboards'
     | '/reports'
     | '/settings'
+    | '/billing/refunds'
     | '/catalog/codes'
     | '/clinical/exercises'
     | '/crm/campaigns'
@@ -297,6 +307,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/'
+    | '/billing/refunds'
     | '/catalog/codes'
     | '/clinical/exercises'
     | '/crm/campaigns'
@@ -326,6 +337,7 @@ export interface FileRouteTypes {
     | '/_app/reports'
     | '/_app/settings'
     | '/_app/'
+    | '/_app/billing/refunds'
     | '/_app/catalog/codes'
     | '/_app/clinical/exercises'
     | '/_app/crm/campaigns'
@@ -415,6 +427,13 @@ declare module '@tanstack/react-router' {
       path: '/billing'
       fullPath: '/billing/'
       preLoaderRoute: typeof AppBillingIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/billing/refunds': {
+      id: '/_app/billing/refunds'
+      path: '/billing/refunds'
+      fullPath: '/billing/refunds'
+      preLoaderRoute: typeof AppBillingRefundsRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/catalog/': {
@@ -553,6 +572,7 @@ interface AppRouteChildren {
   AppReportsRoute: typeof AppReportsRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppBillingRefundsRoute: typeof AppBillingRefundsRoute
   AppCatalogCodesRoute: typeof AppCatalogCodesRoute
   AppClinicalExercisesRoute: typeof AppClinicalExercisesRoute
   AppCrmCampaignsRoute: typeof AppCrmCampaignsRoute
@@ -581,6 +601,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppReportsRoute: AppReportsRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
+  AppBillingRefundsRoute: AppBillingRefundsRoute,
   AppCatalogCodesRoute: AppCatalogCodesRoute,
   AppClinicalExercisesRoute: AppClinicalExercisesRoute,
   AppCrmCampaignsRoute: AppCrmCampaignsRoute,
