@@ -10,6 +10,7 @@ import type { CatalogItem } from '@/features/catalog/types';
 import type { DiscountCode } from '@/features/catalog/codes-types';
 import type { Refund } from '@/features/billing/refunds-types';
 import type { ContentItem, SiteImage } from '@/features/content/types';
+import type { NotificationTemplate } from '@/features/settings/notification-types';
 import type { Task } from '@/features/tasks/types';
 import type { Enrollment } from '@/features/programs/enrollment-types';
 import type { Program } from '@/features/programs/types';
@@ -60,6 +61,7 @@ export type MockDb = {
   lead_activities: StoredActivity[];
   tasks: Task[];
   catalog: CatalogItem[];
+  notification_templates: NotificationTemplate[];
   content_items: ContentItem[];
   site_images: SiteImage[];
   refunds: Refund[];
@@ -99,6 +101,7 @@ const empty = (): MockDb => ({
   lead_activities: [],
   tasks: [],
   catalog: [],
+  notification_templates: [],
   content_items: [],
   site_images: [],
   refunds: [],

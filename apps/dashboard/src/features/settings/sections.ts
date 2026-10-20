@@ -1,0 +1,22 @@
+import type { Permission } from '@/features/auth/permissions';
+import { hasAny, useMe } from '@/features/auth/use-me';
+
+export type SettingsSection = 'templates';
+
+type Entry = { key: SettingsSection; to: '/settings/templates'; permissions: Permission[] };
+
+/**
+ * أقسام الإعدادات (D-34 → D-39) بالترتيب، وكل قسم حسب صلاحية: مين شايف إيه (06). القسم بيتضاف هنا مع خطوته.
+ */
+const SECTIONS: Entry[] = [
+  {
+    key: 'templates',
+    to: '/settings/templates',
+    permissions: ['settings.read', 'settings.manage'],
+  },
+];
+
+export const useSettingsSections = () => {
+  const me = useMe();
+  return SECTIONS.filter((item) => hasAny(me, item.permissions));
+};

@@ -1,0 +1,52 @@
+{
+  "cancel": "Cancel",
+  "tabs": {
+    "label": "Settings sections",
+    "templates": "Notification templates"
+  },
+  "templates": {
+    "description": "WhatsApp, SMS and email messages sent to patients",
+    "empty": "No templates",
+    "channels": {
+      "whatsapp": "WhatsApp",
+      "sms": "SMS",
+      "email": "Email"
+    },
+    "events": {
+      "booking_confirmed": "Booking confirmed",
+      "reminder_24h": "Reminder, one day before",
+      "reminder_2h": "Reminder, two hours before",
+      "payment_receipt": "Payment receipt",
+      "follow_up": "Follow-up after a visit",
+      "program_stage": "Program stage completed"
+    },
+    "columns": {
+      "event": "Event",
+      "status": "Status"
+    },
+    "on": "On",
+    "off": "Off",
+    "pending": "Waiting for WhatsApp review",
+    "active": "Active",
+    "variables": "Variables (click to insert)",
+    "variable": {
+      "patient_name": "Patient name",
+      "date": "Date",
+      "time": "Time",
+      "doctor": "Doctor",
+      "branch": "Branch",
+      "amount": "Amount"
+    },
+    "subjectAr": "Email subject (Arabic)",
+    "subjectEn": "Email subject (English)",
+    "bodyAr": "Arabic text",
+    "bodyEn": "English text",
+    "required": "Required",
+    "preview": "Preview",
+    "smsLong": "The text is longer than one SMS ({{limit}} characters) and will count as two.",
+    "whatsappNote": "Editing a WhatsApp text sends it back to WhatsApp for review before it goes out.",
+    "save": "Save",
+    "saved": "Template saved",
+    "invalid": "The template has an unknown variable or empty text."
+  }
+}

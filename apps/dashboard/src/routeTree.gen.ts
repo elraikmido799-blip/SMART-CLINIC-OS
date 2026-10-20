@@ -13,7 +13,6 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppCalendarRouteImport } from './routes/_app/calendar'
-import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 import { Route as AppBillingIndexRouteImport } from './routes/_app/billing.index'
 import { Route as AppBillingRefundsRouteImport } from './routes/_app/billing.refunds'
 import { Route as AppCatalogIndexRouteImport } from './routes/_app/catalog.index'
@@ -35,6 +34,8 @@ import { Route as AppPatientsIndexRouteImport } from './routes/_app/patients.ind
 import { Route as AppPatientsPatientIdRouteImport } from './routes/_app/patients.$patientId'
 import { Route as AppProgramsIndexRouteImport } from './routes/_app/programs.index'
 import { Route as AppReportsIndexRouteImport } from './routes/_app/reports.index'
+import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings.index'
+import { Route as AppSettingsTemplatesRouteImport } from './routes/_app/settings.templates'
 import { Route as AppClinicalFormsIndexRouteImport } from './routes/_app/clinical.forms.index'
 import { Route as AppClinicalFormsCodeRouteImport } from './routes/_app/clinical.forms.$code'
 import { Route as AppProgramsBuilderIndexRouteImport } from './routes/_app/programs.builder.index'
@@ -57,11 +58,6 @@ const AppIndexRoute = AppIndexRouteImport.update({
 const AppCalendarRoute = AppCalendarRouteImport.update({
   id: '/calendar',
   path: '/calendar',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppSettingsRoute = AppSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
 const AppBillingIndexRoute = AppBillingIndexRouteImport.update({
@@ -170,6 +166,16 @@ const AppReportsIndexRoute = AppReportsIndexRouteImport.update({
   path: '/reports/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
+  id: '/settings/',
+  path: '/settings/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsTemplatesRoute = AppSettingsTemplatesRouteImport.update({
+  id: '/settings/templates',
+  path: '/settings/templates',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppClinicalFormsIndexRoute = AppClinicalFormsIndexRouteImport.update({
   id: '/clinical/forms/',
   path: '/clinical/forms/',
@@ -195,7 +201,6 @@ export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/login': typeof LoginRoute
   '/calendar': typeof AppCalendarRoute
-  '/settings': typeof AppSettingsRoute
   '/billing/refunds': typeof AppBillingRefundsRoute
   '/catalog/codes': typeof AppCatalogCodesRoute
   '/clinical/exercises': typeof AppClinicalExercisesRoute
@@ -207,6 +212,7 @@ export interface FileRoutesByFullPath {
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/settings/templates': typeof AppSettingsTemplatesRoute
   '/billing/': typeof AppBillingIndexRoute
   '/catalog/': typeof AppCatalogIndexRoute
   '/clinical/': typeof AppClinicalIndexRoute
@@ -217,6 +223,7 @@ export interface FileRoutesByFullPath {
   '/patients/': typeof AppPatientsIndexRoute
   '/programs/': typeof AppProgramsIndexRoute
   '/reports/': typeof AppReportsIndexRoute
+  '/settings/': typeof AppSettingsIndexRoute
   '/clinical/forms/$code': typeof AppClinicalFormsCodeRoute
   '/programs/builder/$id': typeof AppProgramsBuilderIdRoute
   '/clinical/forms/': typeof AppClinicalFormsIndexRoute
@@ -225,7 +232,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/calendar': typeof AppCalendarRoute
-  '/settings': typeof AppSettingsRoute
   '/': typeof AppIndexRoute
   '/billing/refunds': typeof AppBillingRefundsRoute
   '/catalog/codes': typeof AppCatalogCodesRoute
@@ -238,6 +244,7 @@ export interface FileRoutesByTo {
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/settings/templates': typeof AppSettingsTemplatesRoute
   '/billing': typeof AppBillingIndexRoute
   '/catalog': typeof AppCatalogIndexRoute
   '/clinical': typeof AppClinicalIndexRoute
@@ -248,6 +255,7 @@ export interface FileRoutesByTo {
   '/patients': typeof AppPatientsIndexRoute
   '/programs': typeof AppProgramsIndexRoute
   '/reports': typeof AppReportsIndexRoute
+  '/settings': typeof AppSettingsIndexRoute
   '/clinical/forms/$code': typeof AppClinicalFormsCodeRoute
   '/programs/builder/$id': typeof AppProgramsBuilderIdRoute
   '/clinical/forms': typeof AppClinicalFormsIndexRoute
@@ -258,7 +266,6 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/_app/calendar': typeof AppCalendarRoute
-  '/_app/settings': typeof AppSettingsRoute
   '/_app/': typeof AppIndexRoute
   '/_app/billing/refunds': typeof AppBillingRefundsRoute
   '/_app/catalog/codes': typeof AppCatalogCodesRoute
@@ -271,6 +278,7 @@ export interface FileRoutesById {
   '/_app/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/_app/front-desk/pos': typeof AppFrontDeskPosRoute
   '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/_app/settings/templates': typeof AppSettingsTemplatesRoute
   '/_app/billing/': typeof AppBillingIndexRoute
   '/_app/catalog/': typeof AppCatalogIndexRoute
   '/_app/clinical/': typeof AppClinicalIndexRoute
@@ -281,6 +289,7 @@ export interface FileRoutesById {
   '/_app/patients/': typeof AppPatientsIndexRoute
   '/_app/programs/': typeof AppProgramsIndexRoute
   '/_app/reports/': typeof AppReportsIndexRoute
+  '/_app/settings/': typeof AppSettingsIndexRoute
   '/_app/clinical/forms/$code': typeof AppClinicalFormsCodeRoute
   '/_app/programs/builder/$id': typeof AppProgramsBuilderIdRoute
   '/_app/clinical/forms/': typeof AppClinicalFormsIndexRoute
@@ -292,7 +301,6 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/calendar'
-    | '/settings'
     | '/billing/refunds'
     | '/catalog/codes'
     | '/clinical/exercises'
@@ -304,6 +312,7 @@ export interface FileRouteTypes {
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
+    | '/settings/templates'
     | '/billing/'
     | '/catalog/'
     | '/clinical/'
@@ -314,6 +323,7 @@ export interface FileRouteTypes {
     | '/patients/'
     | '/programs/'
     | '/reports/'
+    | '/settings/'
     | '/clinical/forms/$code'
     | '/programs/builder/$id'
     | '/clinical/forms/'
@@ -322,7 +332,6 @@ export interface FileRouteTypes {
   to:
     | '/login'
     | '/calendar'
-    | '/settings'
     | '/'
     | '/billing/refunds'
     | '/catalog/codes'
@@ -335,6 +344,7 @@ export interface FileRouteTypes {
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
+    | '/settings/templates'
     | '/billing'
     | '/catalog'
     | '/clinical'
@@ -345,6 +355,7 @@ export interface FileRouteTypes {
     | '/patients'
     | '/programs'
     | '/reports'
+    | '/settings'
     | '/clinical/forms/$code'
     | '/programs/builder/$id'
     | '/clinical/forms'
@@ -354,7 +365,6 @@ export interface FileRouteTypes {
     | '/_app'
     | '/login'
     | '/_app/calendar'
-    | '/_app/settings'
     | '/_app/'
     | '/_app/billing/refunds'
     | '/_app/catalog/codes'
@@ -367,6 +377,7 @@ export interface FileRouteTypes {
     | '/_app/front-desk/closing'
     | '/_app/front-desk/pos'
     | '/_app/patients/$patientId'
+    | '/_app/settings/templates'
     | '/_app/billing/'
     | '/_app/catalog/'
     | '/_app/clinical/'
@@ -377,6 +388,7 @@ export interface FileRouteTypes {
     | '/_app/patients/'
     | '/_app/programs/'
     | '/_app/reports/'
+    | '/_app/settings/'
     | '/_app/clinical/forms/$code'
     | '/_app/programs/builder/$id'
     | '/_app/clinical/forms/'
@@ -416,13 +428,6 @@ declare module '@tanstack/react-router' {
       path: '/calendar'
       fullPath: '/calendar'
       preLoaderRoute: typeof AppCalendarRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/settings': {
-      id: '/_app/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/billing/': {
@@ -572,6 +577,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppReportsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/settings/': {
+      id: '/_app/settings/'
+      path: '/settings'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof AppSettingsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings/templates': {
+      id: '/_app/settings/templates'
+      path: '/settings/templates'
+      fullPath: '/settings/templates'
+      preLoaderRoute: typeof AppSettingsTemplatesRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/clinical/forms/': {
       id: '/_app/clinical/forms/'
       path: '/clinical/forms'
@@ -605,7 +624,6 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppCalendarRoute: typeof AppCalendarRoute
-  AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
   AppBillingRefundsRoute: typeof AppBillingRefundsRoute
   AppCatalogCodesRoute: typeof AppCatalogCodesRoute
@@ -618,6 +636,7 @@ interface AppRouteChildren {
   AppFrontDeskClosingRoute: typeof AppFrontDeskClosingRoute
   AppFrontDeskPosRoute: typeof AppFrontDeskPosRoute
   AppPatientsPatientIdRoute: typeof AppPatientsPatientIdRoute
+  AppSettingsTemplatesRoute: typeof AppSettingsTemplatesRoute
   AppBillingIndexRoute: typeof AppBillingIndexRoute
   AppCatalogIndexRoute: typeof AppCatalogIndexRoute
   AppClinicalIndexRoute: typeof AppClinicalIndexRoute
@@ -628,6 +647,7 @@ interface AppRouteChildren {
   AppPatientsIndexRoute: typeof AppPatientsIndexRoute
   AppProgramsIndexRoute: typeof AppProgramsIndexRoute
   AppReportsIndexRoute: typeof AppReportsIndexRoute
+  AppSettingsIndexRoute: typeof AppSettingsIndexRoute
   AppClinicalFormsCodeRoute: typeof AppClinicalFormsCodeRoute
   AppProgramsBuilderIdRoute: typeof AppProgramsBuilderIdRoute
   AppClinicalFormsIndexRoute: typeof AppClinicalFormsIndexRoute
@@ -636,7 +656,6 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppCalendarRoute: AppCalendarRoute,
-  AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
   AppBillingRefundsRoute: AppBillingRefundsRoute,
   AppCatalogCodesRoute: AppCatalogCodesRoute,
@@ -649,6 +668,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppFrontDeskClosingRoute: AppFrontDeskClosingRoute,
   AppFrontDeskPosRoute: AppFrontDeskPosRoute,
   AppPatientsPatientIdRoute: AppPatientsPatientIdRoute,
+  AppSettingsTemplatesRoute: AppSettingsTemplatesRoute,
   AppBillingIndexRoute: AppBillingIndexRoute,
   AppCatalogIndexRoute: AppCatalogIndexRoute,
   AppClinicalIndexRoute: AppClinicalIndexRoute,
@@ -659,6 +679,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppPatientsIndexRoute: AppPatientsIndexRoute,
   AppProgramsIndexRoute: AppProgramsIndexRoute,
   AppReportsIndexRoute: AppReportsIndexRoute,
+  AppSettingsIndexRoute: AppSettingsIndexRoute,
   AppClinicalFormsCodeRoute: AppClinicalFormsCodeRoute,
   AppProgramsBuilderIdRoute: AppProgramsBuilderIdRoute,
   AppClinicalFormsIndexRoute: AppClinicalFormsIndexRoute,
