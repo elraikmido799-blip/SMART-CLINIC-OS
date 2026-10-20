@@ -42,6 +42,7 @@ import {
 import { invoiceTotals } from '../totals';
 import {
   PAYMENT_METHODS,
+  type CodeResult,
   type Discount,
   type Invoice,
   type PaymentMethod,
@@ -50,6 +51,12 @@ import {
 import { InvoiceView } from './invoice-view';
 
 type Line = { item: Sellable; qty: number };
+
+// الكود ممكن يتطبق على الخدمات بس أو الباقات بس
+const codeBase = (lines: Line[], code: CodeResult | null) =>
+  lines
+    .filter((line) => !code || code.applies_to === 'all' || line.item.kind === code.applies_to)
+    .reduce((sum, line) => sum + line.item.price * line.qty, 0);
 const KNOWN_ERRORS = [
   'DISCOUNT_TOO_HIGH',
   'INVALID_CODE',
@@ -94,7 +101,7 @@ export function PosPage() {
   const [includeBalance, setIncludeBalance] = useState(true);
   const [discount, setDiscount] = useState<Discount>({ type: 'percent', value: 0 });
   const [codeInput, setCodeInput] = useState('');
-  const [code, setCode] = useState<{ code: string; percent: number } | null>(null);
+  const [code, setCode] = useState<CodeResult | null>(null);
   const [method, setMethod] = useState<PaymentMethod>('cash');
   const [paidPounds, setPaidPounds] = useState<number | null>(null);
   const [errorKey, setErrorKey] = useState<ErrorKey | null>(null);
@@ -125,6 +132,8 @@ export function PosPage() {
     subtotal,
     discount: manual,
     codePercent: code?.percent ?? 0,
+    codeAmount: code?.amount ?? 0,
+    codeBase: codeBase(lines, code),
     previousBalance: balance,
     includeBalance: includeBalance && balance > 0,
   });
@@ -416,7 +425,14 @@ export function PosPage() {
                   <Typography.Text strong>{t('pos.code')}</Typography.Text>
                   {code ? (
                     <Flex gap={8} align="center" wrap>
-                      <StatusTag tone="success">{t('pos.codeApplied', code)}</StatusTag>
+                      <StatusTag tone="success">
+                        {code.amount > 0
+                          ? t('pos.codeAppliedAmount', {
+                              code: code.code,
+                              amount: money(code.amount),
+                            })
+                          : t('pos.codeApplied', code)}
+                      </StatusTag>
                       <Button
                         type="link"
                         onClick={() => setCode(null)}

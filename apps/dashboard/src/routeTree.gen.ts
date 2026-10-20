@@ -19,6 +19,7 @@ import { Route as AppDashboardsRouteImport } from './routes/_app/dashboards'
 import { Route as AppReportsRouteImport } from './routes/_app/reports'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 import { Route as AppCatalogIndexRouteImport } from './routes/_app/catalog.index'
+import { Route as AppCatalogCodesRouteImport } from './routes/_app/catalog.codes'
 import { Route as AppClinicalIndexRouteImport } from './routes/_app/clinical.index'
 import { Route as AppClinicalExercisesRouteImport } from './routes/_app/clinical.exercises'
 import { Route as AppCrmIndexRouteImport } from './routes/_app/crm.index'
@@ -83,6 +84,11 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
 const AppCatalogIndexRoute = AppCatalogIndexRouteImport.update({
   id: '/catalog/',
   path: '/catalog/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCatalogCodesRoute = AppCatalogCodesRouteImport.update({
+  id: '/catalog/codes',
+  path: '/catalog/codes',
   getParentRoute: () => AppRoute,
 } as any)
 const AppClinicalIndexRoute = AppClinicalIndexRouteImport.update({
@@ -176,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/dashboards': typeof AppDashboardsRoute
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
+  '/catalog/codes': typeof AppCatalogCodesRoute
   '/clinical/exercises': typeof AppClinicalExercisesRoute
   '/crm/campaigns': typeof AppCrmCampaignsRoute
   '/crm/tasks': typeof AppCrmTasksRoute
@@ -203,6 +210,7 @@ export interface FileRoutesByTo {
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
   '/': typeof AppIndexRoute
+  '/catalog/codes': typeof AppCatalogCodesRoute
   '/clinical/exercises': typeof AppClinicalExercisesRoute
   '/crm/campaigns': typeof AppCrmCampaignsRoute
   '/crm/tasks': typeof AppCrmTasksRoute
@@ -232,6 +240,7 @@ export interface FileRoutesById {
   '/_app/reports': typeof AppReportsRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/': typeof AppIndexRoute
+  '/_app/catalog/codes': typeof AppCatalogCodesRoute
   '/_app/clinical/exercises': typeof AppClinicalExercisesRoute
   '/_app/crm/campaigns': typeof AppCrmCampaignsRoute
   '/_app/crm/tasks': typeof AppCrmTasksRoute
@@ -261,6 +270,7 @@ export interface FileRouteTypes {
     | '/dashboards'
     | '/reports'
     | '/settings'
+    | '/catalog/codes'
     | '/clinical/exercises'
     | '/crm/campaigns'
     | '/crm/tasks'
@@ -288,6 +298,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/'
+    | '/catalog/codes'
     | '/clinical/exercises'
     | '/crm/campaigns'
     | '/crm/tasks'
@@ -316,6 +327,7 @@ export interface FileRouteTypes {
     | '/_app/reports'
     | '/_app/settings'
     | '/_app/'
+    | '/_app/catalog/codes'
     | '/_app/clinical/exercises'
     | '/_app/crm/campaigns'
     | '/_app/crm/tasks'
@@ -410,6 +422,13 @@ declare module '@tanstack/react-router' {
       path: '/catalog'
       fullPath: '/catalog/'
       preLoaderRoute: typeof AppCatalogIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/catalog/codes': {
+      id: '/_app/catalog/codes'
+      path: '/catalog/codes'
+      fullPath: '/catalog/codes'
+      preLoaderRoute: typeof AppCatalogCodesRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/clinical/': {
@@ -535,6 +554,7 @@ interface AppRouteChildren {
   AppReportsRoute: typeof AppReportsRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppCatalogCodesRoute: typeof AppCatalogCodesRoute
   AppClinicalExercisesRoute: typeof AppClinicalExercisesRoute
   AppCrmCampaignsRoute: typeof AppCrmCampaignsRoute
   AppCrmTasksRoute: typeof AppCrmTasksRoute
@@ -562,6 +582,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppReportsRoute: AppReportsRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
+  AppCatalogCodesRoute: AppCatalogCodesRoute,
   AppClinicalExercisesRoute: AppClinicalExercisesRoute,
   AppCrmCampaignsRoute: AppCrmCampaignsRoute,
   AppCrmTasksRoute: AppCrmTasksRoute,

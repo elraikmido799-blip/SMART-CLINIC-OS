@@ -54,5 +54,46 @@
   },
   "errors": {
     "generic": "Something went wrong. Try again."
+  },
+  "codes": {
+    "description": "Discount codes the cashier accepts",
+    "new": "New code",
+    "edit": "Edit code",
+    "empty": "No codes",
+    "code": "Code",
+    "codeInvalid": "English letters and digits (3 to 20)",
+    "type": "Type",
+    "types": {
+      "percent": "Percentage",
+      "fixed": "Fixed amount"
+    },
+    "valuePercent": "Discount percentage",
+    "valueAmount": "Discount amount",
+    "valueInvalid": "Enter a valid value (percentage up to 100)",
+    "discount": "Discount",
+    "period": "Period",
+    "from": "From",
+    "noEnd": "No end date",
+    "periodRequired": "Pick the period",
+    "maxUses": "Maximum uses",
+    "maxUsesHelp": "Leave empty for no limit.",
+    "uses": "Uses",
+    "appliesTo": "Applies to",
+    "applies": {
+      "all": "Everything",
+      "service": "Services only",
+      "package": "Packages only"
+    },
+    "state": "Status",
+    "states": {
+      "active": "Active",
+      "scheduled": "Not started",
+      "expired": "Expired",
+      "exhausted": "Used up",
+      "off": "Off"
+    },
+    "duplicate": "This code already exists.",
+    "saved": "Code saved",
+    "created": "Code added"
   }
 }

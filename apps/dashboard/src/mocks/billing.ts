@@ -10,6 +10,7 @@ import type {
 import { clinicToday } from '@/lib/clinic-time';
 import { currentStaff, toMe } from './auth';
 import { sellablesOf } from './catalog';
+import { checkDiscountCodeOf, redeemCode } from './discount-codes';
 import { readDb, writeDb } from './db';
 
 /**
@@ -17,13 +18,11 @@ import { readDb, writeDb } from './db';
  * الأسعار وهمية لحد ما Oxygen يبعتوا الكتالوج الحقيقي (7.1).
  */
 
-// أكواد الخصم (7.2 هيعمل شاشتها). OXY10 نفس كود الموقع
-const CODES: Record<string, number> = { OXY10: 10, SUMMER15: 15 };
-
+// أكواد الخصم بتيجي من شاشة 7.2 (mocks/discount-codes.ts). OXY10 نفس كود الموقع
 const checkCode = (code: string) => {
-  const percent = CODES[code.trim().toUpperCase()];
-  if (!percent) throw new MockHttpError(422, 'INVALID_CODE');
-  return { code: code.trim().toUpperCase(), percent };
+  const result = checkDiscountCodeOf(readDb(), code);
+  if (!result) throw new MockHttpError(422, 'INVALID_CODE');
+  return result;
 };
 
 const sumByMethod = (branchId: string, date: string): MethodAmounts => {
@@ -131,11 +130,19 @@ export const billingHandlers: MockHandlers = {
     if (discountPercentOf(subtotal, input.discount) > me.max_discount_percent + 0.001) {
       throw new MockHttpError(422, 'DISCOUNT_TOO_HIGH');
     }
-    const codePercent = input.code ? checkCode(input.code).percent : 0;
+    const code = input.code ? checkCode(input.code) : null;
+    const codeBase = lines
+      .filter((line) => {
+        const kind = sellablesOf(db).find((entry) => entry.id === line.item_id)?.kind;
+        return !code || code.applies_to === 'all' || code.applies_to === kind;
+      })
+      .reduce((sum, line) => sum + line.total, 0);
     const totals = invoiceTotals({
       subtotal,
       discount: input.discount,
-      codePercent,
+      codePercent: code?.percent ?? 0,
+      codeAmount: code?.amount ?? 0,
+      codeBase,
       previousBalance: patient.balance_due,
       includeBalance: input.include_balance,
     });
@@ -170,6 +177,7 @@ export const billingHandlers: MockHandlers = {
 
     writeDb((draft) => {
       draft.invoices.push(invoice);
+      if (code) redeemCode(draft, code.code);
       const stored = draft.patients.find((item) => item.id === patient.id)!;
       stored.balance_due = invoice.balance_after;
       if (input.appointment_id) {

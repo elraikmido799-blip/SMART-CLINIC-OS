@@ -30,6 +30,7 @@
     "code": "كود خصم",
     "applyCode": "طبّق",
     "codeApplied": "كود {{code}}: خصم {{percent}}%",
+    "codeAppliedAmount": "كود {{code}}: خصم {{amount}}",
     "removeCode": "شيل الكود",
     "summary": "الحساب",
     "subtotal": "المجموع",

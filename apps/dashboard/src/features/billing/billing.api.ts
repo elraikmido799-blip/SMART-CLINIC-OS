@@ -1,8 +1,10 @@
 import { z } from 'zod';
 import { baseApi } from '@/store/base-api';
 import {
+  codeResultSchema,
   invoiceSchema,
   sellableSchema,
+  type CodeResult,
   type CreateInvoiceBody,
   type Invoice,
   type Sellable,
@@ -18,9 +20,9 @@ export const billingApi = baseApi.injectEndpoints({
       providesTags: ['Sellables'],
     }),
     // 422 INVALID_CODE = الكود مش موجود أو خلص
-    checkDiscountCode: build.mutation<{ code: string; percent: number }, { code: string }>({
+    checkDiscountCode: build.mutation<CodeResult, { code: string }>({
       query: (body) => ({ url: '/staff/discount-codes/check', method: 'POST', body }),
-      responseSchema: z.object({ code: z.string(), percent: z.number() }),
+      responseSchema: codeResultSchema,
     }),
     // 422 DISCOUNT_TOO_HIGH = الخصم أكتر من حد الموظف · INVALID_AMOUNT
     createInvoice: build.mutation<Invoice, CreateInvoiceBody>({

@@ -8,6 +8,8 @@ export function invoiceTotals({
   subtotal,
   discount,
   codePercent,
+  codeAmount = 0,
+  codeBase = subtotal,
   previousBalance,
   includeBalance,
 }: {
@@ -15,6 +17,10 @@ export function invoiceTotals({
   discount: Discount | null;
   // خصم الكود (لو اتقبل)
   codePercent: number;
+  // أو مبلغ ثابت بالقروش
+  codeAmount?: number;
+  // الجزء من الفاتورة اللي الكود بيتطبق عليه (الكل أو الخدمات أو الباقات بس)
+  codeBase?: number;
   previousBalance: number;
   includeBalance: boolean;
 }) {
@@ -23,7 +29,7 @@ export function invoiceTotals({
     : discount.type === 'percent'
       ? Math.round((subtotal * discount.value) / 100)
       : discount.value;
-  const fromCode = Math.round((subtotal * codePercent) / 100);
+  const fromCode = Math.min(codeBase, Math.round((codeBase * codePercent) / 100) + codeAmount);
   const discountTotal = Math.min(subtotal, manual + fromCode);
   const carried = includeBalance ? previousBalance : 0;
   return { discount: discountTotal, total: subtotal - discountTotal + carried };

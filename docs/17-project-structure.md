@@ -247,7 +247,7 @@ apps/dashboard/
 │   │   ├── programs/            البرامج: types · enrollment-types · programs.api · enrollments.api · stage-timing · components/ (programs-manage-page · program-builder-page · programs-board-page · programs-tab)
 │   │   ├── crm/                 الـCRM: types (المراحل والمصادر) · crm.api · sla · phone (إخفاء الموبايل) · components/ (crm-page · lead-card · new-lead-modal · lead-drawer · activity-timeline · lead-actions · crm-tabs · campaigns-page)
 │   │   ├── tasks/               المهام والمتابعات (6.3): types (bucketOf) · tasks.api · components/ (tasks-page · task-list · task-modal · related-tasks)
-│   │   ├── catalog/             الكتالوج (7.1): types · catalog.api · components/ (catalog-page · item-drawer · catalog-tabs)
+│   │   ├── catalog/             الكتالوج (7.1): types · catalog.api · components/ (catalog-page · item-drawer · catalog-tabs · codes-page · code-modal · codes-types · codes.api)
 │   │   ├── exercises/           مكتبة التمارين: types · exercises.api · components/exercises-page
 │   │   ├── billing/             التحصيل والتقفيل (3.6 · 3.7): types · totals (الحساب) · billing.api · closing.api · components/ (pos-page · invoice-view · closing-page)
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)

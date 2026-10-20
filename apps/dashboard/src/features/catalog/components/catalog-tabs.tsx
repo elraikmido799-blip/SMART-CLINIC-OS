@@ -6,9 +6,9 @@ import { hasAny, useMe } from '@/features/auth/use-me';
 
 type Section = 'items' | 'codes';
 
-const SECTIONS: { key: Section; to: string; permission: Permission }[] = [
-  { key: 'items', to: '/catalog', permission: 'catalog.read' },
-  { key: 'codes', to: '/catalog/codes', permission: 'campaigns.manage' },
+const SECTIONS: { key: Section; to: string; permissions: Permission[] }[] = [
+  { key: 'items', to: '/catalog', permissions: ['catalog.read'] },
+  { key: 'codes', to: '/catalog/codes', permissions: ['campaigns.manage', 'catalog.write'] },
 ];
 
 /** التنقل جوه قسم الكتالوج: العناصر (D-24) وأكواد الخصم (D-25). كل تاب حسب الصلاحية */
@@ -16,7 +16,7 @@ export function CatalogTabs({ active }: { active: Section }) {
   const { t } = useTranslation('catalog');
   const navigate = useNavigate();
   const me = useMe();
-  const visible = SECTIONS.filter((item) => hasAny(me, [item.permission]));
+  const visible = SECTIONS.filter((item) => hasAny(me, item.permissions));
 
   if (visible.length < 2) return null;
 

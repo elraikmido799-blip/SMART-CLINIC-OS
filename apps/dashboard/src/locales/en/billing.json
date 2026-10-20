@@ -30,6 +30,7 @@
     "code": "Discount code",
     "applyCode": "Apply",
     "codeApplied": "Code {{code}}: {{percent}}% off",
+    "codeAppliedAmount": "Code {{code}}: {{amount}} off",
     "removeCode": "Remove code",
     "summary": "Summary",
     "subtotal": "Subtotal",

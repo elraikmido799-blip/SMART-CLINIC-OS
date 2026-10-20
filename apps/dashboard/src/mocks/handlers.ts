@@ -15,6 +15,7 @@ import { nutritionPlanHandlers } from './nutrition-plans';
 import { photoHandlers } from './photos';
 import { programHandlers } from './programs';
 import { overviewHandlers } from './patient-overview';
+import { discountCodeHandlers } from './discount-codes';
 import { catalogHandlers } from './catalog';
 import { taskHandlers } from './tasks';
 import { readDb } from './db';
@@ -43,6 +44,7 @@ const handlers: MockHandlers = {
   ...crmActivityHandlers,
   ...taskHandlers,
   ...catalogHandlers,
+  ...discountCodeHandlers,
   getBranches: () => {
     const staff = currentStaff();
     const data = staff.all_branches

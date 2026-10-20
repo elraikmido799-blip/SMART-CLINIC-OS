@@ -18,6 +18,16 @@ export type Sellable = z.infer<typeof sellableSchema>;
 export const PAYMENT_METHODS = ['cash', 'card', 'wallet', 'instapay'] as const;
 export type PaymentMethod = (typeof PAYMENT_METHODS)[number];
 
+// نتيجة فحص كود الخصم: نسبة أو مبلغ (بالقروش)، وعلى إيه بيتطبق
+export const codeResultSchema = z.object({
+  code: z.string(),
+  percent: z.number(),
+  amount: z.number(),
+  applies_to: z.enum(['all', 'service', 'package']),
+});
+
+export type CodeResult = z.infer<typeof codeResultSchema>;
+
 export type Discount = { type: 'percent' | 'amount'; value: number };
 
 export type InvoiceLineInput = { item_id: string; kind: Sellable['kind']; qty: number };
