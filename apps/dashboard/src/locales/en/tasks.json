@@ -5,7 +5,8 @@
   "tabs": {
     "label": "CRM sections",
     "pipeline": "Leads",
-    "tasks": "Tasks"
+    "tasks": "Tasks",
+    "campaigns": "Campaigns"
   },
   "scope": {
     "label": "Task scope",

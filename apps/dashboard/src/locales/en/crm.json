@@ -165,5 +165,30 @@
     "stage": "Moved to {{stage}}",
     "lost": "Marked lost · {{reason}}",
     "converted": "Converted to a patient"
+  },
+  "campaigns": {
+    "description": "Every campaign and how many leads and bookings it brought",
+    "empty": "No campaigns",
+    "ongoing": "Ongoing",
+    "name": "Campaign",
+    "channel": "Channel",
+    "period": "Period",
+    "budget": "Budget",
+    "leads": "Leads",
+    "booked": "Bookings",
+    "costPerLead": "Cost per lead",
+    "kpi": {
+      "budget": "Total budget",
+      "leads": "Leads from campaigns",
+      "booked": "Bookings from campaigns"
+    }
+  },
+  "channels": {
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "google": "Google",
+    "offline": "Offline",
+    "other": "Other"
   }
 }

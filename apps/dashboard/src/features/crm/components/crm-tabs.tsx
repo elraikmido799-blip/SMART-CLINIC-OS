@@ -1,27 +1,35 @@
 import { Segmented } from 'antd';
 import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { useCan } from '@/features/auth/use-me';
+import type { Permission } from '@/features/auth/permissions';
+import { useMe, hasAny } from '@/features/auth/use-me';
 
-/** التنقل جوه قسم الـCRM: الـPipeline (لمين يقدر يشوف العملاء) والمهام (D-22) */
-export function CrmTabs({ active }: { active: 'pipeline' | 'tasks' }) {
+type Section = 'pipeline' | 'tasks' | 'campaigns';
+
+const SECTIONS: { key: Section; to: string; permission: Permission }[] = [
+  { key: 'pipeline', to: '/crm', permission: 'leads.read' },
+  { key: 'tasks', to: '/crm/tasks', permission: 'tasks.manage' },
+  { key: 'campaigns', to: '/crm/campaigns', permission: 'campaigns.read' },
+];
+
+/** التنقل جوه قسم الـCRM: العملاء · المهام (D-22) · الحملات (D-23). كل تاب حسب الصلاحية، ولو واحد بس مبيظهرش */
+export function CrmTabs({ active }: { active: Section }) {
   const { t } = useTranslation('tasks');
   const navigate = useNavigate();
-  const canLeads = useCan('leads.read');
-  const canTasks = useCan('tasks.manage');
+  const me = useMe();
+  const visible = SECTIONS.filter((item) => hasAny(me, [item.permission]));
 
-  if (!canLeads || !canTasks) return null;
+  if (visible.length < 2) return null;
 
   return (
     <Segmented
       aria-label={t('tabs.label')}
       value={active}
       style={{ marginBottom: 16 }}
-      onChange={(value) => void navigate({ to: value === 'tasks' ? '/crm/tasks' : '/crm' })}
-      options={[
-        { value: 'pipeline', label: t('tabs.pipeline') },
-        { value: 'tasks', label: t('tabs.tasks') },
-      ]}
+      onChange={(value) =>
+        void navigate({ to: visible.find((item) => item.key === value)?.to ?? '/crm' })
+      }
+      options={visible.map((item) => ({ value: item.key, label: t(`tabs.${item.key}`) }))}
     />
   );
 }

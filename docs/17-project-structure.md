@@ -245,7 +245,7 @@ apps/dashboard/
 │   │   ├── measurements/        القياسات: types (labFlag) · measurements.api · components/ (measurements-tab · medications-panel · sparkline)
 │   │   ├── form-builder/        بنّاء الفورمات: types · form-builder.api · builder-state (ترتيب + تحقق) · components/ (forms-page · builder-page · field-editor)
 │   │   ├── programs/            البرامج: types · enrollment-types · programs.api · enrollments.api · stage-timing · components/ (programs-manage-page · program-builder-page · programs-board-page · programs-tab)
-│   │   ├── crm/                 الـCRM: types (المراحل والمصادر) · crm.api · sla · phone (إخفاء الموبايل) · components/ (crm-page · lead-card · new-lead-modal · lead-drawer · activity-timeline · lead-actions · crm-tabs)
+│   │   ├── crm/                 الـCRM: types (المراحل والمصادر) · crm.api · sla · phone (إخفاء الموبايل) · components/ (crm-page · lead-card · new-lead-modal · lead-drawer · activity-timeline · lead-actions · crm-tabs · campaigns-page)
 │   │   ├── tasks/               المهام والمتابعات (6.3): types (bucketOf) · tasks.api · components/ (tasks-page · task-list · task-modal · related-tasks)
 │   │   ├── exercises/           مكتبة التمارين: types · exercises.api · components/exercises-page
 │   │   ├── billing/             التحصيل والتقفيل (3.6 · 3.7): types · totals (الحساب) · billing.api · closing.api · components/ (pos-page · invoice-view · closing-page)

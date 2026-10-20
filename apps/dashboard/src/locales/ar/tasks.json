@@ -5,7 +5,8 @@
   "tabs": {
     "label": "أقسام الـCRM",
     "pipeline": "العملاء",
-    "tasks": "المهام"
+    "tasks": "المهام",
+    "campaigns": "الحملات"
   },
   "scope": {
     "label": "نطاق المهام",

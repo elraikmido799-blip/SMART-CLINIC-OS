@@ -165,5 +165,30 @@
     "stage": "اتنقل لـ{{stage}}",
     "lost": "خسرناه · {{reason}}",
     "converted": "اتحوّل لمريض"
+  },
+  "campaigns": {
+    "description": "كل حملة وكام عميل وحجز جابت",
+    "empty": "مفيش حملات",
+    "ongoing": "مستمرة",
+    "name": "الحملة",
+    "channel": "القناة",
+    "period": "الفترة",
+    "budget": "الميزانية",
+    "leads": "العملاء",
+    "booked": "الحجوزات",
+    "costPerLead": "تكلفة العميل",
+    "kpi": {
+      "budget": "إجمالي الميزانية",
+      "leads": "عملاء من الحملات",
+      "booked": "حجوزات من الحملات"
+    }
+  },
+  "channels": {
+    "facebook": "فيسبوك",
+    "instagram": "إنستجرام",
+    "tiktok": "تيك توك",
+    "google": "جوجل",
+    "offline": "أوفلاين",
+    "other": "تاني"
   }
 }
