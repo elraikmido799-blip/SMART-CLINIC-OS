@@ -11,6 +11,7 @@ import { useGetBranchSettingsQuery } from '../branches.api';
 import type { BranchSettings } from '../branch-types';
 import { BranchDrawer } from './branch-drawer';
 import { SettingsTabs } from './settings-tabs';
+import { clickableRow } from '@/lib/clickable-row';
 
 /**
  * الفروع والأوض ومواعيد العمل (D-36 · docs/20 · 9.4): قايمة الفروع بعنوانها وتليفونها وعدد أوضها وأيام شغلها،
@@ -39,7 +40,7 @@ export function BranchesPage() {
             pagination={false}
             scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState /> }}
-            onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
+            onRow={(item) => clickableRow(() => setEditing(item))}
             columns={[
               {
                 key: 'name',

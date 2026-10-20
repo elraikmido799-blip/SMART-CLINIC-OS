@@ -11,6 +11,7 @@ import { useGetContentQuery } from '../content.api';
 import { CONTENT_KINDS, type ContentItem, type ContentKind } from '../types';
 import { ContentDrawer } from './content-drawer';
 import { SiteImages } from './site-images';
+import { clickableRow } from '@/lib/clickable-row';
 
 type TabKey = ContentKind | 'images';
 
@@ -89,7 +90,7 @@ export function ContentPage() {
               pagination={false}
               scroll={{ x: 'max-content' }}
               locale={{ emptyText: <EmptyState title={t('empty')} /> }}
-              onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
+              onRow={(item) => clickableRow(() => setEditing(item))}
               columns={[
                 {
                   key: 'title',

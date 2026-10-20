@@ -14,6 +14,7 @@ import {
 } from '../notification-types';
 import { SettingsTabs } from './settings-tabs';
 import { TemplateEditor } from './template-editor';
+import { clickableRow } from '@/lib/clickable-row';
 
 /**
  * قوالب الإشعارات (D-34 · docs/20 · 9.2): واتساب · SMS · إيميل، لكل حدث (تأكيد حجز · تذكير · إيصال…) بالعربي والإنجليزي.
@@ -53,7 +54,7 @@ export function TemplatesPage() {
             pagination={false}
             scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('templates.empty')} /> }}
-            onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
+            onRow={(item) => clickableRow(() => setEditing(item))}
             columns={[
               {
                 key: 'event',

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Alert, App, Form, Input, InputNumber, Modal, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { tokens } from '@oxygen/config';
 import { formatMoney, localized } from '@oxygen/shared';
 import { useLocale } from '@/app/use-locale';
 import { apiErrorCode } from '@/lib/api-error';
@@ -127,7 +128,12 @@ export function DecideRefundModal({
       title={t(approve ? 'refunds.decide.approveTitle' : 'refunds.decide.rejectTitle')}
       okText={t(approve ? 'refunds.decide.approve' : 'refunds.decide.reject')}
       cancelText={t('refunds.cancel')}
-      okButtonProps={{ danger: !approve, disabled: !approve && !note.trim() }}
+      okType={approve ? 'primary' : 'default'}
+      okButtonProps={{
+        // الرفض: كلام كحلي وحدود حمرا (DEC-36)
+        style: approve ? undefined : { color: tokens.color.ink, borderColor: tokens.color.danger },
+        disabled: !approve && !note.trim(),
+      }}
       confirmLoading={isLoading}
       onOk={async () => {
         if (!refund) return;

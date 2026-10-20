@@ -11,6 +11,7 @@ import { useGetDoctorSchedulesQuery } from '../schedules.api';
 import type { DoctorSchedule } from '../schedule-types';
 import { ScheduleDrawer } from './schedule-drawer';
 import { SettingsTabs } from './settings-tabs';
+import { clickableRow } from '@/lib/clickable-row';
 
 /**
  * جداول الدكاترة والإجازات (D-37 · docs/20 · 9.5): كل دكتور بأيام شغله وإجازاته الجاية، والصف بيفتح الجدول الأسبوعي
@@ -39,7 +40,7 @@ export function SchedulesPage() {
             pagination={false}
             scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState /> }}
-            onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
+            onRow={(item) => clickableRow(() => setEditing(item))}
             columns={[
               {
                 key: 'name',

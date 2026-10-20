@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { formatMoney, formatNumber, formatSlot, localized } from '@oxygen/shared';
 import type { Tone } from '@/app/tones';
 import { useLocale } from '@/app/use-locale';
+import { DangerButton } from '@/components/danger-button';
 import { PageHeader } from '@/components/page-header';
 import { EmptyState, ErrorState } from '@/components/states/states';
 import { StatusTag } from '@/components/tags';
@@ -123,13 +124,12 @@ export function RefundsPage() {
                       >
                         {t('refunds.decide.approve')}
                       </Button>
-                      <Button
+                      <DangerButton
                         size="small"
-                        danger
                         onClick={() => setDeciding({ refund, approve: false })}
                       >
                         {t('refunds.decide.reject')}
-                      </Button>
+                      </DangerButton>
                     </Flex>
                   ) : (
                     <StatusTag tone={STATUS_TONE[refund.status]}>

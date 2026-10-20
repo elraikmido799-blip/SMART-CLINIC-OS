@@ -12,6 +12,7 @@ import './app/i18n';
 import { Providers } from './app/providers';
 import { router } from './app/router';
 import { registerServiceWorker } from './lib/register-sw';
+import { watchScrollableTables } from './lib/scrollable-regions';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -22,3 +23,4 @@ createRoot(document.getElementById('root')!).render(
 );
 
 registerServiceWorker();
+watchScrollableTables();

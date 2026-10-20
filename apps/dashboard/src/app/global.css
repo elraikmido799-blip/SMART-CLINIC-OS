@@ -62,3 +62,9 @@ body {
   white-space: nowrap;
   border: 0;
 }
+
+/* صف جدول بيتفتح بالكيبورد (lib/clickable-row.ts): الفوكس لازم يبان */
+.ant-table-row[tabindex]:focus-visible {
+  outline: 2px solid var(--ant-color-primary);
+  outline-offset: -2px;
+}

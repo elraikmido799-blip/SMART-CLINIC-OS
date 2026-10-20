@@ -8,6 +8,7 @@ import { StatusTag } from '@/components/tags';
 import { useGetInvoicesQuery } from '../invoices.api';
 import { invoiceStatusOf, type Invoice } from '../types';
 import { InvoiceView } from './invoice-view';
+import { clickableRow } from '@/lib/clickable-row';
 
 /** تاب "الحسابات" في ملف المريض (7.3): فواتيره ومدفوعاته، والصف بيفتح الفاتورة */
 export function PatientBillingTab({ patientId }: { patientId: string }) {
@@ -29,10 +30,7 @@ export function PatientBillingTab({ patientId }: { patientId: string }) {
           pagination={false}
           scroll={{ x: 'max-content' }}
           locale={{ emptyText: <EmptyState title={t('invoices.emptyPatient')} /> }}
-          onRow={(invoice) => ({
-            onClick: () => setSelected(invoice),
-            style: { cursor: 'pointer' },
-          })}
+          onRow={(invoice) => clickableRow(() => setSelected(invoice))}
           columns={[
             {
               key: 'number',

@@ -24,6 +24,7 @@ import {
 import { BillingTabs } from './billing-tabs';
 import { InvoiceView } from './invoice-view';
 import { RequestRefundModal } from './refund-modals';
+import { clickableRow } from '@/lib/clickable-row';
 
 const STATUS_TONE: Record<InvoiceStatus, Tone> = {
   paid: 'success',
@@ -156,10 +157,7 @@ export function InvoicesPage() {
             pagination={{ pageSize: 15, hideOnSinglePage: true, showSizeChanger: false }}
             scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('invoices.empty')} /> }}
-            onRow={(invoice) => ({
-              onClick: () => setSelected(invoice),
-              style: { cursor: 'pointer' },
-            })}
+            onRow={(invoice) => clickableRow(() => setSelected(invoice))}
             columns={[
               {
                 key: 'number',

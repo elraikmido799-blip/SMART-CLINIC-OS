@@ -128,48 +128,56 @@ function Grid({
 }) {
   const cell = { padding: '8px 12px', borderBottom: `1px solid ${tokens.color.border}` } as const;
   return (
-    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-      <thead>
-        <tr>
-          <th scope="col" style={{ ...cell, textAlign: 'start' }}>
-            <span style={HIDDEN}>{labelOf(field, locale)}</span>
-          </th>
-          {field.columns.map((column) => (
-            <th
-              key={column.key}
-              scope="col"
-              style={{
-                ...cell,
-                textAlign: 'start',
-                fontWeight: 600,
-                color: tokens.color.mutedText,
-              }}
-            >
-              {labelOf(column, locale)}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {field.rows.map((row) => (
-          <tr key={row.key}>
-            <th scope="row" style={{ ...cell, textAlign: 'start', fontWeight: 500 }}>
-              {labelOf(row, locale)}
+    // لو الجدول أعرض من مكانه بيتسحب، وبالكيبورد كمان (منطقة بتتسمّى)
+    <div
+      role="region"
+      aria-label={labelOf(field, locale)}
+      tabIndex={0}
+      style={{ overflowX: 'auto' }}
+    >
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th scope="col" style={{ ...cell, textAlign: 'start' }}>
+              <span style={HIDDEN}>{labelOf(field, locale)}</span>
             </th>
             {field.columns.map((column) => (
-              <td key={column.key} style={cell}>
-                <Cell
-                  name={[field.key, row.key, column.key]}
-                  column={column}
-                  rowLabel={labelOf(row, locale)}
-                  locale={locale}
-                />
-              </td>
+              <th
+                key={column.key}
+                scope="col"
+                style={{
+                  ...cell,
+                  textAlign: 'start',
+                  fontWeight: 600,
+                  color: tokens.color.mutedText,
+                }}
+              >
+                {labelOf(column, locale)}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {field.rows.map((row) => (
+            <tr key={row.key}>
+              <th scope="row" style={{ ...cell, textAlign: 'start', fontWeight: 500 }}>
+                {labelOf(row, locale)}
+              </th>
+              {field.columns.map((column) => (
+                <td key={column.key} style={cell}>
+                  <Cell
+                    name={[field.key, row.key, column.key]}
+                    column={column}
+                    rowLabel={labelOf(row, locale)}
+                    locale={locale}
+                  />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

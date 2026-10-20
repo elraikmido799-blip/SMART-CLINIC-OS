@@ -13,6 +13,7 @@ import { useGetDiscountCodesQuery } from '../codes.api';
 import { codeStateOf, type CodeState, type DiscountCode } from '../codes-types';
 import { CatalogTabs } from './catalog-tabs';
 import { CodeModal } from './code-modal';
+import { clickableRow } from '@/lib/clickable-row';
 
 const STATE_TONE: Record<CodeState, Tone> = {
   active: 'success',
@@ -62,7 +63,7 @@ export function CodesPage() {
             pagination={false}
             scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('codes.empty')} /> }}
-            onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
+            onRow={(item) => clickableRow(() => setEditing(item))}
             columns={[
               {
                 key: 'code',

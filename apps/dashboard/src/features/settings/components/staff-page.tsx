@@ -15,6 +15,7 @@ import type { StaffMember } from '../staff-types';
 import { RolesPanel } from './roles-panel';
 import { SettingsTabs } from './settings-tabs';
 import { StaffDrawer } from './staff-drawer';
+import { clickableRow } from '@/lib/clickable-row';
 
 /**
  * الموظفين والأدوار (D-35 · docs/20 · 9.3): الموظفين (بحث · إضافة · تعديل · قفل) والأدوار وصلاحياتها (للأدمن).
@@ -67,7 +68,7 @@ export function StaffPage() {
         pagination={{ pageSize: 15, hideOnSinglePage: true, showSizeChanger: false }}
         scroll={{ x: 'max-content' }}
         locale={{ emptyText: <EmptyState title={t('staff.empty')} /> }}
-        onRow={(item) => ({ onClick: () => setEditing(item), style: { cursor: 'pointer' } })}
+        onRow={(item) => clickableRow(() => setEditing(item))}
         columns={[
           {
             key: 'name',

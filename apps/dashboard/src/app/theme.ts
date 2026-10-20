@@ -19,6 +19,9 @@ export const theme: ThemeConfig = {
     colorText: color.ink,
     colorTextSecondary: color.mutedText,
     colorTextTertiary: color.mutedText,
+    // نص الـPlaceholder والـDisabled: contrast 4.5 على الأبيض (الافتراضي أفتح من كده)
+    colorTextPlaceholder: color.mutedText,
+    colorTextDescription: color.mutedText,
     colorBgLayout: color.background,
     colorBgContainer: color.surface,
     colorPrimaryBg: color.mist,

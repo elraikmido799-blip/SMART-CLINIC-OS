@@ -16,6 +16,7 @@ import { useCan } from '@/features/auth/use-me';
 import { useDebounced } from '@/lib/use-debounced';
 import { rememberPatient } from '../recent';
 import { RegisterPatientDrawer } from './register-patient-drawer';
+import { clickableRow } from '@/lib/clickable-row';
 
 /**
  * المرضى (D-08 · docs/20 · 3.5): بحث بالاسم أو الموبايل أو رقم الملف ونتايجه في جدول.
@@ -82,10 +83,7 @@ export function PatientsPage() {
             dataSource={results.data ?? []}
             pagination={false}
             locale={{ emptyText: <EmptyState title={t('list.noResults')} /> }}
-            onRow={(patient) => ({
-              onClick: () => open(patient),
-              style: { cursor: 'pointer' },
-            })}
+            onRow={(patient) => clickableRow(() => open(patient))}
             scroll={{ x: 'max-content' }}
             columns={[
               {

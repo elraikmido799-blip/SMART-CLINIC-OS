@@ -9,6 +9,7 @@ import { useCan } from '@/features/auth/use-me';
 import { apiErrorCode } from '@/lib/api-error';
 import { useGetRolesQuery, useUpdateRoleMutation } from '../staff.api';
 import type { RoleEntry } from '../staff-types';
+import { clickableRow } from '@/lib/clickable-row';
 
 // صلاحيات متجمعة بالمورد (الجزء اللي قبل النقطة)
 const GROUPS = Object.entries(
@@ -65,7 +66,7 @@ export function RolesPanel() {
         pagination={false}
         scroll={{ x: 'max-content' }}
         locale={{ emptyText: <EmptyState /> }}
-        onRow={(entry) => ({ onClick: () => open(entry), style: { cursor: 'pointer' } })}
+        onRow={(entry) => clickableRow(() => open(entry))}
         columns={[
           {
             key: 'role',

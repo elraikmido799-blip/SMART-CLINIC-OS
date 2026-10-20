@@ -12,6 +12,7 @@ import { useGetCatalogQuery, useUpdateCatalogItemMutation } from '../catalog.api
 import { CATALOG_KINDS, type CatalogItem, type CatalogKind } from '../types';
 import { CatalogTabs } from './catalog-tabs';
 import { ItemDrawer } from './item-drawer';
+import { clickableRow } from '@/lib/clickable-row';
 
 /**
  * الكتالوج (D-24 · docs/20 · 7.1): خدمات · منتجات · باقات. بحث بالاسم، السعر الأساسي وعدد الفروع اللي ليها سعر خاص،
@@ -87,10 +88,7 @@ export function CatalogPage() {
             pagination={false}
             scroll={{ x: 'max-content' }}
             locale={{ emptyText: <EmptyState title={t('empty')} /> }}
-            onRow={(item) => ({
-              onClick: () => canWrite && setEditing(item),
-              style: canWrite ? { cursor: 'pointer' } : undefined,
-            })}
+            onRow={(item) => clickableRow(() => setEditing(item), canWrite)}
             columns={[
               {
                 key: 'name',

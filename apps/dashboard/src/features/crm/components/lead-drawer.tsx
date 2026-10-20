@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { formatDate, formatEgyptianMobile, formatSlot, localized } from '@oxygen/shared';
 import type { Tone } from '@/app/tones';
 import { useLocale } from '@/app/use-locale';
+import { DangerButton } from '@/components/danger-button';
 import { PersonAvatar } from '@/components/person-avatar';
 import { SpecialtyTag, StatusTag } from '@/components/tags';
 import { useGetPractitionersQuery } from '@/features/appointments/appointments.api';
@@ -130,14 +131,13 @@ export function LeadDrawer({ lead, onClose }: { lead: Lead | null; onClose: () =
                   {t('actions.convert')}
                 </Button>
               )}
-              <Button
+              <DangerButton
                 block
-                danger
                 icon={<UserX size={16} aria-hidden />}
                 onClick={() => setDialog('lost')}
               >
                 {t('actions.lost')}
-              </Button>
+              </DangerButton>
             </Flex>
           )}
 
