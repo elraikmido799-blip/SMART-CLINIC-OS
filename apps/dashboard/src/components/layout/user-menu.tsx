@@ -1,30 +1,24 @@
 import { Button, Dropdown, Flex, Typography } from 'antd';
 import { ChevronDown, Languages, LogOut } from 'lucide-react';
-import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { localized } from '@oxygen/shared';
 import { useLocale } from '@/app/use-locale';
 import { useLogoutMutation } from '@/features/auth/auth.api';
 import { useMe } from '@/features/auth/use-me';
 import { PersonAvatar } from '@/components/person-avatar';
-import { baseApi } from '@/store/base-api';
-import { useAppDispatch } from '@/store/store';
 
 /** الحساب في الـTop bar: الاسم والدور · تغيير اللغة · خروج */
 export function UserMenu({ compact }: { compact: boolean }) {
   const me = useMe();
   const { t, i18n } = useTranslation();
   const locale = useLocale();
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
   const name = localized(me, 'name', locale);
 
   const signOut = async () => {
     await logout();
-    await navigate({ to: '/login' });
-    // داتا الموظف اللي خرج متفضلش في الذاكرة
-    dispatch(baseApi.util.resetApiState());
+    // تحميل كامل للصفحة: داتا الموظف اللي خرج متفضلش في الذاكرة، ومفيش كاش قديم يرجّعه للصفحة
+    window.location.assign('/login');
   };
 
   return (
