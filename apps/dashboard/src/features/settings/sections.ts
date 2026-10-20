@@ -1,11 +1,16 @@
 import type { Permission } from '@/features/auth/permissions';
 import { hasAny, useMe } from '@/features/auth/use-me';
 
-export type SettingsSection = 'templates' | 'staff' | 'branches' | 'schedules';
+export type SettingsSection = 'templates' | 'staff' | 'branches' | 'schedules' | 'integrations';
 
 type Entry = {
   key: SettingsSection;
-  to: '/settings/templates' | '/settings/staff' | '/settings/branches' | '/settings/schedules';
+  to:
+    | '/settings/templates'
+    | '/settings/staff'
+    | '/settings/branches'
+    | '/settings/schedules'
+    | '/settings/integrations';
   permissions: Permission[];
 };
 
@@ -21,6 +26,11 @@ const SECTIONS: Entry[] = [
   { key: 'staff', to: '/settings/staff', permissions: ['staff.manage', 'roles.manage'] },
   { key: 'branches', to: '/settings/branches', permissions: ['settings.read', 'settings.manage'] },
   { key: 'schedules', to: '/settings/schedules', permissions: ['staff.manage'] },
+  {
+    key: 'integrations',
+    to: '/settings/integrations',
+    permissions: ['settings.read', 'settings.manage'],
+  },
 ];
 
 export const useSettingsSections = () => {

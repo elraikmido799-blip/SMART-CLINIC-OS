@@ -5,7 +5,8 @@
     "templates": "Notification templates",
     "staff": "Staff and roles",
     "branches": "Branches",
-    "schedules": "Doctor schedules"
+    "schedules": "Doctor schedules",
+    "integrations": "Integrations"
   },
   "templates": {
     "description": "WhatsApp, SMS and email messages sent to patients",
@@ -199,5 +200,66 @@
     "removeLeave": "Remove leave",
     "noLeaves": "No leave",
     "conflicts": "{{count}} booked appointments fall in this period. Move or cancel them from the calendar."
+  },
+  "integrations": {
+    "description": "Status of the external services and turning them on or off. Service keys are set in the backend.",
+    "status": {
+      "connected": "Connected",
+      "not_configured": "Not configured",
+      "error": "Error"
+    },
+    "phase2": "Phase 2",
+    "toggle": "Turn {{name}} on or off",
+    "test": "Test connection",
+    "checked": "Last checked {{date}}",
+    "neverChecked": "Never checked",
+    "notConfiguredHint": "This service is not configured in the backend yet, so it cannot be turned on.",
+    "failed": "Something went wrong. Try again.",
+    "items": {
+      "payments": {
+        "name": "Payment gateway",
+        "purpose": "Online payment and saving the card for renewal"
+      },
+      "whatsapp": {
+        "name": "WhatsApp Business",
+        "purpose": "Reminders, confirmations and receipts with approved templates"
+      },
+      "sms": {
+        "name": "SMS",
+        "purpose": "Login codes and a fallback if WhatsApp fails"
+      },
+      "email": {
+        "name": "Email",
+        "purpose": "Invoices, reports and notifications"
+      },
+      "push": {
+        "name": "App notifications",
+        "purpose": "Patient app push notifications"
+      },
+      "meta_leads": {
+        "name": "Meta Lead Ads",
+        "purpose": "Facebook and Instagram leads go into the CRM automatically"
+      },
+      "meta_pixel": {
+        "name": "Meta Pixel",
+        "purpose": "Campaign measurement without health data"
+      },
+      "tiktok": {
+        "name": "TikTok Leads",
+        "purpose": "TikTok leads and campaign measurement"
+      },
+      "analytics": {
+        "name": "Google Analytics",
+        "purpose": "Website analytics"
+      },
+      "maps": {
+        "name": "Google Maps",
+        "purpose": "Branch maps"
+      },
+      "video_visits": {
+        "name": "Video consultation",
+        "purpose": "A meeting link for the patient and doctor"
+      }
+    }
   }
 }
