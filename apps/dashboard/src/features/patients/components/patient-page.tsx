@@ -26,6 +26,7 @@ import { EncountersTab } from '@/features/encounters/components/encounters-tab';
 import { MeasurementsTab } from '@/features/measurements/components/measurements-tab';
 import { ProgramsTab } from '@/features/programs/components/programs-tab';
 import { PatientBillingTab } from '@/features/billing/components/patient-billing-tab';
+import { PatientAccessTab } from '@/features/settings/components/patient-access-tab';
 import { RelatedTasks } from '@/features/tasks/components/related-tasks';
 import { DocumentsTab } from './documents-tab';
 import { OverviewTab } from './overview-tab';
@@ -193,6 +194,8 @@ export function PatientPage() {
               <EncountersTab patientId={patientId} />
             ) : item.key === 'programs' ? (
               <ProgramsTab patientId={patientId} branchId={patient.branch_id} />
+            ) : item.key === 'access' ? (
+              <PatientAccessTab patientId={patientId} />
             ) : item.key === 'billing' ? (
               <PatientBillingTab patientId={patientId} />
             ) : item.key === 'crm' ? (

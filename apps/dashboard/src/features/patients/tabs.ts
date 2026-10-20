@@ -16,7 +16,7 @@ export const PATIENT_TABS = [
   { key: 'billing', permission: 'billing.read', step: null },
   { key: 'crm', permission: 'tasks.manage', step: null },
   { key: 'consents', permission: 'patients.read', step: null },
-  { key: 'access', permission: 'audit.read', step: '9.7' },
+  { key: 'access', permission: 'audit.read', step: null },
 ] as const satisfies readonly { key: string; permission: Permission; step: string | null }[];
 
 export type PatientTab = (typeof PATIENT_TABS)[number]['key'];

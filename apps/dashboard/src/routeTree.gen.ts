@@ -35,6 +35,7 @@ import { Route as AppPatientsPatientIdRouteImport } from './routes/_app/patients
 import { Route as AppProgramsIndexRouteImport } from './routes/_app/programs.index'
 import { Route as AppReportsIndexRouteImport } from './routes/_app/reports.index'
 import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings.index'
+import { Route as AppSettingsAuditRouteImport } from './routes/_app/settings.audit'
 import { Route as AppSettingsBranchesRouteImport } from './routes/_app/settings.branches'
 import { Route as AppSettingsIntegrationsRouteImport } from './routes/_app/settings.integrations'
 import { Route as AppSettingsSchedulesRouteImport } from './routes/_app/settings.schedules'
@@ -175,6 +176,11 @@ const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
   path: '/settings/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsAuditRoute = AppSettingsAuditRouteImport.update({
+  id: '/settings/audit',
+  path: '/settings/audit',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppSettingsBranchesRoute = AppSettingsBranchesRouteImport.update({
   id: '/settings/branches',
   path: '/settings/branches',
@@ -236,6 +242,7 @@ export interface FileRoutesByFullPath {
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/settings/audit': typeof AppSettingsAuditRoute
   '/settings/branches': typeof AppSettingsBranchesRoute
   '/settings/integrations': typeof AppSettingsIntegrationsRoute
   '/settings/schedules': typeof AppSettingsSchedulesRoute
@@ -272,6 +279,7 @@ export interface FileRoutesByTo {
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/settings/audit': typeof AppSettingsAuditRoute
   '/settings/branches': typeof AppSettingsBranchesRoute
   '/settings/integrations': typeof AppSettingsIntegrationsRoute
   '/settings/schedules': typeof AppSettingsSchedulesRoute
@@ -310,6 +318,7 @@ export interface FileRoutesById {
   '/_app/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/_app/front-desk/pos': typeof AppFrontDeskPosRoute
   '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/_app/settings/audit': typeof AppSettingsAuditRoute
   '/_app/settings/branches': typeof AppSettingsBranchesRoute
   '/_app/settings/integrations': typeof AppSettingsIntegrationsRoute
   '/_app/settings/schedules': typeof AppSettingsSchedulesRoute
@@ -348,6 +357,7 @@ export interface FileRouteTypes {
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
+    | '/settings/audit'
     | '/settings/branches'
     | '/settings/integrations'
     | '/settings/schedules'
@@ -384,6 +394,7 @@ export interface FileRouteTypes {
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
+    | '/settings/audit'
     | '/settings/branches'
     | '/settings/integrations'
     | '/settings/schedules'
@@ -421,6 +432,7 @@ export interface FileRouteTypes {
     | '/_app/front-desk/closing'
     | '/_app/front-desk/pos'
     | '/_app/patients/$patientId'
+    | '/_app/settings/audit'
     | '/_app/settings/branches'
     | '/_app/settings/integrations'
     | '/_app/settings/schedules'
@@ -632,6 +644,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/settings/audit': {
+      id: '/_app/settings/audit'
+      path: '/settings/audit'
+      fullPath: '/settings/audit'
+      preLoaderRoute: typeof AppSettingsAuditRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/settings/branches': {
       id: '/_app/settings/branches'
       path: '/settings/branches'
@@ -712,6 +731,7 @@ interface AppRouteChildren {
   AppFrontDeskClosingRoute: typeof AppFrontDeskClosingRoute
   AppFrontDeskPosRoute: typeof AppFrontDeskPosRoute
   AppPatientsPatientIdRoute: typeof AppPatientsPatientIdRoute
+  AppSettingsAuditRoute: typeof AppSettingsAuditRoute
   AppSettingsBranchesRoute: typeof AppSettingsBranchesRoute
   AppSettingsIntegrationsRoute: typeof AppSettingsIntegrationsRoute
   AppSettingsSchedulesRoute: typeof AppSettingsSchedulesRoute
@@ -748,6 +768,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppFrontDeskClosingRoute: AppFrontDeskClosingRoute,
   AppFrontDeskPosRoute: AppFrontDeskPosRoute,
   AppPatientsPatientIdRoute: AppPatientsPatientIdRoute,
+  AppSettingsAuditRoute: AppSettingsAuditRoute,
   AppSettingsBranchesRoute: AppSettingsBranchesRoute,
   AppSettingsIntegrationsRoute: AppSettingsIntegrationsRoute,
   AppSettingsSchedulesRoute: AppSettingsSchedulesRoute,

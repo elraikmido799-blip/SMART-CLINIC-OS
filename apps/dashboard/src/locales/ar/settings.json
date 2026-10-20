@@ -6,7 +6,8 @@
     "staff": "الموظفين والأدوار",
     "branches": "الفروع",
     "schedules": "جداول الدكاترة",
-    "integrations": "الربط مع الخدمات"
+    "integrations": "الربط مع الخدمات",
+    "audit": "سجل العمليات"
   },
   "templates": {
     "description": "رسائل الواتساب والـSMS والإيميل اللي بتتبعت للمريض",
@@ -260,6 +261,49 @@
         "name": "الاستشارة بالفيديو",
         "purpose": "لينك اجتماع للمريض والدكتور"
       }
+    }
+  },
+  "audit": {
+    "description": "مين عمل إيه وإمتى. للقراءة بس.",
+    "empty": "مفيش عمليات في الفلاتر دي",
+    "patientNote": "كل فتح أو تعديل على الملف ده، لآخر 90 يوم.",
+    "breakGlass": "فتح طارئ",
+    "periods": {
+      "today": "النهارده",
+      "week": "آخر 7 أيام",
+      "twoWeeks": "آخر 14 يوم"
+    },
+    "filters": {
+      "period": "الفترة",
+      "action": "الفعل",
+      "entity": "على إيه",
+      "actor": "الموظف"
+    },
+    "columns": {
+      "at": "الوقت",
+      "actor": "الموظف",
+      "action": "الفعل",
+      "entity": "على",
+      "reason": "ملاحظة"
+    },
+    "actions": {
+      "login": "دخول",
+      "view": "فتح",
+      "create": "إضافة",
+      "update": "تعديل",
+      "delete": "حذف",
+      "export": "تصدير",
+      "refund": "مرتجع",
+      "discount": "خصم"
+    },
+    "entities": {
+      "patient": "مريض",
+      "appointment": "موعد",
+      "invoice": "فاتورة",
+      "encounter": "كشف",
+      "lead": "عميل محتمل",
+      "staff": "موظف",
+      "settings": "إعدادات"
     }
   }
 }

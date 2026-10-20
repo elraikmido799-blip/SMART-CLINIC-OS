@@ -15,6 +15,7 @@ import { nutritionPlanHandlers } from './nutrition-plans';
 import { photoHandlers } from './photos';
 import { programHandlers } from './programs';
 import { overviewHandlers } from './patient-overview';
+import { auditHandlers } from './audit';
 import { integrationHandlers } from './integrations';
 import { scheduleHandlers } from './schedules';
 import { branchSettingsHandlers } from './branch-settings';
@@ -65,6 +66,7 @@ const handlers: MockHandlers = {
   ...branchSettingsHandlers,
   ...scheduleHandlers,
   ...integrationHandlers,
+  ...auditHandlers,
   getBranches: () => {
     const staff = currentStaff();
     // الاسم من إعدادات الفروع (9.4) لو اتعدّل

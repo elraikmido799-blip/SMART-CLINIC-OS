@@ -6,7 +6,8 @@
     "staff": "Staff and roles",
     "branches": "Branches",
     "schedules": "Doctor schedules",
-    "integrations": "Integrations"
+    "integrations": "Integrations",
+    "audit": "Audit log"
   },
   "templates": {
     "description": "WhatsApp, SMS and email messages sent to patients",
@@ -260,6 +261,49 @@
         "name": "Video consultation",
         "purpose": "A meeting link for the patient and doctor"
       }
+    }
+  },
+  "audit": {
+    "description": "Who did what and when. View only.",
+    "empty": "No activity matches these filters",
+    "patientNote": "Every time this file was opened or changed, for the last 90 days.",
+    "breakGlass": "Emergency access",
+    "periods": {
+      "today": "Today",
+      "week": "Last 7 days",
+      "twoWeeks": "Last 14 days"
+    },
+    "filters": {
+      "period": "Period",
+      "action": "Action",
+      "entity": "On",
+      "actor": "Staff member"
+    },
+    "columns": {
+      "at": "Time",
+      "actor": "Staff member",
+      "action": "Action",
+      "entity": "On",
+      "reason": "Note"
+    },
+    "actions": {
+      "login": "Login",
+      "view": "View",
+      "create": "Create",
+      "update": "Update",
+      "delete": "Delete",
+      "export": "Export",
+      "refund": "Refund",
+      "discount": "Discount"
+    },
+    "entities": {
+      "patient": "Patient",
+      "appointment": "Appointment",
+      "invoice": "Invoice",
+      "encounter": "Encounter",
+      "lead": "Lead",
+      "staff": "Staff",
+      "settings": "Settings"
     }
   }
 }

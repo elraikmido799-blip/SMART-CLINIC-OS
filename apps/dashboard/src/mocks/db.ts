@@ -16,6 +16,7 @@ import type { StaffMember } from '@/features/settings/staff-types';
 import type { BranchSettings } from '@/features/settings/branch-types';
 import type { DoctorSchedule } from '@/features/settings/schedule-types';
 import type { Integration } from '@/features/settings/integration-types';
+import type { AuditEntry } from '@/features/settings/audit-types';
 import type { Task } from '@/features/tasks/types';
 import type { Enrollment } from '@/features/programs/enrollment-types';
 import type { Program } from '@/features/programs/types';
@@ -66,6 +67,7 @@ export type MockDb = {
   lead_activities: StoredActivity[];
   tasks: Task[];
   catalog: CatalogItem[];
+  audit_log: AuditEntry[];
   integrations: Integration[];
   doctor_schedules: DoctorSchedule[];
   branch_settings: BranchSettings[];
@@ -111,6 +113,7 @@ const empty = (): MockDb => ({
   lead_activities: [],
   tasks: [],
   catalog: [],
+  audit_log: [],
   integrations: [],
   doctor_schedules: [],
   branch_settings: [],
