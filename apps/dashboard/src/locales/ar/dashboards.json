@@ -1,0 +1,35 @@
+{
+  "vsPrevious": "عن الفترة اللي قبلها",
+  "period": {
+    "label": "الفترة",
+    "1": "النهارده",
+    "7": "7 أيام",
+    "30": "30 يوم"
+  },
+  "kpi": {
+    "patients": "المرضى",
+    "new_patients": "مرضى جداد",
+    "new_leads": "عملاء محتملين جداد",
+    "appointments": "المواعيد",
+    "no_shows": "ما حضروش",
+    "revenue": "الإيراد (كاش)",
+    "packages_sold": "باقات اتباعت"
+  },
+  "funnel": {
+    "leads": "عملاء محتملين",
+    "booked": "حجزوا",
+    "visited": "زاروا",
+    "paid": "دفعوا"
+  },
+  "executive": {
+    "description": "الصورة الكاملة للعيادة في الفترة",
+    "revenue": "الإيراد يوم بيوم",
+    "cash": "كاش (اللي اتحصّل)",
+    "earned": "مكتسب (اللي اتنفذ)",
+    "revenueSummary": "الإيراد في الفترة: كاش {{cash}}، مكتسب {{earned}}",
+    "branches": "مقارنة الفروع",
+    "branchHint": "{{patients}} مريض · تحويل {{conversion}}%",
+    "funnel": "من عميل محتمل لدافع",
+    "sources": "مصادر العملاء"
+  }
+}

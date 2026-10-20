@@ -1,0 +1,35 @@
+{
+  "vsPrevious": "vs. previous period",
+  "period": {
+    "label": "Period",
+    "1": "Today",
+    "7": "7 days",
+    "30": "30 days"
+  },
+  "kpi": {
+    "patients": "Patients",
+    "new_patients": "New patients",
+    "new_leads": "New leads",
+    "appointments": "Appointments",
+    "no_shows": "No-shows",
+    "revenue": "Revenue (cash)",
+    "packages_sold": "Packages sold"
+  },
+  "funnel": {
+    "leads": "Leads",
+    "booked": "Booked",
+    "visited": "Visited",
+    "paid": "Paid"
+  },
+  "executive": {
+    "description": "The full picture of the clinic for the period",
+    "revenue": "Revenue by day",
+    "cash": "Cash (collected)",
+    "earned": "Earned (delivered)",
+    "revenueSummary": "Revenue in the period: cash {{cash}}, earned {{earned}}",
+    "branches": "Branch comparison",
+    "branchHint": "{{patients}} patients · {{conversion}}% conversion",
+    "funnel": "From lead to paid",
+    "sources": "Lead sources"
+  }
+}

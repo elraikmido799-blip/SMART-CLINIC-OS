@@ -7,7 +7,10 @@ import { PageHeader } from '@/components/page-header';
 import { EmptyState } from '@/components/states/states';
 import type { Role } from '@/features/auth/permissions';
 import { useMe } from '@/features/auth/use-me';
+import { InvoicesPage } from '@/features/billing/components/invoices-page';
+import { CampaignsPage } from '@/features/crm/components/campaigns-page';
 import { CrmPage } from '@/features/crm/components/crm-page';
+import { ExecutivePage } from '@/features/dashboards/components/executive-page';
 import { DoctorDayPage } from '@/features/doctor-day/components/doctor-day-page';
 import { QueuePage } from '@/features/front-desk/components/queue-page';
 import { TodayBoard } from '@/features/front-desk/components/today-board';
@@ -20,11 +23,8 @@ import { TodayBoard } from '@/features/front-desk/components/today-board';
 const HOME_STEP: Partial<Record<Role, string>> = {
   reception: '3.1',
   assistant: '3.4',
-  marketing: '6.4',
-  finance: '7.3',
   branch_manager: '8.2',
   operations_manager: '8.2',
-  ceo: '8.1',
   admin: '9.3',
 };
 
@@ -44,6 +44,9 @@ function HomePage() {
   if (me.role === 'assistant') return <QueuePage />;
   if (DOCTOR_ROLES.has(me.role)) return <DoctorDayPage />;
   if (me.role === 'crm_agent') return <CrmPage />;
+  if (me.role === 'marketing') return <CampaignsPage />;
+  if (me.role === 'finance') return <InvoicesPage />;
+  if (me.role === 'ceo') return <ExecutivePage />;
 
   return (
     <>
