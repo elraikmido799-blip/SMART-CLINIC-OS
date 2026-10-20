@@ -10,6 +10,7 @@ import { useMe } from '@/features/auth/use-me';
 import { InvoicesPage } from '@/features/billing/components/invoices-page';
 import { CampaignsPage } from '@/features/crm/components/campaigns-page';
 import { CrmPage } from '@/features/crm/components/crm-page';
+import { BranchPage } from '@/features/dashboards/components/branch-page';
 import { ExecutivePage } from '@/features/dashboards/components/executive-page';
 import { DoctorDayPage } from '@/features/doctor-day/components/doctor-day-page';
 import { QueuePage } from '@/features/front-desk/components/queue-page';
@@ -23,8 +24,6 @@ import { TodayBoard } from '@/features/front-desk/components/today-board';
 const HOME_STEP: Partial<Record<Role, string>> = {
   reception: '3.1',
   assistant: '3.4',
-  branch_manager: '8.2',
-  operations_manager: '8.2',
   admin: '9.3',
 };
 
@@ -47,6 +46,7 @@ function HomePage() {
   if (me.role === 'marketing') return <CampaignsPage />;
   if (me.role === 'finance') return <InvoicesPage />;
   if (me.role === 'ceo') return <ExecutivePage />;
+  if (me.role === 'branch_manager' || me.role === 'operations_manager') return <BranchPage />;
 
   return (
     <>

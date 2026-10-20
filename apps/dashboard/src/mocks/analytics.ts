@@ -1,10 +1,10 @@
 import { MockHttpError, type MockHandlers } from '@oxygen/shared';
 import type { FetchArgs } from '@reduxjs/toolkit/query';
 import { LEAD_SOURCES, LEAD_STAGES, type Lead } from '@/features/crm/types';
-import type { Executive, Kpi, KpiKey } from '@/features/dashboards/types';
+import type { BranchDashboard, Executive, Kpi, KpiKey } from '@/features/dashboards/types';
 import { clinicToday } from '@/lib/clinic-time';
 import { currentStaff, toMe } from './auth';
-import { ensurePatients, seeded } from './clinic';
+import { ensurePatients, PRACTITIONERS, ROOMS, seeded } from './clinic';
 import { ensureLeads } from './crm';
 import { readDb, writeDb } from './db';
 import { BRANCHES } from './seed';
@@ -148,6 +148,69 @@ export const analyticsHandlers: MockHandlers = {
       branches: perBranch,
       funnel: funnelFor(leads),
       sources: sourcesFor(leads),
+    };
+    return result;
+  },
+
+  getBranchDashboard: (args: FetchArgs) => {
+    if (!permitted('dashboards.all') && !permitted('dashboards.branch'))
+      throw new MockHttpError(403, 'FORBIDDEN');
+    const { branch_id = '', days = '30' } = (args.params ?? {}) as Record<string, string>;
+    if (!branch_id || branch_id === 'all') throw new MockHttpError(422, 'BRANCH_REQUIRED');
+    const span = Number(days);
+    const branches = allowedBranches(branch_id);
+    const id = branches[0];
+    const length = Math.max(span, 7);
+
+    const revenue_series = Array.from({ length }, (_, index) => {
+      const date = dateOf(length - 1 - index);
+      const cash = BASE_PER_DAY.revenue * (WEIGHT[id] ?? 1) * dayFactor(id, date);
+      return {
+        date,
+        cash: Math.round(cash),
+        earned: Math.round(cash * (0.9 + seeded(`earned|${date}`)() * 0.25)),
+      };
+    });
+
+    const team = PRACTITIONERS.filter((item) => item.branch_ids.includes(id));
+    const appointments = sumKpi('appointments', [id], span, 0);
+    const revenue = sumKpi('revenue', [id], span, 0);
+    const doctors = team.map((item) => {
+      const random = seeded(`doctor|${item.id}|${id}|${span}`);
+      const share = (0.7 + random() * 0.6) / Math.max(1, team.length);
+      const completed = Math.round(appointments * share * 0.85);
+      return {
+        id: item.id,
+        name_ar: item.name_ar,
+        name_en: item.name_en,
+        specialty: item.specialty,
+        completed,
+        no_show_rate: Math.round((0.02 + random() * 0.07) * 1000) / 1000,
+        revenue: Math.round(revenue * share),
+      };
+    });
+
+    const rooms = ROOMS.filter((room) => room.branch_id === id).map((room) => ({
+      id: room.id,
+      name_ar: room.name_ar,
+      name_en: room.name_en,
+      utilization: Math.round((0.35 + seeded(`room|${room.id}|${span}`)() * 0.55) * 100) / 100,
+    }));
+
+    const noShows = sumKpi('no_shows', [id], span, 0);
+    const cancelled = Math.round(appointments * 0.07);
+    const completed = Math.round(appointments * 0.78);
+    const result: BranchDashboard = {
+      kpis: kpisFor(branches, span),
+      revenue_series,
+      doctors,
+      rooms,
+      statuses: [
+        { status: 'completed', count: completed },
+        { status: 'confirmed', count: Math.max(0, appointments - completed - cancelled - noShows) },
+        { status: 'cancelled', count: cancelled },
+        { status: 'no_show', count: noShows },
+      ],
     };
     return result;
   },

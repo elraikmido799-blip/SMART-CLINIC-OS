@@ -1,10 +1,10 @@
 {
   "vsPrevious": "vs. previous period",
   "period": {
-    "label": "Period",
     "1": "Today",
     "7": "7 days",
-    "30": "30 days"
+    "30": "30 days",
+    "label": "Period"
   },
   "kpi": {
     "patients": "Patients",
@@ -31,5 +31,29 @@
     "branchHint": "{{patients}} patients · {{conversion}}% conversion",
     "funnel": "From lead to paid",
     "sources": "Lead sources"
+  },
+  "tabs": {
+    "label": "Dashboard sections",
+    "executive": "Executive",
+    "branch": "Branch"
+  },
+  "branch": {
+    "description": "Branch, doctor and room performance",
+    "pick": "Branch",
+    "statuses": "Appointment statuses",
+    "status": {
+      "completed": "Completed",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "no_show": "No-show"
+    },
+    "doctors": "Doctor performance",
+    "rooms": "Room utilization",
+    "columns": {
+      "doctor": "Doctor",
+      "completed": "Completed",
+      "noShow": "No-show",
+      "revenue": "Revenue"
+    }
   }
 }

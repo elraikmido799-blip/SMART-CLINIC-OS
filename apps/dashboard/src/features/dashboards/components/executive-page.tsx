@@ -11,6 +11,7 @@ import { ErrorState, LoadingState } from '@/components/states/states';
 import { useBranchScope } from '@/features/branches/use-branch-scope';
 import { useGetExecutiveQuery } from '../dashboards.api';
 import { DASHBOARD_PERIODS, type DashboardPeriod } from '../types';
+import { DashboardTabs } from './dashboard-tabs';
 import { KpiGrid } from './kpi-grid';
 
 /**
@@ -38,6 +39,7 @@ export function ExecutivePage() {
 
   return (
     <>
+      <DashboardTabs active="executive" />
       <PageHeader
         title={tNav('dashboards')}
         description={t('executive.description')}

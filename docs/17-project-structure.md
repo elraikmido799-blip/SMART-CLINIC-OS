@@ -248,7 +248,7 @@ apps/dashboard/
 │   │   ├── crm/                 الـCRM: types (المراحل والمصادر) · crm.api · sla · phone (إخفاء الموبايل) · components/ (crm-page · lead-card · new-lead-modal · lead-drawer · activity-timeline · lead-actions · crm-tabs · campaigns-page)
 │   │   ├── tasks/               المهام والمتابعات (6.3): types (bucketOf) · tasks.api · components/ (tasks-page · task-list · task-modal · related-tasks)
 │   │   ├── catalog/             الكتالوج (7.1): types · catalog.api · components/ (catalog-page · item-drawer · catalog-tabs · codes-page · code-modal · codes-types · codes.api)
-│   │   ├── dashboards/          الداشبوردات (8.x): types · dashboards.api · components/ (executive-page · kpi-grid)
+│   │   ├── dashboards/          الداشبوردات (8.x): types · dashboards.api · components/ (executive-page · branch-page · dashboard-tabs · kpi-grid)
 │   │   ├── exercises/           مكتبة التمارين: types · exercises.api · components/exercises-page
 │   │   ├── billing/             التحصيل والتقفيل والفواتير (3.6 · 3.7 · 7.3): types · totals (الحساب) · billing.api · closing.api · invoices.api · components/ (pos-page · invoice-view · closing-page · invoices-page · patient-billing-tab · refunds-page · refund-modals · billing-tabs · refunds.api · refunds-types)
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)

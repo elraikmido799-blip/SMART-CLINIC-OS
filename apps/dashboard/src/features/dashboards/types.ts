@@ -64,3 +64,34 @@ export const executiveSchema = z.object({
 export type Executive = z.infer<typeof executiveSchema>;
 
 export type ExecutiveQuery = { branch_id: string; days: DashboardPeriod };
+
+const named = { name_ar: z.string(), name_en: z.string() };
+
+/**
+ * داشبورد الفرع (D-29): نفس أرقام الـCEO لفرع واحد + أداء الدكاترة (المواعيد المكتملة · نسبة الـNo-show · الإيراد المنسوب)
+ * + استخدام الأوض (% من ساعات الشغل) + حالات المواعيد. docs/05 §5 "Staff performance".
+ */
+export const branchDashboardSchema = z.object({
+  kpis: kpisSchema,
+  revenue_series: z.array(revenuePointSchema),
+  doctors: z.array(
+    z.object({
+      id: z.string(),
+      ...named,
+      specialty: z.string(),
+      completed: z.number(),
+      // 0 لـ1
+      no_show_rate: z.number(),
+      revenue: z.number(),
+    }),
+  ),
+  rooms: z.array(z.object({ id: z.string(), ...named, utilization: z.number() })),
+  statuses: z.array(
+    z.object({
+      status: z.enum(['completed', 'confirmed', 'cancelled', 'no_show']),
+      count: z.number(),
+    }),
+  ),
+});
+
+export type BranchDashboard = z.infer<typeof branchDashboardSchema>;
