@@ -251,7 +251,7 @@ apps/dashboard/
 │   │   ├── dashboards/          الداشبوردات (8.x): types · dashboards.api · components/ (executive-page · branch-page · journey-page · dashboard-tabs · kpi-grid)
 │   │   ├── reports/             التقارير (8.4): types · reports.api · components/reports-page (التصدير: lib/export-csv)
 │   │   ├── content/             المحتوى (9.1): types · content.api · components/ (content-page · content-drawer · site-images) · lib/image-resize
-│   │   ├── settings/            الإعدادات (9.x): sections (الأقسام وصلاحياتها) · notification-types · settings.api · components/ (settings-tabs · templates-page · template-editor · staff-page · staff-drawer · roles-panel · branches-page · branch-drawer)
+│   │   ├── settings/            الإعدادات (9.x): sections (الأقسام وصلاحياتها) · notification-types · settings.api · components/ (settings-tabs · templates-page · template-editor · staff-page · staff-drawer · roles-panel · branches-page · branch-drawer · schedules-page · schedule-drawer)
 │   │   ├── exercises/           مكتبة التمارين: types · exercises.api · components/exercises-page
 │   │   ├── billing/             التحصيل والتقفيل والفواتير (3.6 · 3.7 · 7.3): types · totals (الحساب) · billing.api · closing.api · invoices.api · components/ (pos-page · invoice-view · closing-page · invoices-page · patient-billing-tab · refunds-page · refund-modals · billing-tabs · refunds.api · refunds-types)
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)

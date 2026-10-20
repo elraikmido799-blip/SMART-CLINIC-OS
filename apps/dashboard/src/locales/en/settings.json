@@ -4,7 +4,8 @@
     "label": "Settings sections",
     "templates": "Notification templates",
     "staff": "Staff and roles",
-    "branches": "Branches"
+    "branches": "Branches",
+    "schedules": "Doctor schedules"
   },
   "templates": {
     "description": "WhatsApp, SMS and email messages sent to patients",
@@ -172,5 +173,31 @@
     "save": "Save",
     "saved": "Branch settings saved",
     "invalid": "Check the data: name is required, opening before closing, and every room needs a name."
+  },
+  "schedules": {
+    "description": "Each doctor’s working days, branches and leave",
+    "columns": {
+      "doctor": "Doctor",
+      "specialty": "Specialty",
+      "days": "Working days",
+      "leaves": "Upcoming leave"
+    },
+    "tabs": {
+      "weekly": "Weekly schedule",
+      "leaves": "Leave"
+    },
+    "off": "Off",
+    "works": "Working",
+    "branch": "Branch",
+    "save": "Save schedule",
+    "saved": "Schedule saved",
+    "invalid": "Check the data: opening before closing, and the start date before the end date.",
+    "leavePeriod": "Leave period",
+    "reason": "Reason (optional)",
+    "addLeave": "Add leave",
+    "leaveAdded": "Leave added",
+    "removeLeave": "Remove leave",
+    "noLeaves": "No leave",
+    "conflicts": "{{count}} booked appointments fall in this period. Move or cancel them from the calendar."
   }
 }
