@@ -152,6 +152,31 @@ export const analyticsHandlers: MockHandlers = {
     return result;
   },
 
+  getJourney: (args: FetchArgs) => {
+    if (!permitted('dashboards.all') && !permitted('dashboards.branch'))
+      throw new MockHttpError(403, 'FORBIDDEN');
+    const { branch_id = 'all', source, days = '0' } = (args.params ?? {}) as Record<string, string>;
+    const branches = allowedBranches(branch_id);
+    writeDb(ensurePatients);
+    writeDb(ensureLeads);
+    const since = Number(days) ? Date.now() - Number(days) * DAY : 0;
+    const leads = leadsOf(readDb().leads, branches).filter(
+      (lead) => (!source || lead.source === source) && Date.parse(lead.created_at) >= since,
+    );
+    const stages = LEAD_STAGES.map((stage, index) => ({
+      stage,
+      reached: reached(leads, stage),
+      median_days:
+        index === 0
+          ? null
+          : Math.max(
+              0,
+              Math.round(seeded(`journey|${stage}|${source ?? 'all'}`)() * 8 + (index > 3 ? 3 : 0)),
+            ),
+    }));
+    return { total: leads.length, stages };
+  },
+
   getBranchDashboard: (args: FetchArgs) => {
     if (!permitted('dashboards.all') && !permitted('dashboards.branch'))
       throw new MockHttpError(403, 'FORBIDDEN');

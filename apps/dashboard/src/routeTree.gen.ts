@@ -27,6 +27,7 @@ import { Route as AppCrmCampaignsRouteImport } from './routes/_app/crm.campaigns
 import { Route as AppCrmTasksRouteImport } from './routes/_app/crm.tasks'
 import { Route as AppDashboardsIndexRouteImport } from './routes/_app/dashboards.index'
 import { Route as AppDashboardsBranchRouteImport } from './routes/_app/dashboards.branch'
+import { Route as AppDashboardsJourneyRouteImport } from './routes/_app/dashboards.journey'
 import { Route as AppEncountersEncounterIdRouteImport } from './routes/_app/encounters.$encounterId'
 import { Route as AppFrontDeskIndexRouteImport } from './routes/_app/front-desk.index'
 import { Route as AppFrontDeskClosingRouteImport } from './routes/_app/front-desk.closing'
@@ -128,6 +129,11 @@ const AppDashboardsBranchRoute = AppDashboardsBranchRouteImport.update({
   path: '/dashboards/branch',
   getParentRoute: () => AppRoute,
 } as any)
+const AppDashboardsJourneyRoute = AppDashboardsJourneyRouteImport.update({
+  id: '/dashboards/journey',
+  path: '/dashboards/journey',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppEncountersEncounterIdRoute =
   AppEncountersEncounterIdRouteImport.update({
     id: '/encounters/$encounterId',
@@ -198,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/crm/campaigns': typeof AppCrmCampaignsRoute
   '/crm/tasks': typeof AppCrmTasksRoute
   '/dashboards/branch': typeof AppDashboardsBranchRoute
+  '/dashboards/journey': typeof AppDashboardsJourneyRoute
   '/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
@@ -228,6 +235,7 @@ export interface FileRoutesByTo {
   '/crm/campaigns': typeof AppCrmCampaignsRoute
   '/crm/tasks': typeof AppCrmTasksRoute
   '/dashboards/branch': typeof AppDashboardsBranchRoute
+  '/dashboards/journey': typeof AppDashboardsJourneyRoute
   '/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
@@ -260,6 +268,7 @@ export interface FileRoutesById {
   '/_app/crm/campaigns': typeof AppCrmCampaignsRoute
   '/_app/crm/tasks': typeof AppCrmTasksRoute
   '/_app/dashboards/branch': typeof AppDashboardsBranchRoute
+  '/_app/dashboards/journey': typeof AppDashboardsJourneyRoute
   '/_app/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/_app/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/_app/front-desk/pos': typeof AppFrontDeskPosRoute
@@ -292,6 +301,7 @@ export interface FileRouteTypes {
     | '/crm/campaigns'
     | '/crm/tasks'
     | '/dashboards/branch'
+    | '/dashboards/journey'
     | '/encounters/$encounterId'
     | '/front-desk/closing'
     | '/front-desk/pos'
@@ -322,6 +332,7 @@ export interface FileRouteTypes {
     | '/crm/campaigns'
     | '/crm/tasks'
     | '/dashboards/branch'
+    | '/dashboards/journey'
     | '/encounters/$encounterId'
     | '/front-desk/closing'
     | '/front-desk/pos'
@@ -353,6 +364,7 @@ export interface FileRouteTypes {
     | '/_app/crm/campaigns'
     | '/_app/crm/tasks'
     | '/_app/dashboards/branch'
+    | '/_app/dashboards/journey'
     | '/_app/encounters/$encounterId'
     | '/_app/front-desk/closing'
     | '/_app/front-desk/pos'
@@ -504,6 +516,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardsBranchRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/dashboards/journey': {
+      id: '/_app/dashboards/journey'
+      path: '/dashboards/journey'
+      fullPath: '/dashboards/journey'
+      preLoaderRoute: typeof AppDashboardsJourneyRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/encounters/$encounterId': {
       id: '/_app/encounters/$encounterId'
       path: '/encounters/$encounterId'
@@ -596,6 +615,7 @@ interface AppRouteChildren {
   AppCrmCampaignsRoute: typeof AppCrmCampaignsRoute
   AppCrmTasksRoute: typeof AppCrmTasksRoute
   AppDashboardsBranchRoute: typeof AppDashboardsBranchRoute
+  AppDashboardsJourneyRoute: typeof AppDashboardsJourneyRoute
   AppEncountersEncounterIdRoute: typeof AppEncountersEncounterIdRoute
   AppFrontDeskClosingRoute: typeof AppFrontDeskClosingRoute
   AppFrontDeskPosRoute: typeof AppFrontDeskPosRoute
@@ -626,6 +646,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppCrmCampaignsRoute: AppCrmCampaignsRoute,
   AppCrmTasksRoute: AppCrmTasksRoute,
   AppDashboardsBranchRoute: AppDashboardsBranchRoute,
+  AppDashboardsJourneyRoute: AppDashboardsJourneyRoute,
   AppEncountersEncounterIdRoute: AppEncountersEncounterIdRoute,
   AppFrontDeskClosingRoute: AppFrontDeskClosingRoute,
   AppFrontDeskPosRoute: AppFrontDeskPosRoute,

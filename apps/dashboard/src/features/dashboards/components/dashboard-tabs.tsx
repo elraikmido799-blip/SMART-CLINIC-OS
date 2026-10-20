@@ -4,14 +4,19 @@ import { useTranslation } from 'react-i18next';
 import type { Permission } from '@/features/auth/permissions';
 import { hasAny, useMe } from '@/features/auth/use-me';
 
-type Section = 'executive' | 'branch';
+type Section = 'executive' | 'branch' | 'journey';
 
 const SECTIONS: { key: Section; to: string; permissions: Permission[] }[] = [
   { key: 'executive', to: '/dashboards', permissions: ['dashboards.all'] },
   { key: 'branch', to: '/dashboards/branch', permissions: ['dashboards.branch', 'dashboards.all'] },
+  {
+    key: 'journey',
+    to: '/dashboards/journey',
+    permissions: ['dashboards.all', 'dashboards.branch'],
+  },
 ];
 
-/** التنقل جوه الداشبوردات: الـCEO (D-28) · الفرع (D-29). كل تاب حسب الصلاحية */
+/** التنقل جوه الداشبوردات: الـCEO (D-28) · الفرع (D-29) · رحلة المريض (D-30). كل تاب حسب الصلاحية */
 export function DashboardTabs({ active }: { active: Section }) {
   const { t } = useTranslation('dashboards');
   const navigate = useNavigate();

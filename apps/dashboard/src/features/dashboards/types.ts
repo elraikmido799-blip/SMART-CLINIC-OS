@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { LEAD_SOURCES } from '@/features/crm/types';
+import { LEAD_SOURCES, LEAD_STAGES } from '@/features/crm/types';
 
 export const DASHBOARD_PERIODS = [1, 7, 30] as const;
 
@@ -95,3 +95,28 @@ export const branchDashboardSchema = z.object({
 });
 
 export type BranchDashboard = z.infer<typeof branchDashboardSchema>;
+
+/**
+ * رحلة المريض (D-30): كام عميل وصل لكل مرحلة من الـ12 (أو أبعد منها)، ونسبة اللي وقفوا بين كل مرحلتين
+ * (Journey drop-off)، والوقت النموذجي (الوسيط بالأيام) من المرحلة اللي قبلها.
+ */
+export const journeySchema = z.object({
+  total: z.number(),
+  stages: z.array(
+    z.object({
+      stage: z.enum(LEAD_STAGES),
+      reached: z.number(),
+      // الوسيط بالأيام من المرحلة اللي قبلها (فاضي للأولى)
+      median_days: z.number().nullable(),
+    }),
+  ),
+});
+
+export type Journey = z.infer<typeof journeySchema>;
+
+export type JourneyQuery = {
+  branch_id: string;
+  source?: string;
+  // آخر كام يوم (0 = كل الوقت)
+  days: number;
+};

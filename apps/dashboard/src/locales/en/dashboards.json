@@ -35,7 +35,8 @@
   "tabs": {
     "label": "Dashboard sections",
     "executive": "Executive",
-    "branch": "Branch"
+    "branch": "Branch",
+    "journey": "Patient journey"
   },
   "branch": {
     "description": "Branch, doctor and room performance",
@@ -55,5 +56,27 @@
       "noShow": "No-show",
       "revenue": "Revenue"
     }
+  },
+  "journey": {
+    "description": "From first contact to treatment: who got where and who stopped",
+    "source": "Source",
+    "period": "Period",
+    "periods": {
+      "month": "Last 30 days",
+      "quarter": "Last 90 days",
+      "all": "All time"
+    },
+    "empty": "No leads match these filters",
+    "reached": "Reached each stage (of {{count}} leads)",
+    "reachedLabel": "Number who reached each stage",
+    "dropOff": "Drop-off between stages",
+    "worst": "Biggest drop-off: before \"{{stage}}\" ({{percent}} of the previous stage stopped).",
+    "columns": {
+      "stage": "Stage",
+      "reached": "Reached",
+      "dropOff": "Dropped",
+      "days": "Time from previous"
+    },
+    "daysValue": "{{count}} days"
   }
 }
