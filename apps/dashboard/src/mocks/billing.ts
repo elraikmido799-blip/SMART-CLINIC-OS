@@ -6,59 +6,16 @@ import type {
   CreateInvoiceBody,
   Invoice,
   MethodAmounts,
-  Sellable,
 } from '@/features/billing/types';
 import { clinicToday } from '@/lib/clinic-time';
 import { currentStaff, toMe } from './auth';
-import { SERVICES } from './clinic';
+import { sellablesOf } from './catalog';
 import { readDb, writeDb } from './db';
 
 /**
  * الكاشير الوهمي (3.6): الخدمات + الباقات · أكواد الخصم · الفاتورة (والفلوس المتأخرة على المريض).
  * الأسعار وهمية لحد ما Oxygen يبعتوا الكتالوج الحقيقي (7.1).
  */
-const PACKAGES: Sellable[] = [
-  {
-    id: 'pkg-phy-10',
-    kind: 'package',
-    name_ar: 'باقة 10 جلسات علاج طبيعي',
-    name_en: '10 physio sessions',
-    specialty: 'physio',
-    price: 400000,
-    sessions: 10,
-  },
-  {
-    id: 'pkg-nut-month',
-    kind: 'package',
-    name_ar: 'متابعة تغذية شهر (4 زيارات)',
-    name_en: 'Nutrition month (4 visits)',
-    specialty: 'nutrition',
-    price: 120000,
-    sessions: 4,
-  },
-  {
-    id: 'pkg-derm-laser-6',
-    kind: 'package',
-    name_ar: '6 جلسات ليزر',
-    name_en: '6 laser sessions',
-    specialty: 'derm',
-    price: 750000,
-    sessions: 6,
-  },
-];
-
-const SELLABLES: Sellable[] = [
-  ...SERVICES.map(({ id, name_ar, name_en, specialty, price }) => ({
-    id,
-    kind: 'service' as const,
-    name_ar,
-    name_en,
-    specialty,
-    price,
-    sessions: null,
-  })),
-  ...PACKAGES,
-];
 
 // أكواد الخصم (7.2 هيعمل شاشتها). OXY10 نفس كود الموقع
 const CODES: Record<string, number> = { OXY10: 10, SUMMER15: 15 };
@@ -136,7 +93,7 @@ export const billingHandlers: MockHandlers = {
     return closed;
   },
 
-  getSellables: () => ({ data: SELLABLES }),
+  getSellables: () => ({ data: sellablesOf(readDb()) }),
 
   checkDiscountCode: ({ body }) => checkCode((body as { code: string }).code),
 
@@ -154,7 +111,7 @@ export const billingHandlers: MockHandlers = {
     if (!patient) throw new MockHttpError(404, 'NOT_FOUND');
 
     const lines = input.items.map((line) => {
-      const item = SELLABLES.find((entry) => entry.id === line.item_id);
+      const item = sellablesOf(db).find((entry) => entry.id === line.item_id);
       if (!item || line.qty < 1) throw new MockHttpError(422, 'INVALID_ITEM');
       return {
         item_id: item.id,

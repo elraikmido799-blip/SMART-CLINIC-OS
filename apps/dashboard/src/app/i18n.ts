@@ -13,6 +13,7 @@ import arCarePlans from '@/locales/ar/carePlans.json';
 import arNutritionPlans from '@/locales/ar/nutritionPlans.json';
 import arCrm from '@/locales/ar/crm.json';
 import arTasks from '@/locales/ar/tasks.json';
+import arCatalog from '@/locales/ar/catalog.json';
 import arPrograms from '@/locales/ar/programs.json';
 import arFormBuilder from '@/locales/ar/formBuilder.json';
 import arMeasurements from '@/locales/ar/measurements.json';
@@ -33,6 +34,7 @@ import enCarePlans from '@/locales/en/carePlans.json';
 import enNutritionPlans from '@/locales/en/nutritionPlans.json';
 import enCrm from '@/locales/en/crm.json';
 import enTasks from '@/locales/en/tasks.json';
+import enCatalog from '@/locales/en/catalog.json';
 import enPrograms from '@/locales/en/programs.json';
 import enFormBuilder from '@/locales/en/formBuilder.json';
 import enMeasurements from '@/locales/en/measurements.json';
@@ -60,6 +62,7 @@ export const resources = {
     nutritionPlans: arNutritionPlans,
     crm: arCrm,
     tasks: arTasks,
+    catalog: arCatalog,
     programs: arPrograms,
     formBuilder: arFormBuilder,
     measurements: arMeasurements,
@@ -82,6 +85,7 @@ export const resources = {
     nutritionPlans: enNutritionPlans,
     crm: enCrm,
     tasks: enTasks,
+    catalog: enCatalog,
     programs: enPrograms,
     formBuilder: enFormBuilder,
     measurements: enMeasurements,

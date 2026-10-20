@@ -1,0 +1,58 @@
+{
+  "description": "Services, products, packages and their prices",
+  "cancel": "Cancel",
+  "new": "New item",
+  "search": "Search by name",
+  "empty": "No items",
+  "tabs": {
+    "label": "Catalog sections",
+    "items": "Catalog",
+    "codes": "Discount codes"
+  },
+  "kinds": {
+    "service": "Services",
+    "product": "Products",
+    "package": "Packages"
+  },
+  "fields": {
+    "kind": "Type",
+    "name": "Name",
+    "nameAr": "Arabic name",
+    "nameEn": "English name",
+    "nameRequired": "Enter the name",
+    "specialty": "Specialty",
+    "noSpecialty": "No specialty",
+    "detail": "Duration / sessions",
+    "duration": "Duration",
+    "durationRequired": "Enter the duration",
+    "durationValue": "{{count}} min",
+    "minutes": "min",
+    "sessions": "Number of sessions",
+    "sessionsRequired": "Enter the number of sessions",
+    "sessionsValue": "{{count}} sessions",
+    "price": "Price",
+    "priceRequired": "Enter the price",
+    "currency": "EGP",
+    "branchPrices": "Branch-specific price",
+    "branchPricesHelp": "Leave empty if the branch uses the base price.",
+    "sameAsBase": "Same as base",
+    "branchOverrides": "Special price in {{count}} branches",
+    "active": "Active",
+    "on": "Active",
+    "off": "Off",
+    "toggle": "Turn {{name}} on or off"
+  },
+  "drawer": {
+    "save": "Save",
+    "saved": "Saved",
+    "created": "Item added",
+    "new": {
+      "service": "New service",
+      "product": "New product",
+      "package": "New package"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Try again."
+  }
+}

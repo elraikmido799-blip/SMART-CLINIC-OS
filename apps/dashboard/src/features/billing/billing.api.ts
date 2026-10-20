@@ -15,6 +15,7 @@ export const billingApi = baseApi.injectEndpoints({
       query: () => '/staff/sellables',
       rawResponseSchema: z.object({ data: z.array(sellableSchema) }),
       transformResponse: (response: { data: Sellable[] }) => response.data,
+      providesTags: ['Sellables'],
     }),
     // 422 INVALID_CODE = الكود مش موجود أو خلص
     checkDiscountCode: build.mutation<{ code: string; percent: number }, { code: string }>({

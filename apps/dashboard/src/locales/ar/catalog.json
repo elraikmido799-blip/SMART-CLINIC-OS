@@ -1,0 +1,58 @@
+{
+  "description": "الخدمات والمنتجات والباقات وأسعارها",
+  "cancel": "إلغاء",
+  "new": "عنصر جديد",
+  "search": "دوّر بالاسم",
+  "empty": "مفيش عناصر",
+  "tabs": {
+    "label": "أقسام الكتالوج",
+    "items": "الكتالوج",
+    "codes": "أكواد الخصم"
+  },
+  "kinds": {
+    "service": "الخدمات",
+    "product": "المنتجات",
+    "package": "الباقات"
+  },
+  "fields": {
+    "kind": "النوع",
+    "name": "الاسم",
+    "nameAr": "الاسم بالعربي",
+    "nameEn": "الاسم بالإنجليزي",
+    "nameRequired": "اكتب الاسم",
+    "specialty": "التخصص",
+    "noSpecialty": "من غير تخصص",
+    "detail": "المدة / الجلسات",
+    "duration": "المدة",
+    "durationRequired": "اكتب المدة",
+    "durationValue": "{{count}} دقيقة",
+    "minutes": "دقيقة",
+    "sessions": "عدد الجلسات",
+    "sessionsRequired": "اكتب عدد الجلسات",
+    "sessionsValue": "{{count}} جلسة",
+    "price": "السعر",
+    "priceRequired": "اكتب السعر",
+    "currency": "ج.م",
+    "branchPrices": "سعر خاص لكل فرع",
+    "branchPricesHelp": "سيبه فاضي لو الفرع بياخد السعر الأساسي.",
+    "sameAsBase": "نفس الأساسي",
+    "branchOverrides": "سعر خاص في {{count}} فرع",
+    "active": "مفعّل",
+    "on": "مفعّل",
+    "off": "مقفول",
+    "toggle": "فعّل أو اقفل {{name}}"
+  },
+  "drawer": {
+    "save": "احفظ",
+    "saved": "اتحفظ",
+    "created": "العنصر اتضاف",
+    "new": {
+      "service": "خدمة جديدة",
+      "product": "منتج جديد",
+      "package": "باقة جديدة"
+    }
+  },
+  "errors": {
+    "generic": "حصلت مشكلة. جرّب تاني."
+  }
+}

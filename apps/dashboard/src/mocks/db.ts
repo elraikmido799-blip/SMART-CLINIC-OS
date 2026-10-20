@@ -6,6 +6,7 @@ import type { PatientPhoto } from '@/features/photos/types';
 import type { NutritionPlan } from '@/features/nutrition-plans/types';
 import type { Exercise } from '@/features/exercises/types';
 import type { Campaign, Lead } from '@/features/crm/types';
+import type { CatalogItem } from '@/features/catalog/types';
 import type { Task } from '@/features/tasks/types';
 import type { Enrollment } from '@/features/programs/enrollment-types';
 import type { Program } from '@/features/programs/types';
@@ -55,6 +56,7 @@ export type MockDb = {
   campaigns: Campaign[];
   lead_activities: StoredActivity[];
   tasks: Task[];
+  catalog: CatalogItem[];
   // الأيام اللي مواعيدها اتولدت: "branch-id|2026-10-19"
   generated_days: string[];
 };
@@ -89,6 +91,7 @@ const empty = (): MockDb => ({
   campaigns: [],
   lead_activities: [],
   tasks: [],
+  catalog: [],
   generated_days: [],
 });
 
