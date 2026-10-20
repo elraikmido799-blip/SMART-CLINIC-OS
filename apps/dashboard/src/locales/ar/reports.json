@@ -1,0 +1,48 @@
+{
+  "description": "تقارير جاهزة بفترة تختارها، وتنزّلها",
+  "report": "التقرير",
+  "range": "الفترة",
+  "empty": "مفيش بيانات في الفترة دي",
+  "presets": {
+    "week": "آخر 7 أيام",
+    "month": "آخر 30 يوم",
+    "quarter": "آخر 90 يوم"
+  },
+  "export": {
+    "excel": "Excel",
+    "pdf": "PDF (طباعة)"
+  },
+  "reports": {
+    "revenue_daily": "الإيراد يوم بيوم",
+    "invoices": "الفواتير",
+    "lead_sources": "العملاء حسب المصدر",
+    "campaigns": "أداء الحملات",
+    "refunds": "المرتجعات"
+  },
+  "columns": {
+    "date": "التاريخ",
+    "cash": "الإيراد (كاش)",
+    "earned": "الإيراد (مكتسب)",
+    "number": "رقم الفاتورة",
+    "file_no": "رقم الملف",
+    "total": "الإجمالي",
+    "paid": "المدفوع",
+    "source": "المصدر",
+    "leads": "العملاء",
+    "booked": "حجزوا",
+    "conversion": "نسبة الدفع",
+    "name": "الحملة",
+    "channel": "القناة",
+    "budget": "الميزانية",
+    "cost_per_lead": "تكلفة العميل",
+    "invoice": "الفاتورة",
+    "amount": "المبلغ",
+    "status": "الحالة",
+    "reason": "السبب"
+  },
+  "statuses": {
+    "pending": "مستنية",
+    "approved": "اتوافق عليها",
+    "rejected": "مرفوضة"
+  }
+}

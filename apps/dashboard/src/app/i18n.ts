@@ -15,6 +15,7 @@ import arCrm from '@/locales/ar/crm.json';
 import arTasks from '@/locales/ar/tasks.json';
 import arCatalog from '@/locales/ar/catalog.json';
 import arDashboards from '@/locales/ar/dashboards.json';
+import arReports from '@/locales/ar/reports.json';
 import arPrograms from '@/locales/ar/programs.json';
 import arFormBuilder from '@/locales/ar/formBuilder.json';
 import arMeasurements from '@/locales/ar/measurements.json';
@@ -37,6 +38,7 @@ import enCrm from '@/locales/en/crm.json';
 import enTasks from '@/locales/en/tasks.json';
 import enCatalog from '@/locales/en/catalog.json';
 import enDashboards from '@/locales/en/dashboards.json';
+import enReports from '@/locales/en/reports.json';
 import enPrograms from '@/locales/en/programs.json';
 import enFormBuilder from '@/locales/en/formBuilder.json';
 import enMeasurements from '@/locales/en/measurements.json';
@@ -66,6 +68,7 @@ export const resources = {
     tasks: arTasks,
     catalog: arCatalog,
     dashboards: arDashboards,
+    reports: arReports,
     programs: arPrograms,
     formBuilder: arFormBuilder,
     measurements: arMeasurements,
@@ -90,6 +93,7 @@ export const resources = {
     tasks: enTasks,
     catalog: enCatalog,
     dashboards: enDashboards,
+    reports: enReports,
     programs: enPrograms,
     formBuilder: enFormBuilder,
     measurements: enMeasurements,
