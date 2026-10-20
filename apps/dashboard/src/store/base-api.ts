@@ -36,6 +36,8 @@ export const baseApi = createApi({
     'LeadActivities',
     'Tasks',
     'Catalog',
+    'Content',
+    'SiteImages',
     'Sellables',
     'DiscountCodes',
     'Invoices',

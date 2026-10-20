@@ -250,6 +250,7 @@ apps/dashboard/
 │   │   ├── catalog/             الكتالوج (7.1): types · catalog.api · components/ (catalog-page · item-drawer · catalog-tabs · codes-page · code-modal · codes-types · codes.api)
 │   │   ├── dashboards/          الداشبوردات (8.x): types · dashboards.api · components/ (executive-page · branch-page · journey-page · dashboard-tabs · kpi-grid)
 │   │   ├── reports/             التقارير (8.4): types · reports.api · components/reports-page (التصدير: lib/export-csv)
+│   │   ├── content/             المحتوى (9.1): types · content.api · components/ (content-page · content-drawer · site-images) · lib/image-resize
 │   │   ├── exercises/           مكتبة التمارين: types · exercises.api · components/exercises-page
 │   │   ├── billing/             التحصيل والتقفيل والفواتير (3.6 · 3.7 · 7.3): types · totals (الحساب) · billing.api · closing.api · invoices.api · components/ (pos-page · invoice-view · closing-page · invoices-page · patient-billing-tab · refunds-page · refund-modals · billing-tabs · refunds.api · refunds-types)
 │   │   └── front-desk/          الاستقبال: front-desk.api (أرقام اليوم) · arriving.ts · use-visit-actions · components/ (today-board · today-stats · arriving-now · quick-actions · queue-board · queue-page · front-desk-tabs)
@@ -259,7 +260,7 @@ apps/dashboard/
 │   │   ├── kanban/              kanban-board: لوحة أعمدة بسحب من مقبض + بديل "انقل إلى" (مشترك: البرامج 5.2 · الـCRM 6.1)
 │   │   └── page-header · tags (StatusTag · SpecialtyTag) · specialty-icon · danger-button · stat-card · money · person-avatar · coming-soon
 │   ├── locales/
-│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing · programs · doctorDay · encounters · carePlans · nutritionPlans · dermPlans · photos · measurements · formBuilder · programs · crm · tasks · catalog · dashboards · reports · exercises
+│   │   └── ar/ · en/            ملف لكل namespace: common · nav · auth · appointments · frontDesk · calendar · patients · billing · programs · doctorDay · encounters · carePlans · nutritionPlans · dermPlans · photos · measurements · formBuilder · programs · crm · tasks · catalog · dashboards · reports · content · exercises
 │   ├── lib/
 │   │   ├── env.ts               كل متغيرات الـenv
 │   │   ├── api-error.ts         كود الخطأ من رد الـAPI

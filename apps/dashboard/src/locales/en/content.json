@@ -1,0 +1,70 @@
+{
+  "description": "Website articles, videos, offers and images",
+  "cancel": "Cancel",
+  "search": "Search by title",
+  "empty": "No items",
+  "kinds": {
+    "article": "Articles",
+    "video": "Videos",
+    "offer": "Offers",
+    "images": "Site images"
+  },
+  "new": {
+    "article": "New article",
+    "video": "New video",
+    "offer": "New offer"
+  },
+  "status": {
+    "draft": "Draft",
+    "published": "Published"
+  },
+  "columns": {
+    "title": "Title",
+    "specialty": "Specialty",
+    "status": "Status",
+    "updated": "Last edited"
+  },
+  "fields": {
+    "specialty": "Specialty",
+    "general": "General",
+    "titleAr": "Arabic title",
+    "titleEn": "English title",
+    "excerptAr": "Arabic summary",
+    "excerptEn": "English summary",
+    "bodyAr": "Arabic text",
+    "bodyEn": "English text",
+    "videoUrl": "Video link",
+    "urlInvalid": "Enter a valid link",
+    "priceBefore": "Price before discount",
+    "priceAfter": "Price after discount",
+    "endsOn": "Last day of the offer",
+    "currency": "EGP",
+    "required": "Required"
+  },
+  "drawer": {
+    "saveDraft": "Save as draft",
+    "publish": "Publish",
+    "savedDraft": "Saved as draft",
+    "published": "Published to the website",
+    "new": {
+      "article": "New article",
+      "video": "New video",
+      "offer": "New offer"
+    }
+  },
+  "images": {
+    "empty": "No images",
+    "home_hero": "Home page image (Hero)",
+    "about_hero": "About page image",
+    "doctor": "{{name}} photo",
+    "default": "Default image",
+    "change": "Change image",
+    "reset": "Back to default",
+    "choose": "Choose an image",
+    "saved": "Image saved",
+    "failed": "Could not save the image. Try another one."
+  },
+  "errors": {
+    "generic": "Something went wrong. Try again."
+  }
+}
