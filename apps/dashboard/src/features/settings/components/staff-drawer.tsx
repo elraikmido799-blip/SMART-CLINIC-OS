@@ -74,8 +74,10 @@ export function StaffDrawer({
   const role = Form.useWatch('role', form) ?? member?.role ?? 'reception';
   const allBranches = Form.useWatch('all_branches', form) ?? member?.all_branches ?? false;
 
-  const save = async (values: Values) => {
+  const save = async () => {
     setError(null);
+    // كل القيم حتى اللي حقولها مستخبية (مدير الفرع مبيشوفش "كل الفروع")
+    const values = form.getFieldsValue(true) as Values;
     const body = {
       name_ar: values.name_ar,
       name_en: values.name_en,

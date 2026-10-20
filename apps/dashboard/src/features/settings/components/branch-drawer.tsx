@@ -74,8 +74,10 @@ export function BranchDrawer({
     if (branch) form.setFieldsValue(toValues(branch));
   }, [branch, form]);
 
-  const save = async (values: Values) => {
+  const save = async () => {
     if (!branch) return;
+    // getFieldsValue(true): كل القيم حتى اللي حقولها مستخبية (يوم مقفول مبيعرضش من/إلى)
+    const values = form.getFieldsValue(true) as Values;
     setFailed(false);
     try {
       await update({

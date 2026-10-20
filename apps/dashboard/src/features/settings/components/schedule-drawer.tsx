@@ -77,8 +77,10 @@ export function ScheduleDrawer({
     });
   }, [schedule, form]);
 
-  const saveWeekly = async (values: WeeklyValues) => {
+  const saveWeekly = async () => {
     if (!schedule) return;
+    // كل القيم حتى اللي حقولها مستخبية (يوم إجازة مبيعرضش الفرع والساعات)
+    const values = form.getFieldsValue(true) as WeeklyValues;
     try {
       await save({
         practitioner_id: schedule.practitioner_id,

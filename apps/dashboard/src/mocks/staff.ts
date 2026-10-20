@@ -116,9 +116,14 @@ export const staffHandlers: MockHandlers = {
     return { data };
   },
 
-  updateRole: ({ body }) => {
+  updateRole: ({ url, body }) => {
     if (!has('roles.manage')) throw new MockHttpError(403, 'FORBIDDEN');
-    const input = body as RoleEntry;
+    // الدور في اللينك (PUT /staff/roles/:role) والصلاحيات في الـBody
+    const role = url.split('/').at(-1) as Role;
+    const input: RoleEntry = {
+      role,
+      permissions: (body as { permissions: Permission[] }).permissions,
+    };
     // الأدمن مينفعش يقفل على نفسه
     if (
       input.role === 'admin' &&
