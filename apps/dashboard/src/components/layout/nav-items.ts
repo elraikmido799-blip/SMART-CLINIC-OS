@@ -37,7 +37,7 @@ export const NAV_ITEMS = [
     anyOf: ['medical.read', 'vitals.write', 'clinical.capture', 'builders.manage'],
   },
   { key: 'programs', to: '/programs', icon: Leaf, anyOf: ['programs.read', 'builders.manage'] },
-  { key: 'crm', to: '/crm', icon: Contact, anyOf: ['leads.read', 'leads.create'] },
+  { key: 'crm', to: '/crm', icon: Contact, anyOf: ['leads.read', 'leads.create', 'tasks.manage'] },
   { key: 'catalog', to: '/catalog', icon: Package, anyOf: ['catalog.write', 'campaigns.manage'] },
   { key: 'billing', to: '/billing', icon: CreditCard, anyOf: ['billing.read', 'refunds.approve'] },
   {

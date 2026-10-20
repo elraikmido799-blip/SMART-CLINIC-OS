@@ -17,6 +17,7 @@ import { clinicToday } from '@/lib/clinic-time';
 import { useNow } from '@/lib/use-now';
 import { minutesToContact, slaState, type SlaState } from '../sla';
 import type { Lead } from '../types';
+import { RelatedTasks } from '@/features/tasks/components/related-tasks';
 import { ActivityTimeline } from './activity-timeline';
 import { ConvertModal, LogCallModal, LostModal, WhatsappModal } from './lead-actions';
 
@@ -188,7 +189,9 @@ export function LeadDrawer({ lead, onClose }: { lead: Lead | null; onClose: () =
             )}
           </dl>
 
-          <Typography.Title level={2} style={{ fontSize: 16 }}>
+          <RelatedTasks type="lead" id={lead.id} branchId={lead.branch_id} bare />
+
+          <Typography.Title level={2} style={{ fontSize: 16, marginTop: 24 }}>
             {t('timeline.title')}
           </Typography.Title>
           <ActivityTimeline leadId={lead.id} />

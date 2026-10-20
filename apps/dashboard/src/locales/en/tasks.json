@@ -1,0 +1,71 @@
+{
+  "title": "Tasks and follow-ups",
+  "description": "Every follow-up on a lead or a patient, and when it is due",
+  "cancel": "Cancel",
+  "tabs": {
+    "label": "CRM sections",
+    "pipeline": "Leads",
+    "tasks": "Tasks"
+  },
+  "scope": {
+    "label": "Task scope",
+    "mine": "My tasks",
+    "all": "All branch tasks"
+  },
+  "kpi": {
+    "today": "Due today",
+    "overdue": "Overdue",
+    "upcoming": "Upcoming"
+  },
+  "buckets": {
+    "overdue": "Overdue",
+    "today": "Today",
+    "upcoming": "Upcoming",
+    "done": "Done"
+  },
+  "bucketLabel": {
+    "overdue": "Overdue · {{date}}",
+    "today": "Today",
+    "upcoming": "{{date}}",
+    "done": "Done"
+  },
+  "empty": {
+    "overdue": "No overdue tasks",
+    "today": "No tasks for today",
+    "upcoming": "No upcoming tasks",
+    "done": "No completed tasks yet"
+  },
+  "priorities": {
+    "high": "Urgent",
+    "normal": "Normal",
+    "low": "Not urgent"
+  },
+  "related": {
+    "lead": "Lead",
+    "patient": "Patient",
+    "title": "Tasks and follow-ups",
+    "empty": "No tasks here"
+  },
+  "list": {
+    "region": "Task list",
+    "complete": "Complete {{title}}",
+    "reopen": "Reopen {{title}}"
+  },
+  "new": {
+    "button": "New task",
+    "title": "New task",
+    "name": "What needs doing",
+    "nameRequired": "Write what needs doing",
+    "due": "Due day",
+    "dueRequired": "Pick a day",
+    "priority": "Priority",
+    "assignee": "Assigned to",
+    "me": "Me",
+    "notes": "Notes (optional)",
+    "ok": "Add task",
+    "done": "Task added"
+  },
+  "errors": {
+    "generic": "Something went wrong. Try again."
+  }
+}

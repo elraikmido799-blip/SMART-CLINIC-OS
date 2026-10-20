@@ -46,6 +46,7 @@ export const PERMISSIONS = [
   'leads.read',
   'leads.create',
   'leads.write',
+  'tasks.manage', // مهامي ومتابعاتي (D-22)
   'campaigns.read',
   'campaigns.manage',
   'content.manage',

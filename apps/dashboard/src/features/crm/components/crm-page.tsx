@@ -27,6 +27,7 @@ import {
   type LeadSource,
   type LeadStage,
 } from '../types';
+import { CrmTabs } from './crm-tabs';
 import { LeadCard } from './lead-card';
 import { LeadDrawer } from './lead-drawer';
 import { NewLeadModal } from './new-lead-modal';
@@ -121,6 +122,7 @@ export function CrmPage() {
 
   return (
     <>
+      <CrmTabs active="pipeline" />
       <PageHeader
         title={me.role === 'crm_agent' ? t('myLeads') : tNav('crm')}
         description={t('description')}

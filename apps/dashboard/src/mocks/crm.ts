@@ -21,7 +21,7 @@ import { readDb, writeDb, type MockDb } from './db';
 const DAY = 86_400_000;
 const MINUTE = 60_000;
 
-const AGENTS = [
+export const AGENTS = [
   { id: 'st-crm', name_ar: 'ندى سمير', name_en: 'Nada Samir' },
   { id: 'agent-farah', name_ar: 'فرح علي', name_en: 'Farah Ali' },
   { id: 'agent-sara', name_ar: 'سارة أحمد', name_en: 'Sara Ahmed' },

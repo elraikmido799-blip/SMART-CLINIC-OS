@@ -14,7 +14,7 @@ export const PATIENT_TABS = [
   { key: 'documents', permission: 'patients.read', step: null },
   { key: 'programs', permission: 'programs.read', step: null },
   { key: 'billing', permission: 'billing.read', step: '7.3' },
-  { key: 'crm', permission: 'leads.read', step: '6.2' },
+  { key: 'crm', permission: 'tasks.manage', step: null },
   { key: 'consents', permission: 'patients.read', step: null },
   { key: 'access', permission: 'audit.read', step: '9.7' },
 ] as const satisfies readonly { key: string; permission: Permission; step: string | null }[];

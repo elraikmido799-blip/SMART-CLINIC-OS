@@ -2384,6 +2384,17 @@
 
 ---
 
+### L-88 · الداشبورد: المهام والمتابعات (6.3)
+
+- **اتعمل:** صفحة `/crm/tasks` جوه قسم الـCRM (تبديل "العملاء | المهام" فوق): "مهامي" أو "كل مهام الفرع" · 3 أرقام (النهارده · المتأخرة · الجاية) · تابات المتأخرة / النهارده / الجاية / المخلصة بعدّاد · Checkbox لخلاص المهمة أو إرجاعها · "مهمة جديدة" (المطلوب · اليوم · الأولوية · المسؤول · ملاحظات).
+  - المهمة بتتربط بعميل أو مريض: قسم "المهام والمتابعات" جوه Drawer العميل، وتاب CRM في ملف المريض (كان "قريبًا" من 4.1).
+  - صلاحية جديدة `tasks.manage` (الاستقبال · الـAgent · مدير الفرع · مدير العمليات). الاستقبال معاه `leads.create` بس فبيدخل CRM على المهام مباشرة.
+- **الملفات:** `features/tasks/{types,tasks.api}.ts` · `features/tasks/components/{tasks-page,task-list,task-modal,related-tasks}.tsx` · `features/crm/components/crm-tabs.tsx` (جديد) · `routes/_app/crm.tasks.tsx` · `routes/_app/crm.index.tsx` · `mocks/tasks.ts` (جديد) · `mocks/{db,handlers,seed,crm}.ts` · `features/auth/permissions.ts` · `features/patients/{tabs.ts,components/patient-page.tsx}` · `features/crm/components/{crm-page,lead-drawer}.tsx` · `components/layout/nav-items.ts` · `store/base-api.ts` (Tag `Tasks`) · `locales/*/tasks.json` · `app/i18n.ts`.
+- **المشاكل:** (1) heredoc طويل فيه عربي وفشل في الـShell من غير ما يكتب حاجة — اتكتبت الملفات بأداة الكتابة. (2) مفيش Python على الجهاز، فتعديلات الملفات المتعددة بـNode.
+- **القرارات:** [DEC-64](19-decisions.md#dec-64).
+- **محتاج من مبرمج الباك:** `GET /staff/tasks` (فلاتر: `branch_id` · `scope=mine|all` · `related_type` · `related_id`) · `POST /staff/tasks` (422: `INVALID_TASK`) · `POST /staff/tasks/:id/done` · صلاحية `tasks.manage`.
+- **اتأكدنا إزاي:** `pnpm build` (tsc + vite) و`pnpm lint` نضاف. **مجربتش الشاشة في المتصفح لسه** — جرّبها بـ`nada@oxygen.demo` ثم `reception@oxygen.demo`.
+
 ---
 
 ## مستنيين إيه ومن مين

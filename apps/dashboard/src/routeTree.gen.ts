@@ -22,6 +22,7 @@ import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 import { Route as AppClinicalIndexRouteImport } from './routes/_app/clinical.index'
 import { Route as AppClinicalExercisesRouteImport } from './routes/_app/clinical.exercises'
 import { Route as AppCrmIndexRouteImport } from './routes/_app/crm.index'
+import { Route as AppCrmTasksRouteImport } from './routes/_app/crm.tasks'
 import { Route as AppEncountersEncounterIdRouteImport } from './routes/_app/encounters.$encounterId'
 import { Route as AppFrontDeskIndexRouteImport } from './routes/_app/front-desk.index'
 import { Route as AppFrontDeskClosingRouteImport } from './routes/_app/front-desk.closing'
@@ -98,6 +99,11 @@ const AppCrmIndexRoute = AppCrmIndexRouteImport.update({
   path: '/crm/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppCrmTasksRoute = AppCrmTasksRouteImport.update({
+  id: '/crm/tasks',
+  path: '/crm/tasks',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppEncountersEncounterIdRoute =
   AppEncountersEncounterIdRouteImport.update({
     id: '/encounters/$encounterId',
@@ -166,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
   '/clinical/exercises': typeof AppClinicalExercisesRoute
+  '/crm/tasks': typeof AppCrmTasksRoute
   '/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
@@ -191,6 +198,7 @@ export interface FileRoutesByTo {
   '/settings': typeof AppSettingsRoute
   '/': typeof AppIndexRoute
   '/clinical/exercises': typeof AppClinicalExercisesRoute
+  '/crm/tasks': typeof AppCrmTasksRoute
   '/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
@@ -218,6 +226,7 @@ export interface FileRoutesById {
   '/_app/settings': typeof AppSettingsRoute
   '/_app/': typeof AppIndexRoute
   '/_app/clinical/exercises': typeof AppClinicalExercisesRoute
+  '/_app/crm/tasks': typeof AppCrmTasksRoute
   '/_app/encounters/$encounterId': typeof AppEncountersEncounterIdRoute
   '/_app/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/_app/front-desk/pos': typeof AppFrontDeskPosRoute
@@ -245,6 +254,7 @@ export interface FileRouteTypes {
     | '/reports'
     | '/settings'
     | '/clinical/exercises'
+    | '/crm/tasks'
     | '/encounters/$encounterId'
     | '/front-desk/closing'
     | '/front-desk/pos'
@@ -270,6 +280,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/'
     | '/clinical/exercises'
+    | '/crm/tasks'
     | '/encounters/$encounterId'
     | '/front-desk/closing'
     | '/front-desk/pos'
@@ -296,6 +307,7 @@ export interface FileRouteTypes {
     | '/_app/settings'
     | '/_app/'
     | '/_app/clinical/exercises'
+    | '/_app/crm/tasks'
     | '/_app/encounters/$encounterId'
     | '/_app/front-desk/closing'
     | '/_app/front-desk/pos'
@@ -409,6 +421,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCrmIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/crm/tasks': {
+      id: '/_app/crm/tasks'
+      path: '/crm/tasks'
+      fullPath: '/crm/tasks'
+      preLoaderRoute: typeof AppCrmTasksRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/encounters/$encounterId': {
       id: '/_app/encounters/$encounterId'
       path: '/encounters/$encounterId'
@@ -499,6 +518,7 @@ interface AppRouteChildren {
   AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
   AppClinicalExercisesRoute: typeof AppClinicalExercisesRoute
+  AppCrmTasksRoute: typeof AppCrmTasksRoute
   AppEncountersEncounterIdRoute: typeof AppEncountersEncounterIdRoute
   AppFrontDeskClosingRoute: typeof AppFrontDeskClosingRoute
   AppFrontDeskPosRoute: typeof AppFrontDeskPosRoute
@@ -524,6 +544,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
   AppClinicalExercisesRoute: AppClinicalExercisesRoute,
+  AppCrmTasksRoute: AppCrmTasksRoute,
   AppEncountersEncounterIdRoute: AppEncountersEncounterIdRoute,
   AppFrontDeskClosingRoute: AppFrontDeskClosingRoute,
   AppFrontDeskPosRoute: AppFrontDeskPosRoute,
