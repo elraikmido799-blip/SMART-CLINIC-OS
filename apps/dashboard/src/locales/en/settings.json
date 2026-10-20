@@ -2,7 +2,8 @@
   "cancel": "Cancel",
   "tabs": {
     "label": "Settings sections",
-    "templates": "Notification templates"
+    "templates": "Notification templates",
+    "staff": "Staff and roles"
   },
   "templates": {
     "description": "WhatsApp, SMS and email messages sent to patients",
@@ -48,5 +49,85 @@
     "save": "Save",
     "saved": "Template saved",
     "invalid": "The template has an unknown variable or empty text."
+  },
+  "staff": {
+    "description": "Staff accounts and role permissions",
+    "tabs": {
+      "people": "Staff",
+      "roles": "Roles and permissions"
+    },
+    "new": "New staff member",
+    "edit": "Edit staff member",
+    "search": "Search by name or email",
+    "empty": "No staff",
+    "allBranches": "All branches",
+    "active": "Active",
+    "inactive": "Disabled",
+    "columns": {
+      "name": "Staff member",
+      "role": "Role",
+      "branches": "Branches",
+      "status": "Status"
+    },
+    "fields": {
+      "nameAr": "Arabic name",
+      "nameEn": "English name",
+      "email": "Email",
+      "emailInvalid": "Enter a valid email",
+      "role": "Role",
+      "branches": "Branches",
+      "allBranches": "All branches",
+      "branchesRequired": "Pick at least one branch",
+      "specialty": "Specialty",
+      "active": "Account is active",
+      "required": "Required"
+    },
+    "save": "Save",
+    "saved": "Staff member saved",
+    "created": "Staff member added",
+    "errors": {
+      "DUPLICATE_EMAIL": "This email belongs to another staff member.",
+      "FORBIDDEN_ROLE": "You are not allowed to give this role or all branches.",
+      "FORBIDDEN_BRANCH": "You are not allowed to assign a branch that is not yours.",
+      "INVALID_STAFF": "Some data is missing, or you cannot disable your own account.",
+      "generic": "Something went wrong. Try again."
+    },
+    "roles": {
+      "description": "Pick a role and edit its permissions. The change applies to everyone with that role.",
+      "count": "{{count}} permissions",
+      "edit": "{{role}} permissions",
+      "saved": "Role permissions saved",
+      "lockout": "You cannot remove role and settings management from the admin role.",
+      "readOnly": "View only: only the admin can edit permissions.",
+      "groups": {
+        "patients": "Patients",
+        "medical": "Medical record",
+        "nutrition": "Nutrition",
+        "physio": "Physiotherapy",
+        "derm_im": "Dermatology and internal medicine",
+        "clinical": "Preparation",
+        "vitals": "Vitals",
+        "documents": "Documents",
+        "appointments": "Appointments",
+        "checkin": "Check-in",
+        "billing": "Billing",
+        "refunds": "Refunds",
+        "discounts": "Discounts",
+        "catalog": "Catalog",
+        "leads": "Leads",
+        "tasks": "Tasks",
+        "campaigns": "Campaigns",
+        "content": "Content",
+        "programs": "Programs",
+        "builders": "Builders",
+        "dashboards": "Dashboards",
+        "reports": "Reports",
+        "staff": "Staff",
+        "roles": "Roles",
+        "settings": "Settings",
+        "audit": "Audit log"
+      },
+      "countLabel": "Permissions"
+    }
   }
 }

@@ -1,9 +1,13 @@
 import type { Permission } from '@/features/auth/permissions';
 import { hasAny, useMe } from '@/features/auth/use-me';
 
-export type SettingsSection = 'templates';
+export type SettingsSection = 'templates' | 'staff';
 
-type Entry = { key: SettingsSection; to: '/settings/templates'; permissions: Permission[] };
+type Entry = {
+  key: SettingsSection;
+  to: '/settings/templates' | '/settings/staff';
+  permissions: Permission[];
+};
 
 /**
  * أقسام الإعدادات (D-34 → D-39) بالترتيب، وكل قسم حسب صلاحية: مين شايف إيه (06). القسم بيتضاف هنا مع خطوته.
@@ -14,6 +18,7 @@ const SECTIONS: Entry[] = [
     to: '/settings/templates',
     permissions: ['settings.read', 'settings.manage'],
   },
+  { key: 'staff', to: '/settings/staff', permissions: ['staff.manage', 'roles.manage'] },
 ];
 
 export const useSettingsSections = () => {

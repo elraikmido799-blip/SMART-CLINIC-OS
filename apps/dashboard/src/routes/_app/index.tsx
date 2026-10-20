@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Navigate } from '@tanstack/react-router';
 import { Card } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { localized } from '@oxygen/shared';
@@ -24,7 +24,6 @@ import { TodayBoard } from '@/features/front-desk/components/today-board';
 const HOME_STEP: Partial<Record<Role, string>> = {
   reception: '3.1',
   assistant: '3.4',
-  admin: '9.3',
 };
 
 const DOCTOR_ROLES = new Set<Role>(['doctor', 'nutritionist', 'physiotherapist']);
@@ -46,6 +45,7 @@ function HomePage() {
   if (me.role === 'marketing') return <CampaignsPage />;
   if (me.role === 'finance') return <InvoicesPage />;
   if (me.role === 'ceo') return <ExecutivePage />;
+  if (me.role === 'admin') return <Navigate to="/settings" replace />;
   if (me.role === 'branch_manager' || me.role === 'operations_manager') return <BranchPage />;
 
   return (

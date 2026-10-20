@@ -15,7 +15,8 @@ const RESEND_AFTER_SECONDS = 45;
 
 export const toMe = (staff: MockStaff): StaffMe => ({
   ...staff,
-  permissions: ROLE_TEMPLATES[staff.role],
+  // الأدمن بيعدّل صلاحيات الأدوار (9.3)، فالتعديل بيغلب القالب الأولاني
+  permissions: readDb().role_permissions[staff.role] ?? ROLE_TEMPLATES[staff.role],
   max_discount_percent: MAX_DISCOUNT[staff.role] ?? 0,
 });
 
