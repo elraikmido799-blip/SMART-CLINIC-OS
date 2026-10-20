@@ -100,5 +100,42 @@
     "closedBy": "اتقفل بواسطة",
     "closedAt": "وقت التقفيل",
     "invoices": "عدد الفواتير"
+  },
+  "invoices": {
+    "description": "كل الفواتير والمدفوعات",
+    "empty": "مفيش فواتير",
+    "count": "{{count}} فاتورة",
+    "filters": {
+      "period": "الفترة",
+      "method": "طريقة الدفع",
+      "status": "الحالة",
+      "search": "رقم الفاتورة أو المريض"
+    },
+    "periods": {
+      "today": "النهارده",
+      "week": "آخر 7 أيام",
+      "month": "آخر 30 يوم",
+      "all": "كل الوقت"
+    },
+    "status": {
+      "paid": "مدفوعة",
+      "partial": "مدفوعة جزئيًا",
+      "unpaid": "لسه"
+    },
+    "kpi": {
+      "sales": "المبيعات ({{count}} فاتورة)",
+      "collected": "المحصّل",
+      "outstanding": "المتبقي"
+    },
+    "columns": {
+      "number": "رقم الفاتورة",
+      "date": "التاريخ",
+      "patient": "المريض",
+      "method": "الدفع",
+      "total": "الإجمالي",
+      "paid": "المدفوع",
+      "status": "الحالة"
+    },
+    "emptyPatient": "مفيش فواتير للمريض ده"
   }
 }

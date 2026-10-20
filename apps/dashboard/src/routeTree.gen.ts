@@ -12,12 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
-import { Route as AppBillingRouteImport } from './routes/_app/billing'
 import { Route as AppCalendarRouteImport } from './routes/_app/calendar'
 import { Route as AppContentRouteImport } from './routes/_app/content'
 import { Route as AppDashboardsRouteImport } from './routes/_app/dashboards'
 import { Route as AppReportsRouteImport } from './routes/_app/reports'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
+import { Route as AppBillingIndexRouteImport } from './routes/_app/billing.index'
 import { Route as AppCatalogIndexRouteImport } from './routes/_app/catalog.index'
 import { Route as AppCatalogCodesRouteImport } from './routes/_app/catalog.codes'
 import { Route as AppClinicalIndexRouteImport } from './routes/_app/clinical.index'
@@ -51,11 +51,6 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
-const AppBillingRoute = AppBillingRouteImport.update({
-  id: '/billing',
-  path: '/billing',
-  getParentRoute: () => AppRoute,
-} as any)
 const AppCalendarRoute = AppCalendarRouteImport.update({
   id: '/calendar',
   path: '/calendar',
@@ -79,6 +74,11 @@ const AppReportsRoute = AppReportsRouteImport.update({
 const AppSettingsRoute = AppSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBillingIndexRoute = AppBillingIndexRouteImport.update({
+  id: '/billing/',
+  path: '/billing/',
   getParentRoute: () => AppRoute,
 } as any)
 const AppCatalogIndexRoute = AppCatalogIndexRouteImport.update({
@@ -176,7 +176,6 @@ const AppProgramsBuilderIdRoute = AppProgramsBuilderIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/login': typeof LoginRoute
-  '/billing': typeof AppBillingRoute
   '/calendar': typeof AppCalendarRoute
   '/content': typeof AppContentRoute
   '/dashboards': typeof AppDashboardsRoute
@@ -190,6 +189,7 @@ export interface FileRoutesByFullPath {
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/billing/': typeof AppBillingIndexRoute
   '/catalog/': typeof AppCatalogIndexRoute
   '/clinical/': typeof AppClinicalIndexRoute
   '/crm/': typeof AppCrmIndexRoute
@@ -203,7 +203,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
-  '/billing': typeof AppBillingRoute
   '/calendar': typeof AppCalendarRoute
   '/content': typeof AppContentRoute
   '/dashboards': typeof AppDashboardsRoute
@@ -218,6 +217,7 @@ export interface FileRoutesByTo {
   '/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/front-desk/pos': typeof AppFrontDeskPosRoute
   '/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/billing': typeof AppBillingIndexRoute
   '/catalog': typeof AppCatalogIndexRoute
   '/clinical': typeof AppClinicalIndexRoute
   '/crm': typeof AppCrmIndexRoute
@@ -233,7 +233,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
-  '/_app/billing': typeof AppBillingRoute
   '/_app/calendar': typeof AppCalendarRoute
   '/_app/content': typeof AppContentRoute
   '/_app/dashboards': typeof AppDashboardsRoute
@@ -248,6 +247,7 @@ export interface FileRoutesById {
   '/_app/front-desk/closing': typeof AppFrontDeskClosingRoute
   '/_app/front-desk/pos': typeof AppFrontDeskPosRoute
   '/_app/patients/$patientId': typeof AppPatientsPatientIdRoute
+  '/_app/billing/': typeof AppBillingIndexRoute
   '/_app/catalog/': typeof AppCatalogIndexRoute
   '/_app/clinical/': typeof AppClinicalIndexRoute
   '/_app/crm/': typeof AppCrmIndexRoute
@@ -264,7 +264,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/login'
-    | '/billing'
     | '/calendar'
     | '/content'
     | '/dashboards'
@@ -278,6 +277,7 @@ export interface FileRouteTypes {
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
+    | '/billing/'
     | '/catalog/'
     | '/clinical/'
     | '/crm/'
@@ -291,7 +291,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
-    | '/billing'
     | '/calendar'
     | '/content'
     | '/dashboards'
@@ -306,6 +305,7 @@ export interface FileRouteTypes {
     | '/front-desk/closing'
     | '/front-desk/pos'
     | '/patients/$patientId'
+    | '/billing'
     | '/catalog'
     | '/clinical'
     | '/crm'
@@ -320,7 +320,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_app'
     | '/login'
-    | '/_app/billing'
     | '/_app/calendar'
     | '/_app/content'
     | '/_app/dashboards'
@@ -335,6 +334,7 @@ export interface FileRouteTypes {
     | '/_app/front-desk/closing'
     | '/_app/front-desk/pos'
     | '/_app/patients/$patientId'
+    | '/_app/billing/'
     | '/_app/catalog/'
     | '/_app/clinical/'
     | '/_app/crm/'
@@ -375,13 +375,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/billing': {
-      id: '/_app/billing'
-      path: '/billing'
-      fullPath: '/billing'
-      preLoaderRoute: typeof AppBillingRouteImport
-      parentRoute: typeof AppRoute
-    }
     '/_app/calendar': {
       id: '/_app/calendar'
       path: '/calendar'
@@ -415,6 +408,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/billing/': {
+      id: '/_app/billing/'
+      path: '/billing'
+      fullPath: '/billing/'
+      preLoaderRoute: typeof AppBillingIndexRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/catalog/': {
@@ -547,7 +547,6 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
-  AppBillingRoute: typeof AppBillingRoute
   AppCalendarRoute: typeof AppCalendarRoute
   AppContentRoute: typeof AppContentRoute
   AppDashboardsRoute: typeof AppDashboardsRoute
@@ -562,6 +561,7 @@ interface AppRouteChildren {
   AppFrontDeskClosingRoute: typeof AppFrontDeskClosingRoute
   AppFrontDeskPosRoute: typeof AppFrontDeskPosRoute
   AppPatientsPatientIdRoute: typeof AppPatientsPatientIdRoute
+  AppBillingIndexRoute: typeof AppBillingIndexRoute
   AppCatalogIndexRoute: typeof AppCatalogIndexRoute
   AppClinicalIndexRoute: typeof AppClinicalIndexRoute
   AppCrmIndexRoute: typeof AppCrmIndexRoute
@@ -575,7 +575,6 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
-  AppBillingRoute: AppBillingRoute,
   AppCalendarRoute: AppCalendarRoute,
   AppContentRoute: AppContentRoute,
   AppDashboardsRoute: AppDashboardsRoute,
@@ -590,6 +589,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppFrontDeskClosingRoute: AppFrontDeskClosingRoute,
   AppFrontDeskPosRoute: AppFrontDeskPosRoute,
   AppPatientsPatientIdRoute: AppPatientsPatientIdRoute,
+  AppBillingIndexRoute: AppBillingIndexRoute,
   AppCatalogIndexRoute: AppCatalogIndexRoute,
   AppClinicalIndexRoute: AppClinicalIndexRoute,
   AppCrmIndexRoute: AppCrmIndexRoute,

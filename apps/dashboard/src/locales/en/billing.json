@@ -100,5 +100,42 @@
     "closedBy": "Closed by",
     "closedAt": "Closed at",
     "invoices": "Invoices"
+  },
+  "invoices": {
+    "description": "All invoices and payments",
+    "empty": "No invoices",
+    "count": "{{count}} invoices",
+    "filters": {
+      "period": "Period",
+      "method": "Payment method",
+      "status": "Status",
+      "search": "Invoice number or patient"
+    },
+    "periods": {
+      "today": "Today",
+      "week": "Last 7 days",
+      "month": "Last 30 days",
+      "all": "All time"
+    },
+    "status": {
+      "paid": "Paid",
+      "partial": "Partly paid",
+      "unpaid": "Unpaid"
+    },
+    "kpi": {
+      "sales": "Sales ({{count}} invoices)",
+      "collected": "Collected",
+      "outstanding": "Outstanding"
+    },
+    "columns": {
+      "number": "Invoice no.",
+      "date": "Date",
+      "patient": "Patient",
+      "method": "Payment",
+      "total": "Total",
+      "paid": "Paid",
+      "status": "Status"
+    },
+    "emptyPatient": "No invoices for this patient"
   }
 }

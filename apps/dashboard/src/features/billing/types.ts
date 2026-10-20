@@ -114,3 +114,20 @@ export type CloseCashBody = {
   counted: MethodAmounts;
   reason: string | null;
 };
+
+export type InvoiceStatus = 'paid' | 'partial' | 'unpaid';
+
+/** حالة الفاتورة من اللي اتدفع منها: مدفوعة كاملة · جزء · لسه (D-26) */
+export const invoiceStatusOf = (invoice: Pick<Invoice, 'total' | 'paid'>): InvoiceStatus =>
+  invoice.paid >= invoice.total ? 'paid' : invoice.paid > 0 ? 'partial' : 'unpaid';
+
+export type InvoiceQuery = {
+  branch_id: string;
+  // أيام (من النهارده لورا)، 0 = كل الوقت
+  days: number;
+  method?: PaymentMethod;
+  status?: InvoiceStatus;
+  // رقم الفاتورة أو اسم المريض أو رقم الملف
+  q?: string;
+  patient_id?: string;
+};
